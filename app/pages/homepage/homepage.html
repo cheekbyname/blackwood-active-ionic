@@ -12,14 +12,14 @@
         (ionInput)="searchAll($event)"></ion-searchbar>
 
     <ion-card>
-        <ion-card-header (click)="toggleDevelopments()">
-            <ion-grid>
-                <ion-row>
-                    <ion-col><ion-icon name="pin"></ion-icon>Developments</ion-col>
-                    <ion-col text-right *ngIf="developments">{{developments.length}}</ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-header>
+        <ion-card-content (click)="toggleDevelopments()" no-padding>
+            <ion-item>
+                <ion-icon name="pin"></ion-icon>Developments
+                <ion-badge *ngIf="developments" item-right class="text-standard">
+                    {{developments.length}}
+                </ion-badge>
+            </ion-item>
+        </ion-card-content>
     </ion-card>
 
     <ion-list list-inset *ngIf="developments && showDevelopments" [virtualScroll]="developments"
@@ -30,32 +30,32 @@
     </ion-list>
 
     <ion-card>
-        <ion-card-header (click)="toggleTenancies()">
-            <ion-grid>
-                <ion-row>
-                    <ion-col><ion-icon name="people"></ion-icon>Tenancies</ion-col>
-                    <ion-col text-right *ngIf="tenancies">{{tenancies.length}}</ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-header>
+        <ion-card-content (click)="toggleTenancies()" no-padding>
+            <ion-item>
+                <ion-icon name="people"></ion-icon>Tenancies
+                <ion-badge *ngIf="tenancies" item-right class="text-standard">
+                    {{tenancies.length}}
+                </ion-badge>
+            </ion-item>
+        </ion-card-content>
     </ion-card>
 
     <ion-list list-inset *ngIf="tenancies && showTenancies" [virtualScroll]="tenancies"
         approxItemHeight="68px">
-        <ion-item *virtualItem="let ten" (click)="gotoTenancy(ten)">
+        <ion-item *virtualItem="let ten" (click)="gotoTenancy(ten)" class="list-margin shadow-standard">
             <tenancy-card [ten]="ten"></tenancy-card>
         </ion-item>
     </ion-list>
 
     <ion-card>
-        <ion-card-header (click)="toggleProperties()">
-            <ion-grid>
-                <ion-row>
-                    <ion-col><ion-icon name="home"></ion-icon>Properties</ion-col>
-                    <ion-col text-right *ngIf="properties">{{properties.length}}</ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card-header>
+        <ion-card-content (click)="toggleProperties()" no-padding>
+            <ion-item>
+                <ion-icon name="home"></ion-icon>Properties
+                <ion-badge *ngIf="properties" item-right class="text-standard">
+                    {{properties.length}}
+                </ion-badge>
+            </ion-item>
+        </ion-card-content>
     </ion-card>
 
     <ion-list list-inset *ngIf="properties && showProperties" [virtualScroll]="properties"

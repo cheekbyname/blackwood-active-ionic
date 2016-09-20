@@ -16,9 +16,16 @@
 		</ion-card-content>
 	</ion-card>
 
-	<ion-card><ion-card-header>Occupants</ion-card-header></ion-card>
+	<ion-card>
+		<ion-card-content no-padding>
+			<ion-item>
+				<span>Occupants</span>
+				<ion-badge *ngIf="mems" item-right class="text-standard">{{mems.length}}</ion-badge>
+			</ion-item>
+		</ion-card-content>
+	</ion-card>
 	<ion-list [virtualScroll]="mems">
-		<ion-item *virtualItem="let mem" class="scroll-list-card shadow-standard">
+		<ion-item *virtualItem="let mem" class="list-margin shadow-standard">
 			<member-card [mem]="mem"></member-card>
 		</ion-item>
 	</ion-list>
