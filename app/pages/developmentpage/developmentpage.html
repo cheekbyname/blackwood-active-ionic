@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+		{{development.SchemeName}}
+	</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+	<ion-card>
+		<ion-card-header (click)="toggleTenancies()">
+			<ion-grid>
+				<ion-row>
+					<ion-col><ion-icon name="people"></ion-icon>Tenancies</ion-col>
+					<ion-col text-right *ngIf="tenancies">{{tenancies.length}}</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card-header>
+	</ion-card>
+
+    <ion-list list-inset *ngIf="tenancies && showTenancies" [virtualScroll]="tenancies"
+        approxItemHeight="68px">
+        <ion-item *virtualItem="let ten" (click)="gotoTenancy(ten)">
+            <tenancy-card [ten]="ten"></tenancy-card>
+        </ion-item>
+    </ion-list>
+
+	<ion-card>
+		<ion-card-header (click)="toggleProperties()">
+			<ion-grid>
+				<ion-row>
+					<ion-col><ion-icon name="home"></ion-icon>Properties</ion-col>
+					<ion-col text-right *ngIf="properties">{{properties.length}}</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card-header>
+	</ion-card>
+
+    <ion-list list-inset *ngIf="properties && showProperties" [virtualScroll]="properties"
+        approxItemHeight="68px">
+        <ion-item *virtualItem="let prop">
+            <property-card [prop]="prop"></property-card>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
+
+<button fab fab-bottom fab-left (click)="openMap()" class="fixed-fab">
+	<ion-icon name="map"></ion-icon>
+</button>
+<!--<button fab fab-bottom fab-left (click)="openNav()" class="fixed-fab">
+	<ion-icon name="navigate" (click)="openNav"></ion-icon>
+</button>-->

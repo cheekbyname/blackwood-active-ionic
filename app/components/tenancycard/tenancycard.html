@@ -1,0 +1,21 @@
+<ion-grid>
+	<ion-row>
+		<ion-col width-80>
+			{{ten.HouseDesc}}<br/>
+			{{ten.TopAddressLine}}<br/>
+			{{ten.DefaultCommsValue}}
+		</ion-col>
+		<ion-col width-20>
+			<a *ngIf="ten.HasEmail" href="mailto: {{ten.DefaultCommsValue}}">
+				<button fab>
+					<ion-icon name="mail"></ion-icon>
+				</button>
+			</a>
+			<a *ngIf="ten.HasPhone" href="tel: {{ten.DefaultCommsValue}}">
+				<button fab>
+					<ion-icon name="call"></ion-icon>
+				</button>
+			</a>
+		</ion-col>
+	</ion-row>
+</ion-grid>

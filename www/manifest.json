@@ -1,0 +1,11 @@
+{
+  "name": "Blackwood Active",
+  "short_name": "Blacwood Active",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "icon.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}

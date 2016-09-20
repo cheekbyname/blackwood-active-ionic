@@ -1,0 +1,34 @@
+ion-content {
+    background: yellowgreen;
+}
+ion-input {
+    background: whitesmoke;
+}
+body {
+    font-family: "Century Gothic";
+}
+ion-grid, ion-row, ion-col {
+    padding: 0px;
+}
+ion-searchbar {
+    padding-bottom: 0px;
+}
+
+.list-margin {
+    margin-left:3%;
+    width: 94%;
+}
+
+.fixed-fab {
+    margin-left: 3%;
+    z-index: 100;
+    position: fixed;
+}
+
+.text-standard {
+    font-size: 1.6rem;
+}
+
+.shadow-standard {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)
+}
