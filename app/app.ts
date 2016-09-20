@@ -23,7 +23,7 @@ class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: "home" },
-      { title: 'Activity', component: ActivityPage, icon: "bicycle" },
+      { title: 'Activity', component: ActivityPage, icon: "pulse" },
       { title: 'Debug', component: DebugPage, icon: "bug" },
       { title: 'Settings', component: SettingsPage, icon: "cog" }
     ];

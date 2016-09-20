@@ -8,9 +8,9 @@ import 'rxjs/add/operator/toPromise';
 export class WebApi {
         constructor(private http: Http, private toastCtrl: ToastController) {}
 
-        public baseUrl = "http://MBHOF754/api";        // Currently reliant on iisexpress-proxy
+        // public baseUrl = "http://MBHOF754/api";        // Currently reliant on iisexpress-proxy
         //baseUrl = "https://MBHOF754/api";
-        //baseUrl = "http://localhost:50915/api";
+        baseUrl = "http://localhost:50915/api";
         // baseUrl = "https://localhost:44352/api";
 
         getAll(name: string): Promise<any[]> {

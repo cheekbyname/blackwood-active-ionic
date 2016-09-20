@@ -2,17 +2,19 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { WebApi } from '../../services/api.service';
-
 import { Tenancy } from '../../models/tenancy';
 import { Development } from '../../models/development';
 import { Property } from '../../models/property';
 import { Member } from '../../models/member';
+import { Comm } from '../../models/comm';
+
+import { WebApi } from '../../services/api.service';
 
 import { TenancyService } from '../../services/tenancy.service';
 import { DevelopmentService } from '../../services/development.service';
 import { PropertyService } from '../../services/property.service';
 import { MemberService } from '../../services/member.service';
+import { CommService} from '../../services/comm.service';
 
 import { DevelopmentPage } from '../developmentpage/developmentpage';
 import { TenancyPage } from '../tenancypage/tenancypage';
@@ -23,7 +25,7 @@ import { DevelopmentCard } from '../../components/developmentcard/developmentcar
 
 @Component({
     templateUrl: 'build/pages/homepage/homepage.html',
-    providers: [PropertyService, DevelopmentService, TenancyService, MemberService, WebApi],
+    providers: [PropertyService, DevelopmentService, TenancyService, MemberService, CommService, WebApi],
     directives: [TenancyCard, PropertyCard, DevelopmentCard]
 })
 export class HomePage implements OnInit {
@@ -32,7 +34,8 @@ export class HomePage implements OnInit {
         private tenancyService: TenancyService,
         private developmentService: DevelopmentService,
         private propertyService: PropertyService,
-        private memberService: MemberService) { }
+        private memberService: MemberService,
+        private commService: CommService) { }
     
     allTenancies: Tenancy[];
     allDevelopments: Development[];
@@ -138,9 +141,19 @@ export class HomePage implements OnInit {
         this.navCtrl.push(DevelopmentPage, {development: dev, properties: props, tenancies: tens});
     }
 
-    gotoTenancy(ten: Tenancy): void {
-        let mems = this.allMembers.filter(mem => mem.HouseRef == ten.HouseRef);
-        let prop = this.allProperties.find(prop => prop.PropRef == ten.PropRef);
-        this.navCtrl.push(TenancyPage, {ten: ten, prop: prop, mems: mems});
+	gotoTenancy(ten: Tenancy): void {
+		let displayComms = ["T", "MT", "E", "I"];
+
+        let mems = this.memberService.getMembers()
+			.then(mems => mems.filter(mem => mem.HouseRef == ten.HouseRef));
+        let prop = this.propertyService.getProperties()
+			.then(props => props.find(prop => prop.PropRef == ten.PropRef));
+		let coms = this.commService.getComms()
+			.then(coms => coms.filter(com => com.HouseRef == ten.HouseRef))
+			.then(coms => coms.filter(com => displayComms.some(dis => dis == com.CommsTypeRef)));
+
+		Promise.all([mems, prop, coms]).then(values => { 
+			this.navCtrl.push(TenancyPage, {ten: ten, mems: values[0], prop: values[1], coms: values[2]})
+		});
     }
 }

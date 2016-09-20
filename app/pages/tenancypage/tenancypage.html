@@ -16,19 +16,33 @@
 		</ion-card-content>
 	</ion-card>
 
-	<ion-card>
+	<ion-card (click)="toggleMembers()">
 		<ion-card-content no-padding>
 			<ion-item>
-				<span>Occupants</span>
+				<span>People</span>
 				<ion-badge *ngIf="mems" item-right class="text-standard">{{mems.length}}</ion-badge>
 			</ion-item>
 		</ion-card-content>
 	</ion-card>
-	<ion-list [virtualScroll]="mems">
+	<ion-list *ngIf="mems && showMembers" [virtualScroll]="mems">
 		<ion-item *virtualItem="let mem" class="list-margin shadow-standard">
 			<member-card [mem]="mem"></member-card>
 		</ion-item>
 	</ion-list>
 
-</ion-content>
+	<ion-card>
+		<ion-card-content no-padding>
+			<ion-item>
+				<span>Contacts</span>
+				<ion-badge *ngIf="coms" item-right class="text-standard">{{coms.length}}</ion-badge>
+			</ion-item>
+		</ion-card-content>
+	</ion-card>
 
+	<ion-list *ngIf="coms" [virtualScroll]="coms">
+		<ion-item *virtualItem="let com" approxItemHeight="68px" class="list-margin shadow-standard">
+			<comm-card [com]="com"></comm-card>
+		</ion-item>
+	</ion-list>
+	
+</ion-content>
