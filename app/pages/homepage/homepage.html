@@ -49,24 +49,12 @@
 
     <button (click)="toggleProperties()" class="button-header">
         <ion-icon name="home" no-padding></ion-icon><span class="button-text" text-capitalize>Properties</span>
-        <ion-badge *ngIf="Properties">
+        <ion-badge *ngIf="properties">
             {{properties.length}}
         </ion-badge>
         <ion-icon *ngIf="properties && !showProperties" name="arrow-dropdown-circle" secondary no-padding></ion-icon>
         <ion-icon *ngIf="properties && showProperties" name="arrow-dropup-circle" secondary no-padding></ion-icon>
     </button>
-
-    <!--<ion-card>
-        <ion-card-content (click)="toggleProperties()" no-padding>
-            <ion-item>
-                <ion-icon name="home"></ion-icon>Properties
-                <ion-badge *ngIf="properties" item-right class="text-standard">
-                    {{properties.length}}
-                </ion-badge>
-                <ion-icon *ngIf="properties" name="arrow-dropdown-circle" item-right no-padding secondary></ion-icon>
-            </ion-item>
-        </ion-card-content>
-    </ion-card>-->
 
     <ion-list list-inset *ngIf="properties && showProperties" [virtualScroll]="properties"
         approxItemHeight="68px">

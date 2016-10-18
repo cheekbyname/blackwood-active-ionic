@@ -7,12 +7,16 @@ import { DevelopmentService } from '../../services/development.service';
 import { PropertyService } from '../../services/property.service';
 import { MemberService } from '../../services/member.service';
 import { CommService} from '../../services/comm.service';
+import { FacilityService } from '../../services/facility.service';
+import { ClientService } from '../../services/client.service';
 
 import { Tenancy } from '../../models/tenancy';
 import { Development } from '../../models/development';
 import { Property } from '../../models/property';
 import { Member } from '../../models/member';
 import { Comm } from '../../models/comm';
+import { Facility } from '../../models/facility';
+import { Client } from '../../models/client';
 
 import { DevelopmentPage } from '../developmentpage/developmentpage';
 import { TenancyPage } from '../tenancypage/tenancypage';
@@ -31,26 +35,54 @@ export class HomePage implements OnInit {
     constructor(public navCtrl: NavController, private popoverCtrl: PopoverController,
         public developmentService: DevelopmentService, public tenancyService: TenancyService,
         public propertyService: PropertyService, public memberService: MemberService,
-        public commService: CommService) { }
+        public commService: CommService, public facilityService: FacilityService, public clientService: ClientService) { }
 
     allTenancies: Tenancy[];
     allDevelopments: Development[];
     allProperties: Property[];
     allMembers: Member[];
+    allFacilities: Facility[];
+    allClients: Client[];
 
     tenancies: Tenancy[];
     developments: Development[];
     properties: Property[];
+    facilities: Facility[];
+    clients: Client[];
 
     showTenancies: boolean = false;
     showDevelopments: boolean = false;
     showProperties: boolean = false;
+    showFacilities: boolean = false;
+    showClients: boolean = false;
 
     ngOnInit(): void {
         this.getTenancies();
         this.getDevelopments();
         this.getProperties();
         this.getMembers();
+        this.getFacilities();
+        this.getClients();
+    }
+
+    getFacilities(): void {
+        this.facilityService.getFacilities()
+            .then(facs => this.initFacilities(facs));
+    }
+
+    initFacilities(facs: Facility[]): void {
+        this.allFacilities = facs;
+        this.facilities = facs;
+    }
+
+    getClients(): void {
+        this.clientService.getClients()
+            .then(clis => this.initClients(clis));
+    }
+
+    initClients(clis: Client[]): void {
+        this.allClients = clis;
+        this.clients = clis;
     }
 
     getTenancies(): void {

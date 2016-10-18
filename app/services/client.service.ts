@@ -4,11 +4,11 @@ import { WebApi } from './api.service';
 import { Client } from '../models/client';
 
 @Injectable()
-export class CommService {
+export class ClientService {
 	constructor(private api: WebApi) { }
 
-	getComms(): Promise<Client[]> {
-		return this.api.getAll("clients", "api")
+	getClients(): Promise<Client[]> {
+		return this.api.getAll("care/clients", "api")
 			.then(clis => clis as Client[]);
 	}
 }

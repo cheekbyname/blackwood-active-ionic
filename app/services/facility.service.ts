@@ -8,7 +8,7 @@ export class FacilityService {
 	constructor(private api: WebApi) { }
 
 	getFacilities(): Promise<Facility[]> {
-		return this.api.getAll("facilities", "api")
+		return this.api.getAll("care/facilities", "api")
 			.then(facs => facs as Facility[]);
 	}
 }
