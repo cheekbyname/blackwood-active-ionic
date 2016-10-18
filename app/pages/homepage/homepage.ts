@@ -24,11 +24,13 @@ import { TenancyPage } from '../tenancypage/tenancypage';
 import { TenancyCard } from '../../components/tenancycard/tenancycard';
 import { PropertyCard } from '../../components/propertycard/propertycard';
 import { DevelopmentCard } from '../../components/developmentcard/developmentcard';
+import { FacilityCard } from '../../components/facility.card/facility.card';
+import { ClientCard } from '../../components/client.card/client.card';
 import { HomeFilterPopover } from '../../components/homefilter.popover/homefilter.popover';
 
 @Component({
     templateUrl: 'build/pages/homepage/homepage.html',
-    directives: [TenancyCard, PropertyCard, DevelopmentCard]
+    directives: [ TenancyCard, PropertyCard, DevelopmentCard, ClientCard, FacilityCard ]
 })
 export class HomePage implements OnInit {
     
@@ -122,25 +124,31 @@ export class HomePage implements OnInit {
 
     toggleTenancies(): void {
         if (this.tenancies && this.tenancies.length > 0) {
-            this.showDevelopments = false;
-            this.showProperties = false;
             this.showTenancies = !this.showTenancies;
         }
     }
 
     toggleDevelopments(): void {
         if (this.developments && this.developments.length > 0) {
-            this.showTenancies = false;
-            this.showProperties = false;
             this.showDevelopments = !this.showDevelopments;
         }
     }
 
     toggleProperties(): void {
         if (this.properties && this.properties.length > 0) {
-            this.showDevelopments = false;
-            this.showTenancies = false;
             this.showProperties = !this.showProperties;
+        }
+    }
+
+    toggleFacilities(): void {
+        if (this.facilities && this.facilities.length > 0) {
+            this.showFacilities = !this.showFacilities;
+        }
+    }
+
+    toggleClients(): void {
+        if (this.clients && this.clients.length > 0) {
+            this.showClients = !this.showClients;
         }
     }
 
@@ -155,16 +163,20 @@ export class HomePage implements OnInit {
                 dev.SchemeName.toLowerCase().includes(searchTerm.toLowerCase()));
             this.properties = this.allProperties.filter(prop =>
                 prop.TopAddressLine.toLowerCase().includes(searchTerm.toLowerCase()));
+            this.facilities = this.allFacilities.filter(fac =>
+                fac.facilityName.toLowerCase().includes(searchTerm.toLowerCase()));
+            this.clients = this.allClients.filter(cli => 
+                (cli.forename.toLowerCase() + cli.surname.toLowerCase()).includes(searchTerm.toLowerCase()));
         }
         else {
             // Reset filtered lists
             this.tenancies = this.allTenancies;
             this.developments = this.allDevelopments;
             this.properties = this.allProperties;
+            this.facilities = this.allFacilities;
+            this.clients = this.allClients;
             // And hide them
-            this.showTenancies = false;
-            this.showDevelopments = false;
-            this.showProperties = false;
+            this.collapseAll();
         }
     }
 
@@ -196,6 +208,8 @@ export class HomePage implements OnInit {
         this.showDevelopments = false;
         this.showTenancies = false;
         this.showProperties = false;
+        this.showFacilities = false;
+        this.showClients = false;
     }
 
     showFilters(ev) {
@@ -203,5 +217,9 @@ export class HomePage implements OnInit {
             filterPop.present({
                 ev: ev
             });
+    }
+
+    facilityForClient(client: Client): Facility {
+        return this.allFacilities.find(fac => fac.facilityGuid == client.facilityGuid);
     }
 }

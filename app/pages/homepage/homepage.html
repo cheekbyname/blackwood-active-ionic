@@ -63,9 +63,40 @@
         </ion-item>
     </ion-list>
 
+    <button (click)="toggleFacilities()" class="button-header">
+        <ion-icon name="podium" no-padding></ion-icon><span class="button-text" text-capitalize>Facilities</span>
+        <ion-badge *ngIf="facilities">
+            {{facilities.length}}
+        </ion-badge>
+        <ion-icon *ngIf="facilities && !showFacilities" name="arrow-dropdown-circle" secondary no-padding></ion-icon>
+        <ion-icon *ngIf="facilities && showFacilities" name="arrow-dropup-circle" secondary no-padding></ion-icon>
+    </button>
+
+    <ion-list list-inset *ngIf="facilities && showFacilities" [virtualScroll]="facilities" approxItemHeight="23px">
+        <ion-item *virtualItem="let facility" class="list-margin shadow-standard">
+            <facility-card [facility]="facility"></facility-card>
+        </ion-item>
+    </ion-list>
+
+    <button (click)="toggleClients()" class="button-header">
+        <ion-icon name="contacts" no-padding></ion-icon><span class="button-text" text-capitalize>Clients</span>
+        <ion-badge *ngIf="clients">
+            {{clients.length}}
+        </ion-badge>
+        <ion-icon *ngIf="clients && !showClients" name="arrow-dropdown-circle" secondary no-padding></ion-icon>
+        <ion-icon *ngIf="clients && showClients" name="arrow-dropup-circle" secondary no-padding></ion-icon>
+    </button>
+
+    <ion-list list-inset *ngIf="clients && showClients" [virtualScroll]="clients"
+        approxItemHeight="46px">
+        <ion-item *virtualItem="let client" class="list-margin shadow-standard">
+            <client-card [client]="client" [facility]="facilityForClient(client)"></client-card>
+        </ion-item>
+    </ion-list>
+
 </ion-content>
 
-<button *ngIf="showDevelopments || showTenancies || showProperties" fab fab-bottom fab-left secondary
+<button *ngIf="showDevelopments || showTenancies || showProperties || showFacilities || showClients" fab fab-bottom fab-left secondary
     (click)="collapseAll()" class="fixed-fab">
 	<ion-icon name="arrow-dropup"></ion-icon>
 </button>
