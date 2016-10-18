@@ -20,6 +20,7 @@ import { Client } from '../../models/client';
 
 import { DevelopmentPage } from '../developmentpage/developmentpage';
 import { TenancyPage } from '../tenancypage/tenancypage';
+import { ClientPage } from '../client.page/client.page';
 
 import { TenancyCard } from '../../components/tenancycard/tenancycard';
 import { PropertyCard } from '../../components/propertycard/propertycard';
@@ -202,6 +203,10 @@ export class HomePage implements OnInit {
 		Promise.all([mems, prop, coms]).then(values => { 
 			this.navCtrl.push(TenancyPage, {ten: ten, mems: values[0], prop: values[1], coms: values[2]})
 		});
+    }
+
+    gotoClient(client: Client, facility: Facility): void {
+        this.navCtrl.push(ClientPage, {client: client, facility: facility});
     }
 
     collapseAll(): void {

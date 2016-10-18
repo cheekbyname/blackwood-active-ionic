@@ -1,0 +1,32 @@
+body, span {
+    font-family: "Century Gothic";
+}
+
+.text-standard {
+    font-size: 1.6rem;
+}
+
+.button-header {
+    ion-icon {
+        width:8%;
+        text-align: center;
+        margin: 3% 3%;
+    }
+    ion-badge {
+        text-align: right;
+    }
+    span, ion-badge {
+        font-size: 1.6rem;
+    }
+    height: 48px;
+    background: white;
+    color: black;
+    width: 94%;
+    margin: 3% 0% 0% 3%;
+    padding: 0px;
+}
+
+.button-text {
+    width: 64%;
+    text-align: left;
+}
