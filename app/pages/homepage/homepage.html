@@ -16,20 +16,6 @@
     <ion-searchbar placeholder="Search for people & places..."
         (ionInput)="searchAll($event)"></ion-searchbar>
 
-    <!--<ion-card>
-        <ion-card-content (click)="toggleDevelopments()" no-padding>
-            <ion-item>
-                <ion-icon name="pin"></ion-icon>Developments
-                <ion-badge *ngIf="developments" class="text-standard" item-right>
-                    {{developments.length}}
-                </ion-badge>
-                <ion-icon *ngIf="developments && !showDevelopments"
-                    name="arrow-dropdown-circle" item-right no-padding secondary></ion-icon>
-                <ion-icon *ngIf="developments && showDevelopments"
-                    name="arrow-dropup-circle" item-right no-padding secondary></ion-icon>
-            </ion-item>
-        </ion-card-content>
-    </ion-card>-->
     <button (click)="toggleDevelopments()" class="button-header">
         <ion-icon name="pin" no-padding></ion-icon><span class="button-text" text-capitalize>Developments</span>
         <ion-badge *ngIf="developments">
@@ -44,18 +30,6 @@
             <development-card [dev]="dev"></development-card>
         </ion-item>
     </ion-list>
-
-    <!--<ion-card>
-        <ion-card-content (click)="toggleTenancies()" no-padding>
-            <ion-item>
-                <ion-icon name="people"></ion-icon>Tenancies
-                <ion-badge *ngIf="tenancies" item-right class="text-standard">
-                    {{tenancies.length}}
-                </ion-badge>
-                <ion-icon *ngIf="tenancies" name="arrow-dropdown-circle" item-right no-padding secondary></ion-icon>
-            </ion-item>
-        </ion-card-content>
-    </ion-card>-->
 
     <button (click)="toggleTenancies()" class="button-header">
         <ion-icon name="people" no-padding></ion-icon><span class="button-text" text-capitalize>Tenancies</span>
@@ -73,7 +47,16 @@
         </ion-item>
     </ion-list>
 
-    <ion-card>
+    <button (click)="toggleProperties()" class="button-header">
+        <ion-icon name="home" no-padding></ion-icon><span class="button-text" text-capitalize>Properties</span>
+        <ion-badge *ngIf="Properties">
+            {{properties.length}}
+        </ion-badge>
+        <ion-icon *ngIf="properties && !showProperties" name="arrow-dropdown-circle" secondary no-padding></ion-icon>
+        <ion-icon *ngIf="properties && showProperties" name="arrow-dropup-circle" secondary no-padding></ion-icon>
+    </button>
+
+    <!--<ion-card>
         <ion-card-content (click)="toggleProperties()" no-padding>
             <ion-item>
                 <ion-icon name="home"></ion-icon>Properties
@@ -83,7 +66,7 @@
                 <ion-icon *ngIf="properties" name="arrow-dropdown-circle" item-right no-padding secondary></ion-icon>
             </ion-item>
         </ion-card-content>
-    </ion-card>
+    </ion-card>-->
 
     <ion-list list-inset *ngIf="properties && showProperties" [virtualScroll]="properties"
         approxItemHeight="68px">

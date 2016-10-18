@@ -13,9 +13,11 @@ export class WebApi {
         // public baseUrl = "http://MBHOF754/api";        // Currently reliant on iisexpress-proxy
         // baseUrl = "http://localhost:50915/api";
 
-        getAll(name: string): Promise<any[]> {
-                console.log(`Calling ${this.api.baseUrl}/${name}`);
-                return this.http.get(`${this.api.baseUrl}/${name}`)
+        getAll(name: string, api?: string): Promise<any[]> {
+                if (typeof api === "undefined") { api = "active"; }     // Use the old WebApi by default
+
+                console.log(`Calling ${this.api.apiBase(api)}/${name}`);
+                return this.http.get(`${this.api.apiBase(api)}/${name}`)
                         .toPromise()
                         .then(res=> this.handleResponse(name, res))
                         .catch(err => this.handleError(err, name));
