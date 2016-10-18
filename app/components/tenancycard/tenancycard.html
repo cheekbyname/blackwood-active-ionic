@@ -12,7 +12,8 @@
 				</button>
 			</a>
 			<a *ngIf="ten.HasPhone" href="tel: {{ten.DefaultCommsValue}}">
-				<button fab>
+				<button fab secondary>
+					<!-- Switch this up based on CommType -->
 					<ion-icon name="call"></ion-icon>
 				</button>
 			</a>

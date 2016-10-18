@@ -12,7 +12,6 @@ import { CommCard } from '../../components/comm.card/comm.card';
 
 @Component({
 	templateUrl: 'build/pages/tenancypage/tenancypage.html',
-	providers: [Tenancy, Property, Member, Comm],
 	directives: [PropertyCard, MemberCard, CommCard ]
 })
 export class TenancyPage {

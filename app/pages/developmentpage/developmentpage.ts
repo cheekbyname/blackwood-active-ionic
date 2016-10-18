@@ -12,15 +12,13 @@ import { TenancyPage } from '../tenancypage/tenancypage';
 import { TenancyCard } from '../../components/tenancycard/tenancycard';
 import { PropertyCard } from '../../components/propertycard/propertycard';
 
-import { WebApi } from '../../services/api.service';
 import { MemberService } from '../../services/member.service';
 import { PropertyService } from '../../services/property.service';
 import { CommService } from '../../services/comm.service';
 
 @Component({
 	templateUrl: 'build/pages/developmentpage/developmentpage.html',
-	directives: [TenancyCard, PropertyCard],
-	providers: [WebApi, MemberService, PropertyService, CommService, TenancyPage]
+	directives: [TenancyCard, PropertyCard]
 })
 export class DevelopmentPage {
 	constructor(public navCtrl: NavController, navParams: NavParams,
@@ -49,14 +47,15 @@ export class DevelopmentPage {
 	}
 
 	openMap(): void {
-		alert("Open Map");
+		console.log("Open Map");
 	}
 
 	openNav(): void {
-		alert("Open Nav");
+		console.log("Open Nav");
 	}
 
 	gotoTenancy(ten: Tenancy): void {
+		// TODO None of this should really be here
 		let displayComms = ["T", "MT", "E", "I"];
 
         let mems = this.memberService.getMembers()

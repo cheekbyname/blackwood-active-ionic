@@ -4,6 +4,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Welcome Home</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showFilters($event)">
+        <ion-icon name="funnel" secondary></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -11,34 +16,55 @@
     <ion-searchbar placeholder="Search for people & places..."
         (ionInput)="searchAll($event)"></ion-searchbar>
 
-    <ion-card>
+    <!--<ion-card>
         <ion-card-content (click)="toggleDevelopments()" no-padding>
             <ion-item>
                 <ion-icon name="pin"></ion-icon>Developments
-                <ion-badge *ngIf="developments" item-right class="text-standard">
+                <ion-badge *ngIf="developments" class="text-standard" item-right>
                     {{developments.length}}
                 </ion-badge>
+                <ion-icon *ngIf="developments && !showDevelopments"
+                    name="arrow-dropdown-circle" item-right no-padding secondary></ion-icon>
+                <ion-icon *ngIf="developments && showDevelopments"
+                    name="arrow-dropup-circle" item-right no-padding secondary></ion-icon>
             </ion-item>
         </ion-card-content>
-    </ion-card>
+    </ion-card>-->
+    <button (click)="toggleDevelopments()" class="button-header">
+        <ion-icon name="pin" no-padding></ion-icon><span class="button-text" text-capitalize>Developments</span>
+        <ion-badge *ngIf="developments">
+            {{developments.length}}
+        </ion-badge>
+        <ion-icon *ngIf="developments && !showDevelopments" name="arrow-dropdown-circle" secondary no-padding></ion-icon>
+        <ion-icon *ngIf="developments && showDevelopments" name="arrow-dropup-circle" secondary no-padding></ion-icon>
+    </button>
 
-    <ion-list list-inset *ngIf="developments && showDevelopments" [virtualScroll]="developments"
-        approxItemHeight="68px">
-        <ion-item *virtualItem="let dev" (click)="gotoDevelopment(dev)" class="list-margin">
+    <ion-list list-inset *ngIf="developments && showDevelopments" [virtualScroll]="developments" approxItemHeight="68px">
+        <ion-item *virtualItem="let dev" (click)="gotoDevelopment(dev)" class="list-margin shadow-standard">
             <development-card [dev]="dev"></development-card>
         </ion-item>
     </ion-list>
 
-    <ion-card>
+    <!--<ion-card>
         <ion-card-content (click)="toggleTenancies()" no-padding>
             <ion-item>
                 <ion-icon name="people"></ion-icon>Tenancies
                 <ion-badge *ngIf="tenancies" item-right class="text-standard">
                     {{tenancies.length}}
                 </ion-badge>
+                <ion-icon *ngIf="tenancies" name="arrow-dropdown-circle" item-right no-padding secondary></ion-icon>
             </ion-item>
         </ion-card-content>
-    </ion-card>
+    </ion-card>-->
+
+    <button (click)="toggleTenancies()" class="button-header">
+        <ion-icon name="people" no-padding></ion-icon><span class="button-text" text-capitalize>Tenancies</span>
+        <ion-badge *ngIf="tenancies">
+            {{tenancies.length}}
+        </ion-badge>
+        <ion-icon *ngIf="tenancies && !showTenancies" name="arrow-dropdown-circle" secondary no-padding></ion-icon>
+        <ion-icon *ngIf="tenancies && showTenancies" name="arrow-dropup-circle" secondary no-padding></ion-icon>
+    </button>
 
     <ion-list list-inset *ngIf="tenancies && showTenancies" [virtualScroll]="tenancies"
         approxItemHeight="68px">
@@ -54,15 +80,21 @@
                 <ion-badge *ngIf="properties" item-right class="text-standard">
                     {{properties.length}}
                 </ion-badge>
+                <ion-icon *ngIf="properties" name="arrow-dropdown-circle" item-right no-padding secondary></ion-icon>
             </ion-item>
         </ion-card-content>
     </ion-card>
 
     <ion-list list-inset *ngIf="properties && showProperties" [virtualScroll]="properties"
         approxItemHeight="68px">
-        <ion-item *virtualItem="let prop">
+        <ion-item *virtualItem="let prop" class="list-margin shadow-standard">
             <property-card [prop]="prop"></property-card>
         </ion-item>
     </ion-list>
 
 </ion-content>
+
+<button *ngIf="showDevelopments || showTenancies || showProperties" fab fab-bottom fab-left secondary
+    (click)="collapseAll()" class="fixed-fab">
+	<ion-icon name="arrow-dropup"></ion-icon>
+</button>

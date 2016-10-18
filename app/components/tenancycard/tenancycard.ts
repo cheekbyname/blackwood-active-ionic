@@ -4,8 +4,7 @@ import { Tenancy } from '../../models/tenancy';
 
 @Component({
 	selector: 'tenancy-card',
-	templateUrl: 'build/components/tenancycard/tenancycard.html',
-	providers: [Tenancy]
+	templateUrl: 'build/components/tenancycard/tenancycard.html'
 })
 export class TenancyCard {
 	@Input()

@@ -4,8 +4,7 @@ import { Development } from '../../models/development';
 
 @Component({
 	selector: 'development-card',
-	templateUrl: 'build/components/developmentcard/developmentcard.html',
-	providers: [Development]
+	templateUrl: 'build/components/developmentcard/developmentcard.html'
 })
 export class DevelopmentCard {
 	@Input()

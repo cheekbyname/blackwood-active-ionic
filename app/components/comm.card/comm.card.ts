@@ -4,8 +4,7 @@ import { Comm } from '../../models/comm';
 
 @Component({
 	selector: 'comm-card',
-	templateUrl: 'build/components/comm.card/comm.card.html',
-	providers: [Comm]
+	templateUrl: 'build/components/comm.card/comm.card.html'
 })
 export class CommCard implements OnInit {
 	@Input()

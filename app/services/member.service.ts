@@ -12,11 +12,11 @@ export class MemberService {
 
     getMembers(): Promise<Member[]> {
         if (this.allMembers) {
-            console.log("The easy way");
+            console.log("Retrieving Members from memory");
             return Promise.resolve(this.allMembers);
         }
         else {
-            console.log("The hard way");
+            console.log("Retrieving Members from WebApi");
             return this.api.getAll("members")
                 .then(mems => this.allMembers = mems as Member[])
                 .then(mems => mems as Member[]);

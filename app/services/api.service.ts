@@ -4,23 +4,26 @@ import { ToastController } from 'ionic-angular';
 
 import 'rxjs/add/operator/toPromise';
 
+import { Api } from './secret.service.ts';
+
 @Injectable()
 export class WebApi {
-        constructor(private http: Http, private toastCtrl: ToastController) {}
+        constructor(private http: Http, private toastCtrl: ToastController, private api: Api ) {}
 
-        public baseUrl = "http://MBHOF754/api";        // Currently reliant on iisexpress-proxy
-        //baseUrl = "https://MBHOF754/api";
+        // public baseUrl = "http://MBHOF754/api";        // Currently reliant on iisexpress-proxy
         // baseUrl = "http://localhost:50915/api";
-        // baseUrl = "https://localhost:44352/api";
 
         getAll(name: string): Promise<any[]> {
-                return this.http.get(`${this.baseUrl}/${name}`)
+                console.log(`Calling ${this.api.baseUrl}/${name}`);
+                return this.http.get(`${this.api.baseUrl}/${name}`)
                         .toPromise()
-                        .then(res=> this.handleResponse(res))
+                        .then(res=> this.handleResponse(name, res))
                         .catch(err => this.handleError(err, name));
         }
 
-        handleResponse(res: Response): any[] {
+        handleResponse(name: string, res: Response): any[] {
+                console.log(`Returned ${res.status} ${res.statusText} `);
+                //console.log(`Retrieved ${res.json.length} ${name}`);
                 return res.json();
         }
 

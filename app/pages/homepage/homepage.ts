@@ -1,14 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
-
-import { Tenancy } from '../../models/tenancy';
-import { Development } from '../../models/development';
-import { Property } from '../../models/property';
-import { Member } from '../../models/member';
-import { Comm } from '../../models/comm';
-
-import { WebApi } from '../../services/api.service';
+import { NavController, PopoverController } from 'ionic-angular';
 
 import { TenancyService } from '../../services/tenancy.service';
 import { DevelopmentService } from '../../services/development.service';
@@ -16,27 +8,31 @@ import { PropertyService } from '../../services/property.service';
 import { MemberService } from '../../services/member.service';
 import { CommService} from '../../services/comm.service';
 
+import { Tenancy } from '../../models/tenancy';
+import { Development } from '../../models/development';
+import { Property } from '../../models/property';
+import { Member } from '../../models/member';
+import { Comm } from '../../models/comm';
+
 import { DevelopmentPage } from '../developmentpage/developmentpage';
 import { TenancyPage } from '../tenancypage/tenancypage';
 
 import { TenancyCard } from '../../components/tenancycard/tenancycard';
 import { PropertyCard } from '../../components/propertycard/propertycard';
 import { DevelopmentCard } from '../../components/developmentcard/developmentcard';
+import { HomeFilterPopover } from '../../components/homefilter.popover/homefilter.popover';
 
 @Component({
     templateUrl: 'build/pages/homepage/homepage.html',
-    providers: [PropertyService, DevelopmentService, TenancyService, MemberService, CommService, WebApi],
     directives: [TenancyCard, PropertyCard, DevelopmentCard]
 })
 export class HomePage implements OnInit {
     
-    constructor(public navCtrl: NavController,
-        private tenancyService: TenancyService,
-        private developmentService: DevelopmentService,
-        private propertyService: PropertyService,
-        private memberService: MemberService,
-        private commService: CommService) { }
-    
+    constructor(public navCtrl: NavController, private popoverCtrl: PopoverController,
+        public developmentService: DevelopmentService, public tenancyService: TenancyService,
+        public propertyService: PropertyService, public memberService: MemberService,
+        public commService: CommService) { }
+
     allTenancies: Tenancy[];
     allDevelopments: Development[];
     allProperties: Property[];
@@ -93,21 +89,27 @@ export class HomePage implements OnInit {
     }
 
     toggleTenancies(): void {
-        this.showDevelopments = false;
-        this.showProperties = false;
-        this.showTenancies = !this.showTenancies;
+        if (this.tenancies && this.tenancies.length > 0) {
+            this.showDevelopments = false;
+            this.showProperties = false;
+            this.showTenancies = !this.showTenancies;
+        }
     }
 
     toggleDevelopments(): void {
-        this.showTenancies = false;
-        this.showProperties = false;
-        this.showDevelopments = !this.showDevelopments;
+        if (this.developments && this.developments.length > 0) {
+            this.showTenancies = false;
+            this.showProperties = false;
+            this.showDevelopments = !this.showDevelopments;
+        }
     }
 
     toggleProperties(): void {
-        this.showDevelopments = false;
-        this.showTenancies = false;
-        this.showProperties = !this.showProperties;
+        if (this.properties && this.properties.length > 0) {
+            this.showDevelopments = false;
+            this.showTenancies = false;
+            this.showProperties = !this.showProperties;
+        }
     }
 
     searchAll(ev: any): void {
@@ -142,6 +144,7 @@ export class HomePage implements OnInit {
     }
 
 	gotoTenancy(ten: Tenancy): void {
+        // TODO None of this should really be here either
 		let displayComms = ["T", "MT", "E", "I"];
 
         let mems = this.memberService.getMembers()
@@ -155,5 +158,18 @@ export class HomePage implements OnInit {
 		Promise.all([mems, prop, coms]).then(values => { 
 			this.navCtrl.push(TenancyPage, {ten: ten, mems: values[0], prop: values[1], coms: values[2]})
 		});
+    }
+
+    collapseAll(): void {
+        this.showDevelopments = false;
+        this.showTenancies = false;
+        this.showProperties = false;
+    }
+
+    showFilters(ev) {
+            let filterPop = this.popoverCtrl.create(HomeFilterPopover);
+            filterPop.present({
+                ev: ev
+            });
     }
 }
