@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-		{{client.forename}} {{client.surname}}
+			{{client.forename}} {{client.surname}}
 	</ion-title>
   </ion-navbar>
 </ion-header>
@@ -16,7 +16,7 @@
 		</ion-card-content>
 	</ion-card>
 
-	<button class="button-header">
+	<button class="button-header" (click)="gotoCarePlan()">
 		<ion-icon name="medkit" no-padding></ion-icon>
 		<span class="button-text" text-capitalize>Care Plan</span>
 	</button>

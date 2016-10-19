@@ -23,12 +23,27 @@ export class WebApi {
                         .catch(err => this.handleError(err, name));
         }
 
+        getOne(name: string, api?: string): Promise<any> {
+                if (typeof api === "undefined") { api = "active"; }     // Use the old WebApi by default
+
+                console.log(`Calling ${this.api.apiBase(api)}/${name}}`);
+                return this.http.get(`${this.api.apiBase(api)}/${name}`)
+                        .toPromise()
+                        .then(res => this.handleOne(name, res))
+                        .catch(err => this.handleError(err, name));
+        }
+
         handleResponse(name: string, res: Response): any[] {
                 console.log(`Returned ${res.status} ${res.statusText} `);
                 //console.log(`Retrieved ${res.json.length} ${name}`);
                 return res.json();
         }
 
+        handleOne(name: string, res: Response): any {
+                console.log(`Returned ${res.status} ${res.statusText}`);
+                return res.json();
+        }
+        
         // TODO Implement some fallback to local data
         
         handleError(err: any, name: string): Promise<any> {

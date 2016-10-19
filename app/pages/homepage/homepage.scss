@@ -5,12 +5,19 @@ ion-content {
 ion-input {
     background: whitesmoke;
 }
+
+ion-badge {
+    color: black;
+}
+
 body {
     font-family: "Century Gothic";
 }
+
 ion-grid, ion-row, ion-col {
     padding: 0px;
 }
+
 ion-searchbar {
     padding-bottom: 0px;
 }
