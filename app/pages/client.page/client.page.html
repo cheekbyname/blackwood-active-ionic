@@ -16,9 +16,26 @@
 		</ion-card-content>
 	</ion-card>
 
-	<button class="button-header" (click)="gotoCarePlan()">
-		<ion-icon name="medkit" no-padding></ion-icon>
-		<span class="button-text" text-capitalize>Care Plan</span>
-	</button>
+
+	<ion-card>
+		<ion-list>
+			<button ion-item (click)="gotoDetails()">
+				<ion-icon name="contact"></ion-icon>
+				<span class="button-text" text-capitalize>Personal Details</span>
+			</button>
+			<button ion-item (click)="gotoCarePlan()">
+				<ion-icon name="medkit"></ion-icon>
+				<span class="button-text" text-capitalize>Care Plan</span>
+			</button>
+			<button ion-item (click)="gotoNotes()">
+				<ion-icon name="document"></ion-icon>
+				<span class="button-text" text-capitalize>Daily Notes</span>
+			</button>
+		</ion-list>
+	</ion-card>
 
 </ion-content>
+
+<button fab fab-bottom fab-right secondary class="fixed-fab">
+	<ion-icon name="add"></ion-icon>
+</button> 

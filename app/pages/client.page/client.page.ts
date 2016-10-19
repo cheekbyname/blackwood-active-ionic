@@ -24,4 +24,12 @@ export class ClientPage {
 	gotoCarePlan(): void {
 		this.navCtrl.push(CarePlanPage, { client: this.client });
 	}
+
+	gotoDetails(): void {
+
+	}
+
+	gotoNotes(): void {
+		
+	}
 }

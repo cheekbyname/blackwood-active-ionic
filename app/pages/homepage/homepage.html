@@ -26,9 +26,9 @@
     </button>
 
     <ion-list list-inset *ngIf="developments && showDevelopments" [virtualScroll]="developments" approxItemHeight="68px">
-        <ion-item *virtualItem="let dev" (click)="gotoDevelopment(dev)" class="list-margin shadow-standard">
+        <button ion-item *virtualItem="let dev" (click)="gotoDevelopment(dev)" class="list-margin shadow-standard">
             <development-card [dev]="dev"></development-card>
-        </ion-item>
+        </button>
     </ion-list>
 
     <button (click)="toggleTenancies()" class="button-header">
@@ -42,9 +42,9 @@
 
     <ion-list list-inset *ngIf="tenancies && showTenancies" [virtualScroll]="tenancies"
         approxItemHeight="68px">
-        <ion-item *virtualItem="let ten" (click)="gotoTenancy(ten)" class="list-margin shadow-standard">
+        <button ion-item *virtualItem="let ten" (click)="gotoTenancy(ten)" class="list-margin shadow-standard">
             <tenancy-card [ten]="ten"></tenancy-card>
-        </ion-item>
+        </button>
     </ion-list>
 
     <button (click)="toggleProperties()" class="button-header">
@@ -58,9 +58,9 @@
 
     <ion-list list-inset *ngIf="properties && showProperties" [virtualScroll]="properties"
         approxItemHeight="68px">
-        <ion-item *virtualItem="let prop" class="list-margin shadow-standard">
+        <button ion-item *virtualItem="let prop" class="list-margin shadow-standard">
             <property-card [prop]="prop"></property-card>
-        </ion-item>
+        </button>
     </ion-list>
 
     <button (click)="toggleFacilities()" class="button-header">
@@ -73,9 +73,9 @@
     </button>
 
     <ion-list list-inset *ngIf="facilities && showFacilities" [virtualScroll]="facilities" approxItemHeight="23px">
-        <ion-item *virtualItem="let facility" class="list-margin shadow-standard">
+        <button ion-item *virtualItem="let facility" class="list-margin shadow-standard">
             <facility-card [facility]="facility"></facility-card>
-        </ion-item>
+        </button>
     </ion-list>
 
     <button (click)="toggleClients()" class="button-header">
@@ -89,9 +89,9 @@
 
     <ion-list list-inset *ngIf="clients && showClients" [virtualScroll]="clients"
         approxItemHeight="46px">
-        <ion-item *virtualItem="let client" class="list-margin shadow-standard" (click)="gotoClient(client, facilityForClient(client))">
+        <button ion-item *virtualItem="let client" class="list-margin shadow-standard" (click)="gotoClient(client, facilityForClient(client))">
             <client-card [client]="client" [facility]="facilityForClient(client)"></client-card>
-        </ion-item>
+        </button>
     </ion-list>
 
 </ion-content>
