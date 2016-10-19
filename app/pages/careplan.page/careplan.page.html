@@ -17,7 +17,7 @@
 		</ion-card-header>
 		<ion-card-content>
 			<ion-list>
-				<button ion-item *ngFor="let need of careNeeds">
+				<button ion-item *ngFor="let need of careNeeds" (click)="gotoCareNeed(need)">
 					{{need.outcomeDesc}}
 				</button>
 			</ion-list>

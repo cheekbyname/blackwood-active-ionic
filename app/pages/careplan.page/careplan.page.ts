@@ -5,13 +5,14 @@ import { Client } from '../../models/client';
 import { CarePlan } from '../../models/careplan';
 import { CareNeed } from '../../models/careneed';
 import { ClientService } from '../../services/client.service';
+import { CareNeedPage } from '../../pages/careneed.page/careneed.page';
 
 @Component({
 	templateUrl: 'build/pages/careplan.page/careplan.page.html'
 })
 export class CarePlanPage implements OnInit {
 
-	constructor(public clientService: ClientService, navCtrl: NavController, navParams:NavParams ) {
+	constructor(public clientService: ClientService, public navCtrl: NavController, navParams:NavParams ) {
 		this.client = navParams.get("client");
 	}
 
@@ -25,4 +26,8 @@ export class CarePlanPage implements OnInit {
 	public client: Client;
 	public carePlan: CarePlan;
 	public careNeeds: CareNeed[];
+
+	public gotoCareNeed(need: CareNeed): void {
+		this.navCtrl.push( CareNeedPage, {careNeed: need, client: this.client});
+	}
 }

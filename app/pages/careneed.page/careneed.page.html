@@ -8,3 +8,35 @@
 	</ion-title>
   </ion-navbar>
 </ion-header>
+
+<ion-content>
+	<ion-card>
+		<ion-card-header>
+			<span>{{careNeed.outcomeDesc}}</span>
+		</ion-card-header>
+	</ion-card>
+	<ion-card>
+		<ion-card-header>
+			<span>Expected Outcome</span>
+		</ion-card-header>
+		<ion-card-content>
+			<span>{{careNeed.expectedOutcome}}</span>
+		</ion-card-content>
+	</ion-card>
+	<ion-card>
+		<ion-card-header>
+			<span>Current Situation</span>
+		</ion-card-header>
+		<ion-card-content>
+			<span>{{careNeed.currentSituation}}</span>
+		</ion-card-content>
+	</ion-card>
+	<ion-card>
+		<ion-card-header>
+			<span>Action</span>
+		</ion-card-header>
+		<ion-card-content>
+			<span>{{careNeed.action}}</span>
+		</ion-card-content>
+	</ion-card>
+</ion-content>
