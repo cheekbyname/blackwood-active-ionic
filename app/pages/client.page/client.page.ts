@@ -6,6 +6,7 @@ import { Facility } from '../../models/facility';
 import { FacilityCard } from '../../components/facility.card/facility.card';
 import { ClientService } from '../../services/client.service';
 import { CarePlanPage } from '../../pages/careplan.page/careplan.page';
+import { DailyNotesPage } from '../../pages/dailynotes.page/dailynotes.page';
 
 @Component({
 	templateUrl: 'build/pages/client.page/client.page.html',
@@ -30,6 +31,6 @@ export class ClientPage {
 	}
 
 	gotoNotes(): void {
-		
+		this.navCtrl.push( DailyNotesPage, { client: this.client });
 	}
 }

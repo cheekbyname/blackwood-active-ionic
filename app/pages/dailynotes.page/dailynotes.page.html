@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+			{{client.forename}} {{client.surname}}
+	</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+	<ion-card *ngFor="let note of dailyNotes">
+		<ion-card-content>
+			<span>{{formatDate(note.noteDate)}}</span><br/>
+			<span>{{note.noteUser}}</span><br/>
+			<span>{{note.comments}}</span>
+		</ion-card-content>
+	</ion-card>
+
+</ion-content>
