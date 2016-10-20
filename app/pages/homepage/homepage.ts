@@ -125,30 +125,46 @@ export class HomePage implements OnInit {
 
     toggleTenancies(): void {
         if (this.tenancies && this.tenancies.length > 0) {
+            this.showDevelopments = false;
+            this.showProperties = false;
+            this.showFacilities = false;
+            this.showClients = false;
             this.showTenancies = !this.showTenancies;
         }
     }
 
     toggleDevelopments(): void {
         if (this.developments && this.developments.length > 0) {
+            this.showProperties = false;
+            this.showFacilities = false;
+            this.showClients = false;
             this.showDevelopments = !this.showDevelopments;
         }
     }
 
     toggleProperties(): void {
         if (this.properties && this.properties.length > 0) {
+            this.showDevelopments = false;
+            this.showFacilities = false;
+            this.showClients = false;
             this.showProperties = !this.showProperties;
         }
     }
 
     toggleFacilities(): void {
         if (this.facilities && this.facilities.length > 0) {
+            this.showDevelopments = false;
+            this.showProperties = false;
+            this.showClients = false;
             this.showFacilities = !this.showFacilities;
         }
     }
 
     toggleClients(): void {
         if (this.clients && this.clients.length > 0) {
+            this.showDevelopments = false;
+            this.showProperties = false;
+            this.showFacilities = false;
             this.showClients = !this.showClients;
         }
     }
