@@ -15,8 +15,6 @@ export class AddDailyNotePage {
 	dailyNote: DailyNote;
 
 	selectedDateTime: string;
-	selectedCareNeed: CareNeed;
-	selectedOutcome: Outcome;
 	careneeds: CareNeed[];
 	outcomes: Outcome[];
 
@@ -43,6 +41,8 @@ export class AddDailyNotePage {
 	saveEntry(): void {
 		// TODO Call a ClientService method that will save the data via the api
 		// TODO Also figure out a way of refreshing the data on DailyNotesPage once we have
+		// this.dailyNote.outcomeGuid = this.selectedOutcome.outcomeGuid;
+		this.dailyNote.noteDate = new Date(this.selectedDateTime);
 		this.navCtrl.pop();
 	}
 }

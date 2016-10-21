@@ -27,8 +27,8 @@
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Select an Outcome</ion-label>
-					<ion-select [(ngModel)]="selectedOutcome">
-						<ion-option *ngFor="let outcome of outcomes" [value]="outcome">{{outcome.description}}</ion-option>
+					<ion-select [(ngModel)]="dailyNote.outcomeGuid">
+						<ion-option *ngFor="let outcome of outcomes" [value]="outcome.outcomeGuid">{{outcome.description}}</ion-option>
 					</ion-select>
 				</ion-item>
 				<ion-item>
@@ -37,7 +37,7 @@
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Your comments</ion-label>
-					<ion-textarea rows="8" placeholder="Enter your note here"></ion-textarea>
+					<ion-textarea rows="8" placeholder="Enter your note here" [(ngModel)]="dailyNote.comments"></ion-textarea>
 					<!--[(ngModel)]="dailyNote.comments"-->
 				</ion-item>
 			</ion-list>
