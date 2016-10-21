@@ -19,8 +19,10 @@ export class ClientService {
 			.then(cp => cp as CarePlan);
 	}
 
-	getDailyNotesForClient(client: Client): Promise<DailyNote[]> {
-		return this.api.getAll("care/dailynotesbyclient?clientGuid=" + client.clientGuid, "api")
-			.then(dns => dns as DailyNote[]);
+	getDailyNotesForClient(client: Client, pageIndex: number): Promise<DailyNote[]> {
+		var req = "care/dailynotesbyclient"
+			+ "?clientGuid=" + client.clientGuid
+			+ "&offset=" + pageIndex;
+		return this.api.getAll(req, "api").then(dns => dns as DailyNote[]);
 	}
 }
