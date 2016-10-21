@@ -4,6 +4,7 @@ import { WebApi } from './api.service';
 import { Client } from '../models/client';
 import { CarePlan } from '../models/careplan';
 import { DailyNote } from '../models/dailynote';
+import { Outcome } from '../models/outcome';
 
 @Injectable()
 export class ClientService {
@@ -24,5 +25,9 @@ export class ClientService {
 			+ "?clientGuid=" + client.clientGuid
 			+ "&offset=" + pageIndex;
 		return this.api.getAll(req, "api").then(dns => dns as DailyNote[]);
+	}
+
+	getOutcomes(): Promise<Outcome[]> {
+		return this.api.getAll("care/outcomes", "api").then(ocs => ocs as Outcome[]);
 	}
 }

@@ -26,15 +26,15 @@
 		<!-- TODO Navigation buttons required conditional -->
 		<button class="tool-button" (click)="pageOlder()" [disabled]="!hasOlder">
 			<ion-icon name="arrow-round-back" no-padding></ion-icon>
-			<span>Older Notes</span>
+			<span text-capitalize>Older Notes</span>
 		</button>
 		<button class="tool-button" (click)="pageNewer()" [disabled]="!hasNewer">
-			<span>Newer Notes</span>
+			<span text-capitalize>Newer Notes</span>
 			<ion-icon name="arrow-round-forward" no-padding></ion-icon>
 		</button>
 	</ion-toolbar>
 </ion-footer>
 
-<button fab fab-bottom fab-right secondary class="fixed-fab nudge-up">
+<button fab fab-bottom fab-right secondary class="fixed-fab nudge-up" (click)="addNewNote()">
 	<ion-icon name="add"></ion-icon>
 </button> 

@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, PopoverController } from 'ionic-angular';
+
 import { Client } from '../../models/client';
 import { DailyNote } from '../../models/dailynote';
 import { ClientService } from '../../services/client.service';
+import { AddDailyNotePage } from '../../pages/adddailynote.page/adddailynote.page';
 
 @Component({
 	templateUrl: 'build/pages/dailynotes.page/dailynotes.page.html'
 })
 export class DailyNotesPage {
-	constructor(public clientService: ClientService, navCtrl: NavController, navParams: NavParams) {
+	constructor(public clientService: ClientService, public navCtrl: NavController,
+		navParams: NavParams, public popCtrl: PopoverController) {
 		this.client = navParams.get("client");
 	}
 
@@ -49,5 +52,9 @@ export class DailyNotesPage {
 			this.pageIndex--;
 			this.fetchNotes();
 		}
+	}
+
+	public addNewNote(): void {
+		this.navCtrl.push( AddDailyNotePage, {client: this.client});
 	}
 }

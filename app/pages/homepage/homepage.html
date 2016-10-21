@@ -6,7 +6,7 @@
     <ion-title>Welcome Home</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="showFilters($event)">
-        <ion-icon name="funnel" secondary></ion-icon>
+        <ion-icon name="funnel"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -96,7 +96,7 @@
 
 </ion-content>
 
-<button *ngIf="showDevelopments || showTenancies || showProperties || showFacilities || showClients" fab fab-bottom fab-left secondary
-    (click)="collapseAll()" class="fixed-fab">
+<button *ngIf="showDevelopments || showTenancies || showProperties || showFacilities || showClients"
+    fab fab-bottom fab-right secondary (click)="collapseAll()" class="fixed-fab">
 	<ion-icon name="arrow-dropup"></ion-icon>
 </button>
