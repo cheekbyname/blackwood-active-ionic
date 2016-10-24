@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 
 import { Client } from '../../models/client';
 import { DailyNote } from '../../models/dailynote';
@@ -15,11 +15,11 @@ export class AddDailyNotePage {
 	dailyNote: DailyNote;
 
 	selectedDateTime: string;
-	careneeds: CareNeed[];
+	careNeeds: CareNeed[];
 	outcomes: Outcome[];
 
 	constructor(navParams: NavParams, private navCtrl: NavController,
-		public clientService: ClientService) {
+		public clientService: ClientService, public events: Events) {
 		this.client = navParams.get("client");
 		
 		this.dailyNote = new DailyNote();
@@ -30,7 +30,7 @@ export class AddDailyNotePage {
 
 	ngOnInit(): void {
 		this.clientService.getCarePlanForClient(this.client)
-			.then(cp => this.careneeds = cp.careNeeds);
+			.then(cp => this.careNeeds = cp.careNeeds);
 		this.clientService.getOutcomes().then(ocs => this.outcomes = ocs);
 	}
 
@@ -43,6 +43,7 @@ export class AddDailyNotePage {
 		// TODO Also figure out a way of refreshing the data on DailyNotesPage once we have
 		// this.dailyNote.outcomeGuid = this.selectedOutcome.outcomeGuid;
 		this.dailyNote.noteDate = new Date(this.selectedDateTime);
+		this.events.publish("AddDailyNotePage.saveEntry", this.dailyNote);
 		this.navCtrl.pop();
 	}
 }

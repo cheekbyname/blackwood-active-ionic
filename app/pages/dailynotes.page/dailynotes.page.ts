@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, PopoverController } from 'ionic-angular';
+import { NavController, NavParams, PopoverController, Events } from 'ionic-angular';
 
 import { Client } from '../../models/client';
 import { DailyNote } from '../../models/dailynote';
@@ -11,13 +11,15 @@ import { AddDailyNotePage } from '../../pages/adddailynote.page/adddailynote.pag
 })
 export class DailyNotesPage {
 	constructor(public clientService: ClientService, public navCtrl: NavController,
-		navParams: NavParams, public popCtrl: PopoverController) {
+		navParams: NavParams, public popCtrl: PopoverController,
+		public events: Events) {
 		this.client = navParams.get("client");
 	}
 
 	ngOnInit(): void {
 		this.pageIndex = 0;
 		this.fetchNotes();
+		this.events.subscribe("AddDailyNotePage.saveEntry", (note) => this.saveNewNote(note[0]));
 	}
 
 	client: Client;
@@ -56,5 +58,10 @@ export class DailyNotesPage {
 
 	public addNewNote(): void {
 		this.navCtrl.push( AddDailyNotePage, {client: this.client});
+	}
+
+	public saveNewNote(note: DailyNote): void {
+		this.dailyNotes.unshift(note);
+		// TODO Call API with new Note data
 	}
 }

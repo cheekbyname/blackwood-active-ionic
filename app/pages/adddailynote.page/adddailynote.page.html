@@ -33,7 +33,9 @@
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Select a Care Need</ion-label>
-					<ion-select></ion-select>
+					<ion-select [(ngModel)]="dailyNote.careNeedGuid">
+						<ion-option *ngFor="let careNeed of careNeeds" [value]="careNeed.careNeedGuid">{{careNeed.outcomeDesc}}</ion-option>
+					</ion-select>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Your comments</ion-label>
