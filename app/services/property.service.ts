@@ -15,7 +15,7 @@ export class PropertyService {
             return Promise.resolve(this.allProperties);
         }
         else {
-        return this.api.getAll("properties")
+        return this.api.getAll("housing/properties")
             .then(props => this.allProperties = props as Property[])
             .then(props => props as Property[]);
         }

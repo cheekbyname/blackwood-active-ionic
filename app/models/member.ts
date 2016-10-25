@@ -1,14 +1,14 @@
 export class Member {
-	Id: number;
-	ActiveHash: Uint8Array;
-	MemberSid: number;
-	HouseRef: string;
-	PersonNo: number;
-	Title: string;
-	Forename: string;
-	Surname: string;
-	Gender: string;
-	Relationship: string;
-	EthnicOrigin: string;
-	IsTenant: boolean;
+	id: number;
+	activeHash: Uint8Array;
+	memberSid: number;
+	houseRef: string;
+	personNo: number;
+	title: string;
+	forename: string;
+	surname: string;
+	gender: string;
+	relationship: string;
+	ethnicOrigin: string;
+	isTenant: boolean;
 }

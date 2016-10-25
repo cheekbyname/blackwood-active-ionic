@@ -1,12 +1,12 @@
 export class Comm {
-	Id: number;
-	ActiveHash: Uint8Array;
-	CommsSid: number;
-	HouseRef: string;
-	CommsTypeRef: string;
-	CommsValue: string;
-	CommsDesc: string;
-	CommsName: string;
-	CommsDefault: boolean;
-	CommsAdvocate: boolean;
+	id: number;
+	activeHash: Uint8Array;
+	commsSid: number;
+	houseRef: string;
+	commsTypeRef: string;
+	commsValue: string;
+	commsDesc: string;
+	commsName: string;
+	commsDefault: boolean;
+	commsAdvocate: boolean;
 }

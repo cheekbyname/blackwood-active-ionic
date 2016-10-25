@@ -22,7 +22,7 @@ export class CommCard implements OnInit {
 	TypeHref: string;
 
 	ngOnInit() {
-		let thisType = CommCard.COM_TYPES.find(type => type.ref == this.com.CommsTypeRef);
+		let thisType = CommCard.COM_TYPES.find(type => type.ref == this.com.commsTypeRef);
 		this.TypeDesc = thisType.desc;
 		this.TypeIcon = thisType.icon;
 		this.TypeHref = thisType.href;

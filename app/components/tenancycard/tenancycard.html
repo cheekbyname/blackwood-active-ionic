@@ -1,17 +1,17 @@
 <ion-grid>
 	<ion-row>
 		<ion-col width-80>
-			{{ten.HouseDesc}}<br/>
-			{{ten.TopAddressLine}}<br/>
-			{{ten.DefaultCommsValue}}
+			{{ten.houseDesc}}<br/>
+			{{ten.topAddressLine}}<br/>
+			{{ten.defaultCommsValue}}
 		</ion-col>
 		<ion-col width-20>
-			<a *ngIf="ten.HasEmail" href="mailto: {{ten.DefaultCommsValue}}">
+			<a *ngIf="ten.hasEmail" href="mailto: {{ten.defaultCommsValue}}">
 				<button fab>
 					<ion-icon name="mail"></ion-icon>
 				</button>
 			</a>
-			<a *ngIf="ten.HasPhone" href="tel: {{ten.DefaultCommsValue}}">
+			<a *ngIf="ten.hasPhone" href="tel: {{ten.defaultCommsValue}}">
 				<button fab secondary>
 					<!-- Switch this up based on CommType -->
 					<ion-icon name="call"></ion-icon>

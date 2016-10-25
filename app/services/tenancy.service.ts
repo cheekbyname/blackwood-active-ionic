@@ -15,7 +15,7 @@ export class TenancyService {
             return Promise.resolve(this.allTenancies);
         }
         else {
-        return this.api.getAll("tenancies")
+        return this.api.getAll("housing/tenancies")
             .then(tens => this.allTenancies = tens as Tenancy[])
             .then(tens => tens as Tenancy[]);
         }

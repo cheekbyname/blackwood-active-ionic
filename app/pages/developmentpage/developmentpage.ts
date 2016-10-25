@@ -59,12 +59,12 @@ export class DevelopmentPage {
 		let displayComms = ["T", "MT", "E", "I"];
 
         let mems = this.memberService.getMembers()
-			.then(mems => mems.filter(mem => mem.HouseRef == ten.HouseRef));
+			.then(mems => mems.filter(mem => mem.houseRef == ten.houseRef));
         let prop = this.propertyService.getProperties()
-			.then(props => props.find(prop => prop.PropRef == ten.PropRef));
+			.then(props => props.find(prop => prop.propRef == ten.propRef));
 		let coms = this.commService.getComms()
-			.then(coms => coms.filter(com => com.HouseRef == ten.HouseRef))
-			.then(coms => coms.filter(com => displayComms.some(dis => dis == com.CommsTypeRef)));
+			.then(coms => coms.filter(com => com.houseRef == ten.houseRef))
+			.then(coms => coms.filter(com => displayComms.some(dis => dis == com.commsTypeRef)));
 
 		Promise.all([mems, prop, coms]).then(values => { 
 			this.navCtrl.push(TenancyPage, {ten: ten, mems: values[0], prop: values[1], coms: values[2]})

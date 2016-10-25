@@ -9,7 +9,7 @@ export class DevelopmentService {
     constructor(private api: WebApi) {}
 
     getDevelopments(): Promise<Development[]> {
-        return this.api.getAll("developments")
+        return this.api.getAll("housing/developments")
             .then(devs => devs as Development[]);
     }
 }

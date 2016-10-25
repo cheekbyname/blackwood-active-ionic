@@ -175,11 +175,11 @@ export class HomePage implements OnInit {
         if (searchTerm && searchTerm.trim() != '') {
             // Filter lists
             this.tenancies = this.allTenancies.filter(ten =>
-                ten.HouseDesc.toLowerCase().includes(searchTerm.toLowerCase()));
+                ten.houseDesc.toLowerCase().includes(searchTerm.toLowerCase()));
             this.developments = this.allDevelopments.filter(dev =>
-                dev.SchemeName.toLowerCase().includes(searchTerm.toLowerCase()));
+                dev.schemeName.toLowerCase().includes(searchTerm.toLowerCase()));
             this.properties = this.allProperties.filter(prop =>
-                prop.TopAddressLine.toLowerCase().includes(searchTerm.toLowerCase()));
+                prop.topAddressLine.toLowerCase().includes(searchTerm.toLowerCase()));
             this.facilities = this.allFacilities.filter(fac =>
                 fac.facilityName.toLowerCase().includes(searchTerm.toLowerCase()));
             this.clients = this.allClients.filter(cli => 
@@ -198,9 +198,9 @@ export class HomePage implements OnInit {
     }
 
     gotoDevelopment(dev: Development): void {
-        let props = this.allProperties.filter(prop => prop.SchemeRef == dev.SchemeRef); 
+        let props = this.allProperties.filter(prop => prop.schemeRef == dev.schemeRef); 
         let tens = this.allTenancies.filter(ten =>
-            props.map(prop => prop.PropRef).indexOf(ten.PropRef) != -1);
+            props.map(prop => prop.propRef).indexOf(ten.propRef) != -1);
         this.navCtrl.push(DevelopmentPage, {development: dev, properties: props, tenancies: tens});
     }
 
@@ -209,12 +209,12 @@ export class HomePage implements OnInit {
 		let displayComms = ["T", "MT", "E", "I"];
 
         let mems = this.memberService.getMembers()
-			.then(mems => mems.filter(mem => mem.HouseRef == ten.HouseRef));
+			.then(mems => mems.filter(mem => mem.houseRef == ten.houseRef));
         let prop = this.propertyService.getProperties()
-			.then(props => props.find(prop => prop.PropRef == ten.PropRef));
+			.then(props => props.find(prop => prop.propRef == ten.propRef));
 		let coms = this.commService.getComms()
-			.then(coms => coms.filter(com => com.HouseRef == ten.HouseRef))
-			.then(coms => coms.filter(com => displayComms.some(dis => dis == com.CommsTypeRef)));
+			.then(coms => coms.filter(com => com.houseRef == ten.houseRef))
+			.then(coms => coms.filter(com => displayComms.some(dis => dis == com.commsTypeRef)));
 
 		Promise.all([mems, prop, coms]).then(values => { 
 			this.navCtrl.push(TenancyPage, {ten: ten, mems: values[0], prop: values[1], coms: values[2]})

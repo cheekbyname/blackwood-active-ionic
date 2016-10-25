@@ -8,7 +8,7 @@ export class CommService {
 	constructor(private api: WebApi) { }
 
 	getComms(): Promise<Comm[]> {
-		return this.api.getAll("comms")
+		return this.api.getAll("housing/comms")
 			.then(coms => coms as Comm[]);
 	}
 }

@@ -1,19 +1,19 @@
 export class Property {
-    Id: number;
-    ActiveHash: Uint8Array;
-    Latitude: number;
-    Longitude: number;
-    PropRef: string;
-    SchemeRef: string;
-    RegionRef: string;
-    PostCode: string;
-    HouseNo: string;
-    Address1: string;
-    Address2: string;
-    Address3: string;
-    LocAuthRef: string;
-    PatchRef: string;
-    PatchName: string;
-    TopAddressLine: string;
-    PropertySid: number;
+    id: number;
+    activeHash: Uint8Array;
+    latitude: number;
+    longitude: number;
+    propRef: string;
+    schemeRef: string;
+    regionRef: string;
+    postCode: string;
+    houseNo: string;
+    address1: string;
+    address2: string;
+    address3: string;
+    locAuthRef: string;
+    patchRef: string;
+    patchName: string;
+    topAddressLine: string;
+    propertySid: number;
 }

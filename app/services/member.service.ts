@@ -17,7 +17,7 @@ export class MemberService {
         }
         else {
             console.log("Retrieving Members from WebApi");
-            return this.api.getAll("members")
+            return this.api.getAll("housing/members")
                 .then(mems => this.allMembers = mems as Member[])
                 .then(mems => mems as Member[]);
         }

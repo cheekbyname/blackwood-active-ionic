@@ -14,20 +14,20 @@ export class WebApi {
         // baseUrl = "http://localhost:50915/api";
 
         getAll(name: string, api?: string): Promise<any[]> {
-                if (typeof api === "undefined") { api = "active"; }     // Use the old WebApi by default
+                if (typeof api === "undefined") { api = "api"; }     // Use the old WebApi by default
 
                 console.log(`Calling ${this.api.apiBase(api)}/${name}`);
-                return this.http.get(`${this.api.apiBase(api)}/${name}`)
+                return this.http.get(`${this.api.apiBase(api)}/${name}`, { withCredentials:true })
                         .toPromise()
                         .then(res=> this.handleResponse(name, res))
                         .catch(err => this.handleError(err, name));
         }
 
         getOne(name: string, api?: string): Promise<any> {
-                if (typeof api === "undefined") { api = "active"; }     // Use the old WebApi by default
+                if (typeof api === "undefined") { api = "api"; }     // Use the old WebApi by default
 
                 console.log(`Calling ${this.api.apiBase(api)}/${name}}`);
-                return this.http.get(`${this.api.apiBase(api)}/${name}`)
+                return this.http.get(`${this.api.apiBase(api)}/${name}`, { withCredentials: true })
                         .toPromise()
                         .then(res => this.handleOne(name, res))
                         .catch(err => this.handleError(err, name));
