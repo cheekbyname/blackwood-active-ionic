@@ -10,9 +10,19 @@ import { Outcome } from '../models/outcome';
 export class ClientService {
 	constructor(private api: WebApi) { }
 
+	allClients: Client[];
+
 	getClients(): Promise<Client[]> {
-		return this.api.getAll("care/clients", "api")
-			.then(clis => clis as Client[]);
+		if (this.allClients) {
+			console.log("Returning Clients from memory");
+			return Promise.resolve(this.allClients);
+		}
+		else {
+			console.log("Returning Clients from Api");
+			return this.api.getAll("care/clients", "api")
+				.then(clis => this.allClients = clis as Client[])
+				.then(clis => clis as Client[]);
+		}
 	}
 
 	getCarePlanForClient(client: Client): Promise<CarePlan> {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-import { ToastController } from 'ionic-angular';
+import { ToastController, Events } from 'ionic-angular';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -8,13 +8,11 @@ import { Api } from './secret.service.ts';
 
 @Injectable()
 export class WebApi {
-        constructor(private http: Http, private toastCtrl: ToastController, private api: Api ) {}
-
-        // public baseUrl = "http://MBHOF754/api";        // Currently reliant on iisexpress-proxy
-        // baseUrl = "http://localhost:50915/api";
+        constructor(private http: Http, private toastCtrl: ToastController, private api: Api,
+        public events: Events) {}
 
         getAll(name: string, api?: string): Promise<any[]> {
-                if (typeof api === "undefined") { api = "api"; }     // Use the old WebApi by default
+                if (typeof api === "undefined") { api = "api"; }     // Use the new API by default
 
                 console.log(`Calling ${this.api.apiBase(api)}/${name}`);
                 return this.http.get(`${this.api.apiBase(api)}/${name}`, { withCredentials:true })

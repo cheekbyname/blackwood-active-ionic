@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { NavController, PopoverController } from 'ionic-angular';
+import { NavController, PopoverController, Events } from 'ionic-angular';
 
 import { TenancyService } from '../../services/tenancy.service';
 import { DevelopmentService } from '../../services/development.service';
@@ -38,7 +38,8 @@ export class HomePage implements OnInit {
     constructor(public navCtrl: NavController, private popoverCtrl: PopoverController,
         public developmentService: DevelopmentService, public tenancyService: TenancyService,
         public propertyService: PropertyService, public memberService: MemberService,
-        public commService: CommService, public facilityService: FacilityService, public clientService: ClientService) { }
+        public commService: CommService, public facilityService: FacilityService,
+        public clientService: ClientService, public events: Events) { }
 
     allTenancies: Tenancy[];
     allDevelopments: Development[];
@@ -53,6 +54,9 @@ export class HomePage implements OnInit {
     facilities: Facility[];
     clients: Client[];
 
+    showCloud: boolean = true;
+    cloudWarn: boolean = false;
+
     showTenancies: boolean = false;
     showDevelopments: boolean = false;
     showProperties: boolean = false;
@@ -66,6 +70,10 @@ export class HomePage implements OnInit {
         this.getMembers();
         this.getFacilities();
         this.getClients();
+    }
+
+    cloudControl(show: boolean, warn: boolean) {
+
     }
 
     getFacilities(): void {
