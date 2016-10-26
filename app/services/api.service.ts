@@ -41,6 +41,10 @@ export class WebApi {
 
         handleOne(name: string, res: Response): any {
                 console.log(`Returned ${res.status} ${res.statusText}`);
+                if (res.status == 204) {
+                        // return undefined if no data so we don't get error from .json()
+                        return undefined;
+                }
                 return res.json();
         }
         

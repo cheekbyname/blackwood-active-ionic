@@ -88,8 +88,8 @@
     </button>
 
     <ion-list list-inset *ngIf="clients && showClients" [virtualScroll]="clients"
-        approxItemHeight="46px">
-        <button ion-item *virtualItem="let client" class="list-margin shadow-standard" (click)="gotoClient(client, facilityForClient(client))">
+        approxItemHeight="46px" approxItemWidth="240px">
+        <button ion-item *virtualItem="let client" class="list-margin shadow-standard" (click)="gotoClient(client, facilityForClient(client))" item-width="240px;">
             <client-card [client]="client" [facility]="facilityForClient(client)"></client-card>
         </button>
     </ion-list>

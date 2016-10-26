@@ -6,6 +6,7 @@ import { DailyNote } from '../../models/dailynote';
 import { CareNeed } from '../../models/careneed';
 import { Outcome } from '../../models/outcome';
 import { ClientService } from '../../services/client.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
 	templateUrl: 'build/pages/adddailynote.page/adddailynote.page.html'
@@ -19,7 +20,7 @@ export class AddDailyNotePage {
 	outcomes: Outcome[];
 
 	constructor(navParams: NavParams, private navCtrl: NavController,
-		public clientService: ClientService, public events: Events) {
+		public clientService: ClientService, public events: Events, public usrSrv: UserService) {
 		this.client = navParams.get("client");
 		
 		this.dailyNote = new DailyNote();
@@ -32,6 +33,18 @@ export class AddDailyNotePage {
 		this.clientService.getCarePlanForClient(this.client)
 			.then(cp => this.careNeeds = cp.careNeeds);
 		this.clientService.getOutcomes().then(ocs => this.outcomes = ocs);
+		this.usrSrv.getCareSysUser().then(user => {
+			if (typeof user !== "undefined") {
+				console.log("User was " + user);
+				this.dailyNote.notesUser = `${user.firstName} ${user.lastName}`;
+			}
+		});
+		this.usrSrv.getAccountName().then(name => {
+			console.log("Name was " + name);
+			if (typeof this.dailyNote.notesUser === "undefined") {
+				this.dailyNote.notesUser = name;
+			}
+		});
 	}
 
 	cancelEntry(): void {

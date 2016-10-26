@@ -12,6 +12,7 @@ import { MemberService } from './services/member.service';
 import { CommService} from './services/comm.service';
 import { FacilityService } from './services/facility.service';
 import { ClientService } from './services/client.service';
+import { UserService } from './services/user.service';
 
 // Primary Pages
 import { HomePage } from './pages/homepage/homepage';
@@ -25,7 +26,7 @@ declare var Microsoft: any;
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Auth, Api, WebApi, PropertyService, DevelopmentService, TenancyService,
-    MemberService, CommService, FacilityService, ClientService ]
+    MemberService, CommService, FacilityService, ClientService, UserService ]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -36,7 +37,7 @@ export class MyApp {
   constructor(public platform: Platform, public auth: Auth, public propertyService: PropertyService,
     public developmentService: DevelopmentService, public tenancyService: TenancyService,
     public memberService: MemberService, public commService: CommService, public facilityService: FacilityService,
-    public clientService: ClientService ) {
+    public clientService: ClientService, public userService: UserService ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
