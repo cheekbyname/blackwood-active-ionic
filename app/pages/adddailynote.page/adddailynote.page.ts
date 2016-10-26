@@ -36,13 +36,13 @@ export class AddDailyNotePage {
 		this.usrSrv.getCareSysUser().then(user => {
 			if (typeof user !== "undefined") {
 				console.log("User was " + user);
-				this.dailyNote.notesUser = `${user.firstName} ${user.lastName}`;
+				this.dailyNote.noteUser = `${user.firstName} ${user.lastName}`;
 			}
 		});
 		this.usrSrv.getAccountName().then(name => {
 			console.log("Name was " + name);
-			if (typeof this.dailyNote.notesUser === "undefined") {
-				this.dailyNote.notesUser = name;
+			if (typeof this.dailyNote.noteUser === "undefined") {
+				this.dailyNote.noteUser = name;
 			}
 		});
 	}

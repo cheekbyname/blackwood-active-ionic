@@ -27,7 +27,7 @@ export class WebApi {
                 if (typeof api === "undefined") { api = "api"; }     // Use the old WebApi by default
 
                 console.log(`Calling ${this.api.apiBase(api)}/${name}}`);
-                return this.http.get(`${this.api.apiBase(api)}/${name}`, { withCredentials: true })
+                return this.http.get(`${this.api.apiBase(api)}/${name}`)        // , { withCredentials: true }
                         .toPromise()
                         .then(res => this.handleOne(name, res))
                         .catch(err => this.handleError(err, name));
