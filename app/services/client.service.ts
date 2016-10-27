@@ -20,8 +20,10 @@ export class ClientService {
 		else {
 			console.log("Returning Clients from Api");
 			return this.api.getAll("care/clients", "api")
-				.then(clis => this.allClients = clis as Client[])
-				.then(clis => clis as Client[]);
+				.then(clis => {
+					this.allClients = clis as Client[];
+					return this.allClients;
+				});
 		}
 	}
 
