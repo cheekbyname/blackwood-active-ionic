@@ -7,4 +7,5 @@ export class CareNeed {
 	expectedOutcome: string;
 	currentSituation: string;
 	action: string;
+	summary: string;
 }

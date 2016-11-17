@@ -5,7 +5,7 @@
     </button>
     <ion-title>Welcome Home</ion-title>
     <ion-buttons *ngIf="showCloud" end>
-        <button ion-button icon-only>
+        <button ion-button icon-only (click)="showDataServiceStatus()">
             <ion-icon name="cloud-download" [attr.danger]="cloudWarn ? '' : null"></ion-icon>
         </button>
     </ion-buttons>
@@ -20,6 +20,8 @@
 <ion-content>
     <ion-searchbar placeholder="Search for people & places..."
         (ionInput)="searchAll($event)"></ion-searchbar>
+
+    <!--<development-stack></development-stack>-->
 
     <button (click)="toggleDevelopments()" class="button-header">
         <ion-icon name="pin" no-padding></ion-icon><span class="button-text" text-capitalize>Developments</span>

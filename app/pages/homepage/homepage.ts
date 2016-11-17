@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { OnInit } from '@angular/core';
-import { NavController, PopoverController, Events } from 'ionic-angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NavController, PopoverController, AlertController, Events } from 'ionic-angular';
 
 import { TenancyService } from '../../services/tenancy.service';
 import { DevelopmentService } from '../../services/development.service';
@@ -31,7 +30,8 @@ import { HomeFilterPopover } from '../../components/homefilter.popover/homefilte
 
 @Component({
     templateUrl: 'build/pages/homepage/homepage.html',
-    directives: [ TenancyCard, PropertyCard, DevelopmentCard, ClientCard, FacilityCard ]
+    directives: [ TenancyCard, PropertyCard, DevelopmentCard, ClientCard, FacilityCard ],
+    providers: [ AlertController ]
 })
 export class HomePage implements OnInit {
     
@@ -39,7 +39,8 @@ export class HomePage implements OnInit {
         public developmentService: DevelopmentService, public tenancyService: TenancyService,
         public propertyService: PropertyService, public memberService: MemberService,
         public commService: CommService, public facilityService: FacilityService,
-        public clientService: ClientService, public events: Events) { }
+        public clientService: ClientService, public events: Events,
+        public alert: AlertController) { }
 
     allTenancies: Tenancy[];
     allDevelopments: Development[];
@@ -250,5 +251,14 @@ export class HomePage implements OnInit {
 
     facilityForClient(client: Client): Facility {
         return this.allFacilities.find(fac => fac.facilityGuid == client.facilityGuid);
+    }
+
+    showDataServiceStatus(): void {
+        let statusAlert = this.alert.create({
+            title: 'Data Service Status',
+            subTitle: 'There will be some details here about connection status, etc.',
+            buttons: ['OK']
+        });
+        statusAlert.present();
     }
 }

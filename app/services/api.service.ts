@@ -19,7 +19,7 @@ export class WebApi {
 		if (typeof api === "undefined") { api = "api"; }     // Use the new API by default
 
 		console.log(`Calling ${this.api.apiBase(api)}/${name}`);
-		return this.http.get(`${this.api.apiBase(api)}/${name}`, { withCredentials: true })
+		return this.http.get(`${this.api.apiBase(api)}/${name}`) //, { withCredentials: true })
 			.toPromise()
 			.then(res => this.handleResponse(name, res))
 			.catch(err => {
@@ -39,13 +39,14 @@ export class WebApi {
 		if (typeof api === "undefined") { api = "api"; }     // Use the old WebApi by default
 
 		console.log(`Calling ${this.api.apiBase(api)}/${name}}`);
-		return this.http.get(`${this.api.apiBase(api)}/${name}`, { withCredentials: true })
+		return this.http.get(`${this.api.apiBase(api)}/${name}`) //, { withCredentials: true })
 			.toPromise()
 			.then(res => this.handleOne(name, res))
 			.catch(err => {
-				this.sql.getJson(name).then(data => {
+				return this.sql.getJson(name).then(data => {
 					if (data) {
-						return Promise.resolve(data);
+						console.log(`Retrieved entry for ${name} from local storage`);
+						return data;
 					}
 					else {
 						this.handleError(err, name);
@@ -57,15 +58,18 @@ export class WebApi {
 	handleResponse(name: string, res: Response): any[] {
 		// Cache Offline
 		this.sql.setJson(name, res.json()).then(f => { console.log(name + " saved to sqlstorage") });
+		this.events.publish("DataService.Status", true);
 		return res.json();
 	}
 
 	handleOne(name: string, res: Response): any {
-		console.log(`Returned ${res.status} ${res.statusText}`);
+		//Cache Offline
 		if (res.status == 204) {
 			// return undefined if no data so we don't get error from .json()
 			return undefined;
 		}
+		this.sql.setJson(name, res.json()).then(f => { console.log(`${name} saved to sqlstorage`)});
+		this.events.publish("DataService.Status", true);
 		return res.json();
 	}
 
