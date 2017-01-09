@@ -23,6 +23,7 @@ export class WebApi {
 			.toPromise()
 			.then(res => this.handleResponse(name, res))
 			.catch(err => {
+				// TODO Still want to log/toast/whatever the error rather than just swallow it
 				return this.sql.getJson(name).then(data => {
 					if (data) {
 						console.log(`Retrieved ${data.length} entries for ${name} from local storage`);
@@ -43,6 +44,7 @@ export class WebApi {
 			.toPromise()
 			.then(res => this.handleOne(name, res))
 			.catch(err => {
+				// TODO Still want to log/toast/whatever the error rather than just swallow it
 				return this.sql.getJson(name).then(data => {
 					if (data) {
 						console.log(`Retrieved entry for ${name} from local storage`);

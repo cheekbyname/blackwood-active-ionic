@@ -35,4 +35,5 @@
     <plugin name="cordova-plugin-statusbar" spec="~2.1.3" />
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <plugin name="cordova-plugin-ms-adal" spec="~0.8.0" />
+    <plugin name="cordova-client-cert-authentication" version="1" />
 </widget>
