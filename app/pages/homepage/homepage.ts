@@ -20,6 +20,7 @@ import { Client } from '../../models/client';
 import { DevelopmentPage } from '../developmentpage/developmentpage';
 import { TenancyPage } from '../tenancypage/tenancypage';
 import { ClientPage } from '../client.page/client.page';
+import { InitialAssessPage } from '../initialassess.page/initialassess.page';
 
 import { TenancyCard } from '../../components/tenancycard/tenancycard';
 import { PropertyCard } from '../../components/propertycard/propertycard';
@@ -27,6 +28,7 @@ import { DevelopmentCard } from '../../components/developmentcard/developmentcar
 import { FacilityCard } from '../../components/facility.card/facility.card';
 import { ClientCard } from '../../components/client.card/client.card';
 import { HomeFilterPopover } from '../../components/homefilter.popover/homefilter.popover';
+import { NewActivityPopover } from '../../components/newactivity.popover/newactivity.popover';
 
 @Component({
     templateUrl: 'build/pages/homepage/homepage.html',
@@ -260,5 +262,13 @@ export class HomePage implements OnInit {
             buttons: ['OK']
         });
         statusAlert.present();
+    }
+
+    addNewActivity(ev): void {
+        this.navCtrl.push(InitialAssessPage);
+        // let activityPop = this.popoverCtrl.create(NewActivityPopover);
+        // activityPop.present({
+        //     ev: ev
+        // });
     }
 }

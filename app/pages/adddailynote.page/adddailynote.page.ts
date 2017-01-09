@@ -11,7 +11,7 @@ import { UserService } from '../../services/user.service';
 @Component({
 	templateUrl: 'build/pages/adddailynote.page/adddailynote.page.html'
 })
-export class AddDailyNotePage {
+export class AddDailyNotePage implements OnInit {
 	client: Client;
 	dailyNote: DailyNote;
 
@@ -33,16 +33,10 @@ export class AddDailyNotePage {
 		this.clientService.getCarePlanForClient(this.client)
 			.then(cp => this.careNeeds = cp.careNeeds);
 		this.clientService.getOutcomes().then(ocs => this.outcomes = ocs);
-		this.usrSrv.getCareSysUser().then(user => {
-			if (typeof user !== "undefined") {
-				console.log("User was " + user);
-				this.dailyNote.noteUser = `${user.firstName} ${user.lastName}`;
-			}
-		});
-		this.usrSrv.getAccountName().then(name => {
-			console.log("Name was " + name);
+		this.usrSrv.getActiveUser().then(name => {
+			console.log("User was " + JSON.stringify(name));
 			if (typeof this.dailyNote.noteUser === "undefined") {
-				this.dailyNote.noteUser = name;
+				this.dailyNote.noteUser = name.simpleName;
 			}
 		});
 	}
