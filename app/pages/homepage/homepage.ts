@@ -20,7 +20,7 @@ import { Client } from '../../models/client';
 import { DevelopmentPage } from '../developmentpage/developmentpage';
 import { TenancyPage } from '../tenancypage/tenancypage';
 import { ClientPage } from '../client.page/client.page';
-import { InitialAssessPage } from '../initialassess.page/initialassess.page';
+import { AssessTabsPage } from '../assesstabs.page/assesstabs.page';
 
 import { TenancyCard } from '../../components/tenancycard/tenancycard';
 import { PropertyCard } from '../../components/propertycard/propertycard';
@@ -265,7 +265,7 @@ export class HomePage implements OnInit {
     }
 
     addNewActivity(ev): void {
-        this.navCtrl.push(InitialAssessPage);
+        this.navCtrl.push(AssessTabsPage);
         // let activityPop = this.popoverCtrl.create(NewActivityPopover);
         // activityPop.present({
         //     ev: ev

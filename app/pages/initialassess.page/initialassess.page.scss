@@ -1,7 +1,11 @@
-ion-label.stacked {
+ion-label {
 	color: black!important;
+	font-size: 12pt!important;
 }
 
-ion-textarea {
-	background-color: silver!important;
+ion-textarea, ion-select, ion-datetime {
+	background-color: rgba(225, 225, 225, 0.5);
+	font-family: "Century Gothic";
+	padding: 8px;
 }
+	//LCJOEPZKOV
