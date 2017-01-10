@@ -9,10 +9,19 @@ ion-textarea, ion-select, ion-datetime {
 	padding: 8px;
 }
 
-ion-content#assess_page {
+ion-input, ion-select, ion-datetime, ion-label {
+	padding-left: 8px!important;
+}
+
+ion-content#assess_page, ion-content#checklist_page {
 	margin-top: 48px;
 }
 
-ion-list#assess_page_bottom {
-	margin-bottom: 48px!important;
+ion-content#checklist_page {
+	background-color: white;
+	padding-bottom: 56px!important;
+}
+
+#checklist_item_row {
+	border-bottom: 1px solid silver;
 }

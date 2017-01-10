@@ -14,7 +14,7 @@
 		</ion-item>
 		<ion-item>
 			<ion-label stacked>Date of Visit</ion-label>
-			<ion-datetime displayFormat="DD/MM/YYYY" [value]="assess.visitDate"></ion-datetime>
+			<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="assess.visitDate"></ion-datetime>
 		</ion-item>
 		<ion-item>
 			<ion-label stacked>Visit By</ion-label>
@@ -136,5 +136,6 @@
 			<ion-label stacked>Any other information that you wish to share with us (hobbies, interests, goals, etc.)</ion-label>
 			<ion-textarea rows="3" [value]="assess.additionalInfo"></ion-textarea>
 		</ion-item>
+		<ion-item></ion-item><ion-item></ion-item> <!-- Because ionic tabs and footers don't behave -->
 	</ion-list>
 </ion-content>

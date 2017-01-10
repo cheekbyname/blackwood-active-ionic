@@ -1,0 +1,29 @@
+ion-tabs span {
+	color: black;
+	font-size: 12pt;
+	font-weight: bold;
+}
+
+ion-tabs a[aria-selected="true"] span {
+	color: hotpink;
+}
+
+#checklist_header_row {
+	padding-top: 8px;
+	background-color: silver;
+	// position: fixed;
+}
+
+// #checklist_content {
+// 	margin-top: 36px;
+// }
+
+#checklist_item_row {
+	display: flex!important;
+	align-content: center!important;
+	align-items: center!important;
+}
+
+ion-col ion-radio {
+	margin-left: 12px;
+}

@@ -2,7 +2,7 @@ export class Assessment {
 	name: string;
 	prefName: string;
 	address1: string;
-	visitDate: Date;
+	visitDate: string;
 	visitBy: string;
 	doorEntry: string;
 }

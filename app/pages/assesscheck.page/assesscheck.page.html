@@ -1,3 +1,48 @@
-<ion-content>
-
+<ion-content class="has-footer" id="checklist_page">
+	<ion-grid>
+		<ion-row id="checklist_header_row">
+			<ion-col width-50><ion-label>Home Visit Checklist</ion-label></ion-col>
+			<ion-col><ion-label>Yes</ion-label></ion-col>
+			<ion-col><ion-label>No</ion-label></ion-col>
+			<ion-col><ion-label>N/A</ion-label></ion-col>
+			<ion-col><ion-label>F/I</ion-label></ion-col>
+		</ion-row>
+	</ion-grid>
+	<ion-grid class="vert-align" id="checklist_page_bottom">
+		<div id="checklist_content">
+			<div *ngFor="let item of items">
+				<ion-row radio-group [(ngModel)]="item.value" id="checklist_item_row">
+					<ion-col text-wrap width-50><ion-label>{{item.itemName}}</ion-label></ion-col>
+					<ion-col><ion-radio value="yes"></ion-radio></ion-col>
+					<ion-col><ion-radio value="no"></ion-radio></ion-col>
+					<ion-col><ion-radio value="n/a"></ion-radio></ion-col>
+					<ion-col><ion-radio value="f/i"></ion-radio></ion-col>
+				</ion-row>
+				<div *ngIf="item.value && (item.value == item.furtherValue)">
+					<ion-item text-wrap>
+						<ion-label stacked>{{item.furtherTitle}}</ion-label>
+						<ion-textarea rows="3" [value]="item.further"></ion-textarea>
+					</ion-item>
+				</div>
+			</div>
+		</div>
+	</ion-grid>
+	<ion-list>
+		<ion-item>
+			<ion-label stacked>Any other hazards observed?</ion-label>
+			<ion-textarea rows="3"></ion-textarea>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>Comments and further action to be taken</ion-label>
+			<ion-textarea rows="3"></ion-textarea>
+		</ion-item>
+		<ion-item>
+			<ion-label stacked>Is a more detailed risk assessment required?</ion-label>
+		</ion-item>
+		<div radio-group [(ngModel)]="fullAssessReqd">
+			<ion-item><ion-label>Yes</ion-label><ion-radio value="yes"></ion-radio></ion-item>
+			<ion-item><ion-label>No</ion-label><ion-radio value="no"></ion-radio></ion-item>
+		</div>
+		<ion-item></ion-item>
+	</ion-list>
 </ion-content>

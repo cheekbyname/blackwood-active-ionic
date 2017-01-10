@@ -14,7 +14,7 @@ export class InitialAssessPage implements OnInit {
 
 	constructor(public navCtrl: NavController, public usrSrv: UserService) {
 		this.assess = new Assessment();
-		this.assess.visitDate = new Date(Date.now());
+		this.assess.visitDate = new Date().toISOString();
 	}
 
 	ngOnInit(): void {
@@ -22,6 +22,7 @@ export class InitialAssessPage implements OnInit {
 			console.log(user);
 			this.assess.visitBy = user.simpleName;
 		});
+		console.log(this.assess.visitDate);
 	}
 
 	assess: Assessment;

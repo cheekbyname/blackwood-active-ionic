@@ -9,6 +9,7 @@ import { HandlingPage } from '../../pages/handling.page/handling.page';
 	templateUrl: 'build/pages/assesstabs.page/assesstabs.page.html'
 })
 export class AssessTabsPage {
+
 	initialAssessPage: any;
 	assessCheckPage: any;
 	handlingCheckPage: any;
