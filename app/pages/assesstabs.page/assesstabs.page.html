@@ -4,8 +4,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-tabs>
-	<ion-tab tabTitle="Assessment" [root]="initialAssessPage"></ion-tab>
-	<ion-tab tabTitle="Checklist" [root]="assessCheckPage"></ion-tab>
-	<ion-tab tabTitle="Handling" [root]="handlingCheckPage"></ion-tab>
-</ion-tabs>
+<ion-footer-bar>
+	<ion-tabs>
+		<ion-tab tabTitle="Assessment" [root]="initialAssessPage"></ion-tab>
+		<ion-tab tabTitle="Checklist" [root]="assessCheckPage"></ion-tab>
+		<ion-tab tabTitle="Handling" [root]="handlingCheckPage"></ion-tab>
+	</ion-tabs>
+</ion-footer-bar>

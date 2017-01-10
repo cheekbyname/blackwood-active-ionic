@@ -1,4 +1,4 @@
-<ion-content style="margin-top:48px;">
+<ion-content class="has-footer" id="assess_page">
 	<ion-list no-margin text-wrap>
 		<ion-item>
 			<ion-label stacked style="color: black;">Name of Client</ion-label>
@@ -99,7 +99,7 @@
 			<ion-label>None</ion-label><ion-radio value="none" checked="true"></ion-radio>
 		</ion-item>
 	</ion-list>
-	<ion-list no-margin text-wrap>
+	<ion-list no-margin text-wrap id="assess_page_bottom">
 		<ion-item *ngIf="assess.doorEntry && assess.doorEntry=='keycode'">
 			<ion-label stacked>What is the number of your Key Code?</ion-label>
 			<ion-input type="text" [value]="assess.keycode"></ion-input>

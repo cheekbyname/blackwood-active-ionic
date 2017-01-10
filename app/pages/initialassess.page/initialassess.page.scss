@@ -1,6 +1,6 @@
 ion-label {
 	color: black!important;
-	font-size: 12pt!important;
+	font-size: 11pt!important;
 }
 
 ion-textarea, ion-select, ion-datetime {
@@ -8,4 +8,11 @@ ion-textarea, ion-select, ion-datetime {
 	font-family: "Century Gothic";
 	padding: 8px;
 }
-	//LCJOEPZKOV
+
+ion-content#assess_page {
+	margin-top: 48px;
+}
+
+ion-list#assess_page_bottom {
+	margin-bottom: 48px!important;
+}
