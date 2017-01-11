@@ -14,4 +14,13 @@ export class HandlingPage implements OnInit {
 	}
 
 	transferPeople: number;
+	tolietingPeople: number;
+	bedpanPeople: number;
+	bedMovePeople: number;
+	bedTransferPeople: number;
+	bedSidePeople: number;
+	bathShowerPeople: number;
+	walkingSpec: number;
+	walkingPeople: number;
+
 }

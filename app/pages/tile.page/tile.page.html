@@ -1,0 +1,14 @@
+<ion-content id="tile_page">
+
+	<ion-card *ngFor="let group of tileGroups">
+		<ion-card-header>{{group.desc}}</ion-card-header>
+		<ion-card-content>
+			<ion-list>
+				<ion-item *ngFor="let item of tileItems.filter(item => {return item.tileGroup.id == group.id; })">
+					<ion-label>{{item.task}}</ion-label>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+</ion-content>

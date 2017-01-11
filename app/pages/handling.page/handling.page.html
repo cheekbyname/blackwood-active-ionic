@@ -1,7 +1,8 @@
 <ion-content id="handling_page">
-	<ion-card>
+
+	<ion-card class="card-pad-bottom">
 		<ion-card-header>About the Person</ion-card-header>
-		<ion-card-content>
+		<ion-card-content no-padding no-margin>
 			<ion-list text-wrap no-lines>
 				<ion-item>
 					<ion-textarea rows="3"></ion-textarea>
@@ -41,11 +42,46 @@
 			</ion-list>
 		</ion-card-content>
 	</ion-card>
-	<ion-card class="footer-margin">
+
+	<ion-card class="card-pad-bottom">
 		<ion-card-header>Transfers</ion-card-header>
 		<ion-card-content no-padding no-margin>
 			<ion-list no-lines>
 				<ion-item text-wrap><em>Including to/from bed, wheelchair, commode, toilet</em></ion-item>
+				<ion-item>
+					<ion-label stacked>Specify</ion-label>
+					<ion-select>
+						<ion-option value="1">Hoist or Standaid</ion-option>
+						<ion-option value="2">Assistance</ion-option>
+						<ion-option value="3">Supervision</ion-option>
+						<ion-option value="4">Independent</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item no-lines>
+					<div item-left class="range-label">
+						<ion-label>People<ion-badge class="range-badge">{{transferPeople}}</ion-badge></ion-label>
+					</div>
+					<ion-range class="range-slider" [(ngModel)]="toiletingPeople" min="0" max="3" step="1" snaps="true">
+						<ion-label range-left>0</ion-label>
+						<ion-label range-right>3</ion-label>
+					</ion-range>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Walking Aid - specify</ion-label>
+					<ion-input type="text"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Additional Information</ion-label>
+					<ion-textarea rows="3"></ion-textarea>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card class="card-pad-bottom">
+		<ion-card-header>Toileting</ion-card-header>
+		<ion-card-content no-padding no-margin>
+			<ion-list no-lines text-wrap>
 				<ion-item>
 					<ion-label stacked>Specify</ion-label>
 					<ion-select>
@@ -64,7 +100,246 @@
 						<ion-label range-right>3</ion-label>
 					</ion-range>
 				</ion-item>
+				<ion-item>
+					<ion-label stacked>Walking Aid - specify</ion-label>
+					<ion-input type="text"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Additional Information</ion-label>
+					<ion-textarea rows="3"></ion-textarea>
+				</ion-item>
 			</ion-list>
 		</ion-card-content>
 	</ion-card>
+
+	<ion-card class="card-pad-bottom">
+		<ion-card-header>Move On/Off Bed Pan</ion-card-header>
+		<ion-card-content no-padding no-margin>
+			<ion-list no-lines text-wrap>
+				<ion-item>
+					<ion-label stacked>Specify</ion-label>
+					<ion-select class="select-margin-bottom">
+						<ion-option value="1">Hoist</ion-option>
+						<ion-option value="2">Manoeuver</ion-option>
+						<ion-option value="3">Assistance</ion-option>
+						<ion-option value="4">Supervision</ion-option>
+						<ion-option value="5" selected="true">N/A</ion-option>
+					</ion-select>
+					<ion-select>
+						<ion-option value="1">Roll Customer</ion-option>
+						<ion-option value="2">Monkey Pole</ion-option>
+						<ion-option value="3">Customer Bridges</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<div item-left class="range-label">
+						<ion-label>People<ion-badge class="range-badge">{{bedpanPeople}}</ion-badge></ion-label>
+					</div>
+					<ion-range class="range-slider" [(ngModel)]="bedpanPeople" min="0" max="3" step="1" snaps="true">
+						<ion-label range-left>0</ion-label>
+						<ion-label range-right>3</ion-label>
+					</ion-range>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Additional Information</ion-label>
+					<ion-textarea rows="3"></ion-textarea>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card class="card-pad-bottom">
+		<ion-card-header>Move Up/Down Bed</ion-card-header>
+		<ion-card-content no-margin no-padding>
+			<ion-list no-lines text-wrap>
+				<ion-item>
+					<ion-label stacked>Specify</ion-label>
+					<ion-select class="select-margin-bottom">
+						<ion-option value="1">Hoist</ion-option>
+						<ion-option value="2">Handling Aids</ion-option>
+						<ion-option value="3">Assistance</ion-option>
+						<ion-option value="4">Supervision</ion-option>
+						<ion-option value="5">Independent</ion-option>
+					</ion-select>
+					<ion-select>
+						<ion-option value="1">Sliding Sheet</ion-option>
+						<ion-option value="2">Monkey Pole</ion-option>
+						<ion-option value="3">Rope Ladder</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<div item-left class="range-label">
+						<ion-label>People<ion-badge class="range-badge">{{bedMovePeople}}</ion-badge></ion-label>
+					</div>
+					<ion-range class="range-slider" [(ngModel)]="bedMovePeople" min="0" max="3" step="1" snaps="true">
+						<ion-label range-left>0</ion-label>
+						<ion-label range-right>3</ion-label>
+					</ion-range>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Additional Information</ion-label>
+					<ion-textarea rows="3"></ion-textarea>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card class="card-pad-bottom">
+		<ion-card-header>Transfer To/From Bed</ion-card-header>
+		<ion-card-content no-margin no-padding>
+			<ion-list no-lines text-wrap>
+				<ion-item>
+					<ion-label stacked>Specify</ion-label>
+					<ion-select class="select-margin-bottom">
+						<ion-option value="1">Hoist</ion-option>
+						<ion-option value="2">Handling Aids</ion-option>
+						<ion-option value="3">Assistance</ion-option>
+						<ion-option value="4">Supervision</ion-option>
+						<ion-option value="5">Independent</ion-option>
+					</ion-select>
+					<ion-select>
+						<ion-option value="1">Patslide</ion-option>
+						<ion-option value="2">Roll Board</ion-option>
+						<ion-option value="3">Fabric Sliding Aid</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<div item-left class="range-label">
+						<ion-label>People<ion-badge class="range-badge">{{bedTransferPeople}}</ion-badge></ion-label>
+					</div>
+					<ion-range class="range-slider" [(ngModel)]="bedTransferPeople" min="0" max="3" step="1" snaps="true">
+						<ion-label range-left>0</ion-label>
+						<ion-label range-right>3</ion-label>
+					</ion-range>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Additional Information</ion-label>
+					<ion-textarea rows="3"></ion-textarea>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card class="card-pad-bottom">
+		<ion-card-header>Sit Up Over Side of Bed</ion-card-header>
+		<ion-card-content no-margin no-padding>
+			<ion-list no-lines text-wrap>
+				<ion-item>
+					<ion-label stacked>Specify</ion-label>
+					<ion-select>
+						<ion-option value="1">Bed Rest</ion-option>
+						<ion-option value="2">Assistant</ion-option>
+						<ion-option value="3">Supervision</ion-option>
+						<ion-option value="4">Independent</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<div item-left class="range-label">
+						<ion-label>People<ion-badge class="range-badge">{{bedSidePeople}}</ion-badge></ion-label>
+					</div>
+					<ion-range class="range-slider" [(ngModel)]="bedSidePeople" min="0" max="3" step="1" snaps="true">
+						<ion-label range-left>0</ion-label>
+						<ion-label range-right>3</ion-label>
+					</ion-range>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Additional Information</ion-label>
+					<ion-textarea rows="3" placeholder="e.g. equipment to be used"></ion-textarea>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card class="card-pad-bottom">
+		<ion-card-header>Into Bath or Shower</ion-card-header>
+		<ion-card-content no-padding no-margin>
+			<ion-list no-lines text-wrap>
+				<ion-item>
+					<ion-label stacked>Which Bath</ion-label>
+					<ion-select>
+						<ion-option value="1">Shower</ion-option>
+						<ion-option value="2">Variable Height Bath</ion-option>
+						<ion-option value="3">Bed Bath</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Handling Aid</ion-label>
+					<ion-select>
+						<ion-option value="1">Hoist</ion-option>
+						<ion-option value="2">Ambulift</ion-option>
+						<ion-option value="3">Shower Chair</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Specify</ion-label>
+					<ion-select>
+						<ion-option value="1">Assistance</ion-option>
+						<ion-option value="2">Supervision</ion-option>
+						<ion-option value="3">Independent</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<div item-left class="range-label">
+						<ion-label>People<ion-badge class="range-badge">{{bathShowerPeople}}</ion-badge></ion-label>
+					</div>
+					<ion-range class="range-slider" [(ngModel)]="bathShowerPeople" min="0" max="3" step="1" snaps="true">
+						<ion-label range-left>0</ion-label>
+						<ion-label range-right>3</ion-label>
+					</ion-range>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Additional Information</ion-label>
+					<ion-textarea rows="3"></ion-textarea>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card class="card-pad-bottom">
+		<ion-card-header>Walking</ion-card-header>
+		<ion-card-content no-margin no-padding>
+			<ion-list no-lines text-wrap>
+				<ion-item>
+					<ion-label stacked>Specify</ion-label>
+					<ion-select [(ngModel)]="walkingSpec">
+						<ion-option value="1">No Walking</ion-option>
+						<ion-option value="2">Walking Aid</ion-option>
+						<ion-option value="3">Assistance</ion-option>
+						<ion-option value="4">Supervision</ion-option>
+						<ion-option value="5">Independent</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item *ngIf="walkingSpec == 2">
+					<ion-label stacked>Specify Walking Aid</ion-label>
+					<ion-textarea rows="3"></ion-textarea>
+				</ion-item>
+				<ion-item *ngIf="walkingSpec == 3">
+					<div item-left class="range-label">
+						<ion-label>People<ion-badge class="range-badge">{{walkingPeople}}</ion-badge></ion-label>
+					</div>
+					<ion-range class="range-slider" [(ngModel)]="walkingPeople" min="0" max="3" step="1" snaps="true">
+						<ion-label range-left>0</ion-label>
+						<ion-label range-right>3</ion-label>
+					</ion-range>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Additional Information</ion-label>
+					<ion-textarea rows="3" placeholder="e.g. distance walked"></ion-textarea>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card class="footer-margin card-pad-bottom">
+		<ion-card-header>Other Instructions</ion-card-header>
+		<ion-card-content no-margin no-padding>
+			<ion-list no-lines text-wrap>
+				<ion-item>
+					<ion-label stacked></ion-label>
+					<ion-textarea rows="5" placeholder="any other instructions"></ion-textarea>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
 </ion-content>

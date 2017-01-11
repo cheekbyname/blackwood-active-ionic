@@ -1,6 +1,6 @@
 ion-tabs span {
 	color: black;
-	font-size: 12pt;
+	font-size: 11pt;
 	font-weight: bold;
 }
 
@@ -51,6 +51,14 @@ ion-content#checklist_page, ion-content#handling_page, .footer-margin {
 	margin-bottom: 64px!important;
 }
 
+.card-pad-bottom {
+	padding-bottom: 8px;
+}
+
+.select-margin-bottom {
+	margin-bottom: 8px;
+}
+
 #checklist_item_row {
 	border-bottom: 1px solid silver;
 }
@@ -61,4 +69,8 @@ ion-content#checklist_page, ion-content#handling_page, .footer-margin {
 
 .range-badge {
 	margin-left: 10px;
+}
+
+ion-card-header {
+	padding-bottom: 0px!important;
 }
