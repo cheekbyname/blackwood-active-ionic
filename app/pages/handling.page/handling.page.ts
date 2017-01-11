@@ -12,4 +12,6 @@ export class HandlingPage implements OnInit {
 	ngOnInit(): void {
 		
 	}
+
+	transferPeople: number;
 }

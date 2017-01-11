@@ -27,3 +27,38 @@ ion-tabs a[aria-selected="true"] span {
 ion-col ion-radio {
 	margin-left: 12px;
 }
+
+ion-label {
+	color: black!important;
+	font-size: 11pt!important;
+}
+
+ion-textarea, ion-select, ion-datetime {
+	background-color: rgba(225, 225, 225, 0.5);
+	font-family: "Century Gothic";
+	padding: 8px;
+}
+
+ion-input, ion-select, ion-datetime, ion-label {
+	padding-left: 8px!important;
+}
+
+ion-content#assess_page, ion-content#checklist_page, ion-content#handling_page {
+	margin-top: 56px;
+}
+
+ion-content#checklist_page, ion-content#handling_page, .footer-margin {
+	margin-bottom: 64px!important;
+}
+
+#checklist_item_row {
+	border-bottom: 1px solid silver;
+}
+
+.range-label {
+	width: 30%!important;
+}
+
+.range-badge {
+	margin-left: 10px;
+}
