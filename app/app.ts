@@ -13,6 +13,7 @@ import { CommService} from './services/comm.service';
 import { FacilityService } from './services/facility.service';
 import { ClientService } from './services/client.service';
 import { UserService } from './services/user.service';
+import { ActivityService } from './services/activity.service';
 
 // Primary Pages
 import { HomePage } from './pages/homepage/homepage';
@@ -26,7 +27,7 @@ declare var Microsoft: any;
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Auth, Api, WebApi, PropertyService, DevelopmentService, TenancyService,
-    MemberService, CommService, FacilityService, ClientService, UserService ]
+    MemberService, CommService, FacilityService, ClientService, UserService, ActivityService ]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
