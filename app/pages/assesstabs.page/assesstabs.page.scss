@@ -8,20 +8,10 @@ ion-tabs a[aria-selected="true"] span {
 	color: hotpink;
 }
 
-#checklist_header_row {
+.checklist-header-row {
 	padding-top: 8px;
 	background-color: silver;
 	// position: fixed;
-}
-
-// #checklist_content {
-// 	margin-top: 36px;
-// }
-
-#checklist_item_row {
-	display: flex!important;
-	align-content: center!important;
-	align-items: center!important;
 }
 
 ion-col ion-radio {
@@ -43,7 +33,7 @@ ion-input, ion-select, ion-datetime, ion-label {
 	padding-left: 8px!important;
 }
 
-ion-content#assess_page, ion-content#checklist_page, ion-content#handling_page {
+ion-content#assess_page, ion-content#checklist_page, ion-content#handling_page, ion-content#tile_page {
 	margin-top: 56px;
 }
 
@@ -59,8 +49,14 @@ ion-content#checklist_page, ion-content#handling_page, .footer-margin {
 	margin-bottom: 8px;
 }
 
-#checklist_item_row {
+.checklist-item-row {
 	border-bottom: 1px solid silver;
+}
+
+.checklist-item-row > *, .tile-item-row ion-row > * {
+	display: flex!important;
+	align-content: center!important;
+	align-items: center!important;
 }
 
 .range-label {
@@ -71,6 +67,6 @@ ion-content#checklist_page, ion-content#handling_page, .footer-margin {
 	margin-left: 10px;
 }
 
-ion-card-header {
+.card-head-no-pad {
 	padding-bottom: 0px!important;
 }

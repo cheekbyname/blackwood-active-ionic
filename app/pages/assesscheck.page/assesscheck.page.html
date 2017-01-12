@@ -2,7 +2,7 @@
 	<ion-card>
 		<ion-card-content>
 			<ion-grid>
-				<ion-row id="checklist_header_row">
+				<ion-row class="checklist-header-row">
 					<ion-col width-50><ion-label>Home Visit Checklist</ion-label></ion-col>
 					<ion-col><ion-label>Yes</ion-label></ion-col>
 					<ion-col><ion-label>No</ion-label></ion-col>
@@ -10,10 +10,10 @@
 					<ion-col><ion-label>F/I</ion-label></ion-col>
 				</ion-row>
 			</ion-grid>
-			<ion-grid class="vert-align" id="checklist_page_bottom">
+			<ion-grid id="checklist_page_bottom">
 				<div id="checklist_content">
 					<div *ngFor="let item of items">
-						<ion-row radio-group [(ngModel)]="item.value" id="checklist_item_row">
+						<ion-row radio-group [(ngModel)]="item.value" class="checklist-item-row">
 							<ion-col text-wrap width-50><ion-label>{{item.itemName}}</ion-label></ion-col>
 							<ion-col><ion-radio value="yes"></ion-radio></ion-col>
 							<ion-col><ion-radio value="no"></ion-radio></ion-col>
