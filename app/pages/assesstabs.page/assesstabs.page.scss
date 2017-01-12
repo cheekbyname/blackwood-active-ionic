@@ -9,9 +9,12 @@ ion-tabs a[aria-selected="true"] span {
 }
 
 .checklist-header-row {
-	padding-top: 8px;
 	background-color: silver;
 	// position: fixed;
+}
+
+.checklist-header-row ion-label {
+	margin: 8px 0px;
 }
 
 ion-col ion-radio {

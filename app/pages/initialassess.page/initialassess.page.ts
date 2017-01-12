@@ -1,30 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
 
-import { Assessment } from '../../models/assessment';
-import { ActiveUser } from '../../models/activeuser';
-
-import { UserService } from '../../services/user.service';
+import { CareInitialAssessment } from '../../models/careinitialassessment';
 
 @Component({
 	templateUrl: 'build/pages/initialassess.page/initialassess.page.html',
 	styles: [ './initialassess.page.scss' ]
 })
-export class InitialAssessPage implements OnInit {
+export class InitialAssessPage {
 
-	constructor(public navCtrl: NavController, public usrSrv: UserService) {
-		this.assess = new Assessment();
-		this.assess.visitDate = new Date().toISOString();
+	constructor(public navCtrl: NavController, public navParm: NavParams) {
+		this.assess = navParm.data;
 	}
 
-	ngOnInit(): void {
-		this.usrSrv.getActiveUser().then(user => {
-			console.log(user);
-			this.assess.visitBy = user.simpleName;
-		});
-		console.log(this.assess.visitDate);
-	}
-
-	assess: Assessment;
-	activeUser: ActiveUser;
+	assess: CareInitialAssessment;
 }

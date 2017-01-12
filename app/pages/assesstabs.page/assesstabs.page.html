@@ -6,9 +6,6 @@
 
 <ion-footer-bar>
 	<ion-tabs>
-		<ion-tab tabTitle="Assessment" [root]="initialAssessPage"></ion-tab>
-		<ion-tab tabTitle="Checklist" [root]="assessCheckPage"></ion-tab>
-		<ion-tab tabTitle="Handling" [root]="handlingCheckPage"></ion-tab>
-		<ion-tab tabTitle="T.I.L.E" [root]="tileCheckPage"></ion-tab>
+		<ion-tab *ngFor="let tab of tabs" tabTitle="{{tab.title}}" [root]="tab.page" [rootParams]="assess"></ion-tab>
 	</ion-tabs>
 </ion-footer-bar>

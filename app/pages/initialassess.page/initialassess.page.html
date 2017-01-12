@@ -1,5 +1,5 @@
 <ion-content id="assess_page">
-	<ion-card class="footer-margin">
+	<ion-card class="footer-margin card-pad-bottom">
 		<ion-card-content no-margin no-padding>
 			<ion-list text-wrap no-lines>
 				<ion-item>
@@ -39,7 +39,7 @@
 					<ion-textarea type="text" rows="3" [value]="assess.whatRequired"></ion-textarea>
 				</ion-item>
 			</ion-list>
-			<ion-list radio-group no-margin text-wrap>
+			<ion-list radio-group no-margin text-wrap no-lines>
 				<ion-item>
 					<ion-label stacked>Would you be happy to vary start dates/times if required?</ion-label>
 				</ion-item>
@@ -50,13 +50,13 @@
 					<ion-label>No</ion-label><ion-radio value="no"></ion-radio>
 				</ion-item>
 			</ion-list>
-			<ion-list no-margin text-wrap>
+			<ion-list no-margin text-wrap no-lines>
 				<ion-item>
 					<ion-label stacked>Please detail if certain times cannot be changed</ion-label>
 					<ion-textarea rows="3" [value]="assess.timeChange"></ion-textarea>
 				</ion-item>
 			</ion-list>
-			<ion-list radio-group no-margin text-wrap>
+			<ion-list radio-group no-margin text-wrap no-lines>
 				<ion-item>
 					<ion-label stacked>Do you have a preference regarding gender of person assisting you?</ion-label>
 				</ion-item>
@@ -70,7 +70,7 @@
 					<ion-label>Male preferred</ion-label><ion-radio value="male"></ion-radio>
 				</ion-item>
 			</ion-list>
-			<ion-list radio-group no-margin text-wrap>
+			<ion-list radio-group no-margin text-wrap no-lines>
 				<ion-item>
 					<ion-label stacked>In the event we cannot provide this preference, would you accept the alternative?</ion-label>
 				</ion-item>
@@ -81,13 +81,13 @@
 					<ion-label>No</ion-label><ion-radio value="no"></ion-radio>
 				</ion-item>
 			</ion-list>
-			<ion-list no-margin text-wrap>
+			<ion-list no-margin text-wrap no-lines>
 				<ion-item>
 					<ion-label stacked>Do you have any adaptations? (Hoist, Walking Frame, Wheelchair, Shower Chair, Cutlery, etc.)</ion-label>
 					<ion-textarea rows="3" [value]="assess.adaptations"></ion-textarea>
 				</ion-item>
 			</ion-list>
-			<ion-list radio-group no-margin text-wrap [(ngModel)]="assess.doorEntry">
+			<ion-list radio-group no-margin text-wrap [(ngModel)]="assess.doorEntry" no-lines>
 				<ion-item>
 					<ion-label stacked>Do you have a Buzzer or Key Code for your door?</ion-label>
 				</ion-item>
@@ -101,7 +101,7 @@
 					<ion-label>None</ion-label><ion-radio value="none" checked="true"></ion-radio>
 				</ion-item>
 			</ion-list>
-			<ion-list no-margin text-wrap id="assess_page_bottom">
+			<ion-list no-margin text-wrap id="assess_page_bottom" no-lines>
 				<ion-item *ngIf="assess.doorEntry && assess.doorEntry=='keycode'">
 					<ion-label stacked>What is the number of your Key Code?</ion-label>
 					<ion-input type="text" [value]="assess.keycode"></ion-input>

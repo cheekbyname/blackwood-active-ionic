@@ -9,6 +9,7 @@ export class TilePage {
 
 	}
 
+	overallRisk: string;
 	tileGroups: TileGroup[] = [
 		new TileGroup(0, "Task", "The Tasks - Do They Involve:", [
 			new TileItem("Holding loads away from trunk?"),
