@@ -8,7 +8,7 @@ import { MemberService } from '../../services/member.service';
 import { CommService} from '../../services/comm.service';
 import { FacilityService } from '../../services/facility.service';
 import { ClientService } from '../../services/client.service';
-import { UserService } from '../../services/user.service';
+import { ActivityService } from '../../services/activity.service';
 
 import { Tenancy } from '../../models/tenancy';
 import { Development } from '../../models/development';
@@ -17,7 +17,6 @@ import { Member } from '../../models/member';
 import { Comm } from '../../models/comm';
 import { Facility } from '../../models/facility';
 import { Client } from '../../models/client';
-import { CareInitialAssessment } from '../../models/careinitialassessment';
 
 import { DevelopmentPage } from '../developmentpage/developmentpage';
 import { TenancyPage } from '../tenancypage/tenancypage';
@@ -44,7 +43,7 @@ export class HomePage implements OnInit {
         public propertyService: PropertyService, public memberService: MemberService,
         public commService: CommService, public facilityService: FacilityService,
         public clientService: ClientService, public events: Events,
-        public alert: AlertController, public usrSrv: UserService) { }
+        public alert: AlertController, public actSrv: ActivityService) { }
 
     allTenancies: Tenancy[];
     allDevelopments: Development[];
@@ -267,13 +266,8 @@ export class HomePage implements OnInit {
     }
 
     addNewCareInitialAssessment(ev): void {
-        var assess = new CareInitialAssessment();
-        assess.visitDate = new Date().toISOString();
-        this.usrSrv.getActiveUser().then(user => {
-			console.log(user);
-			assess.user = user;
-			assess.visitBy = user.simpleName;
+        this.actSrv.newCareInitialAssessment().then(assess => {
             this.navCtrl.push(AssessTabsPage, { "assess": assess });
-		});
+        });
     }
 }
