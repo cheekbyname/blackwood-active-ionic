@@ -2,8 +2,11 @@ import { ActiveUser } from './activeuser';
 
 export class CareInitialAssessment {
 
-	// Assessment Tab
+	// internal
+	guid: string;
 	user: ActiveUser;
+
+	// Assessment Tab
 	name: string;
 	prefName: string;
 	address1: string;

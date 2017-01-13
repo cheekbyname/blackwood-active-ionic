@@ -21,6 +21,7 @@ export class CareActivityService {
 
 	newCareInitialAssessment(): Promise<CareInitialAssessment> {
 		var newAssess = new CareInitialAssessment();
+		newAssess.guid = Guid.newGuid();
         newAssess.visitDate = new Date().toISOString();
 		newAssess.user = this.usrSrv.currentUser;
 		newAssess.visitBy = newAssess.user.simpleName;
@@ -33,6 +34,17 @@ export class CareActivityService {
 	}
 
 	saveCareInitialAssessment(assess: CareInitialAssessment): void {
-		console.log(assess);
+		var url = "care/initialassessments?assessGuid=" + assess.guid;
+		this.sql.setJson(url, assess);
+		console.log(url + " saved to sqlstorage");
 	}
+}
+
+class Guid {
+    static newGuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
+    }
 }
