@@ -2,6 +2,8 @@ import { ActiveUser } from './activeuser';
 
 export class CareInitialAssessment {
 
+	// Foo line for foo commit
+	
 	// internal
 	guid: string;
 	user: ActiveUser;
