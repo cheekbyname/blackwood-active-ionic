@@ -1,6 +1,6 @@
 // Angular/Ionic
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 // Components
 import { InitialAssessPage } from '../../pages/initialassess.page/initialassess.page';
@@ -9,10 +9,7 @@ import { HandlingPage } from '../../pages/handling.page/handling.page';
 import { TilePage } from '../../pages/tile.page/tile.page';
 
 // Services
-import { ActivityService } from '../../services/activity.service';
-
-// Models
-import { CareInitialAssessment } from '../../models/careinitialassessment';
+import { CareActivityService } from '../../services/care.activity.service';
 
 @Component({
 	templateUrl: 'build/pages/assesstabs.page/assesstabs.page.html'
@@ -26,14 +23,12 @@ export class AssessTabsPage {
 		new Tab("T.I.L.E", TilePage)
 	];
 
-	assess: CareInitialAssessment;
+	constructor(public navCtrl: NavController, public actSrv: CareActivityService) {
 
-	constructor(public navCtrl: NavController, navParm: NavParams, public actSrv: ActivityService) {
-		this.assess = navParm.get("assess");
 	}
 
 	ionViewWillLeave() {
-		this.actSrv.saveCareInitialAssessment(this.assess);
+		this.actSrv.saveCareInitialAssessment(this.actSrv.getCurrentCareInitialAssessment());
 	}
 }
 

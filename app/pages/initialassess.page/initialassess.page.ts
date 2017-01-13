@@ -1,6 +1,11 @@
+// Angular/Ionic
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
+// Services
+import { CareActivityService } from '../../services/care.activity.service';
+
+// Models
 import { CareInitialAssessment } from '../../models/careinitialassessment';
 
 @Component({
@@ -9,8 +14,8 @@ import { CareInitialAssessment } from '../../models/careinitialassessment';
 })
 export class InitialAssessPage {
 
-	constructor(public navCtrl: NavController, public navParm: NavParams) {
-		this.assess = navParm.data;
+	constructor(public navCtrl: NavController, public actSrv: CareActivityService) {
+		this.assess = this.actSrv.getCurrentCareInitialAssessment();
 	}
 
 	assess: CareInitialAssessment;

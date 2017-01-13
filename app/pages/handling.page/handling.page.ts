@@ -1,17 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+// Angular/Ionic
+import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+
+// Services
+import { CareActivityService } from '../../services/care.activity.service';
+
+// Models
+import { CareInitialAssessment } from '../../models/careinitialassessment';
 
 @Component({
 	templateUrl: 'build/pages/handling.page/handling.page.html'
 })
-export class HandlingPage implements OnInit {
-	constructor(public navCtrl: NavController) {
-
+export class HandlingPage {
+	constructor(public navCtrl: NavController, public actSrv: CareActivityService) {
+		this.assess = actSrv.getCurrentCareInitialAssessment();
 	}
 
-	ngOnInit(): void {
-		
-	}
+	assess: CareInitialAssessment;
 
 	transferPeople: number;
 	tolietingPeople: number;

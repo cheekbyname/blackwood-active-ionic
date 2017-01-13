@@ -1,13 +1,22 @@
+// Angular/Ionic
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+
+// Services
+import { CareActivityService } from '../../services/care.activity.service';
+
+// Models
+import { CareInitialAssessment } from '../../models/careinitialassessment';
 
 @Component({
 	templateUrl: 'build/pages/assesscheck.page/assesscheck.page.html'
 })
 export class AssessCheckPage {
-	constructor(public navCtrl: NavController) {
-		
+	constructor(public navCtrl: NavController, public actSrv: CareActivityService) {
+		this.assess = actSrv.getCurrentCareInitialAssessment();		
 	}
+
+	assess: CareInitialAssessment;
 
 	items: CheckItem[] = [
 		new CheckItem("Are internal floors/flooring free from slip and trip hazards?"),

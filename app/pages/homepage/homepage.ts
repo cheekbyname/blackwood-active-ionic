@@ -8,7 +8,7 @@ import { MemberService } from '../../services/member.service';
 import { CommService} from '../../services/comm.service';
 import { FacilityService } from '../../services/facility.service';
 import { ClientService } from '../../services/client.service';
-import { ActivityService } from '../../services/activity.service';
+import { CareActivityService } from '../../services/care.activity.service';
 
 import { Tenancy } from '../../models/tenancy';
 import { Development } from '../../models/development';
@@ -43,7 +43,7 @@ export class HomePage implements OnInit {
         public propertyService: PropertyService, public memberService: MemberService,
         public commService: CommService, public facilityService: FacilityService,
         public clientService: ClientService, public events: Events,
-        public alert: AlertController, public actSrv: ActivityService) { }
+        public alert: AlertController, public actSrv: CareActivityService) { }
 
     allTenancies: Tenancy[];
     allDevelopments: Development[];
@@ -267,7 +267,7 @@ export class HomePage implements OnInit {
 
     addNewCareInitialAssessment(ev): void {
         this.actSrv.newCareInitialAssessment().then(assess => {
-            this.navCtrl.push(AssessTabsPage, { "assess": assess });
+            this.navCtrl.push(AssessTabsPage);
         });
     }
 }

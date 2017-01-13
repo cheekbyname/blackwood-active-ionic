@@ -1,27 +1,38 @@
+// Angular/Ionic
 import { Injectable } from '@angular/core';
 import { SqlStorage, Storage } from 'ionic-angular';
 
+// Services
 import { WebApi } from './api.service';
 import { UserService } from './user.service';
 
+// Models
 import { CareInitialAssessment } from '../models/careinitialassessment';
 
 @Injectable()
-export class ActivityService {
+export class CareActivityService {
 
 	sql: Storage;
+	private currentCareInitialAssessment: CareInitialAssessment;
 
 	constructor(private api: WebApi, private usrSrv: UserService) {
 		this.sql = new Storage(SqlStorage);
 	}
 
 	newCareInitialAssessment(): Promise<CareInitialAssessment> {
-		var assess = new CareInitialAssessment();
-        assess.visitDate = new Date().toISOString();
+		var newAssess = new CareInitialAssessment();
+        newAssess.visitDate = new Date().toISOString();
         return Promise.resolve(this.usrSrv.getActiveUser().then(user => {
-			assess.user = user;
-			assess.visitBy = user.simpleName;
-		}).then(x => { return assess }));
+			newAssess.user = user;
+			newAssess.visitBy = user.simpleName;
+		}).then(x => {
+			this.currentCareInitialAssessment = newAssess;
+			return this.currentCareInitialAssessment;
+		}));
+	}
+
+	getCurrentCareInitialAssessment(): CareInitialAssessment {
+		return this.currentCareInitialAssessment;
 	}
 
 	saveCareInitialAssessment(assess: CareInitialAssessment): void {

@@ -1,15 +1,25 @@
+// Angular/Ionic
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+
+// Services
+import { CareActivityService } from '../../services/care.activity.service';
+
+// Models
+import { CareInitialAssessment } from '../../models/careinitialassessment';
 
 @Component({
 	templateUrl: 'build/pages/tile.page/tile.page.html'
 })
 export class TilePage {
-	constructor() {
-
+	constructor(public navCtrl: NavController, public actSrv: CareActivityService) {
+		this.assess = this.actSrv.getCurrentCareInitialAssessment();
 	}
 
+	assess: CareInitialAssessment;
+
 	overallRisk: string;
+
 	tileGroups: TileGroup[] = [
 		new TileGroup(0, "Task", "The Tasks - Do They Involve:", [
 			new TileItem("Holding loads away from trunk?"),
