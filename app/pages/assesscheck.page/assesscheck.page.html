@@ -12,7 +12,7 @@
 			</ion-grid>
 			<ion-grid id="checklist_page_bottom">
 				<div id="checklist_content">
-					<div *ngFor="let item of items">
+					<div *ngFor="let item of assess.checkItems">
 						<ion-row radio-group [(ngModel)]="item.value" class="checklist-item-row">
 							<ion-col text-wrap width-50><ion-label>{{item.itemName}}</ion-label></ion-col>
 							<ion-col><ion-radio value="yes"></ion-radio></ion-col>
@@ -23,7 +23,7 @@
 						<div *ngIf="item.value && (item.value == item.furtherValue)">
 							<ion-item text-wrap>
 								<ion-label stacked>{{item.furtherTitle}}</ion-label>
-								<ion-textarea rows="3" [value]="item.further"></ion-textarea>
+								<ion-textarea rows="3" [(ngModel)]="item.further"></ion-textarea>
 							</ion-item>
 						</div>
 					</div>
@@ -46,8 +46,8 @@
 					<ion-label stacked>Is a more detailed risk assessment required?</ion-label>
 				</ion-item>
 				<div radio-group [(ngModel)]="fullAssessReqd">
-					<ion-item><ion-label>Yes</ion-label><ion-radio value="yes"></ion-radio></ion-item>
-					<ion-item><ion-label>No</ion-label><ion-radio value="no"></ion-radio></ion-item>
+					<ion-item><ion-label>Yes</ion-label><ion-radio value="true"></ion-radio></ion-item>
+					<ion-item><ion-label>No</ion-label><ion-radio value="false"></ion-radio></ion-item>
 				</div>
 			</ion-list>
 		</ion-card-content>

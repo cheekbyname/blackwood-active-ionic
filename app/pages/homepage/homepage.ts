@@ -1,6 +1,8 @@
+// Angular/Ionic
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController, PopoverController, AlertController, Events } from 'ionic-angular';
 
+// Services
 import { TenancyService } from '../../services/tenancy.service';
 import { DevelopmentService } from '../../services/development.service';
 import { PropertyService } from '../../services/property.service';
@@ -9,7 +11,9 @@ import { CommService} from '../../services/comm.service';
 import { FacilityService } from '../../services/facility.service';
 import { ClientService } from '../../services/client.service';
 import { CareActivityService } from '../../services/care.activity.service';
+import { UserService } from '../../services/user.service';
 
+// Models
 import { Tenancy } from '../../models/tenancy';
 import { Development } from '../../models/development';
 import { Property } from '../../models/property';
@@ -17,7 +21,9 @@ import { Member } from '../../models/member';
 import { Comm } from '../../models/comm';
 import { Facility } from '../../models/facility';
 import { Client } from '../../models/client';
+import { ActiveUser } from '../../models/activeuser';
 
+// Components
 import { DevelopmentPage } from '../developmentpage/developmentpage';
 import { TenancyPage } from '../tenancypage/tenancypage';
 import { ClientPage } from '../client.page/client.page';
@@ -28,13 +34,14 @@ import { PropertyCard } from '../../components/propertycard/propertycard';
 import { DevelopmentCard } from '../../components/developmentcard/developmentcard';
 import { FacilityCard } from '../../components/facility.card/facility.card';
 import { ClientCard } from '../../components/client.card/client.card';
+
 import { HomeFilterPopover } from '../../components/homefilter.popover/homefilter.popover';
 import { NewActivityPopover } from '../../components/newactivity.popover/newactivity.popover';
 
 @Component({
     templateUrl: 'build/pages/homepage/homepage.html',
     directives: [ TenancyCard, PropertyCard, DevelopmentCard, ClientCard, FacilityCard ],
-    providers: [ AlertController ]
+    providers: [ AlertController ] // TODO We probably want this as a singleton
 })
 export class HomePage implements OnInit {
     
@@ -43,8 +50,12 @@ export class HomePage implements OnInit {
         public propertyService: PropertyService, public memberService: MemberService,
         public commService: CommService, public facilityService: FacilityService,
         public clientService: ClientService, public events: Events,
-        public alert: AlertController, public actSrv: CareActivityService) { }
+        public alert: AlertController, public actSrv: CareActivityService, public usrSrv: UserService) {
+    }
 
+    currentUser: ActiveUser;
+
+    // TODO Probably want to split these out into their relevant services
     allTenancies: Tenancy[];
     allDevelopments: Development[];
     allProperties: Property[];
@@ -74,10 +85,16 @@ export class HomePage implements OnInit {
         this.getMembers();
         this.getFacilities();
         this.getClients();
+        this.getCurrentUser();
     }
 
     cloudControl(show: boolean, warn: boolean) {
 
+    }
+
+    getCurrentUser(): void {
+        this.usrSrv.getActiveUser()
+            .then(user => this.currentUser = this.usrSrv.currentUser);
     }
 
     getFacilities(): void {

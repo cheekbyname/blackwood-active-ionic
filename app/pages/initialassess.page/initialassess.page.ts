@@ -9,8 +9,7 @@ import { CareActivityService } from '../../services/care.activity.service';
 import { CareInitialAssessment } from '../../models/careinitialassessment';
 
 @Component({
-	templateUrl: 'build/pages/initialassess.page/initialassess.page.html',
-	styles: [ './initialassess.page.scss' ]
+	templateUrl: 'build/pages/initialassess.page/initialassess.page.html'
 })
 export class InitialAssessPage {
 

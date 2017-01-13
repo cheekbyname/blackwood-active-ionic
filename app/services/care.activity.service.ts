@@ -22,13 +22,10 @@ export class CareActivityService {
 	newCareInitialAssessment(): Promise<CareInitialAssessment> {
 		var newAssess = new CareInitialAssessment();
         newAssess.visitDate = new Date().toISOString();
-        return Promise.resolve(this.usrSrv.getActiveUser().then(user => {
-			newAssess.user = user;
-			newAssess.visitBy = user.simpleName;
-		}).then(x => {
-			this.currentCareInitialAssessment = newAssess;
-			return this.currentCareInitialAssessment;
-		}));
+		newAssess.user = this.usrSrv.currentUser;
+		newAssess.visitBy = newAssess.user.simpleName;
+		this.currentCareInitialAssessment = newAssess;
+		return Promise.resolve(this.currentCareInitialAssessment);
 	}
 
 	getCurrentCareInitialAssessment(): CareInitialAssessment {
