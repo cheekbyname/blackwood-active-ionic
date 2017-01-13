@@ -2,14 +2,8 @@ import { ActiveUser } from './activeuser';
 
 export class CareInitialAssessment {
 
-<<<<<<< HEAD
 	// Internal
-=======
-	// Foo line for foo commit
-	
-	// internal
 	guid: string;
->>>>>>> aa4dfcbe7efe886866d5a12b5bc88d37f915d92e
 	user: ActiveUser;
 
 	// Assessment Tab
