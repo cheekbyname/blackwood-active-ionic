@@ -54,6 +54,7 @@ export class HomePage implements OnInit {
     }
 
     currentUser: ActiveUser;
+    hailUser: string;
 
     // TODO Probably want to split these out into their relevant services
     allTenancies: Tenancy[];
@@ -94,7 +95,10 @@ export class HomePage implements OnInit {
 
     getCurrentUser(): void {
         this.usrSrv.getActiveUser()
-            .then(user => this.currentUser = this.usrSrv.currentUser);
+            .then(user => {
+                this.currentUser = this.usrSrv.currentUser;
+                this.hailUser = this.currentUser.simpleName.substr(0, this.currentUser.simpleName.indexOf(' '));
+            });
     }
 
     getFacilities(): void {

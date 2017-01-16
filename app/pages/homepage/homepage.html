@@ -3,7 +3,7 @@
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Welcome Home</ion-title>
+    <ion-title>Welcome {{hailUser}}</ion-title>
     <ion-buttons *ngIf="showCloud" end>
         <button ion-button icon-only (click)="showDataServiceStatus()">
             <ion-icon name="cloud-download" [attr.danger]="cloudWarn ? '' : null"></ion-icon>
