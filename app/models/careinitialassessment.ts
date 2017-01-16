@@ -49,6 +49,8 @@ export class CareInitialAssessment {
 		new CheckItem("Are there any hazards related to the work you do e.g. patient handling with insufficient space/incorrect equipment, use of cleaning chemicals, sharps, etc?"),
 		new CheckItem("Is there any equipment provided for your use at the property, e.g. by your employer, by another organisation or by the client?", "yes", "If yes, is the equipment properly maintained?")
 	];
+	otherHazards: string;
+	furtherAction: string;
 	fullAssessReqd: boolean;
 
 	// Handling Tab

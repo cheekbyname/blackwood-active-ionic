@@ -19,8 +19,7 @@
       <ion-list>
         <button ion-item *ngFor="let assess of assessments" text-wrap (click)="openCareInitialAssessment(assess)">
           <h2>{{assess.name}}</h2>
-          <p>{{dateOf(assess)}}</p>
-          <p>{{timeOf(assess)}}</p>
+          <p>{{dateOf(assess)}} {{timeOf(assess)}}</p>
           <p>{{assess.address1}}</p>
         </button>
       </ion-list>

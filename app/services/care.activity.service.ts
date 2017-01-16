@@ -39,19 +39,21 @@ export class CareActivityService {
 		var keyUrl = this.assessUrlFromGuid(assess.guid);	// This for saving via webAPI when it's done
 		this.sql.query('SELECT * FROM careinitialassessments WHERE guid=?', [assess.guid])
 			.then(data => {
-				return (data.res.length > 0);
+				return (data.res.rows.length > 0);
 			})
 			.then(exists => {
 				if (exists) {
-					this.sql.query('UPDATE careinitial assessments SET json=? WHERE guid=?', [JSON.stringify(assess), assess.guid]);
+					this.sql.query('UPDATE careinitialassessments SET json=? WHERE guid=?', [JSON.stringify(assess), assess.guid]);
+					var toast = this.toastCtrl.create({ message: 'Changes to Care Initial Assessment successfully saved', duration: 3000});
+					toast.present();
 				} else {
 					this.sql.query('INSERT INTO careinitialassessments (guid, json) VALUES (?, ?)', [assess.guid, JSON.stringify(assess)]);
+					var toast = this.toastCtrl.create({ message: 'Care Initial Assessment successfully saved', duration: 3000});
+					toast.present();
 				}
 			})
 			.then(done => {
 				console.log(keyUrl + " saved to sqlstorage");
-				var toast = this.toastCtrl.create({ message: 'Changes to Care Initial Assessment successfully saved', duration: 3000});
-				toast.present();
 			});
 	}
 

@@ -36,16 +36,16 @@
 			<ion-list no-lines>
 				<ion-item>
 					<ion-label stacked>Any other hazards observed?</ion-label>
-					<ion-textarea rows="3"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.otherHazards"></ion-textarea>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Comments and further action to be taken</ion-label>
-					<ion-textarea rows="3"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.furtherAction"></ion-textarea>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Is a more detailed risk assessment required?</ion-label>
 				</ion-item>
-				<div radio-group [(ngModel)]="fullAssessReqd">
+				<div radio-group [(ngModel)]="assess.fullAssessReqd">
 					<ion-item><ion-label>Yes</ion-label><ion-radio value="true"></ion-radio></ion-item>
 					<ion-item><ion-label>No</ion-label><ion-radio value="false"></ion-radio></ion-item>
 				</div>

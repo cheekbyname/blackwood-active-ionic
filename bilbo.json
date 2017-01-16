@@ -1,0 +1,268 @@
+{
+	"checkItems": [
+		{
+			"itemName": "Are internal floors/flooring free from slip and trip hazards?",
+			"value": "no"
+		},
+		{
+			"itemName": "Are external areas even and free from holes/loose slabs?",
+			"value": "no"
+		},
+		{
+			"itemName": "Are steps, ramps and stairs in good condition?",
+			"value": "no"
+		},
+		{
+			"itemName": "Are external access routes free from steep slopes which could be hazardous in icy conditions?",
+			"value": "no"
+		},
+		{
+			"itemName": "Is access in general free from hazards?",
+			"value": "yes"
+		},
+		{
+			"itemName": "Are there no apparent electrical hazards e.g. dodgy wiring, very old switches?",
+			"value": "yes"
+		},
+		{
+			"itemName": "Is there sufficient lighting inlcuding internal and external artificial light, to safely perform tasks required?",
+			"value": "yes"
+		},
+		{
+			"itemName": "Is the house free from pets/pests?",
+			"furtherValue": "no",
+			"furtherTitle": "If no, give details. Give details of any concerns e.g. dangerous dogs",
+			"value": "yes"
+		},
+		{
+			"itemName": "Do occupants avoid smoking while you are in the house?",
+			"value": "no"
+		},
+		{
+			"itemName": "Is the neighbourhood one that you would feel comfortable visiting at all times of day?",
+			"furtherValue": "no",
+			"furtherTitle": "If no, describe your concerns",
+			"value": "yes"
+		},
+		{
+			"itemName": "Would you rate the risk of violence or abuse from the occupants as 'Low'?",
+			"value": "yes"
+		},
+		{
+			"itemName": "Is the client free from known infection risks?",
+			"value": "yes"
+		},
+		{
+			"itemName": "Is there a mobile phone signal throughout the areas of the property you visit?",
+			"value": "no"
+		},
+		{
+			"itemName": "Are there any hazards related to the work you do e.g. patient handling with insufficient space/incorrect equipment, use of cleaning chemicals, sharps, etc?",
+			"value": "yes"
+		},
+		{
+			"itemName": "Is there any equipment provided for your use at the property, e.g. by your employer, by another organisation or by the client?",
+			"furtherValue": "yes",
+			"furtherTitle": "If yes, is the equipment properly maintained?",
+			"value": "no"
+		}
+	],
+	"tileGroups": [
+		{
+			"id": 0,
+			"title": "Task",
+			"desc": "The Tasks - Do They Involve:",
+			"items": [
+				{
+					"task": "Holding loads away from trunk?",
+					"hazard": false
+				},
+				{
+					"task": "Twisting?",
+					"hazard": false
+				},
+				{
+					"task": "Stooping?",
+					"hazard": true,
+					"remedialAction": "None - ceilings in Bag End are quite low"
+				},
+				{
+					"task": "Reaching Upwards?",
+					"hazard": false
+				},
+				{
+					"task": "Large vertical movement?",
+					"hazard": false
+				},
+				{
+					"task": "Long carrying distances?",
+					"hazard": false
+				},
+				{
+					"task": "Strenuous pushing or pulling?",
+					"hazard": false
+				},
+				{
+					"task": "Unpredicatable movement of loads?",
+					"hazard": false
+				},
+				{
+					"task": "Repetitive handling?",
+					"hazard": false
+				},
+				{
+					"task": "Insufficient rest or recovery?",
+					"hazard": false
+				},
+				{
+					"task": "A work rate imposed by a process?",
+					"hazard": false
+				}
+			]
+		},
+		{
+			"id": 1,
+			"title": "Individual",
+			"desc": "Individual Capability - Does the Job:",
+			"items": [
+				{
+					"task": "Requrie unusual capability?",
+					"hazard": false
+				},
+				{
+					"task": "Hazard those with a health problem?",
+					"hazard": false
+				},
+				{
+					"task": "Hazard those who are pregnant?",
+					"hazard": false
+				},
+				{
+					"task": "Call for special information/training?",
+					"hazard": false
+				}
+			]
+		},
+		{
+			"id": 2,
+			"title": "Load",
+			"desc": "The Loads - Are They:",
+			"items": [
+				{
+					"task": "Heavy?",
+					"hazard": false
+				},
+				{
+					"task": "Bulky/Unwieldy?",
+					"hazard": false
+				},
+				{
+					"task": "Difficult to grasp?",
+					"hazard": false
+				},
+				{
+					"task": "Unstable/Unpredicatable?",
+					"hazard": false
+				},
+				{
+					"task": "Constraints on posture?",
+					"hazard": false
+				}
+			]
+		},
+		{
+			"id": 3,
+			"title": "Environment",
+			"desc": "The Working Envrionment - Are There:",
+			"items": [
+				{
+					"task": "Poor floors?",
+					"hazard": true,
+					"remedialAction": "Pay close attention"
+				},
+				{
+					"task": "Variations in levels?",
+					"hazard": false
+				},
+				{
+					"task": "Hot/cold/humid conditions?",
+					"hazard": false
+				},
+				{
+					"task": "Strong air movements?",
+					"hazard": false
+				},
+				{
+					"task": "Poor lighting conditions?",
+					"hazard": false
+				}
+			]
+		},
+		{
+			"id": 4,
+			"title": "Other",
+			"desc": "Other Factors:",
+			"items": [
+				{
+					"task": "Is movement or posture hindered by clothing or personal protective equipment?",
+					"hazard": false
+				}
+			]
+		}
+	],
+	"guid": "15619e6f-6cb7-429a-ba87-c1d030b0ea04",
+	"visitDate": "2017-01-13T16:32:03.799Z",
+	"user": {
+		"emailName": "AlexC@blackwoodgroup.org.uk",
+		"simpleName": "Alex Cheek",
+		"accountName": "AlexC"
+	},
+	"visitBy": "Alex Cheek",
+	"name": "Bilbo Baggins",
+	"prefName": "Mr Bilbo",
+	"address1": "Bag End,\nBagshot Row,\nHobbiton-Bywater,\nThe Shire",
+	"visitType": "1",
+	"whenRequired": "Before, during and after second breakfast",
+	"whatRequired": "Preparing meals and help getting about",
+	"happyVary": "false",
+	"timeChange": "Both breakfasts must always be served promptly",
+	"genderPref": "NoPref",
+	"altGender": "true",
+	"adaptations": "No",
+	"doorEntry": "None",
+	"generalHealth": "Stretched thin, like butter scraped over too much bread",
+	"disability": "Occasionally vanishes",
+	"medication": "N/A",
+	"allergies": "Allergic to Nazgul",
+	"gpDetails": "Elrond Half-Elven,\nImladris,\nThe Trollshaws",
+	"otherProvider": "No",
+	"nextOfKin": "Frodo Baggins\nBag End,\nHobbiton-Bywater,\nThe Shire",
+	"additionalInfo": "Adventure, occasional burglary",
+	"aboutPerson": "Bilbo is old but surprisingly well-preserved for his age (eleventy-one)",
+	"bodyBuildWeight": "2",
+	"bodyBuildHeight": "3",
+	"riskFalls": "1",
+	"problems": "None",
+	"constraints": "None",
+	"transferSpec": "4",
+	"toiletSpec": "2",
+	"bedpanSpec": "2",
+	"bedpanManeuver": "1",
+	"bedpanPeople": 1,
+	"toiletPeople": 1,
+	"bedMoveSpec": "5",
+	"bedTransferSpec": "3",
+	"bedTransferHandlingAid": "1",
+	"bedTransferPeople": 1,
+	"bedsideSpec": "4",
+	"bathShowerWhich": "2",
+	"bathShowerHandlingAid": "2",
+	"bathShowerSpec": "1",
+	"bathShowerPeople": 1,
+	"walkingSpec": "2",
+	"walkingWalkingAid": "Bilbo has a stick he uses",
+	"otherInstructions": "Be careful not to squeeze to hard if you pick him up.",
+	"overallRisk": "2",
+	"otherHazards": "Eavesdroppers",
+	"fullAssessReqd": "true"
+}
