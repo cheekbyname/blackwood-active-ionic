@@ -28,7 +28,12 @@ export class AssessTabsPage {
 	}
 
 	ionViewWillLeave() {
-		this.actSrv.saveCareInitialAssessment(this.actSrv.getCurrentCareInitialAssessment());
+		// TODO Make this a prompt on changes only and place a Save button in the Header
+		//this.actSrv.saveCareInitialAssessment(this.actSrv.getCurrentCareInitialAssessment());
+	}
+
+	saveAssessment() {
+		this.actSrv.saveCareInitialAssessment(this.actSrv.currentCareInitialAssessment);
 	}
 }
 
