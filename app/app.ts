@@ -14,20 +14,19 @@ import { FacilityService } from './services/facility.service';
 import { ClientService } from './services/client.service';
 import { UserService } from './services/user.service';
 import { CareActivityService } from './services/care.activity.service';
+import { DebugService } from './services/debug.service';
 
 // Primary Pages
 import { HomePage } from './pages/homepage/homepage';
 import { ActivityPage } from './pages/activitypage/activitypage';
 import { DebugPage } from './pages/debugpage/debugpage';
 import { SettingsPage } from './pages/settingspage/settingspage';
-// import { LoginPage } from './pages/login.page/login.page';
-
-declare var Microsoft: any;
 
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Auth, Api, WebApi, PropertyService, DevelopmentService, TenancyService,
-    MemberService, CommService, FacilityService, ClientService, UserService, CareActivityService ]
+    MemberService, CommService, FacilityService, ClientService, UserService, CareActivityService,
+    DebugService ]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -35,10 +34,7 @@ export class MyApp {
   rootPage: any = HomePage;
   pages: Array<{title: string, component: any, icon: string}>;
 
-  constructor(public platform: Platform, public auth: Auth, public propertyService: PropertyService,
-    public developmentService: DevelopmentService, public tenancyService: TenancyService,
-    public memberService: MemberService, public commService: CommService, public facilityService: FacilityService,
-    public clientService: ClientService, public userService: UserService ) {
+  constructor(public platform: Platform) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -47,7 +43,6 @@ export class MyApp {
       { title: 'Activity', component: ActivityPage, icon: "pulse" },
       { title: 'Debug', component: DebugPage, icon: "bug" },
       { title: 'Settings', component: SettingsPage, icon: "cog" }
-      // { title: 'Login', component: LoginPage, icon: "log-in" }
     ];
   }
 
@@ -58,57 +53,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       // StatusBar.styleDefault();
       // })
-
-      this.getUserAcct()
-        .then(acct => {
-          console.log(`Found Exchange Account: ${JSON.stringify(acct)}`);
-          return acct[0].name;
-        })
-      //   .then(user => { this.authenticate(user, result => {
-      //       console.log(JSON.stringify(result));
-      //       var authContext = new Microsoft.ADAL.AuthenticationContext(this.auth.authority);
-      //       authContext.tokenCache.readItems().then(tokens => {
-      //         if (tokens.length > 0) {
-      //           console.log(`Have a token: ${JSON.stringify(tokens[0])}`);
-      //         } else {
-      //           console.log('No tokens');
-      //         }
-      //       })
-      //     })
-        });
+      });
     }
 
     // Get device User via accounts plugin
-    getUserAcct(): Promise<any> {
-      return DeviceAccounts.getByType("com.android.exchange");
-    };
-
-  // Authenticate using ADAL plugin
-  authenticate(user: string, authCallback: Function) {
-      var authContext = new Microsoft.ADAL.AuthenticationContext(this.auth.authority);
-      // See if we have an existing token
-      authContext.tokenCache.readItems().then(tokens => {
-        if (tokens.length > 0) {
-          this.auth.authority = tokens[0].authority;
-          authContext = new Microsoft.ADAL.AuthenticationContext(this.auth.authority);
-        }
-        // Attempt to authenticate silently
-        console.log(`Acquiring token from ${this.auth.authority} for ${user}`);
-        authContext.acquireTokenSilentAsync(this.auth.resourceUrl, this.auth.clientId, user)
-          .then(authCallback, result => {
-            // Credentials required
-            authContext.acquireTokenAsync(this.auth.resourceUrl, this.auth.clientId,
-              this.auth.redirectUri, user)
-              .then(response => {
-                console.log(`Token acquired: ${response.accessToken}`);
-                console.log(`Token expires: ${response.expiresOn}`);
-                return authCallback;
-              }, err => {
-                console.log(`Failed to authenticate: ${err}`);
-              })
-          })
-      });
-  }
+    // getUserAcct(): Promise<any> {
+    //   return DeviceAccounts.getByType("com.android.exchange");
+    // };
 
   openPage(page) {
     // Reset the content nav to have just this page

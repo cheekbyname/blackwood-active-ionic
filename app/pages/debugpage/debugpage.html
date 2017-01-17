@@ -8,5 +8,15 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-card-header>General Settings</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label item-left>Enable Dummy Data</ion-label>
+          <ion-checkbox [(ngModel)]="debug.enableDummyData" item-right></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

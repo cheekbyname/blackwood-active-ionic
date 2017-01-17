@@ -78,7 +78,7 @@ export class WebApi {
 	// TODO Implement some fallback to local data
 
 	handleError(err: any, name: string): Promise<any> {
-		let msg = `Error occurred while retrieving ${name}: ${err.message || err}`;
+		let msg = "Error occurred while retrieving ${name}: ${err.message || err}";
 		let toast = this.toastCtrl.create({
 			message: msg,
 			duration: 5000
@@ -86,5 +86,9 @@ export class WebApi {
 		toast.present();
 		console.log(msg);
 		return Promise.reject(err.message || err);
+	}
+
+	getJSON(fileName: string): Promise<any> {
+		return this.http.get(fileName).toPromise();
 	}
 }
