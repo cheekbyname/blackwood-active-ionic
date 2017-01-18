@@ -11,10 +11,10 @@ import { MemberCard } from '../../components/membercard/membercard';
 import { CommCard } from '../../components/comm.card/comm.card';
 
 @Component({
-	templateUrl: 'build/pages/tenancypage/tenancypage.html',
+	templateUrl: 'build/pages/tenancy.tabs.page/tenancy.tabs.page.html',
 	directives: [PropertyCard, MemberCard, CommCard ]
 })
-export class TenancyPage {
+export class TenancyTabsPage {
 	constructor(public navCtrl: NavController, public navParams: NavParams ) {
 		this.ten = navParams.get("ten");
 		this.prop = navParams.get("prop");

@@ -25,7 +25,7 @@ import { ActiveUser } from '../../models/activeuser';
 
 // Components
 import { DevelopmentPage } from '../developmentpage/developmentpage';
-import { TenancyPage } from '../tenancypage/tenancypage';
+import { TenancyTabsPage } from '../tenancy.tabs.page/tenancy.tabs.page';
 import { ClientPage } from '../client.page/client.page';
 import { AssessTabsPage } from '../assesstabs.page/assesstabs.page';
 
@@ -250,7 +250,7 @@ export class HomePage implements OnInit {
 			.then(coms => coms.filter(com => displayComms.some(dis => dis == com.commsTypeRef)));
 
 		Promise.all([mems, prop, coms]).then(values => { 
-			this.navCtrl.push(TenancyPage, {ten: ten, mems: values[0], prop: values[1], coms: values[2]})
+			this.navCtrl.push(TenancyTabsPage, {ten: ten, mems: values[0], prop: values[1], coms: values[2]})
 		});
     }
 

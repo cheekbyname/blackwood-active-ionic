@@ -34,7 +34,7 @@ export class MyApp {
   rootPage: any = HomePage;
   pages: Array<{title: string, component: any, icon: string}>;
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, public debug: DebugService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -49,6 +49,7 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       console.log("Application initializing");
+      this.debug.log("Application initializing");
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       // StatusBar.styleDefault();

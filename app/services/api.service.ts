@@ -1,15 +1,18 @@
+// Angular/Ionic
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { ToastController, Events, SqlStorage, Storage } from 'ionic-angular';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Api } from './secret.service.ts';
+// Services
+import { Api } from './secret.service';
+import { DebugService } from './debug.service';
 
 @Injectable()
 export class WebApi {
 	constructor(private http: Http, private toastCtrl: ToastController, private api: Api,
-		public events: Events) {
+		public events: Events, public debug: DebugService) {
 		this.sql = new Storage(SqlStorage);
 	}
 
@@ -26,7 +29,7 @@ export class WebApi {
 				// TODO Still want to log/toast/whatever the error rather than just swallow it
 				return this.sql.getJson(name).then(data => {
 					if (data) {
-						console.log(`Retrieved ${data.length} entries for ${name} from local storage`);
+						this.debug.log(`Retrieved ${data.length} entries for ${name} from local storage`);
 						return data;
 					}
 					else {
@@ -47,7 +50,7 @@ export class WebApi {
 				// TODO Still want to log/toast/whatever the error rather than just swallow it
 				return this.sql.getJson(name).then(data => {
 					if (data) {
-						console.log(`Retrieved entry for ${name} from local storage`);
+						this.debug.log(`Retrieved entry for ${name} from local storage`);
 						return data;
 					}
 					else {
@@ -60,6 +63,7 @@ export class WebApi {
 	handleResponse(name: string, res: Response): any[] {
 		// Cache Offline
 		this.sql.setJson(name, res.json()).then(f => { console.log(name + " saved to sqlstorage") });
+		this.debug.log(`Retrieved ${res.json().length} ${name} from server and saved to sqlstorage`);
 		this.events.publish("DataService.Status", true);
 		return res.json();
 	}

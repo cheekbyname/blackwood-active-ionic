@@ -18,6 +18,7 @@
 </ion-header>
 
 <ion-content>
+
     <ion-searchbar placeholder="Search for people & places..."
         (ionInput)="searchAll($event)"></ion-searchbar>
 
@@ -101,6 +102,14 @@
         </button>
     </ion-list>
 
+    <ion-fab bottom right edge>
+        <button ion-fab secondary><ion-icon name="add"></ion-icon></button>
+        <ion-fab-list side="top">
+            <button ion-fab secondary><ion-icon name="home"></ion-icon></button>
+            <button ion-fab secondary><ion-icon name="clipboard"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
+
 </ion-content>
 
 <button *ngIf="showDevelopments || showTenancies || showProperties || showFacilities || showClients"
@@ -108,7 +117,17 @@
 	<ion-icon name="arrow-dropup"></ion-icon>
 </button>
 
-<button *ngIf="!(showDevelopments || showTenancies || showProperties || showFacilities || showClients)"
-    fab fab-bottom fab-right secondary (click)="addNewCareInitialAssessment()" class="fixed-fab">
-    <ion-icon name="add"></ion-icon>
-</button>
+    <!--<button fab fab-bottom fab-right secondary class="fixed-fab" *ngIf="!(showDevelopments || showTenancies || showProperties || showFacilities || showClients)">
+        <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+        <button ion-fab (click)="addNewCareInitialAssessment()" secondary>
+            <ion-label text-capitalize>New Initial Care Assessment</ion-label>
+            <ion-icon name="clipboard"></ion-icon>
+        </button>
+        <button ion-fab (click)="addNewCareInitialAssessment()" secondary>
+            <ion-label text-capitalize>New Annual Home Visit</ion-label>
+            <ion-icon name="home"></ion-icon>
+        </button>
+    </ion-fab-list>
+-->

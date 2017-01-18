@@ -5,6 +5,7 @@ import { SqlStorage, Storage, ToastController } from 'ionic-angular';
 // Services
 import { WebApi } from './api.service';
 import { UserService } from './user.service';
+import { DebugService } from './debug.service';
 
 // Models
 import { CareInitialAssessment } from '../models/careinitialassessment';
@@ -14,30 +15,29 @@ export class CareActivityService {
 
 	sql: Storage;
 	currentCareInitialAssessment: CareInitialAssessment;
-	dummyData: CareInitialAssessment;
 	visitTypes: string[] = ['Personal Care', 'Non-Personal Care', 'Housing Support'];
 
-	constructor(private api: WebApi, private usrSrv: UserService, private toastCtrl: ToastController) {
+	constructor(private api: WebApi, private usrSrv: UserService, private toastCtrl: ToastController, public debug: DebugService) {
 		this.sql = new Storage(SqlStorage);
 		this.sql.query('CREATE TABLE IF NOT EXISTS careinitialassessments (guid TEXT, json TEXT)');
-		this.api.getJSON('bilbo.json').then(data => {
-			this.dummyData = data.json();
-		});
 	}
 
 	newCareInitialAssessment(): Promise<CareInitialAssessment> {
-		// TODO Prefix this with a call to debug service
-		if (!this.currentCareInitialAssessment) {
-			this.currentCareInitialAssessment = this.dummyData;
+		if (this.debug.enableDummyData) {
+			this.api.getJSON('bilbo.json').then(data => {
+				this.currentCareInitialAssessment = data.json();
+			});
 			return Promise.resolve(this.currentCareInitialAssessment);
 		}
-		var newAssess = new CareInitialAssessment();
-		newAssess.guid = Guid.newGuid();
-        newAssess.visitDate = new Date().toISOString();
-		newAssess.user = this.usrSrv.currentUser;
-		newAssess.visitBy = newAssess.user.simpleName;
-		this.currentCareInitialAssessment = newAssess;
-		return Promise.resolve(this.currentCareInitialAssessment);
+		else {
+			var newAssess = new CareInitialAssessment();
+			newAssess.guid = Guid.newGuid();
+			newAssess.visitDate = new Date().toISOString();
+			newAssess.user = this.usrSrv.currentUser;
+			newAssess.visitBy = newAssess.user.simpleName;
+			this.currentCareInitialAssessment = newAssess;
+			return Promise.resolve(this.currentCareInitialAssessment);
+		}
 	}
 
 	getCurrentCareInitialAssessment(): CareInitialAssessment {
