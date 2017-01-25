@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle ion-button icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+			{{client.forename}} {{client.surname}}
+	</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+	<ion-card *ngFor="let note of dailyNotes">
+		<ion-card-content>
+			<span>{{formatDate(note.noteDate)}}</span><br/>
+			<span>{{note.noteUser}}</span><br/>
+			<span>{{note.comments}}</span>
+		</ion-card-content>
+	</ion-card>
+
+</ion-content>
+
+<ion-footer>
+	<ion-toolbar>
+		<!-- TODO Navigation buttons required conditional -->
+		<button ion-button class="tool-button" (click)="pageOlder()" [disabled]="!hasOlder">
+			<ion-icon name="arrow-round-back" no-padding></ion-icon>
+			<span text-capitalize>Older Notes</span>
+		</button>
+		<button ion-button class="tool-button" (click)="pageNewer()" [disabled]="!hasNewer">
+			<span text-capitalize>Newer Notes</span>
+			<ion-icon name="arrow-round-forward" no-padding></ion-icon>
+		</button>
+	</ion-toolbar>
+</ion-footer>
+
+<button fab fab-bottom fab-right color="secondary" class="fixed-fab nudge-up" (click)="addNewNote()">
+	<ion-icon name="add"></ion-icon>
+</button> 

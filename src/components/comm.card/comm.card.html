@@ -1,0 +1,21 @@
+<ion-card>
+	<ion-card-content>
+		<ion-grid style="height: 68px;">
+			<ion-row>
+				<ion-col width-80>
+					{{TypeDesc}}<br/>
+					{{com.commsValue}}<br/>
+					{{com.commsDesc}} {{com.commsName}}
+					<!--{{com.CommsName}}-->
+				</ion-col>
+				<ion-col width-20>
+					<a href="{{TypeHref}}: {{com.commsValue}}">
+						<button ion-fab color="tertiary">
+							<ion-icon name="{{TypeIcon}}"></ion-icon>
+						</button>
+					</a>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card-content>
+</ion-card>

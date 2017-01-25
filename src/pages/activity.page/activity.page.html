@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle ion-button icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Your Activity</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="calendar" color="secondary"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>Care Assessments</ion-card-header>
+    <ion-card-content no-margin no-padding>
+      <ion-list>
+        <button ion-item *ngFor="let assess of assessments" text-wrap (click)="openCareInitialAssessment(assess)">
+          <h2>{{assess.name}}</h2>
+          <p>{{dateOf(assess)}} {{timeOf(assess)}}</p>
+          <p>{{assess.address1}}</p>
+        </button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,123 @@
+ion-content {
+    background: map-get($colors , primary )!important;
+}
+
+ion-input {
+    background: whitesmoke;
+}
+
+ion-badge {
+    color: black;
+}
+
+body, ion-header {
+    font-family: "Century Gothic"!important;
+}
+
+.tabbar > a.tab-button > span.tab-button-text,
+    ion-card > ion-card-content {
+    font-family: 'Century Gothic';
+    font-size: 11pt;
+    font-weight: normal;
+}
+
+.tabbar > a.tab-button ion-badge {
+    color: black;
+}
+
+ion-grid, ion-row, ion-col {
+    padding: 0px;
+}
+
+ion-searchbar {
+    padding-bottom: 0px;
+}
+
+ion-list-header {
+    color: black;
+    font-size: 12pt;
+}
+
+.list-margin {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.fixed-fab {
+    margin-left: 3%;
+    z-index: 100;
+    position: fixed;
+}
+
+.tool-button {
+    color: black;
+    width: 48%;
+}
+
+.nudge-up {
+    margin-bottom: 35px;
+}
+
+.text-standard {
+    font-size: 1.6rem;
+}
+
+.shadow-standard {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)
+}
+
+.button-header {
+    height: 48px;
+    background: white;
+    color: black;
+    width: 96%;
+    margin: 8px 0px 0px 8px;
+    padding: 0px;
+
+    ion-icon {
+        width:8%;
+        text-align: center;
+        margin: 3% 3%;
+    }
+
+    ion-badge {
+        text-align: right;
+        margin-top: 4px;
+    }
+
+    span, ion-badge {
+        font-size: 1.6rem;
+    }
+
+    .button-text {
+        padding: 4px;
+        text-align: left;
+    }
+}
+
+
+ion-list.virtual-scroll {
+    width: 96%;
+}
+
+button[ion-fab] {
+    overflow: visible;
+    position: relative;
+
+    ion-label {
+        position: absolute;
+        top: -8px;
+        right: 40px;
+
+        color: black!important;
+        background-color: #ff80cc!important;
+        line-height: 24px;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+
+}
+
+.fab {
+    contain: initial;
+}

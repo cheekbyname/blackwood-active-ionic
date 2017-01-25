@@ -1,0 +1,26 @@
+<ion-card>
+	<ion-card-content>
+		<ion-grid>
+			<ion-row>
+				<ion-col width-80>
+					{{ten.houseDesc}}<br/>
+					{{ten.topAddressLine}}<br/>
+					{{ten.defaultCommsValue}}
+				</ion-col>
+				<ion-col width-20>
+					<a *ngIf="ten.hasEmail" href="mailto: {{ten.defaultCommsValue}}">
+						<button ion-fab color="tertiary">
+							<ion-icon name="mail" style="color:white;"></ion-icon>
+						</button>
+					</a>
+					<a *ngIf="ten.hasPhone" href="tel: {{ten.defaultCommsValue}}">
+						<button ion-fab color="tertiary">
+							<!-- Switch this up based on CommType -->
+							<ion-icon name="call" style="color:white;"></ion-icon>
+						</button>
+					</a>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-card-content>
+</ion-card>

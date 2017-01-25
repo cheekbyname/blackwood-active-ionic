@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Care Initial Assessment</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="saveAssessment()"><ion-icon name="checkbox" color="secondary"></ion-icon></button>
+		</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-tabs>
+	<ion-tab *ngFor="let tab of tabs" tabTitle="{{tab.title}}" [root]="tab.page"></ion-tab>
+</ion-tabs>

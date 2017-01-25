@@ -1,0 +1,13 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Developments</ion-title>
+		<ion-buttons end>
+			<ion-badge color="secondary" class="search-badge">{{search.developments().length}}</ion-badge>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<search-bar placeholder="Search for places..."></search-bar>
+	<development-card *ngFor="let dev of search.developments()" [dev]="dev" (click)="gotoDevelopment(dev)"></development-card>
+</ion-content>

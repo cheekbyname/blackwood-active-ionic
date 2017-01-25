@@ -1,0 +1,13 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>Care Facilities</ion-title>
+		<ion-buttons end>
+			<ion-badge color="secondary" class="search-badge">{{search.facilities().length}}</ion-badge>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+	<search-bar placeholder="Search for places..."></search-bar>
+	<facility-card *ngFor="let fac of search.facilities()" [fac]="fac" (click)="gotoFacility(fac)"></facility-card>
+</ion-content>

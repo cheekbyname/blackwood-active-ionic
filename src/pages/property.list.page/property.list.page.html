@@ -1,0 +1,9 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{development.schemeName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <property-card *ngFor="let prop of properties" (click)="gotoProperty(prop)" [prop]="prop"></property-card>
+</ion-content>

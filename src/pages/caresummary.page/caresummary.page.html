@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle ion-button icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+			{{client.forename}} {{client.surname}}
+	</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-card>
+		<ion-card-content>
+			<ion-icon name="list-box"></ion-icon>
+			<span>Care Needs Summary</span>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card *ngFor="let out of summaries">
+		<ion-card-header>
+			<span>{{out.outcomeDesc}}</span>
+		</ion-card-header>
+		<ion-card-content no-padding>
+			<ul>
+				<li *ngFor="let sum of out.summaries">
+					<span>{{sum}}</span>
+				</li>
+			</ul>
+		</ion-card-content>
+	</ion-card>
+
+</ion-content>

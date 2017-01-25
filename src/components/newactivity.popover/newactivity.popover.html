@@ -1,0 +1,15 @@
+<ion-content>
+	<ion-list radio-group>
+		<ion-list-header>
+			<span>Select Activity</span>
+		</ion-list-header>
+		<ion-item>
+			<ion-label><span secondary>Initial Assessment</span></ion-label>
+			<ion-radio checked="true" value="own"></ion-radio>
+		</ion-item>
+	</ion-list>
+	<ion-buttons>
+		<button button-left color="secondary" ion-button (click)="dismiss()">Cancel</button>
+		<button button-right color="secondary" ion-button (click)="beginActivity()">Ok</button>
+	</ion-buttons>
+</ion-content>

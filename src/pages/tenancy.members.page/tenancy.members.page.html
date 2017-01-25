@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{view.tenancy.houseDesc}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <property-card [prop]="view.property"></property-card>
+    <member-card *ngFor="let mem of view.members" [mem]="mem"></member-card>
+
+    <ion-fab bottom right #fab>
+        <button ion-fab color="secondary"><ion-icon name="pulse"></ion-icon></button>
+        <ion-fab-list side="top">
+            <button ion-fab color="secondary" text-capitalize>
+                <ion-label class="fab-md">Housing Annual Home Visit</ion-label>
+                <ion-icon name="home"></ion-icon>
+            </button>
+        </ion-fab-list>
+    </ion-fab>
+
+</ion-content>

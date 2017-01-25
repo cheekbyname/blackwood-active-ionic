@@ -1,0 +1,49 @@
+<ion-header>
+	<ion-navbar>
+		<button menuToggle ion-button icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>
+			{{client.forename}} {{client.surname}}
+		</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+
+	<ion-card>
+		<ion-list>
+			<button ion-item (click)="gotoDetails()">
+				<ion-icon name="contact"></ion-icon>
+				<span class="button-text" text-capitalize>Personal Details</span>
+			</button>
+			<button ion-item (click)="gotoSummary()" (enabled)="carePlan">
+				<ion-icon name="list-box"></ion-icon>
+				<span class="button-text" text-capitalize>Care Needs Summary</span>
+			</button>
+			<button ion-item (click)="gotoCarePlan()">
+				<ion-icon name="medkit"></ion-icon>
+				<span class="button-text" text-capitalize>Care Plan</span>
+			</button>
+			<button ion-item (click)="gotoNotes(client)">
+				<ion-icon name="document"></ion-icon>
+				<span class="button-text" text-capitalize>Daily Notes</span>
+			</button>
+		</ion-list>
+	</ion-card>
+
+	<ion-fab bottom right #fab>
+		<button ion-fab color="secondary"><ion-icon name="pulse"></ion-icon></button>
+		<!--<ion-fab-list side="top">
+					<button ion-fab color="secondary" text-capitalize>
+							<ion-label class="fab-md">Housing Annual Home Visit</ion-label>
+							<ion-icon name="home"></ion-icon>
+					</button>
+					<button ion-fab color="secondary" text-capitalize (click)="addNewCareInitialAssessment($event, fab)">
+							<ion-label class="fab-md">Care Initial Assessment</ion-label>
+							<ion-icon name="clipboard"></ion-icon>
+					</button>
+			</ion-fab-list>-->
+	</ion-fab>
+
+</ion-content>

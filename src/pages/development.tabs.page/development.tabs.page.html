@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{development.schemeName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs>
+	<ion-tab tabTitle="Tenancies" [root]="tenancyListPage" tabBadge="{{tenancies.length}}" [rootParams]="tenancyTabParms"></ion-tab>
+	<ion-tab tabTitle="Properties" [root]="propertyListPage" tabBadge="{{properties.length}}" [rootParams]="propertyTabParms"></ion-tab>
+</ion-tabs>

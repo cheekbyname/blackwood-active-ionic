@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Clients</ion-title>
+    <ion-buttons end>
+        <ion-badge color="secondary" class="search-badge">{{search.clients().length}}</ion-badge>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <search-bar placeholder="Search for people..."></search-bar>
+    <client-card *ngFor="let cli of search.clients()" [cli]="cli" [fac]="facilityForClient(cli)" (click)="gotoClient(cli)"></client-card>
+</ion-content>

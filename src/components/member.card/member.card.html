@@ -1,0 +1,11 @@
+<ion-card>
+	<ion-card-content>
+		<ion-grid>
+			<ion-row>
+				<ion-col><span>{{mem.title}} {{mem.forename}} {{mem.surname}}</span></ion-col>
+				<ion-col width-20 class="col-right"><span *ngIf="mem.isTenant">Tenant</span></ion-col>
+			</ion-row>
+			<ion-row><ion-col><span>{{relation.description}}</span></ion-col></ion-row>
+		</ion-grid>
+	</ion-card-content>
+</ion-card>

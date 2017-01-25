@@ -1,0 +1,9 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{development.schemeName}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <tenancy-card *ngFor="let ten of tenancies" (click)="gotoTenancy(ten)" [ten]="ten"></tenancy-card>
+</ion-content>
