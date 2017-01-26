@@ -9,5 +9,12 @@
 
 <ion-content>
     <search-bar placeholder="Search for people..."></search-bar>
-    <tenancy-card *ngFor="let ten of search.tenancies()" [ten]="ten" (click)="gotoTenancy(ten)"></tenancy-card>
+    <!--<tenancy-card *ngFor="let ten of search.tenancies()" [ten]="ten" (click)="gotoTenancy(ten)"></tenancy-card>-->
+
+    <ion-list [virtualScroll]="search.tenancies()">
+      <div *virtualItem="let ten" class="tenancy-card-container" approxItemHeight="100px" approxItemWidth="420px;">
+        <tenancy-card (click)="gotoTenancy(ten)" [ten]="ten"></tenancy-card>
+      </div>
+    </ion-list>
+
 </ion-content>
