@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-navbar>
-    <button menuToggle ion-button icon-only>
+	<ion-navbar>
+		<button menuToggle ion-button icon-only>
       <ion-icon name="menu" no-padding></ion-icon>
     </button>
-    <ion-title>
-		{{client.forename}} {{client.surname}}
-	</ion-title>
-  </ion-navbar>
+		<ion-title>
+			{{client.forename}} {{client.surname}}
+		</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content>
@@ -47,8 +47,11 @@
 			<span>{{careNeed.summary}}</span>
 		</ion-card-content>
 	</ion-card>
-</ion-content>
 
-<button fab fab-bottom fab-right color="secondary" class="fixed-fab">
-	<ion-icon name="add"></ion-icon>
-</button>
+	<ion-fab bottom right>
+		<button ion-fab color="secondary">
+			<ion-icon name="pulse"></ion-icon>
+		</button>
+	</ion-fab>
+
+</ion-content>

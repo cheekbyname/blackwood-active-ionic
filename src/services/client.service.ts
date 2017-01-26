@@ -48,6 +48,10 @@ export class ClientService {
 		return this.api.getAll("care/outcomes", "api").then(ocs => ocs as Outcome[]);
 	}
 
+	getClientsForFacility(guid: string): Client[] {
+		return this.allClients.filter(cli => cli.facilityGuid == guid);
+	}
+
 	filterClients(term: string) {
         if (term && term.trim() != '') {
             this.filteredClients = this.allClients.filter(cli =>

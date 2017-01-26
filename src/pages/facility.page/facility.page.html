@@ -5,14 +5,9 @@
 </ion-header>
 
 <ion-content>
-
-    <ion-card>
-        <ion-card-header>
-            <ion-label>No Content</ion-label>
-        </ion-card-header>
-        <ion-card-content>
-            <p>This page intentionally left blank</p>
-        </ion-card-content>
-    </ion-card>
-
+    <div [virtualScroll]="clients" approxItemHeight="84px" approxItemWidth="410px">
+        <div *virtualItem="let cli" class="client-card-container">
+            <client-card [cli]="cli" [fac]="fac" (click)="gotoClient(cli)"></client-card>
+        </div>
+    </div>
 </ion-content>
