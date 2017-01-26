@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavController, PopoverController, AlertController, Events, FabContainer } from 'ionic-angular';
 
 // Services
+import { WebApi } from '../../services/api.service';
 import { CareActivityService } from '../../services/care.activity.service';
 import { UserService } from '../../services/user.service';
 import { SearchService } from '../../services/search.service';
@@ -28,7 +29,7 @@ import { NewActivityPopover } from '../../components/newactivity.popover/newacti
 export class HomePage {
 
     constructor(public navCtrl: NavController, private popoverCtrl: PopoverController, public search: SearchService, public events: Events,
-        public alert: AlertController, public actSrv: CareActivityService, public usrSrv: UserService) {
+        public alert: AlertController, public actSrv: CareActivityService, public usrSrv: UserService, public api: WebApi) {
         this.getCurrentUser();
         this.search.go();
     }
@@ -65,8 +66,8 @@ export class HomePage {
 
     showDataServiceStatus(): void {
         let statusAlert = this.alert.create({
-            title: 'Data Service Status',
-            subTitle: 'There will be some details here about connection status, etc.',
+            title: this.api.statusTypes[this.api.status].title,
+            subTitle: this.api.statusTypes[this.api.status].desc,
             buttons: ['OK']
         });
         statusAlert.present();

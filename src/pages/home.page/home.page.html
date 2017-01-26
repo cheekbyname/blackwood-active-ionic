@@ -6,7 +6,7 @@
     <ion-title>Welcome {{hailUser}}</ion-title>
     <ion-buttons *ngIf="showCloud" end>
         <button ion-button icon-only (click)="showDataServiceStatus()">
-            <ion-icon name="cloud-download" [attr.danger]="cloudWarn ? '' : null"></ion-icon>
+            <ion-icon name="cloud-download"  [style.color]="api.statusTypes[api.status].color"></ion-icon>
         </button>
     </ion-buttons>
     <ion-buttons end>

@@ -19,6 +19,12 @@ export class WebApi {
 	}
 
 	sql: Storage;
+	status: number = 0;
+	public readonly statusTypes = [
+		{title: "Connected", desc: "Data service is connected and working.", color: "green"},
+		{title: "Disconnected", desc: "Data service is disconnected. Working from local data. Some functions may not be available.", color: "blue"},
+		{title: "Failed", desc: "Data service is disconnected. Local data not available for the requested function.", color: "red"}
+	];
 
 	getAll(name: string, api?: string): Promise<any[]> {
 		if (typeof api === "undefined") { api = "api"; }     // Use the new API by default
@@ -33,6 +39,7 @@ export class WebApi {
 				return this.sql.get(name).then(data => {
 					if (data) {
 						this.debug.log(`Retrieved ${data.length} entries for ${name} from local storage`);
+						this.status = 1;
 						return data;
 					}
 					else {
@@ -55,6 +62,7 @@ export class WebApi {
 				return this.sql.get(name).then(data => {
 					if (data) {
 						this.debug.log(`Retrieved entry for ${name} from local storage`);
+						this.status = 1;
 						return data;
 					}
 					else {
@@ -92,7 +100,8 @@ export class WebApi {
 	// TODO Implement some fallback to local data
 
 	handleError(err: any, name: string): Promise<any> {
-		let msg = "Error occurred while retrieving ${name}: ${err.message || err}";
+		this.status = 2;
+		let msg = `Error occurred while retrieving ${name}: ${err.message || err}`;
 		let toast = this.toastCtrl.create({
 			message: msg,
 			duration: 5000
