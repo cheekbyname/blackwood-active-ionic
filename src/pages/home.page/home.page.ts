@@ -29,6 +29,7 @@ export class HomePage {
 
     constructor(public navCtrl: NavController, private popoverCtrl: PopoverController, public search: SearchService, public events: Events,
         public alert: AlertController, public actSrv: CareActivityService, public usrSrv: UserService) {
+        this.getCurrentUser();
         this.search.go();
     }
 
