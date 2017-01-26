@@ -33,8 +33,11 @@
 			<ion-icon name="arrow-round-forward" no-padding></ion-icon>
 		</button>
 	</ion-toolbar>
+
+	<ion-fab bottom right #fab>
+		<button ion-fab class="nudge-up" color="secondary" (click)="addNewNote()"> <!-- class="fixed-fab nudge-up" -->
+			<ion-icon name="pulse"></ion-icon>
+		</button> 
+	</ion-fab>
 </ion-footer>
 
-<button fab fab-bottom fab-right color="secondary" class="fixed-fab nudge-up" (click)="addNewNote()">
-	<ion-icon name="add"></ion-icon>
-</button> 

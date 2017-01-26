@@ -1,20 +1,17 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Tenancies</ion-title>
-    <ion-buttons end>
-        <ion-badge color="secondary" class="search-badge">{{search.tenancies().length}}</ion-badge>
-    </ion-buttons>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>Tenancies</ion-title>
+		<ion-buttons end>
+			<ion-badge color="secondary" class="search-badge">{{search.tenancies().length}}</ion-badge>
+		</ion-buttons>
+	</ion-navbar>
 </ion-header>
 
 <ion-content>
-    <search-bar placeholder="Search for people..."></search-bar>
-    <!--<tenancy-card *ngFor="let ten of search.tenancies()" [ten]="ten" (click)="gotoTenancy(ten)"></tenancy-card>-->
-
-    <ion-list [virtualScroll]="search.tenancies()">
-      <div *virtualItem="let ten" class="tenancy-card-container" approxItemHeight="100px" approxItemWidth="420px;">
-        <tenancy-card (click)="gotoTenancy(ten)" [ten]="ten"></tenancy-card>
-      </div>
-    </ion-list>
-
+	<search-bar ion-fixed placeholder="Search for people..."></search-bar>
+	<div [virtualScroll]="search.tenancies()" class="filter-list" approxItemHeight="100px" approxItemWidth="420px">
+		<div *virtualItem="let ten" class="tenancy-card-container">
+			<tenancy-card (click)="gotoTenancy(ten)" [ten]="ten"></tenancy-card>
+		</div>
+	</div>
 </ion-content>

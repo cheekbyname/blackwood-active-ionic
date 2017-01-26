@@ -8,6 +8,10 @@
 </ion-header>
 
 <ion-content>
-	<search-bar placeholder="Search for places..."></search-bar>
-	<facility-card *ngFor="let fac of search.facilities()" [fac]="fac" (click)="gotoFacility(fac)"></facility-card>
+	<search-bar ion-fixed placeholder="Search for places..."></search-bar>
+	<div [virtualScroll]="search.facilities()" class="filter-list" approxItemHeight="64px" approxItemWidth="410px">
+		<div *virtualItem="let fac" class="facility-card-container">
+			<facility-card [fac]="fac" (click)="gotoFacility(fac)"></facility-card>
+		</div>
+	</div>
 </ion-content>

@@ -1,13 +1,17 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Clients</ion-title>
-    <ion-buttons end>
-        <ion-badge color="secondary" class="search-badge">{{search.clients().length}}</ion-badge>
-    </ion-buttons>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Clients</ion-title>
+        <ion-buttons end>
+            <ion-badge color="secondary" class="search-badge">{{search.clients().length}}</ion-badge>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <search-bar placeholder="Search for people..."></search-bar>
-    <client-card *ngFor="let cli of search.clients()" [cli]="cli" [fac]="facilityForClient(cli)" (click)="gotoClient(cli)"></client-card>
+    <search-bar ion-fixed placeholder="Search for people..."></search-bar>
+    <div [virtualScroll]="search.clients()" class="filter-list" approxItemHeight="84px" approxItemWidth="410px">
+        <div *virtualItem="let cli" class="client-card-container">
+            <client-card [cli]="cli" [fac]="facilityForClient(cli)" (click)="gotoClient(cli)"></client-card>
+        </div>
+    </div>
 </ion-content>
