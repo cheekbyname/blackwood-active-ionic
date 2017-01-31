@@ -78,3 +78,7 @@ ul > li > span {
 	color: black;
 	font-size: 11pt;
 }
+
+ion-item, ion-item > div.item-inner {
+	border-bottom: none!important;
+}

@@ -7,6 +7,7 @@ import { ClientService } from '../../services/client.service';
 import { AddDailyNotePage } from '../../pages/adddailynote.page/adddailynote.page';
 
 @Component({
+	selector: 'dailynotes-page',
 	templateUrl: 'dailynotes.page.html'
 })
 export class DailyNotesPage {
