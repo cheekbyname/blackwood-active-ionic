@@ -68,10 +68,16 @@ ion-content#checklist_page, ion-content#handling_page, .footer-margin {
 
 .range-badge {
 	margin-left: 10px;
+	color: black;
 }
 
 .card-head-no-pad {
 	padding-bottom: 0px!important;
+}
+
+.comm-pref-check {
+	margin-left: 24px!important;
+	border-top: solid silver 1px!important;
 }
 
 ul > li > span {

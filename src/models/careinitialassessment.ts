@@ -10,25 +10,52 @@ export class CareInitialAssessment {
 	name: string;
 	prefName: string;
 	address1: string;
+	telephoneNumber: string;
+	dateOfBirth: string;
 	visitDate: string;
 	visitBy: string;
 	visitType: string;
 	whatRequired: string;
+	generalHealth: string;
+	familyCarer: string;
+	eyeSight: number;
+	hearing: string;
+	communicationAbility: string;
+	comms: CommsItem[] = [
+		new CommsItem(0, "Phone"),
+		new CommsItem(1, "Email"),
+		new CommsItem(2, "Face to Face"),
+		new CommsItem(3, "Audio"),
+		new CommsItem(4, "Braille"),
+		new CommsItem(5, "Written - Standard Print"),
+		new CommsItem(6, "Written - Large Print")
+	];
+	continence: number;
+	continenceDetails: string;
+	dexterity: number;
+	adaptations: string;
+	mentalHealth: string;
+	dietaryRequirements: string;
+	foodDrinkPreferences: string;
+	socialInterests: string;
+	religionCulture: string;
 	whenRequired: string;
+	staffRequirements: string;
 	happyVary: boolean;
 	timeChange: string;
 	genderPref: string;
+	genderDetails: string;
 	altGender: boolean;
-	adaptations: string;
+	accessArrangements: string;
 	doorEntry: string;
 	keyCode: string;
-	generalHealth: string;
 	disability: string;
 	medication: string;
 	allergies: string;
 	gpDetails: string;
 	otherProvider: string;
 	nextOfKin: string;
+	specificRisks: string;
 	additionalInfo: string;
 
 	// CheckList Tab
@@ -180,5 +207,16 @@ class TileGroup {
 		this.title = title;
 		this.desc = desc;
 		this.items = items;
+	}
+}
+
+class CommsItem {
+	id: number;
+	title: string;
+	preferred: boolean;
+
+	constructor(id: number, title: string) {
+		this.id = id;
+		this.title = title;
 	}
 }

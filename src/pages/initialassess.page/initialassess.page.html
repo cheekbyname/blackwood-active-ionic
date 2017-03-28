@@ -2,6 +2,15 @@
 	<ion-card class="footer-margin card-pad-bottom">
 		<ion-card-content no-margin no-padding>
 			<ion-list text-wrap no-lines>
+				<ion-item-divider no-lines><h2><strong>General Information</strong></h2></ion-item-divider>
+				<ion-item>
+					<ion-label stacked>Date of Visit</ion-label>
+					<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="assess.visitDate"></ion-datetime>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Visit By</ion-label>
+					<ion-input type="text" [(ngModel)]="assess.visitBy"></ion-input>
+				</ion-item>
 				<ion-item>
 					<ion-label stacked>Name of Client</ion-label>
 					<ion-input type="text" [(ngModel)]="assess.name"></ion-input>
@@ -15,28 +24,116 @@
 					<ion-textarea rows="3" [(ngModel)]="assess.address1"></ion-textarea>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>Date of Visit</ion-label>
-					<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="assess.visitDate"></ion-datetime>
+					<ion-label stacked>Telephone Number</ion-label>
+					<ion-input type="text" [(ngModel)]="assess.telephoneNumber"></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>Visit By</ion-label>
-					<ion-input type="text" [(ngModel)]="assess.visitBy"></ion-input>
+					<ion-label stacked>Date of Birth</ion-label>
+					<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="assess.dateOfBirth"></ion-datetime>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Type of Visit</ion-label>
-					<ion-select width-100 [(ngModel)]="assess.visitType">
+					<ion-select width-100 [(ngModel)]="assess.visitType" #visitType placeholder="Select from the following">
 						<ion-option value="0">Personal Care</ion-option>
 						<ion-option value="1">Non-Personal Care</ion-option>
 						<ion-option value="2">Housing Support</ion-option>
+						<ion-option value="3">Mixed Care &amp; Housing Support</ion-option>
 					</ion-select>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>When do you require assistance? (What times &amp; for how long)</ion-label>
-					<ion-textarea type="text" rows="3" [(ngModel)]="assess.whenRequired"></ion-textarea>
+					<ion-label stacked><strong>{{visitType.Value}} Needs</strong></ion-label>	<!-- Personal Care -->
+					<ion-textarea rows="6" [(ngModel)]="assess.whatRequired" placeholder="What assistance do you require? Describe in general terms any care or support you require with your usual routine including bathing/showering, mobility/transfers, eating/drinking, dressing/undressing, overnight, etc."></ion-textarea>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>What assistance do you require? (Dressing, cleaning, preparing meals)</ion-label>
-					<ion-textarea type="text" rows="3" [(ngModel)]="assess.whatRequired"></ion-textarea>
+					<ion-label stacked>When do you require assistance?</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.whenRequired" placeholder="What times &amp; for how long, start &amp; finish times of each visit?"></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Staffing &amp; Training</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.staffRequirements" placeholder="For each visit, how many staff should attend and do they require and particular skills or training?"></ion-textarea>
+				</ion-item>
+
+				<ion-item>
+					<ion-label stacked><strong>Physical Wellbeing</strong></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.generalHealth" placeholder="How would you describe your general health?"></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Medication</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.medication" placeholder="What medication do you take, if any? And what are these for?"></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Carer/Family Involvement</strong></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.familyCarer" placeholder="Do you have current carers or family involved in your care?"></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Sight </strong></ion-label>
+					<ion-select width-100 [(ngModel)]="assess.eyeSight" placeholder="Select from the following">
+						<ion-option value="0">Full Sight - No Glasses</ion-option>
+						<ion-option value="1">Full Sight - Glasses</ion-option>
+						<ion-option value="2">Partially Sighted</ion-option>
+						<ion-option value="3">Blind</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Hearing</strong><br>Do you wear a hearing aid?</ion-label>
+					<ion-input type="text" [(ngModel)]="assess.hearing"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Communication Ability</strong></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.communicationAbility" placeholder="How do you communicate with others?"></ion-textarea>
+				</ion-item>
+				<ion-item-divider no-lines><strong>Communication Preferences</strong><br/>
+					<span>What are your preferred ways of <i>us</i> communicating with <i>you</i>? Tick all that apply</span>
+				</ion-item-divider>
+				<ion-item *ngFor="let pref of assess.comms" class="comm-pref-check" no-margin>
+					<ion-label>{{pref.title}}</ion-label>
+					<ion-checkbox [(ngModel)]="pref.preferred" mode="md"></ion-checkbox>
+				</ion-item>
+				<hr/>
+				<ion-item>
+					<ion-label stacked><strong>Continence</strong></ion-label>
+					<ion-select width-100 [(ngModel)]="assess.continence" placeholder="Select from the following">
+						<ion-option value="0">Full Continent</ion-option>
+						<ion-option value="1">Periodic Incontinence</ion-option>
+						<ion-option value="2">Full Incontinence</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item *ngIf="assess.continence=='1' || assess.continence=='2'">
+					<ion-label stacked>Please provide details</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.continenceDetails"></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Dexterity</strong><ion-badge class="range-badge">{{assess.dexterity}}</ion-badge><br>
+						<span>How good is your manual dexterity?</span></ion-label>
+					<ion-range class="range-slider" [(ngModel)]="assess.dexterity" min="1" max="5" step="1" snaps="true">
+						<ion-label range-left>(Poor) 1</ion-label>
+						<ion-label range-right>5 (Great)</ion-label>
+					</ion-range>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Disability Equipment Needs</strong><br>
+					</ion-label>
+					<ion-textarea rows="7" [(ngModel)]="assess.adaptations" placeholder="List any disability aids or adaptations you use (Hoist, Walking Frame, Wheelchair, Shower Chair, Cutlery, etc). If applicable, tell us about any service contracts &amp; contact details you have for your current equipment or if you require any aids or adaptations to be organised."></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Mental Health</strong></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.mentalHealth" placeholder="Do you have any mental health needs or requirements?"></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Dietary Requirements</strong></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.dietaryRequirements" placeholder="Do you have any dietary requirements or food intolerances that we should know about?"></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Food &amp; Drink Preferences</strong></ion-label>
+					<ion-textarea rows="3" placeholder="Are there any foods or drinks that you particularly love or hate?" [(ngModel)]="assess.foodDrinkPreferences"></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Social Interests</strong></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.socialInterests" placeholder="Do you have any social interests, activities or hobbies you enjoy that it would be useful for us to know about?"></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked><strong>Religion &amp; Culture</strong></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.religionCulture" placeholder="Do you have any religious or cultural requirements that we should know about?"></ion-textarea>
 				</ion-item>
 			</ion-list>
 			<ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.happyVary">
@@ -57,6 +154,7 @@
 				</ion-item>
 			</ion-list>
 			<ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.genderPref">
+				<ion-item-divider no-lines><strong>Gender Preferences</strong></ion-item-divider>
 				<ion-item>
 					<ion-label stacked>Do you have a preference regarding gender of person assisting you?</ion-label>
 				</ion-item>
@@ -68,6 +166,15 @@
 				</ion-item>
 				<ion-item>
 					<ion-label>Male preferred</ion-label><ion-radio value="Male"></ion-radio>
+				</ion-item>
+				<ion-item>
+					<ion-label>Depends on Task</ion-label><ion-radio value="Depends"></ion-radio>
+				</ion-item>
+			</ion-list>
+			<ion-list *ngIf="assess.genderPref=='Depends'" no-margin no-lines>
+				<ion-item>
+					<ion-label stacked>Please give details</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.genderDetails" placeholder="Details of the tasks or conditions under which you would like to be attended by specific gender"></ion-textarea>
 				</ion-item>
 			</ion-list>
 			<ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.altGender">
@@ -81,10 +188,10 @@
 					<ion-label>No</ion-label><ion-radio value="false"></ion-radio>
 				</ion-item>
 			</ion-list>
-			<ion-list no-margin text-wrap no-lines>
+			<ion-list no-margin no-lines>
 				<ion-item>
-					<ion-label stacked>Do you have any adaptations? (Hoist, Walking Frame, Wheelchair, Shower Chair, Cutlery, etc.)</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.adaptations"></ion-textarea>
+					<ion-label stacked><strong>Access Arrangements</strong></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.acccessArrangements" placeholder="Are there any special arrangements that need to be followed to gain access to your property?"></ion-textarea>
 				</ion-item>
 			</ion-list>
 			<ion-list radio-group no-margin text-wrap [(ngModel)]="assess.doorEntry" no-lines>
@@ -107,36 +214,37 @@
 					<ion-input type="text" [(ngModel)]="assess.keycode"></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>How would you describe your general health?</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.generalHealth"></ion-textarea>
-				</ion-item>
-				<ion-item>
-					<ion-label stacked>Do you have a disability? If so what and is there any other medical requirements you feel that we may need to know (Diabetic, etc.)</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.disability"></ion-textarea>
-				</ion-item>
-				<ion-item>
-					<ion-label stacked>What medication do you take, if any? And what are these for?</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.medication"></ion-textarea>
+					<ion-label stacked><strong>Disability &amp; Conditions</strong></ion-label>
+					<ion-textarea rows="4" [(ngModel)]="assess.disability" placeholder="Do you have a disability? If so what and is there any other medical requirements you feel that we may need to know (Diabetic, etc.)"></ion-textarea>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Do you suffer from any allergies?</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.allergies"></ion-textarea>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>Do you have a GP? Who and where?</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.gpDetails"></ion-textarea>
+					<ion-label stacked><strong>General Practitioner</strong></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.gpDetails" placeholder="Do you have a GP? Who and where?"></ion-textarea>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>Do you have any other healthcare provider? If so who and what are their contact details (e.g. District Nurse, OT, SALT, etc.)</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.otherProvider"></ion-textarea>
+					<ion-label stacked><strong>Other Healthcare</strong></ion-label>
+					<ion-textarea rows="4" [(ngModel)]="assess.otherProvider" placeholder="Do you have any other healthcare provider? If so who and what are their contact details (e.g. District Nurse, OT, SALT, etc.)"></ion-textarea>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>Who would be your Next-of-Kin and Emergency Contact?</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.nextOfKin"></ion-textarea>
+					<ion-label stacked><strong>Next-of-Kin &amp; Emergencies</strong></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.nextOfKin" placeholder="Who would be your Next-of-Kin and Emergency Contact?"></ion-textarea>
+				</ion-item>
+				<ion-item-divider no-margin no-lines><strong>General</strong></ion-item-divider>
+				<ion-item>
+					<ion-label stacked>Specific Risks</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.specificRisks" placeholder="Are there any specific risks around your care that we should be aware of?"></ion-textarea>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>Any other information that you wish to share with us (hobbies, interests, goals, etc.)</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.additionalInfo"></ion-textarea>
+					<ion-label stacked>Goals</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.goals" placeholder="Do you have any specific goals you would like us to help you to achieve?"></ion-textarea>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Other Information</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.additionalInfo" placeholder="Is there any other information that you would like to share with us that we haven't already covered?"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
