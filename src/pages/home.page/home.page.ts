@@ -65,12 +65,18 @@ export class HomePage {
     }
 
     showDataServiceStatus(): void {
-        let statusAlert = this.alert.create({
-            title: this.api.statusTypes[this.api.status].title,
-            subTitle: this.api.statusTypes[this.api.status].desc,
-            buttons: ['OK']
-        });
-        statusAlert.present();
+        // TODO Consider attempting to refresh main collections from Services
+        this.usrSrv.getActiveUser()
+            .then(user => {
+                this.currentUser = this.usrSrv.currentUser;
+                this.hailUser = this.currentUser.simpleName.substr(0, this.currentUser.simpleName.indexOf(' '));
+                let statusAlert = this.alert.create({
+                    title: this.api.statusTypes[this.api.status].title,
+                    subTitle: this.api.statusTypes[this.api.status].desc,
+                    buttons: ['OK']
+                });
+                statusAlert.present();
+            });
     }
 
     addNewCareInitialAssessment(event, fab: FabContainer) {

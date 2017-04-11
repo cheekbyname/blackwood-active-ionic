@@ -1,6 +1,6 @@
 // Angular/Ionic
 import { Component, ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 // Components
 import { InitialAssessPage } from '../../pages/initialassess.page/initialassess.page';
@@ -23,18 +23,38 @@ export class AssessTabsPage {
 		new Tab("T.I.L.E", TilePage)
 	];
 
-	constructor(public navCtrl: NavController, public actSrv: CareActivityService) {
+	constructor(public navCtrl: NavController, public actSrv: CareActivityService, public alertCtrl: AlertController) {
 
 	}
 
 	ionViewWillLeave() {
 		// TODO Make this a prompt on changes only and place a Save button in the Header
+		let confirmLeave = this.alertCtrl.create({
+			title: 'Back to Home?',
+			message: 'Are you sure you want to leave this Assessment? You may have unsaved changes!',
+			buttons: [
+				{ text: 'No' },
+				{ text: 'Yes' }
+			]
+		})
+		confirmLeave.present();
 		//this.actSrv.saveCareInitialAssessment(this.actSrv.getCurrentCareInitialAssessment());
 	}
 
 	saveAssessment() {
-		// TODO Add confirmation prompt?
-		this.actSrv.saveCareInitialAssessment(this.actSrv.currentCareInitialAssessment);
+		let confirmSave = this.alertCtrl.create({
+			title: 'Save Changes?',
+			message: 'Are you sure you want to save the changes to this Initial Assessment?',
+			buttons: [
+				{ text: 'No' },
+				{
+					text: 'Yes', handler: () => {
+						this.actSrv.saveCareInitialAssessment(this.actSrv.currentCareInitialAssessment);
+					}
+				}
+			]
+		});
+		confirmSave.present();
 	}
 }
 
