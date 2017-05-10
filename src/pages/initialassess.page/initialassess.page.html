@@ -159,19 +159,19 @@
 					<ion-label stacked>Do you have a preference regarding gender of person assisting you?</ion-label>
 				</ion-item>
 				<ion-item>
-					<ion-label>No preference</ion-label><ion-radio checked="true" value="NoPref"></ion-radio>
+					<ion-label>No preference</ion-label><ion-radio checked="true" value="0"></ion-radio>
 				</ion-item>
 				<ion-item>
-					<ion-label>Female preferred</ion-label><ion-radio value="Female"></ion-radio>
+					<ion-label>Female preferred</ion-label><ion-radio value="1"></ion-radio>
 				</ion-item>
 				<ion-item>
-					<ion-label>Male preferred</ion-label><ion-radio value="Male"></ion-radio>
+					<ion-label>Male preferred</ion-label><ion-radio value="2"></ion-radio>
 				</ion-item>
 				<ion-item>
-					<ion-label>Depends on Task</ion-label><ion-radio value="Depends"></ion-radio>
+					<ion-label>Depends on Task</ion-label><ion-radio value="3"></ion-radio>
 				</ion-item>
 			</ion-list>
-			<ion-list *ngIf="assess.genderPref=='Depends'" no-margin no-lines>
+			<ion-list *ngIf="assess.genderPref=='3'" no-margin no-lines>
 				<ion-item>
 					<ion-label stacked>Please give details</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.genderDetails" placeholder="Details of the tasks or conditions under which you would like to be attended by specific gender"></ion-textarea>
@@ -199,17 +199,17 @@
 					<ion-label stacked>Do you have a Buzzer or Key Code for your door?</ion-label>
 				</ion-item>
 				<ion-item>
-					<ion-label>Buzzer</ion-label><ion-radio value="Buzzer"></ion-radio>
+					<ion-label>Buzzer</ion-label><ion-radio value="0"></ion-radio>
 				</ion-item>
 				<ion-item>
-					<ion-label>Key Code</ion-label><ion-radio value="Keycode"></ion-radio>
+					<ion-label>Key Code</ion-label><ion-radio value="1"></ion-radio>
 				</ion-item>
 				<ion-item>
-					<ion-label>None</ion-label><ion-radio value="None" checked="true"></ion-radio>
+					<ion-label>None</ion-label><ion-radio value="2" checked="true"></ion-radio>
 				</ion-item>
 			</ion-list>
 			<ion-list no-margin text-wrap id="assess_page_bottom" no-lines>
-				<ion-item *ngIf="assess.doorEntry && assess.doorEntry=='Keycode'">
+				<ion-item *ngIf="assess.doorEntry && assess.doorEntry=='1'">
 					<ion-label stacked>What is the number of your Key Code?</ion-label>
 					<ion-input type="text" [(ngModel)]="assess.keycode"></ion-input>
 				</ion-item>
