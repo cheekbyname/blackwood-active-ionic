@@ -34,8 +34,8 @@ export class CareActivityService {
 			var newAssess = new CareInitialAssessment();
 			newAssess.guid = Guid.newGuid();
 			newAssess.visitDate = new Date().toISOString();
-			newAssess.user = this.usrSrv.currentUser;
-			newAssess.visitBy = newAssess.user.simpleName;
+			newAssess.activeUser = this.usrSrv.currentUser;
+			newAssess.visitBy = newAssess.activeUser.simpleName;
 			this.currentCareInitialAssessment = newAssess;
 			return Promise.resolve(this.currentCareInitialAssessment);
 		}

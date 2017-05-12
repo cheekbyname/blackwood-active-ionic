@@ -32,9 +32,4 @@ export class UserService {
 				return u as CareSysUser
 			});
 	}
-
-	getAccountName(): Promise<string> {
-		return this.api.getOne("user/accountname", "api")
-			.then(u => u as string);
-	}
 }
