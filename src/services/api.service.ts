@@ -77,6 +77,8 @@ export class WebApi {
 		var Url = `${this.api.apiBase('api')}/${name}`;
 		console.log(`Calling ${Url}`);
 		return this.http.put(Url, thing).toPromise();
+		// TODO Handle errors please
+		// TODO Update thing so that any persistence key is correctly recorded
 	}
 
 	handleResponse(name: string, res: Response): any[] {

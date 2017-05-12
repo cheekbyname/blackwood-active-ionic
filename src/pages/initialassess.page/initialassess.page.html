@@ -57,10 +57,47 @@
 					<ion-label stacked><strong>Physical Wellbeing</strong></ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.generalHealth" placeholder="How would you describe your general health?"></ion-textarea>
 				</ion-item>
+
+				<ion-item-divider no-lines no-margin><h2><strong>Medication</strong></h2></ion-item-divider>
 				<ion-item>
-					<ion-label stacked>Medication</ion-label>
+					<ion-label stacked>Details</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.medication" placeholder="What medication do you take, if any? And what are these for?"></ion-textarea>
 				</ion-item>
+				<ion-item>
+					<ion-label stacked>Capacity</ion-label>
+					<ion-select width-100 [(ngModel)]="assess.medicationCapacity" placeholder="Select from the following">
+						<ion-option value="0">Has Capacity</ion-option>
+						<ion-option value="1">Does not have Capacity</ion-option>
+						<ion-option value="2">Referred for GP Assessment</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Medication Visit Times</ion-label>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Morning</ion-label>
+					<ion-checkbox [(ngModel)]="assess.medicMorningVisit" mode="md"></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Lunchtime</ion-label>
+					<ion-checkbox [(ngModel)]="assess.medicLunchVisit" mode="md"></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Teatime</ion-label>
+					<ion-checkbox [(ngModel)]="assess.medicTeatimeVisit" mode="md"></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Bedtime</ion-label>
+					<ion-checkbox [(ngModel)]="assess.medicBedtimeVisit" mode="md"></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Other Time</ion-label>
+					<ion-checkbox [(ngModel)]="assess.medicOtherVisit" mode="md"></ion-checkbox>
+				</ion-item>
+				<ion-item *ngIf="assess.medicOtherVisit == true">
+					<ion-textarea rows="3" [(ngModel)]="assess.medicOtherVisitDetails" placeholder="Details of other time at which medication is taken"></ion-textarea>
+				</ion-item>
+
 				<ion-item>
 					<ion-label stacked><strong>Carer/Family Involvement</strong></ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.familyCarer" placeholder="Do you have current carers or family involved in your care?"></ion-textarea>
