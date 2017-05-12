@@ -97,6 +97,31 @@
 				<ion-item *ngIf="assess.medicOtherVisit == true">
 					<ion-textarea rows="3" [(ngModel)]="assess.medicOtherVisitDetails" placeholder="Details of other time at which medication is taken"></ion-textarea>
 				</ion-item>
+				<ion-item>
+					<ion-label stacked>Oral Grading</ion-label>
+					<ion-select width-100 [(ngModel)]="assess.medicOralGrading" placeholder="Select from the following">
+						<ion-option value="0">Independent</ion-option>
+						<ion-option value="1">Prompt &amp; Assist</ion-option>
+						<ion-option value="2">Administer with capacity</ion-option>
+						<ion-option value="3">Administer without capacity</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Non-Oral Grading</ion-label>
+					<ion-select width-100 [(ngModel)]="assess.medicNonOralGrading" placeholder="Select from the following">
+						<ion-option value="0">Independent</ion-option>
+						<ion-option value="1">Prompt &amp; Assist</ion-option>
+						<ion-option value="2">Administer with capacity</ion-option>
+						<ion-option value="3">Administer without capacity</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Medication ordered by</ion-label>
+					<ion-select width-100 [(ngModel)]="assess.whoOrdersMedication" placeholder="Select from the following">
+						<ion-option value="0">Blackwood</ion-option>
+						<ion-option value="1">Family</ion-option>
+					</ion-select>
+				</ion-item>
 
 				<ion-item>
 					<ion-label stacked><strong>Carer/Family Involvement</strong></ion-label>

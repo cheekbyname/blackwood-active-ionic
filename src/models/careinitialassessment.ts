@@ -51,7 +51,6 @@ export class CareInitialAssessment {
 	keyCode: string;
 	disability: string;
 	medication: string;
-	// New Stuff
 	medicationCapacity: number;	// 0: Has capacity, 1: Does not have Capacity, 2: Has been referred to GP for assessment
 	medicMorningVisit: boolean;
 	medicLunchVisit: boolean;
@@ -59,10 +58,9 @@ export class CareInitialAssessment {
 	medicBedtimeVisit: boolean;
 	medicOtherVisit: boolean;
 	medicOtherVisitDetails: string;
-	oralGrading: number;
-	nonOralGrading: number; // 1: Independent, 2: Prompt & Assist, 3: Administer (with capacity), 4: Administer (without cap.)
-	whoOrdersMedication: boolean;	// Us or Family?
-	// New Stuff Ends
+	medicOralGrading: number;
+	medicNonOralGrading: number; // 1: Independent, 2: Prompt & Assist, 3: Administer (with capacity), 4: Administer (without cap.)
+	whoOrdersMedication: number;	// Us or Family? 0 - Blackwood, 1 - Family
 	allergies: string;
 	gpDetails: string;
 	otherProvider: string;
