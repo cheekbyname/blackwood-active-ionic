@@ -78,13 +78,14 @@ export class CareActivityService {
 	}
 
 	getAllCareInitialAssessments(): Promise<CareInitialAssessment[]> {
-		return this.sql.query('SELECT * FROM careinitialassessments', []).then(res => {
-			var assessments: CareInitialAssessment[] = [];
-			for (var i = 0; i < res.res.rows.length; i++) {
-				assessments.push(JSON.parse(res.res.rows.item(i).json));
-			}
-			return assessments;
-		});
+		return this.api.getAll("care/careinitialassessments").then(cias => cias as CareInitialAssessment[]);
+		// return this.sql.query('SELECT * FROM careinitialassessments', []).then(res => {
+		// 	var assessments: CareInitialAssessment[] = [];
+		// 	for (var i = 0; i < res.res.rows.length; i++) {
+		// 		assessments.push(JSON.parse(res.res.rows.item(i).json));
+		// 	}
+		// 	return assessments;
+		// });
 	}
 
 	assessUrlFromGuid(guid: string): string {

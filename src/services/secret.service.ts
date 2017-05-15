@@ -14,10 +14,13 @@ export class Api {
 
     // For workstation remote
     // baseUrl: string = "https://mbhof754:44352/active";
-    coreUrl: string = "https://mbhof754.m-blackwood.mbha.org.uk:44357/api";
+    //coreUrl: string = "https://mbhof754.m-blackwood.mbha.org.uk:44357/api";
 
     // For HOF-ISS-ALEXC test platform
     //coreUrl: string = "https://hof-iss-alexc.m-blackwood.mbha.org.uk/api";
+
+    // For Live
+    coreUrl: string = "https://hof-iis-live-01.m-blackwood.mbha.org.uk/api";
 
     public apiBase(api: string): string {
         switch (api) {
