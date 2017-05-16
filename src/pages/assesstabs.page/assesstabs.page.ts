@@ -28,16 +28,17 @@ export class AssessTabsPage {
 	}
 
 	ionViewWillLeave() {
+		// TODO Also, this doesn't actually intercept navigation
 		// TODO Make this a prompt on changes only and place a Save button in the Header
-		let confirmLeave = this.alertCtrl.create({
-			title: 'Back to Home?',
-			message: 'Are you sure you want to leave this Assessment? You may have unsaved changes!',
-			buttons: [
-				{ text: 'No' },
-				{ text: 'Yes' }
-			]
-		})
-		confirmLeave.present();
+		// let confirmLeave = this.alertCtrl.create({
+		// 	title: 'Back to Home?',
+		// 	message: 'Are you sure you want to leave this Assessment? You may have unsaved changes!',
+		// 	buttons: [
+		// 		{ text: 'No' },
+		// 		{ text: 'Yes' }
+		// 	]
+		// })
+		// confirmLeave.present();
 		//this.actSrv.saveCareInitialAssessment(this.actSrv.getCurrentCareInitialAssessment());
 	}
 
