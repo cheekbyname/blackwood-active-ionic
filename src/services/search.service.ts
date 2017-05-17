@@ -64,4 +64,13 @@ export class SearchService {
         this.facSrv.filterFacilities(this.term);
         this.cliSrv.filterClients(this.term);
     }
+
+    reset() : Promise<any> {
+        this.term="";
+        this.devSrv.getDevelopments()
+            .then(() => this.tenSrv.getTenancies())
+            .then(() => this.facSrv.getFacilities())
+            .then(() => this.cliSrv.getClients());
+        return Promise.resolve(true);
+    }
 }

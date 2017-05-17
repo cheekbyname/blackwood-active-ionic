@@ -1,32 +1,41 @@
 <ion-header>
-  <ion-navbar>
-    <button menuToggle ion-button icon-only>
+    <ion-navbar>
+        <button menuToggle ion-button icon-only>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Welcome {{hailUser}}</ion-title>
-    <ion-buttons *ngIf="showCloud" end>
-        <button ion-button icon-only (click)="showDataServiceStatus()">
+        <ion-title>Welcome {{hailUser}}</ion-title>
+        <ion-buttons *ngIf="showCloud" end>
+            <button ion-button icon-only (click)="showDataServiceStatus()">
             <ion-icon name="cloud-download"  [style.color]="api.statusTypes[api.status].color"></ion-icon>
         </button>
-    </ion-buttons>
-    <!--<ion-buttons end>
+        </ion-buttons>
+        <!--<ion-buttons end>
         <button ion-button icon-only (click)="showFilters($event)">
             <ion-icon name="funnel"></ion-icon>
         </button>
     </ion-buttons>-->
-  </ion-navbar>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="crescent" refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
 
     <search-bar placeholder="Search for people and places..."></search-bar>
 
     <div ion-button (click)="openDevelopmentList()" class="button-header">
         <ion-grid>
             <ion-row>
-                <ion-col width-10><ion-icon name="pin" no-padding></ion-icon></ion-col>
+                <ion-col width-10>
+                    <ion-icon name="pin" no-padding></ion-icon>
+                </ion-col>
                 <ion-col width-70 class="button-text"><span text-capitalize>Developments</span></ion-col>
-                <ion-col width-20 class="col-right"><ion-badge class="search-badge" *ngIf="search.developments()" color="secondary">{{search.developments().length}}</ion-badge></ion-col>
+                <ion-col width-20 class="col-right">
+                    <ion-badge class="search-badge" *ngIf="search.developments()" color="secondary">{{search.developments().length}}</ion-badge>
+                </ion-col>
             </ion-row>
         </ion-grid>
     </div>
@@ -34,9 +43,13 @@
     <div ion-button (click)="openTenancySearch()" class="button-header">
         <ion-grid>
             <ion-row>
-                <ion-col width-10><ion-icon name="people" no-padding></ion-icon></ion-col>
+                <ion-col width-10>
+                    <ion-icon name="people" no-padding></ion-icon>
+                </ion-col>
                 <ion-col width-70 class="button-text"><span text-capitalize>Tenancies</span></ion-col>
-                <ion-col width-20 class="col-right"><ion-badge class="search-badge" *ngIf="search.tenancies()" color="secondary">{{search.tenancies().length}}</ion-badge></ion-col>
+                <ion-col width-20 class="col-right">
+                    <ion-badge class="search-badge" *ngIf="search.tenancies()" color="secondary">{{search.tenancies().length}}</ion-badge>
+                </ion-col>
             </ion-row>
         </ion-grid>
     </div>
@@ -44,9 +57,13 @@
     <div ion-button (click)="openFacilitySearch()" class="button-header">
         <ion-grid>
             <ion-row>
-                <ion-col width-10><ion-icon name="podium" no-padding></ion-icon></ion-col>
+                <ion-col width-10>
+                    <ion-icon name="podium" no-padding></ion-icon>
+                </ion-col>
                 <ion-col width-70 class="button-text"><span text-capitalize>Facilities</span></ion-col>
-                <ion-col width-20 class="col-right"><ion-badge class="search-badge" *ngIf="search.facilities()" color="secondary">{{search.facilities().length}}</ion-badge></ion-col>
+                <ion-col width-20 class="col-right">
+                    <ion-badge class="search-badge" *ngIf="search.facilities()" color="secondary">{{search.facilities().length}}</ion-badge>
+                </ion-col>
             </ion-row>
         </ion-grid>
     </div>
@@ -54,9 +71,13 @@
     <div ion-button (click)="openClientSearch()" class="button-header">
         <ion-grid>
             <ion-row>
-                <ion-col width-10><ion-icon name="contacts" no-padding></ion-icon></ion-col>
+                <ion-col width-10>
+                    <ion-icon name="contacts" no-padding></ion-icon>
+                </ion-col>
                 <ion-col width-70 class="button-text"><span text-capitalize>Clients</span></ion-col>
-                <ion-col width-20 class="col-right"><ion-badge class="search-badge" *ngIf="search.clients()" color="secondary">{{search.clients().length}}</ion-badge></ion-col>
+                <ion-col width-20 class="col-right">
+                    <ion-badge class="search-badge" *ngIf="search.clients()" color="secondary">{{search.clients().length}}</ion-badge>
+                </ion-col>
             </ion-row>
         </ion-grid>
     </div>

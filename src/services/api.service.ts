@@ -18,7 +18,7 @@ export class WebApi {
 		this.sql = new Storage();
 	}
 
-	callTimeout: number = 10000;
+	callTimeout: number = 20000;
 	sql: Storage;
 	status: number = 0;
 	public readonly statusTypes = [
@@ -82,6 +82,7 @@ export class WebApi {
 	}
 
 	handleResponse(name: string, res: Response): any[] {
+		this.status = 0;
 		// Cache Offline
 		this.sql.set(name, res.json()).then(f => { console.log(name + " saved to sqlstorage") });
 		this.debug.log(`Retrieved ${res.json().length} ${name} from server and saved to sqlstorage`);
@@ -90,6 +91,7 @@ export class WebApi {
 	}
 
 	handleOne(name: string, res: Response): any {
+		this.status = 0;
 		//Cache Offline
 		if (res.status == 204) {
 			// return undefined if no data so we don't get error from .json()

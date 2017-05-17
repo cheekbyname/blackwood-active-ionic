@@ -23,22 +23,32 @@ export class AssessTabsPage {
 		new Tab("T.I.L.E", TilePage)
 	];
 
-	constructor(public navCtrl: NavController, public actSrv: CareActivityService, public alertCtrl: AlertController) {
+	showAlert: boolean = true;
+
+	constructor(private navCtrl: NavController, public actSrv: CareActivityService, public alertCtrl: AlertController) {
 
 	}
 
-	ionViewWillLeave() {
-		// TODO Also, this doesn't actually intercept navigation
-		// TODO Make this a prompt on changes only and place a Save button in the Header
-		// let confirmLeave = this.alertCtrl.create({
-		// 	title: 'Back to Home?',
-		// 	message: 'Are you sure you want to leave this Assessment? You may have unsaved changes!',
-		// 	buttons: [
-		// 		{ text: 'No' },
-		// 		{ text: 'Yes' }
-		// 	]
-		// })
-		// confirmLeave.present();
+	ionViewCanLeave() {
+		if (this.showAlert) {
+			let confirmLeave = this.alertCtrl.create({
+				title: 'Leave Assessment?',
+				message: 'Are you sure you want to leave this Assessment? You may have unsaved changes!',
+				buttons: [
+					{ text: 'No', handler: () => true },
+					{
+						text: 'Yes', handler: () => {
+							confirmLeave.dismiss().then(() => {
+								this.showAlert = false;
+								this.navCtrl.pop();
+							})
+						}
+					}
+				]
+			});
+			confirmLeave.present();
+			return false;
+		}
 		//this.actSrv.saveCareInitialAssessment(this.actSrv.getCurrentCareInitialAssessment());
 	}
 

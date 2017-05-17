@@ -1,3 +1,4 @@
+rem Remember to up android version number in config.xml
 cordova build --release android
 jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore "c:\dev\active\platforms\android\build\outputs\apk\android-release-unsigned.apk" activekey
 del BlackwoodActive.apk

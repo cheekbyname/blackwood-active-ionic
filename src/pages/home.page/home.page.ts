@@ -65,7 +65,6 @@ export class HomePage {
     }
 
     showDataServiceStatus(): void {
-        // TODO Consider attempting to refresh main collections from Services
         this.usrSrv.getActiveUser()
             .then(user => {
                 this.currentUser = this.usrSrv.currentUser;
@@ -100,5 +99,9 @@ export class HomePage {
 
     openClientSearch() {
         this.navCtrl.push(ClientSearchPage);
+    }
+
+    doRefresh(refresher) {
+        this.search.reset().then(() => refresher.complete());
     }
 }
