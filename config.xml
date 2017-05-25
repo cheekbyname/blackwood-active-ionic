@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="uk.org.blackwood.active-beta" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0"
-  android-versionCode="5">
+  android-versionCode="6">
   <name>Blackwood Active</name>
   <description>Mobile solution for Blackwood Staff</description>
   <author email="alexc@blackwoodgroup.org.uk" href="http://blackwoodgroup.org.uk">Blackwood Business Solutions</author>
