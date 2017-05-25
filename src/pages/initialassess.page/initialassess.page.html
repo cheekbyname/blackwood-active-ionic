@@ -253,7 +253,7 @@
 			<ion-list no-margin no-lines>
 				<ion-item>
 					<ion-label stacked><strong>Access Arrangements</strong></ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.acccessArrangements" placeholder="Are there any special arrangements that need to be followed to gain access to your property?"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.accessArrangements" placeholder="Are there any special arrangements that need to be followed to gain access to your property?"></ion-textarea>
 				</ion-item>
 			</ion-list>
 			<ion-list radio-group no-margin text-wrap [(ngModel)]="assess.doorEntry" no-lines>
@@ -273,7 +273,7 @@
 			<ion-list no-margin text-wrap id="assess_page_bottom" no-lines>
 				<ion-item *ngIf="assess.doorEntry && assess.doorEntry=='1'">
 					<ion-label stacked>What is the number of your Key Code?</ion-label>
-					<ion-input type="text" [(ngModel)]="assess.keycode"></ion-input>
+					<ion-input type="text" [(ngModel)]="assess.keyCode"></ion-input>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked><strong>Disability &amp; Conditions</strong></ion-label>

@@ -40,4 +40,11 @@ export class ActivityPage implements OnInit {
         this.actSrv.currentCareInitialAssessment = assess;
         this.navCtrl.push(AssessTabsPage);
     }
+
+    doRefresh(refresher) {
+        this.actSrv.getAllCareInitialAssessments().then(res => {
+            this.assessments = res;
+            refresher.complete();
+        });
+    }
 };
