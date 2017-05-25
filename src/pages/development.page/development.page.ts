@@ -4,13 +4,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Tenancy } from '../../models/tenancy';
 import { Development } from '../../models/development';
 import { Property } from '../../models/property';
-//import { Member } from '../../models/member';
-import { Comm } from '../../models/comm';
 
 import { TenancyTabsPage } from '../tenancy.tabs.page/tenancy.tabs.page';
-
-import { TenancyCard } from '../../components/tenancycard/tenancycard';
-// import { PropertyCard } from '../../components/propertycard/propertycard';
 
 import { MemberService } from '../../services/member.service';
 import { PropertyService } from '../../services/property.service';
@@ -18,7 +13,6 @@ import { CommService } from '../../services/comm.service';
 
 @Component({
 	templateUrl: 'development.page.html'
-	//directives: [TenancyCard, PropertyCard]
 })
 export class DevelopmentPage {
 	constructor(public navCtrl: NavController, navParams: NavParams,

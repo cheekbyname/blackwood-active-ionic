@@ -10,7 +10,7 @@ import { AddDailyNotePage } from '../../pages/adddailynote.page/adddailynote.pag
 	selector: 'dailynotes-page',
 	templateUrl: 'dailynotes.page.html'
 })
-export class DailyNotesPage {
+export class DailyNotesPage implements OnInit {
 	constructor(public clientService: ClientService, public navCtrl: NavController,
 		navParams: NavParams, public popCtrl: PopoverController,
 		public events: Events) {

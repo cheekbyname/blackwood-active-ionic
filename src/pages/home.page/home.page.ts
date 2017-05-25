@@ -19,7 +19,7 @@ import { AssessTabsPage } from '../assesstabs.page/assesstabs.page';
 import { FacilitySearchPage } from '../facility.search.page/facility.search.page';
 
 import { HomeFilterPopover } from '../../components/homefilter.popover/homefilter.popover';
-import { NewActivityPopover } from '../../components/newactivity.popover/newactivity.popover';
+//import { NewActivityPopover } from '../../components/newactivity.popover/newactivity.popover';
 
 @Component({
     selector: 'home-page',

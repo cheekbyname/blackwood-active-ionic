@@ -1,6 +1,6 @@
 // Angular/Ionic
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 
 // Services
 import { TenancyService, TenancyView } from '../../services/tenancy.service';

@@ -5,7 +5,6 @@ import { Client } from '../../models/client';
 import { Facility } from '../../models/facility';
 import { CarePlan } from '../../models/careplan';
 import { CareNeed } from '../../models/careneed';
-import { FacilityCard } from '../../components/facility.card/facility.card';
 import { ClientService } from '../../services/client.service';
 import { CarePlanPage } from '../../pages/careplan.page/careplan.page';
 import { DailyNotesPage } from '../../pages/dailynotes.page/dailynotes.page';

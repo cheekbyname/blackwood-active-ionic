@@ -1,5 +1,5 @@
 // Angular/Ionic
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 
 // Components
