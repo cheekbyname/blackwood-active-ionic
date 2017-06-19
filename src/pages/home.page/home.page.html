@@ -19,14 +19,14 @@
 
 <ion-content>
 
-    <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher *ngIf="currentUser" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="crescent" refreshingText="Refreshing...">
         </ion-refresher-content>
     </ion-refresher>
 
-    <search-bar placeholder="Search for people and places..."></search-bar>
+    <search-bar *ngIf="currentUser" placeholder="Search for people and places..."></search-bar>
 
-    <div ion-button (click)="openDevelopmentList()" class="button-header">
+    <div ion-button *ngIf="currentUser" (click)="openDevelopmentList()" class="button-header">
         <ion-grid>
             <ion-row>
                 <ion-col width-10>
@@ -40,7 +40,7 @@
         </ion-grid>
     </div>
 
-    <div ion-button (click)="openTenancySearch()" class="button-header">
+    <div ion-button *ngIf="currentUser" (click)="openTenancySearch()" class="button-header">
         <ion-grid>
             <ion-row>
                 <ion-col width-10>
@@ -54,7 +54,7 @@
         </ion-grid>
     </div>
 
-    <div ion-button (click)="openFacilitySearch()" class="button-header">
+    <div ion-button *ngIf="currentUser" (click)="openFacilitySearch()" class="button-header">
         <ion-grid>
             <ion-row>
                 <ion-col width-10>
@@ -68,7 +68,7 @@
         </ion-grid>
     </div>
 
-    <div ion-button (click)="openClientSearch()" class="button-header">
+    <div ion-button *ngIf="currentUser" (click)="openClientSearch()" class="button-header">
         <ion-grid>
             <ion-row>
                 <ion-col width-10>
@@ -82,7 +82,7 @@
         </ion-grid>
     </div>
 
-    <ion-fab bottom right #fab>
+    <ion-fab *ngIf="currentUser" bottom right #fab>
         <button ion-fab color="secondary"><ion-icon name="pulse"></ion-icon></button>
         <ion-fab-list side="top">
             <button ion-fab color="secondary" text-capitalize>
