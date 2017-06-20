@@ -20,7 +20,7 @@ export class InitialAssessPage {
 
 	private signaturePadOptions: Object = {
 		'minWidth': 2,
-		'canvasWidth': 600,
+		'canvasWidth': 750,
 		'canvasHeight': 200,
 		'backgroundColor': '#E1E1E1',
 		'penColor': '#666a73'
@@ -34,6 +34,7 @@ export class InitialAssessPage {
 
 	ionViewWillEnter() {
 		this.assess = this.actSrv.getCurrentCareInitialAssessment();
+		this.signaturePad.fromDataURL(this.assess.signature);
 		console.log(this.actSrv.getCurrentCareInitialAssessment());
 	}
 
