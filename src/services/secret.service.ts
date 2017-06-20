@@ -8,12 +8,12 @@ export class Auth {
 
 export class Api {
     // Development
-    coreUrl: string = "https://mbhof754.m-blackwood.mbha.org.uk:44357/api";
+    // coreUrl: string = "https://mbhof754.m-blackwood.mbha.org.uk:44357/api";
     // Test
     //coreUrl: string = "https://hof-iss-alexc.m-blackwood.mbha.org.uk/api";
     // Live
     //coreUrl: string = "https://hof-iis-live-01.m-blackwood.mbha.org.uk/api";
-    //coreUrl: string = "https://active.blackwoodgroup.org.uk/api";
+    coreUrl: string = "https://active.blackwoodgroup.org.uk/api";
 
     public apiBase(api: string): string {
         switch (api) {

@@ -91,10 +91,10 @@
     <ion-fab *ngIf="currentUser" bottom right #fab>
         <button ion-fab color="secondary"><ion-icon name="pulse"></ion-icon></button>
         <ion-fab-list side="top">
-            <button ion-fab color="secondary" text-capitalize>
+            <!--<button ion-fab color="secondary" text-capitalize>
                 <ion-label class="fab-md">Housing Annual Home Visit</ion-label>
                 <ion-icon name="home"></ion-icon>
-            </button>
+            </button>-->
             <button ion-fab color="secondary" text-capitalize (click)="addNewCareInitialAssessment($event, fab)">
                 <ion-label class="fab-md">Care Initial Assessment</ion-label>
                 <ion-icon name="clipboard"></ion-icon>
