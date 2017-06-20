@@ -26,6 +26,12 @@
 
     <search-bar *ngIf="currentUser" placeholder="Search for people and places..."></search-bar>
 
+    <ion-card *ngIf="!currentUser">
+        <ion-card-content>
+            <p>Checking User Information, please wait...</p>
+        </ion-card-content>
+    </ion-card>
+
     <div ion-button *ngIf="currentUser" (click)="openDevelopmentList()" class="button-header">
         <ion-grid>
             <ion-row>

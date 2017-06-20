@@ -1,5 +1,5 @@
 <ion-content id="assess_page">
-	<ion-card class="footer-margin card-pad-bottom">
+	<ion-card class="card-pad-bottom">
 		<ion-card-content no-margin no-padding>
 			<ion-list text-wrap no-lines>
 				<ion-item-divider no-lines><h2><strong>General Information</strong></h2></ion-item-divider>
@@ -309,6 +309,16 @@
 					<ion-textarea rows="3" [(ngModel)]="assess.additionalInfo" placeholder="Is there any other information that you would like to share with us that we haven't already covered?"></ion-textarea>
 				</ion-item>
 			</ion-list>
+		</ion-card-content>
+	</ion-card>
+	<ion-card class="footer-margin card-pad-bottom">
+		<ion-card-header>
+			<h2>Client Signature</h2>
+		</ion-card-header>
+		<ion-card-content>
+			<signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+			<button ion-button text-capitalize icon-left (click)="savePad()"><ion-icon name="checkmark"></ion-icon>Save Signature</button>
+			<button ion-button text-capitalize icon-left (click)="clearPad()"><ion-icon name="close"></ion-icon>Clear Signature</button>
 		</ion-card-content>
 	</ion-card>
 </ion-content>

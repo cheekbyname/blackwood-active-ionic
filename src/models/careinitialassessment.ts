@@ -68,6 +68,7 @@ export class CareInitialAssessment {
 	specificRisks: string;
 	goals: string;
 	additionalInfo: string;
+	signature: string;
 
 	// CheckList Tab
 	checkItems: CheckItem[] = [

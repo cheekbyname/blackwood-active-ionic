@@ -4,6 +4,10 @@ ion-tabs span {
 	font-weight: bold;
 }
 
+h2 {
+	font-family: 'Century Gothic'
+}
+
 ion-tabs a[aria-selected="true"] span {
 	color: hotpink;
 }
@@ -96,4 +100,8 @@ ul > li > span {
 
 ion-item, ion-item > div.item-inner {
 	border-bottom: none!important;
+}
+
+signature-pad canvas {
+	width: 100%;
 }
