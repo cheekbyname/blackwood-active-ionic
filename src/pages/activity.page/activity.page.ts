@@ -24,7 +24,7 @@ export class ActivityPage implements OnInit {
 
     ngOnInit() {
         this.actSrv.getAllCareInitialAssessments().then(res => {
-            this.assessments = res;
+            this.assessments = res.sort((a, b) => { return a.visitDate < b.visitDate ? 1 : 0 });
         });
     }
 

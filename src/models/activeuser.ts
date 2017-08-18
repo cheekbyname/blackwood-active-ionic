@@ -3,4 +3,6 @@ export class ActiveUser {
 	emailName: string;
 	simpleName: string;
 	accountName: string;
+	isHousingUser: boolean;
+	isCareUser: boolean;
 }
