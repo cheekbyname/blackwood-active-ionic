@@ -54,13 +54,11 @@ export class CareActivityService {
 			.then(exists => {
 				if (exists) {
 					this.sql.query('UPDATE careinitialassessments SET json=? WHERE guid=?', [JSON.stringify(assess), assess.guid]);
-					var toast = this.toastCtrl.create({ message: 'Changes to Care Initial Assessment successfully saved', duration: 3000});
-					toast.present();
 				} else {
 					this.sql.query('INSERT INTO careinitialassessments (guid, json) VALUES (?, ?)', [assess.guid, JSON.stringify(assess)]);
-					var toast = this.toastCtrl.create({ message: 'Care Initial Assessment successfully saved', duration: 3000});
-					toast.present();
 				}
+				var toast = this.toastCtrl.create({ message: 'Changes to Care Initial Assessment successfully saved', duration: 3000 });
+				toast.present();
 			})
 			.then(done => {
 				this.api.putOne('care/careinitialassessment', assess);
@@ -74,7 +72,8 @@ export class CareActivityService {
 	getCareInitialAssessment(guid: string): Promise<CareInitialAssessment> {
 		var keyUrl = this.assessUrlFromGuid(guid);
 		return this.kv.get(keyUrl).then(res => {
-			return res as CareInitialAssessment});
+			return res as CareInitialAssessment
+		});
 	}
 
 	getAllCareInitialAssessments(): Promise<CareInitialAssessment[]> {
@@ -95,10 +94,10 @@ export class CareActivityService {
 
 // TODO Consider moving to some Utility Service at some point
 class Guid {
-    static newGuid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-            return v.toString(16);
-        });
-    }
+	static newGuid() {
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+			var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+			return v.toString(16);
+		});
+	}
 }

@@ -9,7 +9,7 @@
 
 <ion-content>
 	<search-bar ion-fixed placeholder="Search for places..."></search-bar>
-	<div [virtualScroll]="search.facilities()" class="filter-list" approxItemHeight="64px" approxItemWidth="410px">
+	<div [virtualScroll]="search.facilities()" class="filter-list" approxItemHeight="64px" approxItemWidth="380px">
 		<div *virtualItem="let fac" class="facility-card-container">
 			<facility-card [fac]="fac" (click)="gotoFacility(fac)"></facility-card>
 		</div>

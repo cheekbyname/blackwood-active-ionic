@@ -9,7 +9,7 @@
 
 <ion-content>
     <search-bar ion-fixed placeholder="Search for people..."></search-bar>
-    <div [virtualScroll]="search.clients()" class="filter-list" approxItemHeight="84px" approxItemWidth="410px">
+    <div [virtualScroll]="search.clients()" class="filter-list" approxItemHeight="84px" approxItemWidth="380px">
         <div *virtualItem="let cli" class="client-card-container">
             <client-card [cli]="cli" [fac]="facilityForClient(cli)" (click)="gotoClient(cli)"></client-card>
         </div>
