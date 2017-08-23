@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 
-//import { Observable } from 'rxjs/Observable';
-
+import { UserService } from "./user.service";
 import { WebApi } from './api.service';
 import { Development } from '../models/development';
 
 @Injectable()
 export class DevelopmentService {
-    
+
     allDevelopments: Development[];
     filteredDevelopments: Development[];
 
-    constructor(private api: WebApi) {
-        this.getDevelopments().then(devs => {
-            this.allDevelopments = devs;
+    constructor(private api: WebApi, private usrSrv: UserService) {
+        this.usrSrv.userObserver.subscribe(user => {
+            this.getDevelopments().then(devs => {
+                this.allDevelopments = devs;
+            });
         });
     }
 

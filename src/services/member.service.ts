@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { UserService } from "./user.service";
 import { WebApi } from './api.service';
 
 import { Member } from '../models/member';
@@ -7,10 +8,12 @@ import { Relationship } from '../models/relationship';
 
 @Injectable()
 export class MemberService {
-    
-    constructor(private api: WebApi) {
-        this.getMembers();
-        this.getRelationships();
+
+    constructor(private api: WebApi, private usrSrv: UserService) {
+        this.usrSrv.userObserver.subscribe(user => {
+            this.getMembers();
+            this.getRelationships();
+        });
     }
 
     allMembers: Member[];
@@ -18,11 +21,9 @@ export class MemberService {
 
     getMembers(): Promise<Member[]> {
         if (this.allMembers) {
-            console.log("Returning Members from memory");
             return Promise.resolve(this.allMembers);
         }
         else {
-            console.log("Retrieving Members from WebApi");
             return this.api.getAll("housing/members")
                 .then(mems => this.allMembers = mems as Member[])
                 .then(mems => mems as Member[]);
@@ -31,11 +32,9 @@ export class MemberService {
 
     getRelationships(): Promise<Relationship[]> {
         if (this.allRelationships) {
-            console.log("Returning Relationships from memory");
             return Promise.resolve(this.allRelationships);
         }
         else {
-            console.log("Retrieving Relationships from WebApi");
             return this.api.getAll("housing/relationships")
                 .then(rels => this.allRelationships = rels as Relationship[])
                 .then(rels => rels as Relationship[]);

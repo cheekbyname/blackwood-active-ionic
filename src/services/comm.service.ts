@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 
+import { UserService } from "./user.service";
 import { WebApi } from './api.service';
 import { Comm } from '../models/comm';
 
 @Injectable()
 export class CommService {
-	constructor(private api: WebApi) {
-		this.getComms();
+	constructor(private api: WebApi, private usrSrv: UserService) {
+		this.usrSrv.userObserver.subscribe(user => {
+			this.getComms();
+		})
 	}
 
 	allComms: Comm[];

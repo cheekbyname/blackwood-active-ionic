@@ -23,8 +23,7 @@ import { HomeFilterPopover } from '../../components/homefilter.popover/homefilte
 
 @Component({
     selector: 'home-page',
-    templateUrl: 'home.page.html',
-    providers: [AlertController] // TODO We probably want this as a singleton
+    templateUrl: 'home.page.html'
 })
 export class HomePage {
 

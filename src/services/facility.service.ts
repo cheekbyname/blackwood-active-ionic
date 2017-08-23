@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+import { UserService } from "./user.service";
 import { WebApi } from './api.service';
 import { Facility } from '../models/facility';
 
@@ -9,9 +10,11 @@ export class FacilityService {
 	allFacilities: Facility[];
 	filteredFacilities: Facility[];
 
-	constructor(private api: WebApi) {
-		this.getFacilities().then(facs => {
-			this.allFacilities = facs;
+	constructor(private api: WebApi, private usrSrv: UserService) {
+		this.usrSrv.userObserver.subscribe(user => {
+			this.getFacilities().then(facs => {
+				this.allFacilities = facs;
+			});
 		});
 	}
 
@@ -24,12 +27,12 @@ export class FacilityService {
 	}
 
 	filterFacilities(term: string) {
-        if (term && term.trim() != '') {
-            this.filteredFacilities = this.allFacilities.filter(fac =>
-                fac.facilityName.toLowerCase().includes(term.toLowerCase()));
-        }
-        else {
-            this.filteredFacilities = this.allFacilities;
-        }
+		if (term && term.trim() != '') {
+			this.filteredFacilities = this.allFacilities.filter(fac =>
+				fac.facilityName.toLowerCase().includes(term.toLowerCase()));
+		}
+		else {
+			this.filteredFacilities = this.allFacilities;
+		}
 	}
 }
