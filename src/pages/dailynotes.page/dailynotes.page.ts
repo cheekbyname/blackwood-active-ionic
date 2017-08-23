@@ -20,7 +20,9 @@ export class DailyNotesPage implements OnInit {
 	ngOnInit(): void {
 		this.pageIndex = 0;
 		this.fetchNotes();
-		this.events.subscribe("AddDailyNotePage.saveEntry", (note) => this.saveNewNote(note[0]));
+		this.events.subscribe("AddDailyNotePage.saveEntry", (note) => {
+			this.saveNewNote(note);
+		});
 	}
 
 	client: Client;

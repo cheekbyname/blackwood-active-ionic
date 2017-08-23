@@ -2,8 +2,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { SQLite, Splashscreen } from 'ionic-native';
+import { SQLite, Splashscreen, StatusBar } from 'ionic-native';
 import { SignaturePadModule } from 'angular2-signaturepad';
+import { Push } from "@ionic-native/push";
 
 // App
 import { MyApp } from './app.component';
@@ -85,6 +86,6 @@ import { TenancyCard } from '../components/tenancy.card/tenancy.card';
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite, Storage,
-    Sql, SearchService, Splashscreen ]
+    Sql, SearchService, Splashscreen, Push, StatusBar ]
 })
 export class AppModule {}

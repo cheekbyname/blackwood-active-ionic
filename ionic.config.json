@@ -1,6 +1,8 @@
 {
   "name": "Active",
-  "app_id": "",
-  "v2": true,
-  "typescript": true
+  "app_id": "51e1aaba",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
 }

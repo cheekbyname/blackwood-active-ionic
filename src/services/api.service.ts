@@ -32,7 +32,7 @@ export class WebApi {
 
 		console.log(`Calling ${this.api.apiBase(api)}/${name}`);
 		return this.http.get(`${this.api.apiBase(api)}/${name}`) //, { withCredentials: true })
-			.timeout(this.callTimeout, new Error(`Error calling ${this.api.apiBase(api)}/${name}: Timeout exceeded`))
+			.timeout(this.callTimeout)
 			.toPromise()
 			.then(res => this.handleResponse(name, res))
 			.catch(err => {
@@ -55,7 +55,7 @@ export class WebApi {
 
 		console.log(`Calling ${this.api.apiBase(api)}/${name}`);
 		return this.http.get(`${this.api.apiBase(api)}/${name}`) //, { withCredentials: true })
-			.timeout(this.callTimeout, new Error(`Error calling ${this.api.apiBase(api)}/${name}: Timeout exceeded`))
+			.timeout(this.callTimeout)
 			.toPromise()
 			.then(res => this.handleOne(name, res))
 			.catch(err => {
