@@ -1,9 +1,13 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{development.schemeName}}</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{development.schemeName}}</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content>
-    <tenancy-card *ngFor="let ten of tenancies" (click)="gotoTenancy(ten)" [ten]="ten"></tenancy-card>
+	<div [virtualScroll]="tenancies">
+		<div *virtualItem="let ten" class="tenancy-card-container">
+			<tenancy-card [ten]="ten" (click)="gotoTenancy(ten)"></tenancy-card>
+		</div>
+	</div>
 </ion-content>

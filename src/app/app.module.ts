@@ -69,13 +69,18 @@ import { PropertyCard } from '../components/property.card/property.card';
 import { SearchBar } from '../components/searchbar/searchbar';
 import { TenancyCard } from '../components/tenancy.card/tenancy.card';
 
+// Pipes
+import { AdjustmentOffsetFilter } from "../models/adjustment";
+import { ShiftOffsetFilter } from "../models/shift";
+import { SafeUrlPipe } from "../services/utility.service";
+
 @NgModule({
   declarations: [ MyApp, ActivityPage, AddDailyNotePage, AssessCheckPage, AssessTabsPage, CareNeedPage, CarePlanPage, CareSummaryPage,
     ClientPage, ClientSearchPage, DailyNotesPage, DebugPage, DevelopmentPage, DevelopmentTabsPage, FacilityCard, FacilityPage,
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, ClientCard, CommCard, DevelopmentCard,
     DevelopmentListPage, FacilityCard, HomeFilterPopover, MemberCard, NewActivityPopover, PropertyCard, SearchBar, TenancyCard,
-    SafeUrlPipe ],
+    AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe ],
   imports: [
     SignaturePadModule,
     IonicModule.forRoot(MyApp)

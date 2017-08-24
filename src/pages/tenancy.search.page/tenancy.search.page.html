@@ -9,7 +9,7 @@
 
 <ion-content>
 	<search-bar ion-fixed placeholder="Search for people..."></search-bar>
-	<div [virtualScroll]="search.tenancies()" class="filter-list" approxItemHeight="100px" approxItemWidth="380px">
+	<div [virtualScroll]="search.tenancies()" class="filter-list">
 		<div *virtualItem="let ten" class="tenancy-card-container">
 			<tenancy-card (click)="gotoTenancy(ten)" [ten]="ten"></tenancy-card>
 		</div>

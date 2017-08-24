@@ -70,14 +70,13 @@ ion-list-header {
     height: 48px;
     background: white;
     color: black;
-    width: 96%;
+    width: 98%;
     margin: 8px 0px 0px 8px;
     padding: 0px;
 
     ion-icon {
-        width:8%;
-        text-align: center;
-        margin: 3% 3%;
+        font-size: 18pt;
+        text-align: left;
     }
 
     ion-badge {
@@ -87,6 +86,10 @@ ion-list-header {
 
     span, ion-badge {
         font-size: 1.6rem;
+    }
+
+    ion-col:nth-of-type(2) {
+        padding-top: 10px;
     }
 
     .button-text {

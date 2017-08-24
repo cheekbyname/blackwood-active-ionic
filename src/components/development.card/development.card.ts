@@ -14,6 +14,6 @@ export class DevelopmentCard {
 	constructor(private domSan: DomSanitizer) {}
 
 	geoLink(dev: Development) {
-		return this.domSan.bypassSecurityTrustUrl(`geo:0,0?=${dev.schemeName}+${dev.postTown}+${dev.postCode}`);
+		return this.domSan.bypassSecurityTrustUrl(`geo:0,0?q=${dev.schemeName}+${dev.postTown}+${dev.postCode}`);
 	}
 }

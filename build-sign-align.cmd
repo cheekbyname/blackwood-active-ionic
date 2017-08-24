@@ -1,5 +1,5 @@
 rem Remember to up android version number in config.xml
-ionic cordova build android --prod
+ionic cordova build android --prod --release
 
 "C:\Program Files (x86)\Java\jdk1.7.0_55\bin\jarsigner" -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore "c:\dev\active\platforms\android\build\outputs\apk\android-release-unsigned.apk" activekey -storepass "Disco2000"
 

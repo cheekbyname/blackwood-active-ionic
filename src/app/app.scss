@@ -23,6 +23,10 @@
 	src: url('/assets/fonts/gothic.ttf') format('truetype');
 }
 
+ion-card {
+	padding: 8px;
+}
+
 ion-card ion-card-content span {
 	font-weight: normal;
 }

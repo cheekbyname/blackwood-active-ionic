@@ -1,5 +1,5 @@
 <ion-card>
-	<ion-card-content>
+	<ion-card-content no-padding>
 		<ion-grid>
 			<ion-row>
 				<ion-col width-80>
@@ -8,7 +8,7 @@
 					{{dev.postCode}}
 				</ion-col>
 				<ion-col width-20>
-					<a [href]="geoLink(dev)">
+					<a [href]="geoLink(dev)" target="_system">
 						<button ion-fab color="tertiary">
 							<ion-icon name="navigate"></ion-icon>
 						</button>
