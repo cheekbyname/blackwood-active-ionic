@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home.page/home.page';
 import { ActivityPage } from '../pages/activity.page/activity.page';
 import { DebugPage } from '../pages/debug.page/debug.page';
 import { SettingsPage } from '../pages/settings.page/settings.page';
+import { TimekeepingPage } from "../pages/timekeeping.page/timekeeping.page";
 
 import { DebugService } from '../services/debug.service';
 
@@ -32,6 +33,7 @@ export class MyApp {
 			this.pages = [
 				{ title: 'Home', component: HomePage, icon: 'home' },
 				{ title: 'Activity', component: ActivityPage, icon: 'pulse' },
+				{ title: 'Timekeeping', component: TimekeepingPage, icon: 'clock' },
 				{ title: 'Debug', component: DebugPage, icon: 'bug' },
 				{ title: 'Settings', component: SettingsPage, icon: 'cog' }
 			];

@@ -39,6 +39,7 @@ import { TenancyListPage } from '../pages/tenancy.list.page/tenancy.list.page';
 import { TenancyMembersPage } from '../pages/tenancy.members.page/tenancy.members.page';
 import { TenancySearchPage } from '../pages/tenancy.search.page/tenancy.search.page';
 import { TilePage } from '../pages/tile.page/tile.page';
+import { TimekeepingPage } from "../pages/timekeeping.page/timekeeping.page";
 
 // Services
 import { Api } from '../services/secret.service';
@@ -56,6 +57,7 @@ import { TenancyService } from '../services/tenancy.service';
 import { UserService } from '../services/user.service';
 import { Sql } from '../services/sql.service';
 import { SearchService } from '../services/search.service';
+import { TimekeepingService } from "../services/timekeeping.service";
 
 // Components
 import { ClientCard } from '../components/client.card/client.card';
@@ -80,7 +82,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, ClientCard, CommCard, DevelopmentCard,
     DevelopmentListPage, FacilityCard, HomeFilterPopover, MemberCard, NewActivityPopover, PropertyCard, SearchBar, TenancyCard,
-    AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe ],
+    AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingPage ],
   imports: [
     SignaturePadModule,
     IonicModule.forRoot(MyApp)
@@ -89,9 +91,9 @@ import { SafeUrlPipe } from "../services/utility.service";
   entryComponents: [ MyApp, ActivityPage, AddDailyNotePage, AssessCheckPage, AssessTabsPage, CareNeedPage, CarePlanPage, CareSummaryPage,
     ClientPage, ClientSearchPage, DailyNotesPage, DebugPage, DevelopmentPage, DevelopmentListPage, DevelopmentTabsPage, FacilityPage,
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
-    TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage ],
+    TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingPage ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite, Storage,
-    Sql, SearchService, Splashscreen, Push, StatusBar, AlertController ]
+    Sql, SearchService, Splashscreen, Push, StatusBar, AlertController, TimekeepingService ]
 })
 export class AppModule {}

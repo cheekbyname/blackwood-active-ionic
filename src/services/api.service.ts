@@ -112,7 +112,7 @@ export class WebApi {
 			duration: 5000
 		});
 		toast.present();
-		console.log(msg);
+		console.error(msg);
 		return Promise.reject(err.message || err);
 	}
 
