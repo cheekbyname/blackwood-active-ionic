@@ -3,8 +3,14 @@
 		<button menuToggle ion-button icon-only>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-		<ion-title>Timekeeping</ion-title>
+		<ion-title>{{utils.dateDesc(selectedDate)}}</ion-title>
 		<ion-buttons end>
+			<button ion-button icon-only (click)="prevDay()">
+				<ion-icon name="arrow-dropleft-circle" color="secondary"></ion-icon>
+			</button>
+			<button ion-button icon-only (click)="nextDay()">
+				<ion-icon name="arrow-dropright-circle" color="secondary"></ion-icon>
+			</button>
 			<button ion-button icon-only>
 				<ion-icon name="calendar" color="secondary"></ion-icon>
 			</button>
@@ -13,10 +19,5 @@
 </ion-header>
 
 <ion-content>
-	<ion-card>
-		<ion-card-header>Today's Visits</ion-card-header>
-		<ion-card-content>
-			<span>Details of all the bookings that the user has for the day in question</span>
-		</ion-card-content>
-	</ion-card>
+	
 </ion-content>

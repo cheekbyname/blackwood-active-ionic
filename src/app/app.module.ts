@@ -58,6 +58,7 @@ import { UserService } from '../services/user.service';
 import { Sql } from '../services/sql.service';
 import { SearchService } from '../services/search.service';
 import { TimekeepingService } from "../services/timekeeping.service";
+import { DateUtils } from "../services/utility.service";
 
 // Components
 import { ClientCard } from '../components/client.card/client.card';
@@ -94,6 +95,6 @@ import { SafeUrlPipe } from "../services/utility.service";
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingPage ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite, Storage,
-    Sql, SearchService, Splashscreen, Push, StatusBar, AlertController, TimekeepingService ]
+    Sql, SearchService, Splashscreen, Push, StatusBar, AlertController, TimekeepingService, DateUtils ]
 })
 export class AppModule {}

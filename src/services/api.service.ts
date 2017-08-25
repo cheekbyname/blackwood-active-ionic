@@ -44,7 +44,7 @@ export class WebApi {
 						return data;
 					}
 					else {
-						this.handleError(err, name);
+						return this.handleError(err, name);
 					}
 				});
 			});
@@ -67,7 +67,7 @@ export class WebApi {
 						return data;
 					}
 					else {
-						this.handleError(err, name);
+						return this.handleError(err, name);
 					}
 				});
 			});
