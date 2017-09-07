@@ -22,12 +22,12 @@
 					<ion-datetime [(ngModel)]="selectedDateTime" displayFormat="DD/MM/YYYY HH:mm"></ion-datetime>
 					<!--[(ngModel)]="dailyNote.noteDate"-->
 				</ion-item>
-				<ion-item>
+				<!-- <ion-item>
 					<ion-label stacked>Select an Outcome</ion-label>
 					<ion-select [(ngModel)]="dailyNote.outcomeGuid">
 						<ion-option *ngFor="let outcome of outcomes" [value]="outcome.outcomeGuid">{{outcome.description}}</ion-option>
 					</ion-select>
-				</ion-item>
+				</ion-item> -->
 				<ion-item>
 					<ion-label stacked>Select a Care Need</ion-label>
 					<ion-select [(ngModel)]="dailyNote.careNeedGuid">

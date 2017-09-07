@@ -37,7 +37,6 @@ export class TimekeepingService {
 		var url = `timekeeping/timesheet?user=${user.accountName}&weekCommencing=${this.utils.sqlDate(weekCommencing)}`;
 		this.apiSrv.getOne(url).then(ts => {
 			this.timesheet$.next(ts);
-			console.log(ts);
 		}).catch((err) => {
 			// This is a guard for promise rejected for error
 		});

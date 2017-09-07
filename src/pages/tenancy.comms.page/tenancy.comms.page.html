@@ -1,21 +1,23 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{view.tenancy.houseDesc}}</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{view.tenancy.houseDesc}}</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content>
-    <property-card [prop]="view.property"></property-card>
-    <comm-card *ngFor="let com of view.comms" [com]="com"></comm-card>
+	<div class="property-card-container">
+		<property-card [prop]="view.property"></property-card>
+	</div>
+	<comm-card *ngFor="let com of view.comms" [com]="com"></comm-card>
 
-    <ion-fab bottom right #fab>
-        <button ion-fab color="secondary"><ion-icon name="pulse"></ion-icon></button>
-        <ion-fab-list side="top">
+	<ion-fab bottom right #fab>
+		<button ion-fab color="secondary"><ion-icon name="pulse"></ion-icon></button>
+		<ion-fab-list side="top">
 			<button ion-fab color="secondary" text-capitalize>
 				<ion-label class="fab-md">Housing Annual Home Visit</ion-label>
 				<ion-icon name="home"></ion-icon>
 			</button>
-        </ion-fab-list>
+		</ion-fab-list>
 	</ion-fab>
 
 </ion-content>

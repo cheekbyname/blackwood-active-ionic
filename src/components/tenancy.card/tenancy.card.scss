@@ -2,3 +2,9 @@
 	width: 380px!important;
 	height: 116px!important;
 }
+
+ion-col {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

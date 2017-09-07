@@ -3,9 +3,9 @@
 		<ion-grid>
 			<ion-row>
 				<ion-col width-80>
-					{{ten.houseDesc}}<br/>
-					{{ten.topAddressLine}}<br/>
-					{{ten.defaultCommsValue}}
+					<span>{{ten.houseDesc}}</span><br/>
+					<span>{{ten.topAddressLine}}</span><br/>
+					<span>{{ten.defaultCommsValue}}</span>
 				</ion-col>
 				<ion-col width-20>
 					<a *ngIf="ten.hasEmail" href="mailto: {{ten.defaultCommsValue}}">

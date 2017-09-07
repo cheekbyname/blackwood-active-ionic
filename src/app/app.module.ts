@@ -61,6 +61,7 @@ import { TimekeepingService } from "../services/timekeeping.service";
 import { DateUtils } from "../services/utility.service";
 
 // Components
+import { BookingCard } from "../components/booking.card/booking.card";
 import { ClientCard } from '../components/client.card/client.card';
 import { CommCard } from '../components/comm.card/comm.card';
 import { DevelopmentCard } from '../components/development.card/development.card';
@@ -83,7 +84,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, ClientCard, CommCard, DevelopmentCard,
     DevelopmentListPage, FacilityCard, HomeFilterPopover, MemberCard, NewActivityPopover, PropertyCard, SearchBar, TenancyCard,
-    AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingPage ],
+    AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingPage, BookingCard ],
   imports: [
     SignaturePadModule,
     IonicModule.forRoot(MyApp)

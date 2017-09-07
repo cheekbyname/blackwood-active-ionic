@@ -19,5 +19,20 @@
 </ion-header>
 
 <ion-content>
-	
+
+	<ion-card *ngIf="!bookings">
+		<ion-card-content>
+			<span>Retrieving data, please wait...</span>
+		</ion-card-content>
+	</ion-card>
+
+	<div *ngFor="let bk of bookings">
+		<booking-card [booking]="bk"></booking-card>
+	</div>
+
+	<!-- <div [virtualScroll]="bookings" class="fliter-list">
+		<div *virtualItem="let booking" class="booking-card-container">
+			<booking-card [booking]="booking"></booking-card>
+		</div>
+	</div> -->
 </ion-content>
