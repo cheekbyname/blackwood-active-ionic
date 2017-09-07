@@ -58,4 +58,18 @@ export class DateUtils {
 	public dateDesc(dt: Date): string {
 		return `${this.dayOf(dt)} ${this.ordOf(dt)} ${this.monthOf(dt)}`;
 	}
+
+	public timeFromDate(dt: string): string {
+        var ndt = new Date(dt);
+        var hr = "0" + ndt.getHours();
+        var mn = "0" + ndt.getMinutes();
+        return hr.substr(hr.length - 2) + ":" + mn.substr(mn.length - 2);
+	}
+	
+	public displayTime(mins: number): string {
+		if (mins < 0) {
+			return Math.ceil(mins/60) + "h " + (mins % 60) + "m";
+		}
+		return Math.floor(mins / 60) + "h " + (mins % 60) + "m";
+	}
 }

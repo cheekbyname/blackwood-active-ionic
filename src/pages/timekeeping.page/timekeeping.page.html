@@ -26,13 +26,33 @@
 		</ion-card-content>
 	</ion-card>
 
-	<div *ngFor="let bk of bookings">
-		<booking-card [booking]="bk"></booking-card>
-	</div>
+	<!-- Card for Daily Totals -->
 
-	<!-- <div [virtualScroll]="bookings" class="fliter-list">
-		<div *virtualItem="let booking" class="booking-card-container">
-			<booking-card [booking]="booking"></booking-card>
-		</div>
-	</div> -->
+	<ion-card *ngIf="today.shifts">
+		<ion-card-content no-padding>
+			<div *ngIf="today.shifts.length == 0">
+				<ion-card-header>
+					<h2>No Shifts for this day</h2>
+				</ion-card-header>
+			</div>
+			<div *ngFor="let shift of today.shifts">
+				<ion-card-header>
+					<ion-row>
+						<ion-col><h2><strong>Shift {{shift.sequence}}</strong></h2></ion-col>
+						<ion-col text-center>
+							<h2><strong>{{utils.timeFromDate(shift.start)}} - {{utils.timeFromDate(shift.finish)}}</strong></h2>
+						</ion-col>
+						<ion-col text-right><h2><strong>{{utils.displayTime(shift.shiftMins)}}</strong></h2></ion-col>
+					</ion-row>
+				</ion-card-header>
+				<ion-list>
+					<button ion-item *ngFor="let bk of shift.bookings" class="list-item-underline"
+						[style.background-color]="bookColor(bk)">
+					<booking-card [booking]="bk"></booking-card>
+				</button>
+				</ion-list>
+			</div>
+		</ion-card-content>
+	</ion-card>
+
 </ion-content>
