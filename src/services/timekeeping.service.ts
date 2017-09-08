@@ -33,12 +33,16 @@ export class TimekeepingService {
 		this.weekCommencing$.next(this.utils.getWeekCommencingFromDate(dt));
 	}
 
-	getTimesheet(user: ActiveUser, weekCommencing: Date) {
+	getTimesheet(user: ActiveUser, weekCommencing: Date): Promise<any> {
 		var url = `timekeeping/timesheet?user=${user.accountName}&weekCommencing=${this.utils.sqlDate(weekCommencing)}`;
-		this.apiSrv.getOne(url).then(ts => {
+		return this.apiSrv.getOne(url).then(ts => {
 			this.timesheet$.next(ts);
 		}).catch((err) => {
 			// This is a guard for promise rejected for error
 		});
+	}
+
+	refresh(): Promise<any> {
+		return this.getTimesheet(this.usrSrv.currentUser, this.weekCommencing$.value);
 	}
 }

@@ -55,6 +55,6 @@ export class TimekeepingPage {
 	}
 	
 	doRefresh(refresher) {
-		setTimeout(x => refresher.complete(), 2000);
+		this.timeSrv.refresh().then(x => refresher.complete());
 	}
 }
