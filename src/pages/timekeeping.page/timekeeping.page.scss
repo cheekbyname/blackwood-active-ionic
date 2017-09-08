@@ -5,3 +5,7 @@ ion-list-header.list-header-md {
 .list-item-underline {
     border-top: 1px solid lightgray;
 }
+
+.has-refresher .scroll-content {
+    border-top: 0 !important;
+}

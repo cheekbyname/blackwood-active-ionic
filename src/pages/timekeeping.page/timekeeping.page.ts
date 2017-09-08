@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
-import { Platform, PopoverController } from "ionic-angular";
+import { Platform, PopoverController, PopoverOptions, FabContainer } from "ionic-angular";
 import { DatePicker } from "ionic-native";
 
+import { AdjustmentPopover } from "../../components/adjustment.popover/adjustment.popover";
 import { DateSelectPopover } from "../../components/dateselect.popover/dateselect.popover";
 
 import { TimekeepingService } from "../../services/timekeeping.service";
@@ -49,6 +50,7 @@ export class TimekeepingPage {
 		this.today.shifts.forEach(shift => {
 			shift.bookings = this.filterByShift(shift, this.timesheet.bookings);
 		});
+		this.today.totalTime = this.today.shifts.map(sh => { return sh.shiftMins }).reduce((acc, cur) => { return acc + cur }, 0);
 	}
 
 	filterByShift(shift: Shift, bookings: CarerBooking[]): CarerBooking[] {
@@ -56,7 +58,7 @@ export class TimekeepingPage {
 	}
 
 	bookColor(bk: CarerBooking) {
-		return bk.forename == undefined ? 'silver' : 'white';
+		return bk.forename == undefined ? 'pink' : 'white';
 	}
 
 	doRefresh(refresher) {
@@ -77,7 +79,9 @@ export class TimekeepingPage {
 		}
 	}
 
-	requestAdjustment() {
-		
+	requestAdjustment(ev, fab: FabContainer) {
+		fab.close();
+		var ap = this.popCtrl.create(AdjustmentPopover, {}, { cssClass: 'adjustment-popover', enableBackdropDismiss: false });
+		ap.present();
 	}
 }
