@@ -1,4 +1,8 @@
 import { Component } from "@angular/core";
+import { Platform, PopoverController } from "ionic-angular";
+import { DatePicker } from "ionic-native";
+
+import { DateSelectPopover } from "../../components/dateselect.popover/dateselect.popover";
 
 import { TimekeepingService } from "../../services/timekeeping.service";
 import { DateUtils } from "../../services/utility.service";
@@ -12,7 +16,8 @@ import { Timesheet } from "../../models/timesheet";
 	templateUrl: 'timekeeping.page.html'
 })
 export class TimekeepingPage {
-	constructor(private timeSrv: TimekeepingService, public utils: DateUtils) {
+	constructor(private timeSrv: TimekeepingService, public utils: DateUtils, private popCtrl: PopoverController,
+		private platform: Platform) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
 			if (ts !== undefined) {
 				this.timesheet = ts;
@@ -51,10 +56,28 @@ export class TimekeepingPage {
 	}
 
 	bookColor(bk: CarerBooking) {
-        return bk.forename == undefined ? 'silver' : 'white';
+		return bk.forename == undefined ? 'silver' : 'white';
 	}
-	
+
 	doRefresh(refresher) {
 		this.timeSrv.refresh().then(x => refresher.complete());
+	}
+
+	showDatePop(ev: any) {
+		if (this.platform.is('cordova')) {
+			DatePicker.show({ date: this.selectedDate, mode: 'date' }).then(dt => {
+				this.selectedDate = dt;
+				this.timeSrv.setDate(this.selectedDate);
+			})
+		} else {
+			var dp = this.popCtrl.create(DateSelectPopover);
+			dp.present({
+				ev: ev
+			});
+		}
+	}
+
+	requestAdjustment() {
+		
 	}
 }

@@ -11,7 +11,7 @@
 			<button ion-button icon-only (click)="nextDay()">
 				<ion-icon name="arrow-dropright-circle" color="secondary"></ion-icon>
 			</button>
-			<button ion-button icon-only>
+			<button ion-button icon-only (click)="showDatePop($event)">
 				<ion-icon name="calendar" color="secondary"></ion-icon>
 			</button>
 		</ion-buttons>
@@ -64,5 +64,19 @@
 			</div>
 		</ion-card-content>
 	</ion-card>
+
+	<ion-fab bottom right #fab>
+		<button ion-fab color="secondary"><ion-icon name="pulse"></ion-icon></button>
+		<ion-fab-list side="top">
+			<!--<button ion-fab color="secondary" text-capitalize>
+					<ion-label class="fab-md">Housing Annual Home Visit</ion-label>
+					<ion-icon name="home"></ion-icon>
+				</button>-->
+			<button ion-fab color="secondary" text-capitalize (click)="requestAdjustment($event, fab)">
+					<ion-label class="fab-md">Request Adjustment to Hours</ion-label>
+					<ion-icon name="add"></ion-icon>
+				</button>
+		</ion-fab-list>
+	</ion-fab>
 
 </ion-content>

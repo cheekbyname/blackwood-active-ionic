@@ -61,4 +61,5 @@
     <plugin name="phonegap-plugin-push" spec="^2.0.0">
         <variable name="SENDER_ID" value="81477035987" />
     </plugin>
+    <plugin name="cordova-plugin-datepicker" spec="^0.9.3" />
 </widget>
