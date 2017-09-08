@@ -39,7 +39,8 @@ export class TimekeepingPage {
 	}
 
 	theDayToday() {
-		this.today.shifts = this.timesheet.shifts.filter(sh => new Date(sh.start).getDate() == this.selectedDate.getDate());
+		this.today.shifts = this.timesheet.shifts.filter(sh =>
+			new Date(sh.start).getDate() == this.selectedDate.getDate());
 		this.today.shifts.forEach(shift => {
 			shift.bookings = this.filterByShift(shift, this.timesheet.bookings);
 		});
@@ -51,5 +52,9 @@ export class TimekeepingPage {
 
 	bookColor(bk: CarerBooking) {
         return bk.forename == undefined ? 'silver' : 'white';
-    }
+	}
+	
+	doRefresh(refresher) {
+		setTimeout(x => refresher.complete(), 2000);
+	}
 }

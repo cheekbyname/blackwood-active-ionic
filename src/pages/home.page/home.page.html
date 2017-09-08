@@ -28,7 +28,7 @@
 
     <ion-card *ngIf="!currentUser">
         <ion-card-content>
-            <p>Checking User Information, please wait...</p>
+            <p><i class="fa fa-cog fa-spin fa-fw"></i> Checking User Information, please wait...</p>
         </ion-card-content>
     </ion-card>
 
@@ -40,6 +40,7 @@
                 </ion-col>
                 <ion-col width-70 class="button-text"><span text-capitalize>Developments</span></ion-col>
                 <ion-col width-20 class="col-right">
+                    <i class="fa fa-cog fa-spin fa-2x" *ngIf="!search.developments()"></i>
                     <ion-badge class="search-badge" *ngIf="search.developments()" color="secondary">{{search.developments().length}}</ion-badge>
                 </ion-col>
             </ion-row>
@@ -54,6 +55,7 @@
                 </ion-col>
                 <ion-col width-70 class="button-text"><span text-capitalize>Tenancies</span></ion-col>
                 <ion-col width-20 class="col-right">
+                    <i class="fa fa-cog fa-spin fa-2x" *ngIf="!search.tenancies()"></i>
                     <ion-badge class="search-badge" *ngIf="search.tenancies()" color="secondary">{{search.tenancies().length}}</ion-badge>
                 </ion-col>
             </ion-row>
@@ -68,6 +70,7 @@
                 </ion-col>
                 <ion-col width-70 class="button-text"><span text-capitalize>Facilities</span></ion-col>
                 <ion-col width-20 class="col-right">
+                    <i class="fa fa-cog fa-spin fa-2x" *ngIf="!search.facilities()"></i>
                     <ion-badge class="search-badge" *ngIf="search.facilities()" color="secondary">{{search.facilities().length}}</ion-badge>
                 </ion-col>
             </ion-row>
@@ -82,6 +85,7 @@
                 </ion-col>
                 <ion-col width-70 class="button-text"><span text-capitalize>Clients</span></ion-col>
                 <ion-col width-20 class="col-right">
+                    <i class="fa fa-cog fa-spin fa-2x" *ngIf="!search.clients()"></i>
                     <ion-badge class="search-badge" *ngIf="search.clients()" color="secondary">{{search.clients().length}}</ion-badge>
                 </ion-col>
             </ion-row>
