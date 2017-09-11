@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Platform, PopoverController, PopoverOptions, FabContainer } from "ionic-angular";
+import { Platform, FabContainer, ModalController, ModalOptions } from "ionic-angular";
 import { DatePicker } from "ionic-native";
 
 import { AdjustmentPopover } from "../../components/adjustment.popover/adjustment.popover";
@@ -17,7 +17,7 @@ import { Timesheet } from "../../models/timesheet";
 	templateUrl: 'timekeeping.page.html'
 })
 export class TimekeepingPage {
-	constructor(private timeSrv: TimekeepingService, public utils: DateUtils, private popCtrl: PopoverController,
+	constructor(private timeSrv: TimekeepingService, public utils: DateUtils, private modCtrl: ModalController,
 		private platform: Platform) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
 			if (ts !== undefined) {
@@ -72,7 +72,7 @@ export class TimekeepingPage {
 				this.timeSrv.setDate(this.selectedDate);
 			})
 		} else {
-			var dp = this.popCtrl.create(DateSelectPopover);
+			var dp = this.modCtrl.create(DateSelectPopover);
 			dp.present({
 				ev: ev
 			});
@@ -81,7 +81,7 @@ export class TimekeepingPage {
 
 	requestAdjustment(ev, fab: FabContainer) {
 		fab.close();
-		var ap = this.popCtrl.create(AdjustmentPopover, {}, { cssClass: 'adjustment-popover', enableBackdropDismiss: false });
+		var ap = this.modCtrl.create(AdjustmentPopover, { selectedDate: this.selectedDate }, {});
 		ap.present();
 	}
 }

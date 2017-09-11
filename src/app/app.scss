@@ -49,7 +49,18 @@ ion-col.col-right {
 	margin-top: 56px;
 }
 
-
-.adjustment-popover .popover-content {
-    width: 90%;
+button span {
+	color: black;
 }
+
+.nav-menu {
+	span {
+		margin-left: 8px;
+	}
+}
+
+// ion-alert {
+// 	button {
+// 		background-color: hotpink!important;
+// 	}
+// }

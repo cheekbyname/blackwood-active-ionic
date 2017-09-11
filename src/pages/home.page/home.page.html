@@ -27,8 +27,8 @@
     <search-bar *ngIf="currentUser" placeholder="Search for people and places..."></search-bar>
 
     <ion-card *ngIf="!currentUser">
-        <ion-card-content>
-            <p><i class="fa fa-cog fa-spin fa-fw"></i> Checking User Information, please wait...</p>
+        <ion-card-content class="wait-head">
+            <h2><i class="fa fa-cog fa-spin fa-fw fa-2x"></i> Checking User Information, please wait...</h2>
         </ion-card-content>
     </ion-card>
 

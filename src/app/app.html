@@ -6,10 +6,10 @@
   </ion-header>
 
   <ion-content>
-    <ion-list>
+    <ion-list class="nav-menu">
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon [name]="p.icon"></ion-icon>
-        {{p.title}}
+        <ion-icon [name]="p.icon" text-left></ion-icon>
+        <span>{{p.title}}</span>
       </button>
     </ion-list>
   </ion-content>
