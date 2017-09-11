@@ -9,4 +9,11 @@ export class Client {
 	admitted: Date;
 	id: number;
 	activeHash: string;
+	address: string;
+	postcode: string;
+	latitude: number;
+	longitude: number;
+	phone: string;
+	mobilePhone: string;
+	emailAddress: string;
 }
