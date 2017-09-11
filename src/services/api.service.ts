@@ -22,9 +22,9 @@ export class WebApi {
 	sql: Storage;
 	status: number = 0;
 	public readonly statusTypes = [
-		{title: "Connected", desc: "Data service is connected and working.", color: "green"},
-		{title: "Disconnected", desc: "Data service is disconnected. Working from local data. Some functions may not be available.", color: "blue"},
-		{title: "Failed", desc: "Data service is disconnected. Local data not available for the requested function.", color: "red"}
+		{ title: "Connected", desc: "Data service is connected and working.", color: "green" },
+		{ title: "Disconnected", desc: "Data service is disconnected. Working from local data. Some functions may not be available.", color: "blue" },
+		{ title: "Failed", desc: "Data service is disconnected. Local data not available for the requested function.", color: "red" }
 	];
 
 	getAll(name: string, api?: string): Promise<any[]> {
@@ -76,8 +76,12 @@ export class WebApi {
 	putOne(name: string, thing: Object): Promise<Response> {
 		var Url = `${this.api.apiBase('api')}/${name}`;
 		console.log(`Calling ${Url}`);
-		return this.http.put(Url, thing).toPromise();
-		// TODO Handle errors please
+		return this.http.put(Url, thing).toPromise()
+			.catch(err => {
+				let msg = `Error occurred calling ${name}: ${err.message || err}`;
+				let toast = this.toastCtrl.create({ message: msg, duration: 5000 });
+				toast.present();
+			});
 		// TODO Update thing so that any persistence key is correctly recorded
 	}
 
@@ -97,7 +101,7 @@ export class WebApi {
 			// return undefined if no data so we don't get error from .json()
 			return undefined;
 		}
-		this.sql.set(name, res.json()).then(f => { console.log(`${name} saved to sqlstorage`)});
+		this.sql.set(name, res.json()).then(f => { console.log(`${name} saved to sqlstorage`) });
 		this.events.publish("DataService.Status", true);
 		return res.json();
 	}

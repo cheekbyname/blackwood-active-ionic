@@ -3,6 +3,8 @@ import { Observable, BehaviorSubject } from "rxjs/Rx";
 import { Timesheet } from "../models/timesheet";
 import { ActiveUser } from "../models/activeuser";
 
+import { Adjustment } from "../models/adjustment";
+
 import { UserService } from "./user.service";
 import { DateUtils } from "./utility.service";
 import { WebApi } from "./api.service";
@@ -44,5 +46,14 @@ export class TimekeepingService {
 
 	refresh(): Promise<any> {
 		return this.getTimesheet(this.usrSrv.currentUser, this.weekCommencing$.value);
+	}
+
+	submitAdjustRequest(adjust: Adjustment): Promise<Adjustment> {
+		let url = `timekeeping/PutTimesheetAdjustment`;
+		return this.apiSrv.putOne(url, adjust).then((res) => {
+			return Promise.resolve(res.json() as Adjustment);
+		}).catch((err) => {
+			// This is a guard for promise rejected for error
+		});
 	}
 }

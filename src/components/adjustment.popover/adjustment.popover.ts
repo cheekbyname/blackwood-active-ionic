@@ -1,14 +1,18 @@
 import { Component } from "@angular/core";
 import { AlertController, ViewController, NavParams } from "ionic-angular";
 
+import { Adjustment } from "../../models/adjustment";
+
 import { DateUtils } from "../../services/utility.service";
+import { TimekeepingService } from "../../services/timekeeping.service";
+import { UserService } from "../../services/user.service";
 
 @Component({
     templateUrl: 'adjustment.popover.html'
 })
 export class AdjustmentPopover {
     constructor(private viewCtrl: ViewController, private params: NavParams, public utils: DateUtils,
-        private alertCtrl: AlertController) {
+        private alertCtrl: AlertController, private timeSrv: TimekeepingService, private usrSrv: UserService) {
         this.selectedDate = this.params.get('selectedDate');
     }
 
@@ -31,8 +35,7 @@ export class AdjustmentPopover {
                 buttons: [{
                     text: 'Ok',
                     handler: () => { }
-                }
-                ]
+                }]
             });
             alert.present();
             return;
@@ -82,6 +85,16 @@ export class AdjustmentPopover {
     }
 
     sendRequest() {
+        let wc = this.utils.getWeekCommencingFromDate(this.selectedDate);
+        let adjust: Adjustment = new Adjustment(0, wc, this.utils.diffDays(wc, this.selectedDate));
+        adjust.reason = this.adjustReason;
+        adjust.hours = this.adjustHours;
+        adjust.mins = this.adjustMins;
+        adjust.requestedBy = this.usrSrv.currentUser.accountName;
+        adjust.requested = new Date();
+
+        this.timeSrv.submitAdjustRequest(adjust);
+        // TODO Toast when saved successfully
         this.viewCtrl.dismiss();
     }
 }

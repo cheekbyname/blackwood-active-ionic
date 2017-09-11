@@ -72,4 +72,8 @@ export class DateUtils {
 		}
 		return Math.floor(mins / 60) + "h " + (mins % 60) + "m";
 	}
+
+	public diffDays(dt1: Date, dt2: Date): number {
+		return Math.round((dt2.getTime() - dt1.getTime()) / (1000 * 60 * 60 *24));
+	}
 }
