@@ -65,7 +65,7 @@
 							<h2><strong>{{utils.timeFromDate(shift.start)}} - {{utils.timeFromDate(shift.finish)}}</strong></h2>
 						</ion-col>
 						<ion-col text-right>
-							<h2><strong>{{utils.displayTime(shift.shiftMins)}}</strong></h2>
+							<h2><strong>{{utils.displayTime(shift.shiftMins - shift.unpaidMins)}}</strong></h2>
 						</ion-col>
 					</ion-row>
 				</ion-card-header>
@@ -75,6 +75,35 @@
 				</button>
 				</ion-list>
 			</div>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card *ngIf="today.adjustments && today.adjustments.length > 0" class="card-margin-bottom">
+		<ion-card-content no-padding>
+			<ion-card-header no-padding>
+				<ion-row>
+					<ion-col>
+						<h2><strong>Adjustments</strong></h2>
+					</ion-col>
+					<ion-col text-right>
+						<h2><strong>{{today.totalAdjust.hours}}h {{today.totalAdjust.mins}}m</strong></h2>
+					</ion-col>
+				</ion-row>
+			</ion-card-header>
+			<ion-list>
+				<button ion-item *ngFor="let adj of today.adjustments" class="list-item-underline">
+					<ion-grid>
+						<ion-row>
+							<ion-col>
+								<span>{{adj.reason}}</span>
+							</ion-col>
+							<ion-col text-right>
+								<span>{{adj.hours}}h {{adj.mins}}m</span>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+				</button>
+			</ion-list>
 		</ion-card-content>
 	</ion-card>
 

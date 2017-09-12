@@ -9,3 +9,8 @@ ion-list-header.list-header-md {
 .has-refresher .scroll-content {
     border-top: 0 !important;
 }
+
+// To allow bottom card to be scrolled up in case fab obscures relevant info
+.card-margin-bottom {
+    margin-bottom: 48px;
+}

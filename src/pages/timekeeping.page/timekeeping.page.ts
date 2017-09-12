@@ -50,7 +50,18 @@ export class TimekeepingPage {
 		this.today.shifts.forEach(shift => {
 			shift.bookings = this.filterByShift(shift, this.timesheet.bookings);
 		});
-		this.today.totalTime = this.today.shifts.map(sh => { return sh.shiftMins }).reduce((acc, cur) => { return acc + cur }, 0);
+		this.today.adjustments = this.timesheet.adjustments.filter(adj => {
+			let dt = new Date(adj.weekCommencing);
+			dt.setDate(dt.getDate() + adj.dayOffset);
+			return dt.getDate() == this.selectedDate.getDate();
+		});
+
+		this.today.totalTime = this.today.shifts.map(sh => { return sh.shiftMins - sh.unpaidMins }).reduce((acc, cur) => { return acc + cur }, 0);
+		if (this.timesheet.adjustments.length > 0) {
+			this.today.totalAdjust = this.today.adjustments.map(adj => { return { hours: adj.hours, mins: adj.mins }; })
+				.reduce((acc, cur: {hours: number, mins: number} ) =>
+					{ return { hours: acc.hours + cur.hours, mins: acc.mins + cur.mins } }, {hours: 0, mins: 0 });
+		}
 	}
 
 	filterByShift(shift: Shift, bookings: CarerBooking[]): CarerBooking[] {
