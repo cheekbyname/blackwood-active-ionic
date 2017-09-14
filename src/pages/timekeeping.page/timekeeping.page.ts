@@ -8,6 +8,7 @@ import { DateSelectPopover } from "../../components/dateselect.popover/dateselec
 import { TimekeepingService } from "../../services/timekeeping.service";
 import { DateUtils } from "../../services/utility.service";
 
+import { Adjustment } from "../../models/adjustment";
 import { CarerBooking } from "../../models/carerbooking";
 import { Shift } from "../../models/shift";
 import { Timesheet } from "../../models/timesheet";
@@ -27,29 +28,34 @@ export class TimekeepingPage {
 		});
 	}
 
-	today: any = {};
+	today: any = undefined;
 	timesheet: Timesheet;
 	bookings: CarerBooking[] = [];
 	selectedDate: Date = new Date(Date.now());
 
 	prevDay() {
+		this.today = undefined;
 		this.selectedDate.setDate(this.selectedDate.getDate() - 1);
 		this.theDayToday();
 		this.timeSrv.setDate(this.selectedDate);
 	}
 
 	nextDay() {
+		this.today = undefined;
 		this.selectedDate.setDate(this.selectedDate.getDate() + 1);
 		this.theDayToday();
 		this.timeSrv.setDate(this.selectedDate);
 	}
 
 	theDayToday() {
+		this.today = {};
 		this.today.shifts = this.timesheet.shifts.filter(sh =>
 			new Date(sh.start).getDate() == this.selectedDate.getDate());
 		this.today.shifts.forEach(shift => {
 			shift.bookings = this.filterByShift(shift, this.timesheet.bookings);
+			shift.visible = false;
 		});
+		this.today.adjustVisible = false;
 		this.today.adjustments = this.timesheet.adjustments.filter(adj => {
 			let dt = new Date(adj.weekCommencing);
 			dt.setDate(dt.getDate() + adj.dayOffset);
@@ -73,6 +79,7 @@ export class TimekeepingPage {
 	}
 
 	doRefresh(refresher) {
+		// TODO Store & Restore component visibility settings
 		this.timeSrv.refresh().then(x => refresher.complete());
 	}
 
@@ -94,5 +101,19 @@ export class TimekeepingPage {
 		fab.close();
 		var ap = this.modCtrl.create(AdjustmentPopover, { selectedDate: this.selectedDate }, {});
 		ap.present();
+	}
+
+	adjStatusColor(adj: Adjustment) {
+		if (adj.rejected) return 'red';
+		if (adj.authorised) return 'green';
+		return 'blue';
+	}
+
+	toggleShift(seq: number) {
+		this.today.shifts[seq - 1].visible = !this.today.shifts[seq - 1].visible;
+	}
+
+	toggleAdjust() {
+		this.today.adjustVisible = !this.today.adjustVisible;
 	}
 }

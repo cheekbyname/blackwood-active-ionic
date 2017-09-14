@@ -27,28 +27,31 @@
 	</ion-refresher>
 
 	<!-- Card for Daily Totals -->
-	<ion-card *ngIf="today.shifts && today.shifts.length > 0">
+	<ion-card *ngIf="today && today.shifts && today.shifts.length > 0" no-padding>
 		<ion-card-content no-padding>
-			<ion-row>
-				<ion-col>
-					<h2><strong>Total Hours for Today</strong></h2>
-				</ion-col>
-				<ion-col text-right>
-					<h2><strong>{{utils.displayTime(today.totalTime)}}</strong></h2>
-				</ion-col>
-			</ion-row>
+			<button ion-item>
+				<ion-row>
+					<ion-col>
+						<h2><strong>Total Hours for Today</strong></h2>
+					</ion-col>
+					<ion-col text-right>
+						<h2><strong>{{utils.displayTime(today.totalTime)}}</strong></h2>
+					</ion-col>
+				</ion-row>
+			</button>
 		</ion-card-content>
 	</ion-card>
 
-	<ion-card *ngIf="!bookings">
+	<ion-card *ngIf="!today">
 		<ion-card-content>
+			<!-- TODO Where's the COG!? -->
 			<span>Retrieving data, please wait...</span>
 		</ion-card-content>
 	</ion-card>
 
 	<!-- Split into Summary and Booking tabs? -->
 
-	<ion-card *ngIf="today.shifts">
+	<ion-card *ngIf="today && today.shifts" no-padding>
 		<ion-card-content no-padding>
 			<div *ngIf="today.shifts.length == 0">
 				<ion-card-header>
@@ -57,19 +60,21 @@
 			</div>
 			<div *ngFor="let shift of today.shifts">
 				<ion-card-header no-padding>
-					<ion-row>
-						<ion-col>
-							<h2><strong>Shift {{shift.sequence}}</strong></h2>
-						</ion-col>
-						<ion-col text-center>
-							<h2><strong>{{utils.timeFromDate(shift.start)}} - {{utils.timeFromDate(shift.finish)}}</strong></h2>
-						</ion-col>
-						<ion-col text-right>
-							<h2><strong>{{utils.displayTime(shift.shiftMins - shift.unpaidMins)}}</strong></h2>
-						</ion-col>
-					</ion-row>
+					<button ion-item (click)="toggleShift(shift.sequence)">
+						<ion-row>
+							<ion-col>
+								<h2><strong>Shift {{shift.sequence}}</strong></h2>
+							</ion-col>
+							<ion-col text-center>
+								<h2><strong>{{utils.timeFromDate(shift.start)}} - {{utils.timeFromDate(shift.finish)}}</strong></h2>
+							</ion-col>
+							<ion-col text-right>
+								<h2><strong>{{utils.displayTime(shift.shiftMins - shift.unpaidMins)}}</strong></h2>
+							</ion-col>
+						</ion-row>
+					</button>
 				</ion-card-header>
-				<ion-list>
+				<ion-list *ngIf="shift.visible">
 					<button ion-item *ngFor="let bk of shift.bookings" class="list-item-underline" [style.background-color]="bookColor(bk)">
 					<booking-card [booking]="bk"></booking-card>
 				</button>
@@ -78,23 +83,31 @@
 		</ion-card-content>
 	</ion-card>
 
-	<ion-card *ngIf="today.adjustments && today.adjustments.length > 0" class="card-margin-bottom">
+	<ion-card *ngIf="today && today.adjustments && today.adjustments.length > 0" class="card-margin-bottom" no-padding>
 		<ion-card-content no-padding>
 			<ion-card-header no-padding>
-				<ion-row>
-					<ion-col>
-						<h2><strong>Adjustments</strong></h2>
-					</ion-col>
-					<ion-col text-right>
-						<h2><strong>{{today.totalAdjust.hours}}h {{today.totalAdjust.mins}}m</strong></h2>
-					</ion-col>
-				</ion-row>
+				<button ion-item (click)="toggleAdjust()">
+					<ion-row>
+						<ion-col>
+							<h2><strong>Adjustments</strong></h2>
+						</ion-col>
+						<ion-col text-right>
+							<h2><strong>{{today.totalAdjust.hours}}h {{today.totalAdjust.mins}}m</strong></h2>
+						</ion-col>
+					</ion-row>
+				</button>
 			</ion-card-header>
-			<ion-list>
+			<ion-list *ngIf="today.adjustVisible">
 				<button ion-item *ngFor="let adj of today.adjustments" class="list-item-underline">
-					<ion-grid>
-						<ion-row>
+					<ion-grid no-padding>
+						<ion-row align-items-center>
 							<ion-col width-80>
+								<span class="fa-stack" [style.color]="adjStatusColor(adj)">
+									<i class="fa fa-circle fa-stack-2x"></i>
+									<i *ngIf="adj.authorised" class="fa fa-check fa-stack-1x fa-inverse"></i>
+									<i *ngIf="adj.rejected" class="fa fa-times fa-stack-1x fa-inverse"></i>
+									<i *ngIf="!adj.authorised && !adj.rejected" class="fa fa-question fa-stack-1x fa-inverse"></i>
+								</span>
 								<span>{{adj.reason}}</span>
 							</ion-col>
 							<ion-col width-20 text-right>
