@@ -15,14 +15,14 @@ export class ActiveUser {
 }
 
 export enum ActiveFunction {
-	Unknown,
+	Unknown = 0,
 	SearchDevelopments,
 	SearchTenancies,
 	SearchFacilities,
 	SearchClients,
 	AnnualHomeVisit,
 	CareInitialAssessment,
-	Timesheet,
+	Timekeeping,
 	Administrator,
 	Debugging
 }

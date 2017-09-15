@@ -32,7 +32,7 @@
         </ion-card-content>
     </ion-card>
 
-    <div ion-button *ngIf="currentUser" (click)="openDevelopmentList()" class="button-header">
+    <div ion-button *ngIf="currentUser && currentUser.isHousingUser" (click)="openDevelopmentList()" class="button-header">
         <ion-grid>
             <ion-row>
                 <ion-col width-10>
@@ -47,7 +47,7 @@
         </ion-grid>
     </div>
 
-    <div ion-button *ngIf="currentUser" (click)="openTenancySearch()" class="button-header">
+    <div ion-button *ngIf="currentUser && currentUser.isHousingUser" (click)="openTenancySearch()" class="button-header">
         <ion-grid>
             <ion-row>
                 <ion-col width-10>
@@ -62,7 +62,7 @@
         </ion-grid>
     </div>
 
-    <div ion-button *ngIf="currentUser" (click)="openFacilitySearch()" class="button-header">
+    <div ion-button *ngIf="currentUser && currentUser.isCareUser" (click)="openFacilitySearch()" class="button-header">
         <ion-grid>
             <ion-row>
                 <ion-col width-10>
@@ -77,7 +77,7 @@
         </ion-grid>
     </div>
 
-    <div ion-button *ngIf="currentUser" (click)="openClientSearch()" class="button-header">
+    <div ion-button *ngIf="currentUser && currentUser.isCareUser" (click)="openClientSearch()" class="button-header">
         <ion-grid>
             <ion-row>
                 <ion-col width-10>

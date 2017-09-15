@@ -1,17 +1,19 @@
 import { Component } from "@angular/core";
-import { Platform, FabContainer, ModalController, ModalOptions } from "ionic-angular";
+import { Platform, FabContainer, ModalController, ModalOptions, NavController } from "ionic-angular";
 import { DatePicker } from "ionic-native";
 
 import { AdjustmentPopover } from "../../components/adjustment.popover/adjustment.popover";
 import { DateSelectPopover } from "../../components/dateselect.popover/dateselect.popover";
 
 import { TimekeepingService } from "../../services/timekeeping.service";
+import { UserService } from "../../services/user.service";
 import { DateUtils } from "../../services/utility.service";
 
 import { Adjustment } from "../../models/adjustment";
 import { CarerBooking } from "../../models/carerbooking";
 import { Shift } from "../../models/shift";
 import { Timesheet } from "../../models/timesheet";
+import { ActiveFunction } from "../../models/activeuser";
 
 @Component({
 	selector: 'timekeeping-page',
@@ -19,13 +21,17 @@ import { Timesheet } from "../../models/timesheet";
 })
 export class TimekeepingPage {
 	constructor(private timeSrv: TimekeepingService, public utils: DateUtils, private modCtrl: ModalController,
-		private platform: Platform) {
+		private navCtrl: NavController, private platform: Platform, private usrSrv: UserService) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
 			if (ts !== undefined) {
 				this.timesheet = ts;
-				this.theDayToday();
+				this.displayToday();
 			}
 		});
+	}
+
+	ionViewCanEnter(): boolean {
+		return this.usrSrv.currentUser.validFunctions.some(fn => fn == ActiveFunction.Timekeeping);
 	}
 
 	today: any = undefined;
@@ -36,18 +42,18 @@ export class TimekeepingPage {
 	prevDay() {
 		this.today = undefined;
 		this.selectedDate.setDate(this.selectedDate.getDate() - 1);
-		this.theDayToday();
+		this.displayToday();
 		this.timeSrv.setDate(this.selectedDate);
 	}
 
 	nextDay() {
 		this.today = undefined;
 		this.selectedDate.setDate(this.selectedDate.getDate() + 1);
-		this.theDayToday();
+		this.displayToday();
 		this.timeSrv.setDate(this.selectedDate);
 	}
 
-	theDayToday() {
+	displayToday() {
 		this.today = {};
 		this.today.shifts = this.timesheet.shifts.filter(sh =>
 			new Date(sh.start).getDate() == this.selectedDate.getDate());
@@ -86,8 +92,10 @@ export class TimekeepingPage {
 	showDatePop(ev: any) {
 		if (this.platform.is('cordova')) {
 			DatePicker.show({ date: this.selectedDate, mode: 'date' }).then(dt => {
+				this.today = undefined;
 				this.selectedDate = dt;
 				this.timeSrv.setDate(this.selectedDate);
+				this.displayToday();
 			})
 		} else {
 			var dp = this.modCtrl.create(DateSelectPopover);

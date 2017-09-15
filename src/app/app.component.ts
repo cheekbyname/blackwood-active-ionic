@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Platform, Nav, AlertController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { Push, PushObject, PushOptions } from "@ionic-native/push";
 
@@ -22,7 +22,7 @@ export class MyApp {
 
 
 	constructor(public platform: Platform, public debug: DebugService, public push: Push, public splash: Splashscreen,
-		public status: StatusBar) {
+		public status: StatusBar, private alert: AlertController) {
 		platform.ready().then(() => {
 			// Okay, so the platform is ready and our plugins are available.
 			// Here you can do any higher level native things you might need.
@@ -34,7 +34,7 @@ export class MyApp {
 				{ title: 'Home', component: HomePage, icon: 'home' },
 				{ title: 'Activity', component: ActivityPage, icon: 'pulse' },
 				{ title: 'Timekeeping', component: TimekeepingPage, icon: 'clock' },
-				{ title: 'Debug', component: DebugPage, icon: 'bug' },
+				// { title: 'Debug', component: DebugPage, icon: 'bug' },
 				{ title: 'Settings', component: SettingsPage, icon: 'cog' }
 			];
 		});
@@ -67,6 +67,15 @@ export class MyApp {
 	};
 
 	openPage(page) {
-		this.nav.setRoot(page.component);
+		this.nav.setRoot(page.component).catch(err => {
+			let soz = this.alert.create({
+				title: "Sorry!",
+				message: "You are not authorised for this function. If you think you should be, please contact your Team Leader or Business Solutions.",
+				buttons: [{
+					text: "Ok", handler: () => { }
+				}]
+			});
+			soz.present();
+		});
 	}
 }

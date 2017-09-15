@@ -9,7 +9,7 @@ import { UserService } from '../../services/user.service';
 import { SearchService } from '../../services/search.service';
 
 // Models
-import { ActiveUser } from '../../models/activeuser';
+import { ActiveUser, ActiveFunction } from '../../models/activeuser';
 
 // Components
 import { DevelopmentListPage } from '../development.list.page/development.list.page';
