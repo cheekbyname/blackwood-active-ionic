@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Platform, FabContainer, ModalController, ModalOptions, NavController } from "ionic-angular";
+import { Platform, FabContainer, ModalController, ModalOptions, NavController, AlertController } from "ionic-angular";
 import { DatePicker } from "ionic-native";
 
 import { AdjustmentPopover } from "../../components/adjustment.popover/adjustment.popover";
@@ -21,7 +21,7 @@ import { ActiveFunction } from "../../models/activeuser";
 })
 export class TimekeepingPage {
 	constructor(private timeSrv: TimekeepingService, public utils: DateUtils, private modCtrl: ModalController,
-		private navCtrl: NavController, private platform: Platform, private usrSrv: UserService) {
+		private navCtrl: NavController, private platform: Platform, private usrSrv: UserService, private alert: AlertController) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
 			if (ts !== undefined) {
 				this.timesheet = ts;
@@ -68,11 +68,13 @@ export class TimekeepingPage {
 			return dt.getDate() == this.selectedDate.getDate();
 		});
 
-		this.today.totalTime = this.today.shifts.map(sh => { return sh.shiftMins - sh.unpaidMins }).reduce((acc, cur) => { return acc + cur }, 0);
+		this.today.totalTime = this.today.shifts.map(sh => { return sh.shiftMins - sh.unpaidMins })
+			.reduce((acc, cur) => { return acc + cur }, 0);
 		if (this.timesheet.adjustments.length > 0) {
-			this.today.totalAdjust = this.today.adjustments.map(adj => { return { hours: adj.hours, mins: adj.mins }; })
-				.reduce((acc, cur: {hours: number, mins: number} ) =>
-					{ return { hours: acc.hours + cur.hours, mins: acc.mins + cur.mins } }, {hours: 0, mins: 0 });
+			let totalAdjustMins = this.today.adjustments.map(adj => { return (adj.hours * 60) + adj.mins; })
+				.reduce((acc, cur) => { return acc + cur }, 0);
+			this.today.totalAdjust = { hours: Math.floor(totalAdjustMins / 60), mins: totalAdjustMins % 60 }
+			this.today.totalTime += totalAdjustMins;
 		}
 	}
 
@@ -113,7 +115,16 @@ export class TimekeepingPage {
 
 	openAdjust(adj: Adjustment) {
 		let ap = this.modCtrl.create(AdjustmentPopover, { selectedAdjust: adj });
-		ap.present();
+		ap.present().catch(err => {
+			let soz = this.alert.create({
+				title: "Sorry!",
+				message: `This adjustment has already been ${adj.authorised == null ? 'rejected' : 'approved'}. If you believe this is incorrect, please contact your Team Leader.`,
+				buttons: [{
+					text: "Ok", handler: () => { }
+				}]
+			});
+			soz.present();
+		});
 	}
 
 	adjStatusColor(adj: Adjustment) {

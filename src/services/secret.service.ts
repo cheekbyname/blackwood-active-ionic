@@ -8,7 +8,8 @@ export class Auth {
 
 export class Api {
     // Development
-    // coreUrl: string = "https://mbhof754.m-blackwood.mbha.org.uk:44357/api";
+    // coreUrl: string = "https://mbhof754.m-blackwood.mbha.org.uk:44341/api";
+
     // Test
     //coreUrl: string = "https://hof-iss-alexc.m-blackwood.mbha.org.uk/api";
     // Live

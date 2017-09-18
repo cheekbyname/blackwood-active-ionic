@@ -18,6 +18,7 @@ export class AdjustmentPopover {
         this.isEditing = (this.adjust !== undefined);
         if (this.isEditing) {
             this.adjust.weekCommencing = new Date(this.adjust.weekCommencing);
+            this.adjust.weekCommencing.setHours(1);
             this.selectedDate = this.utils.adjustDate(this.adjust.weekCommencing, this.adjust.dayOffset);
         } else {
             this.selectedDate = this.params.get('selectedDate');
@@ -27,6 +28,11 @@ export class AdjustmentPopover {
             this.adjust.requested = new Date();
         }
     }
+
+    // TODO Perform a check on ionViewWillEnter to prevent modification of accepted/rejected adjustments
+	ionViewCanEnter(): boolean {
+		return (this.adjust.authorised == null) && (this.adjust.rejected == null);
+	}
 
     adjust: Adjustment;
     selectedDate: Date;
