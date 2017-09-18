@@ -16,10 +16,10 @@ import { Timesheet } from "../../models/timesheet";
 import { ActiveFunction } from "../../models/activeuser";
 
 @Component({
-	selector: 'timekeeping-page',
-	templateUrl: 'timekeeping.page.html'
+	selector: 'timekeeping-daily-page',
+	templateUrl: 'timekeeping.daily.page.html'
 })
-export class TimekeepingPage {
+export class TimekeepingDailyPage {
 	constructor(private timeSrv: TimekeepingService, public utils: DateUtils, private modCtrl: ModalController,
 		private navCtrl: NavController, private platform: Platform, private usrSrv: UserService, private alert: AlertController) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
@@ -67,7 +67,6 @@ export class TimekeepingPage {
 			dt.setDate(dt.getDate() + adj.dayOffset);
 			return dt.getDate() == this.selectedDate.getDate();
 		});
-
 		this.today.totalTime = this.today.shifts.map(sh => { return sh.shiftMins - sh.unpaidMins })
 			.reduce((acc, cur) => { return acc + cur }, 0);
 		if (this.timesheet.adjustments.length > 0) {

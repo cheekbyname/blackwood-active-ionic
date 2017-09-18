@@ -16,11 +16,22 @@ export class UserService {
 			})
 			.filter(user => user !== undefined);
 		this.userObserver.subscribe(user => console.warn("User authenticated as " + user.accountName));
+		this.userKeyObserver = Observable.combineLatest(this.userObserver, this.pushKeyObserver, (x, y) =>
+			{ return { user: x, key: y}});
+		this.userKeyObserver.subscribe((x) => {
+			this.registerPushKey(x.user, x.key);
+		});
 	}
 
 	userSource$: BehaviorSubject<ActiveUser> = new BehaviorSubject<ActiveUser>(undefined);
 	userObserver: Observable<ActiveUser>;
 	currentUser: ActiveUser;
+	pushKey$: BehaviorSubject<string> = new BehaviorSubject<string>(undefined);
+	pushKeyObserver: Observable<string> = this.pushKey$.asObservable().distinctUntilChanged((a, b) => {
+		if (a == undefined || b == undefined) return false;
+		return a == b;
+	});
+	userKeyObserver: Observable<{user: ActiveUser, key: string}>;
 
 	getCurrentUser(): ActiveUser {
 		if (this.currentUser) {
@@ -42,5 +53,13 @@ export class UserService {
 			.then(u => {
 				return u as CareSysUser
 			});
+	}
+
+	pushKey(key: string) {
+		this.pushKey$.next(key);
+	}
+
+	registerPushKey(user: ActiveUser, key: string) {
+
 	}
 }

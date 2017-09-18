@@ -7,9 +7,10 @@ import { HomePage } from '../pages/home.page/home.page';
 import { ActivityPage } from '../pages/activity.page/activity.page';
 import { DebugPage } from '../pages/debug.page/debug.page';
 import { SettingsPage } from '../pages/settings.page/settings.page';
-import { TimekeepingPage } from "../pages/timekeeping.page/timekeeping.page";
+import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
 
 import { DebugService } from '../services/debug.service';
+import { UserService } from "../services/user.service";
 
 @Component({
 	templateUrl: 'app.html'
@@ -22,7 +23,7 @@ export class MyApp {
 
 
 	constructor(public platform: Platform, public debug: DebugService, public push: Push, public splash: Splashscreen,
-		public status: StatusBar, private alert: AlertController) {
+		public status: StatusBar, private alert: AlertController, private usrSrv: UserService) {
 		platform.ready().then(() => {
 			// Okay, so the platform is ready and our plugins are available.
 			// Here you can do any higher level native things you might need.
@@ -33,7 +34,7 @@ export class MyApp {
 			this.pages = [
 				{ title: 'Home', component: HomePage, icon: 'home' },
 				{ title: 'Activity', component: ActivityPage, icon: 'pulse' },
-				{ title: 'Timekeeping', component: TimekeepingPage, icon: 'clock' },
+				{ title: 'Timekeeping', component: TimekeepingDailyPage, icon: 'clock' },
 				// { title: 'Debug', component: DebugPage, icon: 'bug' },
 				{ title: 'Settings', component: SettingsPage, icon: 'cog' }
 			];

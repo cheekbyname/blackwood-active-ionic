@@ -39,7 +39,7 @@ import { TenancyListPage } from '../pages/tenancy.list.page/tenancy.list.page';
 import { TenancyMembersPage } from '../pages/tenancy.members.page/tenancy.members.page';
 import { TenancySearchPage } from '../pages/tenancy.search.page/tenancy.search.page';
 import { TilePage } from '../pages/tile.page/tile.page';
-import { TimekeepingPage } from "../pages/timekeeping.page/timekeeping.page";
+import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
 
 // Services
 import { Api } from '../services/secret.service';
@@ -86,7 +86,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, ClientCard, CommCard, DevelopmentCard,
     DevelopmentListPage, FacilityCard, HomeFilterPopover, MemberCard, NewActivityPopover, PropertyCard, SearchBar, TenancyCard,
-    AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingPage, BookingCard, DateSelectPopover, AdjustmentPopover ],
+    AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingDailyPage, BookingCard, DateSelectPopover, AdjustmentPopover ],
   imports: [
     SignaturePadModule,
     IonicModule.forRoot(MyApp)
@@ -95,7 +95,7 @@ import { SafeUrlPipe } from "../services/utility.service";
   entryComponents: [ MyApp, ActivityPage, AddDailyNotePage, AssessCheckPage, AssessTabsPage, CareNeedPage, CarePlanPage, CareSummaryPage,
     ClientPage, ClientSearchPage, DailyNotesPage, DebugPage, DevelopmentPage, DevelopmentListPage, DevelopmentTabsPage, FacilityPage,
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
-    TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingPage, DateSelectPopover,
+    TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingDailyPage, DateSelectPopover,
     AdjustmentPopover ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite, Storage,
