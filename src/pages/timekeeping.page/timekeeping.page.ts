@@ -105,9 +105,14 @@ export class TimekeepingPage {
 		}
 	}
 
-	requestAdjustment(ev, fab: FabContainer) {
+	newAdjust(ev, fab: FabContainer) {
 		fab.close();
-		var ap = this.modCtrl.create(AdjustmentPopover, { selectedDate: this.selectedDate }, {});
+		let ap = this.modCtrl.create(AdjustmentPopover, { selectedDate: this.selectedDate }, {});
+		ap.present();
+	}
+
+	openAdjust(adj: Adjustment) {
+		let ap = this.modCtrl.create(AdjustmentPopover, { selectedAdjust: adj });
 		ap.present();
 	}
 

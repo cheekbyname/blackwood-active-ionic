@@ -98,7 +98,7 @@
 				</button>
 			</ion-card-header>
 			<ion-list *ngIf="today.adjustVisible">
-				<button ion-item *ngFor="let adj of today.adjustments" class="list-item-underline">
+				<button ion-item *ngFor="let adj of today.adjustments" class="list-item-underline" (click)="openAdjust(adj)">
 					<ion-grid no-padding>
 						<ion-row align-items-center>
 							<ion-col width-80>
@@ -127,7 +127,7 @@
 					<ion-label class="fab-md">Housing Annual Home Visit</ion-label>
 					<ion-icon name="home"></ion-icon>
 				</button>-->
-			<button ion-fab color="secondary" text-capitalize (click)="requestAdjustment($event, fab)">
+			<button ion-fab color="secondary" text-capitalize (click)="newAdjust($event, fab)">
 					<ion-label class="fab-md">Request Adjustment to Hours</ion-label>
 					<ion-icon name="add"></ion-icon>
 				</button>

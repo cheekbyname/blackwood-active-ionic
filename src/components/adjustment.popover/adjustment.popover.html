@@ -16,16 +16,16 @@
         </ion-card-header>
         <ion-card-content>
             <ion-label stacked>Reason for Adjustment</ion-label>
-            <ion-textarea rows="5" [(ngModel)]="adjustReason"></ion-textarea>
+            <ion-textarea rows="5" [(ngModel)]="adjust.reason"></ion-textarea>
             <ion-row class="slider-label">
                 <ion-col>
                     <ion-label>Hours</ion-label>
                 </ion-col>
                 <ion-col text-right>
-                    <ion-badge class="search-badge">{{adjustHours}}</ion-badge>
+                    <ion-badge class="search-badge">{{adjust.hours}}</ion-badge>
                 </ion-col>
             </ion-row>
-            <ion-range [(ngModel)]="adjustHours" [min]="-8" [max]="8" [step]="1" [snaps]="true">
+            <ion-range [(ngModel)]="adjust.hours" [min]="-8" [max]="8" [step]="1" [snaps]="true">
                 <ion-label range-left>-8</ion-label>
                 <ion-label range-right>8</ion-label>
             </ion-range>
@@ -34,10 +34,10 @@
                     <ion-label>Minutes</ion-label>
                 </ion-col>
                 <ion-col text-right>
-                    <ion-badge class="search-badge">{{adjustMins}}</ion-badge>
+                    <ion-badge class="search-badge">{{adjust.mins}}</ion-badge>
                 </ion-col>
             </ion-row>
-            <ion-range [(ngModel)]="adjustMins" [min]="-55" [max]="55" [step]="5" [snaps]="true">
+            <ion-range [(ngModel)]="adjust.mins" [min]="-55" [max]="55" [step]="5" [snaps]="true">
                 <ion-label range-left>-55</ion-label>
                 <ion-label range-right>55</ion-label>
             </ion-range>
