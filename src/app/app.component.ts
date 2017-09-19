@@ -51,11 +51,11 @@ export class MyApp {
 				this.usrSrv.pushKey(data);
 			});
 
-			this.fcm.onNotification().subscribe(note => {
-				if (!note.wasTapped) {
+			this.fcm.onNotification().subscribe((data: any) => {
+				if (!data.wasTapped) {
 					let notify = this.alert.create({
-						title: 'Notification',
-						message: JSON.stringify(note),
+						title: data.title,
+						message: data.body,
 						buttons: [{
 							text: 'Ok', handler: () => { }
 						}]

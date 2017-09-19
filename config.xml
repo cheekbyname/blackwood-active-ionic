@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="20" id="uk.org.blackwood.active_beta" version="0.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="22" id="uk.org.blackwood.active_beta" version="0.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Blackwood Active</name>
     <description>Mobile solution for Blackwood Staff</description>
     <author email="alexc@blackwoodgroup.org.uk" href="http://blackwoodgroup.org.uk">Blackwood Business Solutions</author>
