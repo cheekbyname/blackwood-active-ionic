@@ -60,6 +60,6 @@ export class UserService {
 	}
 
 	registerPushKey(user: ActiveUser, key: string) {
-
+		if (key != undefined) this.api.putOne('user/PutPushKey', { user: user, key: key });
 	}
 }
