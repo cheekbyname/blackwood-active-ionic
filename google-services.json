@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "81477035987",
+    "firebase_url": "https://blackwood-active.firebaseio.com",
+    "project_id": "blackwood-active",
+    "storage_bucket": "blackwood-active.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81477035987:android:e90daa93c33ff090",
+        "android_client_info": {
+          "package_name": "uk.org.blackwood.active_beta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81477035987-l6t5eculna2s82ivupl93vrn6vl7lf37.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwRYYxE9U9CUwjMY5iG16QqKzxhI0riUI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

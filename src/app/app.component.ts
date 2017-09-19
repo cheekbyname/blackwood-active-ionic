@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, AlertController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-import { Push, PushObject, PushOptions } from "@ionic-native/push";
+import { FCM } from "@ionic-native/fcm";
 
 import { HomePage } from '../pages/home.page/home.page';
 import { ActivityPage } from '../pages/activity.page/activity.page';
-import { DebugPage } from '../pages/debug.page/debug.page';
+//import { DebugPage } from '../pages/debug.page/debug.page';
 import { SettingsPage } from '../pages/settings.page/settings.page';
 import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
 
@@ -22,15 +22,15 @@ export class MyApp {
 	pages: Array<{ title: string, component: any, icon: string }>;
 
 
-	constructor(public platform: Platform, public debug: DebugService, public push: Push, public splash: Splashscreen,
+	constructor(public platform: Platform, public debug: DebugService, public fcm: FCM, public splash: Splashscreen,
 		public status: StatusBar, private alert: AlertController, private usrSrv: UserService) {
 		platform.ready().then(() => {
 			// Okay, so the platform is ready and our plugins are available.
 			// Here you can do any higher level native things you might need.
 			StatusBar.styleDefault();
 			Splashscreen.hide();
+			this.initFCM();
 			this.debug.log("Application initializing");
-			this.initPushNotifications();
 			this.pages = [
 				{ title: 'Home', component: HomePage, icon: 'home' },
 				{ title: 'Activity', component: ActivityPage, icon: 'pulse' },
@@ -41,30 +41,31 @@ export class MyApp {
 		});
 	}
 
-	initPushNotifications() {
-		if (!this.platform.is('cordova')) {
-			console.warn('Push notifications not initialized. Cordova is not available - Run in physical device');
-			return;
+	initFCM() {
+		if (this.platform.is('cordova')) {
+			this.fcm.getToken().then((data: any) => {
+				this.usrSrv.pushKey(data);
+			});
+
+			this.fcm.onTokenRefresh().subscribe(data => {
+				this.usrSrv.pushKey(data);
+			});
+
+			this.fcm.onNotification().subscribe(note => {
+				if (!note.wasTapped) {
+					let notify = this.alert.create({
+						title: 'Notification',
+						message: JSON.stringify(note),
+						buttons: [{
+							text: 'Ok', handler: () => { }
+						}]
+					});
+					notify.present();
+				}
+			});
+		} else {
+			console.warn('Push notifications not initialised: Cordova not available. Please run in physical device.');
 		}
-		const options: PushOptions = {
-			android: {
-				senderID: ''
-			},
-			ios: {},
-			windows: {
-			}
-		};
-		const pushObject: PushObject = this.push.init(options);
-
-		pushObject.on('registration').subscribe(data => {
-			console.log('device token -> ' + data.registrationId);
-		});
-
-		pushObject.on('notification').subscribe(data => {
-			console.log('Message -> ' + data.message);
-		});
-
-		pushObject.on('error').subscribe(error => console.error('Error in Push Plugin -> ' + error));
 	};
 
 	openPage(page) {

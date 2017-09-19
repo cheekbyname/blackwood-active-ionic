@@ -4,7 +4,7 @@ import { AlertController, IonicApp, IonicModule, IonicErrorHandler } from 'ionic
 import { Storage } from '@ionic/storage';
 import { SQLite, Splashscreen, StatusBar } from 'ionic-native';
 import { SignaturePadModule } from 'angular2-signaturepad';
-import { Push } from "@ionic-native/push";
+import { FCM } from "@ionic-native/fcm";
 
 // App
 import { MyApp } from './app.component';
@@ -99,6 +99,6 @@ import { SafeUrlPipe } from "../services/utility.service";
     AdjustmentPopover ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite, Storage,
-    Sql, SearchService, Splashscreen, Push, StatusBar, AlertController, TimekeepingService, DateUtils ]
+    Sql, SearchService, Splashscreen, FCM, StatusBar, AlertController, TimekeepingService, DateUtils ]
 })
 export class AppModule {}
