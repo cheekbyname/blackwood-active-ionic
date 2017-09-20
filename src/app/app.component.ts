@@ -3,13 +3,12 @@ import { Platform, Nav, AlertController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { FCM } from "@ionic-native/fcm";
 
-import { HomePage } from '../pages/home.page/home.page';
 import { ActivityPage } from '../pages/activity.page/activity.page';
-//import { DebugPage } from '../pages/debug.page/debug.page';
+import { HomePage } from '../pages/home.page/home.page';
 import { SettingsPage } from '../pages/settings.page/settings.page';
 import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
 
-import { DebugService } from '../services/debug.service';
+import { NotificationService } from "../services/notification.service";
 import { UserService } from "../services/user.service";
 
 @Component({
@@ -22,7 +21,7 @@ export class MyApp {
 	pages: Array<{ title: string, component: any, icon: string }>;
 
 
-	constructor(public platform: Platform, public debug: DebugService, public fcm: FCM, public splash: Splashscreen,
+	constructor(public platform: Platform, public fcm: FCM, public splash: Splashscreen, private noteSrv: NotificationService,
 		public status: StatusBar, private alert: AlertController, private usrSrv: UserService) {
 		platform.ready().then(() => {
 			// Okay, so the platform is ready and our plugins are available.
@@ -30,12 +29,10 @@ export class MyApp {
 			StatusBar.styleDefault();
 			Splashscreen.hide();
 			this.initFCM();
-			this.debug.log("Application initializing");
 			this.pages = [
 				{ title: 'Home', component: HomePage, icon: 'home' },
 				{ title: 'Activity', component: ActivityPage, icon: 'pulse' },
 				{ title: 'Timekeeping', component: TimekeepingDailyPage, icon: 'clock' },
-				// { title: 'Debug', component: DebugPage, icon: 'bug' },
 				{ title: 'Settings', component: SettingsPage, icon: 'cog' }
 			];
 		});
@@ -52,17 +49,9 @@ export class MyApp {
 			});
 
 			this.fcm.onNotification().subscribe((data: any) => {
-				if (!data.wasTapped) {
-					let notify = this.alert.create({
-						title: data.title,
-						message: data.body,
-						buttons: [{
-							text: 'Ok', handler: () => { }
-						}]
-					});
-					notify.present();
-				}
+				this.noteSrv.handleIncomingNotification(data);
 			});
+
 		} else {
 			console.warn('Push notifications not initialised: Cordova not available. Please run in physical device.');
 		}

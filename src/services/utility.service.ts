@@ -77,7 +77,7 @@ export class DateUtils {
 	}
 
 	public adjustDate(adjDate: Date, offset: number): Date {
-		let dt: Date = adjDate;
+		let dt: Date = new Date(adjDate);
 		dt.setDate(dt.getDate() + offset);
 		return dt;
 	}

@@ -19,7 +19,6 @@ import { CarePlanPage } from '../pages/careplan.page/careplan.page';
 import { CareSummaryPage } from '../pages/caresummary.page/caresummary.page';
 import { ClientPage } from '../pages/client.page/client.page';
 import { ClientSearchPage } from '../pages/client.search.page/client.search.page';
-import { } from '../pages/clientdetails.page/clientdetails.page';
 import { DailyNotesPage } from '../pages/dailynotes.page/dailynotes.page';
 import { DebugPage } from '../pages/debug.page/debug.page';
 import { DevelopmentListPage } from '../pages/development.list.page/development.list.page';
@@ -33,32 +32,33 @@ import { InitialAssessPage } from '../pages/initialassess.page/initialassess.pag
 import { PropertyListPage } from '../pages/property.list.page/property.list.page';
 import { PropertyPage } from '../pages/property.page/property.page';
 import { SettingsPage } from '../pages/settings.page/settings.page';
-import { TenancyTabsPage } from '../pages/tenancy.tabs.page/tenancy.tabs.page';
 import { TenancyCommsPage } from '../pages/tenancy.comms.page/tenancy.comms.page';
 import { TenancyListPage } from '../pages/tenancy.list.page/tenancy.list.page';
 import { TenancyMembersPage } from '../pages/tenancy.members.page/tenancy.members.page';
 import { TenancySearchPage } from '../pages/tenancy.search.page/tenancy.search.page';
+import { TenancyTabsPage } from '../pages/tenancy.tabs.page/tenancy.tabs.page';
 import { TilePage } from '../pages/tile.page/tile.page';
 import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
 
 // Services
 import { Api } from '../services/secret.service';
-import { WebApi } from '../services/api.service';
+import { Auth } from '../services/secret.service';
 import { CareActivityService } from '../services/care.activity.service';
 import { ClientService } from '../services/client.service';
 import { CommService } from '../services/comm.service';
+import { DateUtils } from "../services/utility.service";
 import { DebugService} from '../services/debug.service';
 import { DevelopmentService } from '../services/development.service';
 import { FacilityService } from '../services/facility.service';
 import { MemberService } from '../services/member.service';
+import { NotificationService } from "../services/notification.service";
 import { PropertyService } from '../services/property.service';
-import { Auth } from '../services/secret.service';
-import { TenancyService } from '../services/tenancy.service';
-import { UserService } from '../services/user.service';
-import { Sql } from '../services/sql.service';
 import { SearchService } from '../services/search.service';
+import { Sql } from '../services/sql.service';
+import { TenancyService } from '../services/tenancy.service';
 import { TimekeepingService } from "../services/timekeeping.service";
-import { DateUtils } from "../services/utility.service";
+import { UserService } from '../services/user.service';
+import { WebApi } from '../services/api.service';
 
 // Components
 import { AdjustmentPopover } from "../components/adjustment.popover/adjustment.popover";
@@ -98,7 +98,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingDailyPage, DateSelectPopover,
     AdjustmentPopover ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
-    DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite, Storage,
-    Sql, SearchService, Splashscreen, FCM, StatusBar, AlertController, TimekeepingService, DateUtils ]
+    DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite,
+    Storage, Sql, SearchService, Splashscreen, FCM, StatusBar, AlertController, TimekeepingService, DateUtils, NotificationService ]
 })
 export class AppModule {}

@@ -12,8 +12,8 @@ export class Api {
 
     // Test
     //coreUrl: string = "https://hof-iss-alexc.m-blackwood.mbha.org.uk/api";
+
     // Live
-    //coreUrl: string = "https://hof-iis-live-01.m-blackwood.mbha.org.uk/api";
     coreUrl: string = "https://active.blackwoodgroup.org.uk/api";
 
     public apiBase(api: string): string {
