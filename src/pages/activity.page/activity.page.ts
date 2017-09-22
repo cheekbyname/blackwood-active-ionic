@@ -25,7 +25,7 @@ export class ActivityPage implements OnInit {
     showMessages: boolean = false;
 
     constructor(public navCtrl: NavController, public actSrv: CareActivityService, public notSrv: NotificationService) {
-        this.notSrv.pushMessageObserver.subscribe(msgs => this.messages = msgs);
+        this.notSrv.pushMessageObserver.subscribe(msgs => this.messages = msgs.reverse());
     }
 
     ngOnInit() {
