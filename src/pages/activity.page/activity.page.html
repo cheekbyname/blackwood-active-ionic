@@ -1,35 +1,73 @@
 <ion-header>
-  <ion-navbar>
-    <button menuToggle ion-button icon-only>
+	<ion-navbar>
+		<button menuToggle ion-button icon-only>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Your Activity</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only>
+		<ion-title>Your Activity</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only>
         <ion-icon name="calendar" color="secondary"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+		</ion-buttons>
+	</ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="crescent" refreshingText="Refreshing...">
-    </ion-refresher-content>
-  </ion-refresher>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="crescent" refreshingText="Refreshing...">
+		</ion-refresher-content>
+	</ion-refresher>
 
-  <ion-card>
-    <ion-card-header>Care Assessments</ion-card-header>
-    <ion-card-content no-margin no-padding>
-      <ion-list>
-        <button ion-item *ngFor="let assess of assessments" text-wrap (click)="openCareInitialAssessment(assess)">
-          <h2>{{assess.name}}</h2>
-          <p>{{dateOf(assess)}}</p>
-          <p>{{assess.address1}}</p>
-        </button>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+	<ion-card no-padding>
+		<ion-card-content no-padding>
+			<ion-card-header no-padding>
+				<button ion-item (click)="toggleMessages()">
+					<ion-grid>
+						<ion-row>
+							<ion-col>
+								<h2>Notifications</h2>
+							</ion-col>
+							<ion-col text-right>
+								<ion-badge color="secondary" class="search-badge">{{messages && messages.length}}</ion-badge>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+				</button>
+			</ion-card-header>
+			<ion-list *ngIf="showMessages">
+				<ion-item *ngFor="let msg of messages" text-wrap class="list-item-underline">
+					<p>msg.data.title</p>
+					<p>msg.received</p>
+				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card *ngIf="assessments" no-padding>	<!-- TODO Check CareInitialAssessUser -->
+		<ion-card-content no-padding>
+			<ion-card-header no-padding>
+				<button ion-item (click)="toggleAssess()">
+					<ion-grid>
+						<ion-row>
+							<ion-col>
+								<h2>Care Assessments</h2>
+							</ion-col>
+							<ion-col text-right>
+								<ion-badge color="secondary" class="search-badge">{{assessments.length}}</ion-badge>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+				</button>
+			</ion-card-header>
+			<ion-list *ngIf="showAssess">
+				<button ion-item *ngFor="let assess of assessments" text-wrap (click)="openCareInitialAssessment(assess)" class="list-item-underline">
+					<h2>{{assess.name}}</h2>
+					<p>{{dateOf(assess)}}</p>
+					<p>{{assess.address1}}</p>
+				</button>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
 
 </ion-content>

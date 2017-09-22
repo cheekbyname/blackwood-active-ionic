@@ -4,9 +4,11 @@ import { NavController } from 'ionic-angular';
 
 // Services
 import { CareActivityService } from '../../services/care.activity.service';
+import { NotificationService } from "../../services/notification.service";
 
 // Models
 import { CareInitialAssessment } from '../../models/careinitialassessment';
+import { PushMessage } from "../../models/pushmessage";
 
 // Components
 import { AssessTabsPage } from '../assesstabs.page/assesstabs.page';
@@ -17,9 +19,13 @@ import { AssessTabsPage } from '../assesstabs.page/assesstabs.page';
 export class ActivityPage implements OnInit {
 
     assessments: CareInitialAssessment[];
+    messages: PushMessage[];
 
-    constructor(public navCtrl: NavController, public actSrv: CareActivityService) {
+    showAssess: boolean = false;
+    showMessages: boolean = false;
 
+    constructor(public navCtrl: NavController, public actSrv: CareActivityService, public notSrv: NotificationService) {
+        this.notSrv.pushMessageObserver.subscribe(msgs => this.messages = msgs);
     }
 
     ngOnInit() {
@@ -46,5 +52,13 @@ export class ActivityPage implements OnInit {
             this.assessments = res;
             refresher.complete();
         });
+    }
+
+    toggleAssess() {
+        this.showAssess = !this.showAssess;
+    }
+
+    toggleMessages() {
+        this.showMessages = !this.showMessages;
     }
 };
