@@ -10,7 +10,9 @@ export class NotificationService {
 
     }
 
-    pushMessages: PushMessage[] = [];
+    testMsg: PushMessage = new PushMessage({title: "Default Test Message", body: "This is a test message. If you're seeing this in Production, Alex is an idiot"});
+
+    pushMessages: PushMessage[] = [this.testMsg];
     pushMessages$: BehaviorSubject<PushMessage[]> = new BehaviorSubject<PushMessage[]>(this.pushMessages);
     pushMessageObserver: Observable<PushMessage[]> = this.pushMessages$.asObservable();
 

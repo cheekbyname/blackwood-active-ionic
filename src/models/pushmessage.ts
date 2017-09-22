@@ -1,8 +1,8 @@
 export class PushMessage {
     received: Date;
-    data: { [key: string]: string } [];
+    data: { [key: string]: string };
 
-    constructor(data: {}[]) {
+    constructor(data: {}) {
         this.received = new Date();
         this.data = data;
     }

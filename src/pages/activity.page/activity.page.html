@@ -23,7 +23,7 @@
 		<ion-card-content no-padding>
 			<ion-card-header no-padding>
 				<button ion-item (click)="toggleMessages()">
-					<ion-grid>
+					<ion-grid no-padding>
 						<ion-row>
 							<ion-col>
 								<h2>Notifications</h2>
@@ -36,10 +36,17 @@
 				</button>
 			</ion-card-header>
 			<ion-list *ngIf="showMessages">
-				<ion-item *ngFor="let msg of messages" text-wrap class="list-item-underline">
-					<p>msg.data.title</p>
-					<p>msg.received</p>
-				</ion-item>
+				<button ion-item *ngFor="let msg of messages" text-wrap class="list-item-underline">
+					<ion-grid no-padding>
+						<ion-row>
+							<ion-col><strong>{{msg.data.title}}</strong></ion-col>
+							<ion-col text-right><span>{{msg.received.toLocaleDateString()}} {{msg.received.toLocaleTimeString()}}</span></ion-col>
+						</ion-row>
+						<ion-row>
+							<ion-col><span>{{msg.data.body}}</span></ion-col>
+						</ion-row>
+					</ion-grid>
+				</button>
 			</ion-list>
 		</ion-card-content>
 	</ion-card>
@@ -48,7 +55,7 @@
 		<ion-card-content no-padding>
 			<ion-card-header no-padding>
 				<button ion-item (click)="toggleAssess()">
-					<ion-grid>
+					<ion-grid no-padding>
 						<ion-row>
 							<ion-col>
 								<h2>Care Assessments</h2>
