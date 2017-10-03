@@ -9,7 +9,11 @@ h2 {
 }
 
 ion-tabs a[aria-selected="true"] span {
-	color: hotpink;
+	font-weight: bold!important;
+}
+
+.tabs-md[tabsHighlight=true] .tab-highlight {
+	background: hotpink;
 }
 
 .header-button {

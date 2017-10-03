@@ -6,7 +6,8 @@ import { FCM } from "@ionic-native/fcm";
 import { ActivityPage } from '../pages/activity.page/activity.page';
 import { HomePage } from '../pages/home.page/home.page';
 import { SettingsPage } from '../pages/settings.page/settings.page';
-import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
+// import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
+import { TimekeepingTabsPage } from "../pages/timekeeping.tabs.page/timekeeping.tabs.page";
 
 import { NotificationService } from "../services/notification.service";
 import { UserService } from "../services/user.service";
@@ -32,7 +33,7 @@ export class MyApp {
 			this.pages = [
 				{ title: 'Home', component: HomePage, icon: 'home' },
 				{ title: 'Activity', component: ActivityPage, icon: 'pulse' },
-				{ title: 'Timekeeping', component: TimekeepingDailyPage, icon: 'clock' },
+				{ title: 'Timekeeping', component: TimekeepingTabsPage, icon: 'clock' },
 				{ title: 'Settings', component: SettingsPage, icon: 'cog' }
 			];
 		});
