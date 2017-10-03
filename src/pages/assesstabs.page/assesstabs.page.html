@@ -9,6 +9,6 @@
 </ion-header>
 
 
-<ion-tabs>
+<ion-tabs [tabsHighlight]="true">
 	<ion-tab *ngFor="let tab of tabs" tabTitle="{{tab.title}}" [root]="tab.page"></ion-tab>
 </ion-tabs>

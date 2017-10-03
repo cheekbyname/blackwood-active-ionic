@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-tabs>
+<ion-tabs [tabsHighlight]="true">
 	<ion-tab tabTitle="Comms" [root]="tenancyCommsPage" tabBadge="{{view.comms.length}}" [rootParams]="view"></ion-tab>
 	<ion-tab tabTitle="People" [root]="tenancyMembersPage" tabBadge="{{view.members.length}}" [rootParams]="view"></ion-tab>
 </ion-tabs>
