@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Platform, FabContainer, ModalController, ModalOptions, NavController, AlertController } from "ionic-angular";
+import { Platform, FabContainer, ModalController, ModalOptions, NavController, AlertController, NavParams } from "ionic-angular";
 import { DatePicker } from "ionic-native";
 
 import { AdjustmentPopover } from "../../components/adjustment.popover/adjustment.popover";
@@ -19,33 +19,40 @@ import { Timesheet } from "../../models/timesheet";
 	templateUrl: 'timekeeping.daily.page.html'
 })
 export class TimekeepingDailyPage {
-	constructor(private timeSrv: TimekeepingService, private modCtrl: ModalController,
-		private navCtrl: NavController, private platform: Platform, private alert: AlertController) {
+	constructor(private timeSrv: TimekeepingService, private modCtrl: ModalController, private navCtrl: NavController,
+		private navParms: NavParams, private platform: Platform, private alert: AlertController) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
 			if (ts !== undefined) {
 				this.timesheet = ts;
 				this.displayToday();
 			}
 		});
+		this.timeSrv.selectedDateObserver.subscribe(dt => {
+			this.selectedDate = dt;
+			if (this.timesheet !== undefined) {
+				this.displayToday();
+			}
+		});
+		this.timeSrv.setDate(new Date(Date.now()));
 	}
 
 	today: any = undefined;
 	timesheet: Timesheet;
 	bookings: CarerBooking[] = [];
-	selectedDate: Date = new Date(Date.now());
+	selectedDate: Date; // = new Date(Date.now());
 	DateUtils = DateUtils;
 
 	prevDay() {
 		this.today = undefined;
 		this.selectedDate.setDate(this.selectedDate.getDate() - 1);
-		this.displayToday();
+		// this.displayToday();
 		this.timeSrv.setDate(this.selectedDate);
 	}
 
 	nextDay() {
 		this.today = undefined;
 		this.selectedDate.setDate(this.selectedDate.getDate() + 1);
-		this.displayToday();
+		// this.displayToday();
 		this.timeSrv.setDate(this.selectedDate);
 	}
 

@@ -23,7 +23,12 @@
         <ion-card-content no-padding>
             <ion-list>
                 <button ion-item *ngFor="let day of loc.dayOrder; let i = index" class="list-item-underline" (click)="gotoDay(i)">
-                    <span>{{day}} {{DateUtils.ordOf(DateUtils.adjustDate(weekCommencing, i))}}</span>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>{{day}} {{DateUtils.ordOf(DateUtils.adjustDate(weekCommencing, i))}}</ion-col>
+                            <ion-col text-right>{{hoursForDay(i)}}</ion-col>
+                        </ion-row>
+                    </ion-grid>
                 </button>
             </ion-list>
         </ion-card-content>

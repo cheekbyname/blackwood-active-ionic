@@ -6,6 +6,7 @@ import { Adjustment } from "../models/adjustment";
 
 export module TimesheetUtils {
 	export function shiftsForDay(ts: Timesheet, dt: Date): Shift[] {
+		if (ts == undefined) return [];
 		return ts.shifts.filter(sh => new Date(sh.start).getDate() == dt.getDate());
 	}
 
@@ -19,6 +20,7 @@ export module TimesheetUtils {
 	}
 
 	export function adjustmentsForDay(ts: Timesheet, dt: Date): Adjustment[] {
+		if (ts == undefined) return [];
 		return ts.adjustments.filter(adj => DateUtils.adjustDate(ts.weekCommencing, adj.dayOffset).getDate() == dt.getDate());
 	}
 
