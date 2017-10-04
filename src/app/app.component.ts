@@ -6,7 +6,6 @@ import { FCM } from "@ionic-native/fcm";
 import { ActivityPage } from '../pages/activity.page/activity.page';
 import { HomePage } from '../pages/home.page/home.page';
 import { SettingsPage } from '../pages/settings.page/settings.page';
-// import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
 import { TimekeepingTabsPage } from "../pages/timekeeping.tabs.page/timekeeping.tabs.page";
 
 import { NotificationService } from "../services/notification.service";

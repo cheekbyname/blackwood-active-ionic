@@ -5,23 +5,22 @@ import { DatePicker } from "ionic-native";
 import { AdjustmentPopover } from "../../components/adjustment.popover/adjustment.popover";
 import { DateSelectPopover } from "../../components/dateselect.popover/dateselect.popover";
 
+import { DateUtils } from "../../utils/date.utils";
 import { TimekeepingService } from "../../services/timekeeping.service";
-import { UserService } from "../../services/user.service";
-import { DateUtils } from "../../services/utility.service";
+import { TimesheetUtils } from "../../utils/timesheet.utils";
 
 import { Adjustment } from "../../models/adjustment";
 import { CarerBooking } from "../../models/carerbooking";
 import { Shift } from "../../models/shift";
 import { Timesheet } from "../../models/timesheet";
-import { ActiveFunction } from "../../models/activeuser";
 
 @Component({
 	selector: 'timekeeping-daily-page',
 	templateUrl: 'timekeeping.daily.page.html'
 })
 export class TimekeepingDailyPage {
-	constructor(private timeSrv: TimekeepingService, public utils: DateUtils, private modCtrl: ModalController,
-		private navCtrl: NavController, private platform: Platform, private usrSrv: UserService, private alert: AlertController) {
+	constructor(private timeSrv: TimekeepingService, private modCtrl: ModalController,
+		private navCtrl: NavController, private platform: Platform, private alert: AlertController) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
 			if (ts !== undefined) {
 				this.timesheet = ts;
@@ -30,14 +29,11 @@ export class TimekeepingDailyPage {
 		});
 	}
 
-	ionViewCanEnter(): boolean {
-		return this.usrSrv.currentUser.validFunctions.some(fn => fn == ActiveFunction.Timekeeping);
-	}
-
 	today: any = undefined;
 	timesheet: Timesheet;
 	bookings: CarerBooking[] = [];
 	selectedDate: Date = new Date(Date.now());
+	DateUtils = DateUtils;
 
 	prevDay() {
 		this.today = undefined;
@@ -55,23 +51,16 @@ export class TimekeepingDailyPage {
 
 	displayToday() {
 		this.today = {};
-		this.today.shifts = this.timesheet.shifts.filter(sh =>
-			new Date(sh.start).getDate() == this.selectedDate.getDate());
+		this.today.shifts = TimesheetUtils.shiftsForDay(this.timesheet, this.selectedDate);
 		this.today.shifts.forEach(shift => {
 			shift.bookings = this.filterByShift(shift, this.timesheet.bookings);
 			shift.visible = false;
 		});
 		this.today.adjustVisible = false;
-		this.today.adjustments = this.timesheet.adjustments.filter(adj => {
-			let dt = new Date(adj.weekCommencing);
-			dt.setDate(dt.getDate() + adj.dayOffset);
-			return dt.getDate() == this.selectedDate.getDate();
-		});
-		this.today.totalTime = this.today.shifts.map(sh => { return sh.shiftMins - sh.unpaidMins })
-			.reduce((acc, cur) => { return acc + cur }, 0);
+		this.today.adjustments = TimesheetUtils.adjustmentsForDay(this.timesheet, this.selectedDate);
+		this.today.totalTime = TimesheetUtils.totalTimeForDay(this.timesheet, this.selectedDate);
 		if (this.timesheet.adjustments.length > 0) {
-			let totalAdjustMins = this.today.adjustments.map(adj => { return (adj.hours * 60) + adj.mins; })
-				.reduce((acc, cur) => { return acc + cur }, 0);
+			let totalAdjustMins = TimesheetUtils.adjustTimeForDay(this.timesheet, this.selectedDate);
 			this.today.totalAdjust = { hours: Math.floor(totalAdjustMins / 60), mins: totalAdjustMins % 60 }
 			this.today.totalTime += totalAdjustMins;
 		}

@@ -1,11 +1,11 @@
-export class Locale {
-    public firstDayOfWeek: number;
-    public dayOrder: string[];
-    public dayNames: string[];
-    public dayNamesShort: string[];
-    public dayNamesMin: string[];
-    public monthNames: string[];
-    public monthNamesShort: string[];
+export interface Locale {
+    firstDayOfWeek: number;
+    dayOrder: string[];
+    dayNames: string[];
+    dayNamesShort: string[];
+    dayNamesMin: string[];
+    monthNames: string[];
+    monthNamesShort: string[];
 }
 
 export const LOC_EN: Locale = {

@@ -40,6 +40,7 @@ import { TenancyTabsPage } from '../pages/tenancy.tabs.page/tenancy.tabs.page';
 import { TilePage } from '../pages/tile.page/tile.page';
 import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
 import { TimekeepingTabsPage } from "../pages/timekeeping.tabs.page/timekeeping.tabs.page";
+import { TimekeepingWeeklyPage } from "../pages/timekeeping.weekly.page/timekeeping.weekly.page";
 
 // Services
 import { Api } from '../services/secret.service';
@@ -88,7 +89,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, ClientCard, CommCard, DevelopmentCard,
     DevelopmentListPage, FacilityCard, HomeFilterPopover, MemberCard, NewActivityPopover, PropertyCard, SearchBar, TenancyCard,
     AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingDailyPage, BookingCard, DateSelectPopover, AdjustmentPopover,
-    TimekeepingTabsPage ],
+    TimekeepingTabsPage, TimekeepingWeeklyPage ],
   imports: [
     SignaturePadModule,
     IonicModule.forRoot(MyApp)
@@ -98,7 +99,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     ClientPage, ClientSearchPage, DailyNotesPage, DebugPage, DevelopmentPage, DevelopmentListPage, DevelopmentTabsPage, FacilityPage,
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingDailyPage, DateSelectPopover,
-    AdjustmentPopover, TimekeepingTabsPage ],
+    AdjustmentPopover, TimekeepingTabsPage, TimekeepingWeeklyPage ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite,
     Storage, Sql, SearchService, Splashscreen, FCM, StatusBar, AlertController, TimekeepingService, DateUtils, NotificationService ]

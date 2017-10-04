@@ -3,7 +3,7 @@
 		<button menuToggle ion-button icon-only>
 			<ion-icon name="menu"></ion-icon>
 		</button>
-		<ion-title>{{utils.dateDesc(selectedDate)}}</ion-title>
+		<ion-title>{{DateUtils.dateDesc(selectedDate)}}</ion-title>
 		<ion-buttons end>
 			<button ion-button icon-only (click)="prevDay()">
 				<ion-icon name="arrow-dropleft-circle" color="secondary"></ion-icon>
@@ -16,7 +16,6 @@
 			</button>
 		</ion-buttons>
 	</ion-navbar>
-
 </ion-header>
 
 <ion-content>
@@ -35,7 +34,7 @@
 						<h2><strong>Total Hours for Today</strong></h2>
 					</ion-col>
 					<ion-col text-right>
-						<h2><strong>{{utils.displayTime(today.totalTime)}}</strong></h2>
+						<h2><strong>{{DateUtils.displayTime(today.totalTime)}}</strong></h2>
 					</ion-col>
 				</ion-row>
 			</button>
@@ -66,10 +65,10 @@
 								<h2><strong>Shift {{shift.sequence}}</strong></h2>
 							</ion-col>
 							<ion-col text-center>
-								<h2><strong>{{utils.timeFromDate(shift.start)}} - {{utils.timeFromDate(shift.finish)}}</strong></h2>
+								<h2><strong>{{DateUtils.timeFromDate(shift.start)}} - {{DateUtils.timeFromDate(shift.finish)}}</strong></h2>
 							</ion-col>
 							<ion-col text-right>
-								<h2><strong>{{utils.displayTime(shift.shiftMins - shift.unpaidMins)}}</strong></h2>
+								<h2><strong>{{DateUtils.displayTime(shift.shiftMins - shift.unpaidMins)}}</strong></h2>
 							</ion-col>
 						</ion-row>
 					</button>
