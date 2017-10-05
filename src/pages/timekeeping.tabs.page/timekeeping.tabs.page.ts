@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 
 // Components
 import { TimekeepingDailyPage } from "../timekeeping.daily.page/timekeeping.daily.page";
+import { TimekeepingMonthlyPage } from "../timekeeping.monthly.page/timekeeping.monthly.page";
 import { TimekeepingWeeklyPage } from "../timekeeping.weekly.page/timekeeping.weekly.page";
 
 // Models
@@ -19,6 +20,7 @@ export class TimekeepingTabsPage {
     constructor(public timeSrv: TimekeepingService, private usrSrv: UserService) {
         this.timekeepingDailyPage = TimekeepingDailyPage;
         this.timekeepingWeeklyPage = TimekeepingWeeklyPage;
+        this.timekeepingMonthlyPage = TimekeepingMonthlyPage;
     }
 
     ionViewCanEnter(): boolean {

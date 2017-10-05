@@ -4,21 +4,29 @@
 			<ion-icon name="menu"></ion-icon>
 		</button>
         <ion-title>Week of {{DateUtils.shortDateDesc(weekCommencing)}}</ion-title>
-        <!-- <ion-buttons end>
-			<button ion-button icon-only (click)="prevDay()">
-				<ion-icon name="arrow-dropleft-circle" color="secondary"></ion-icon>
-			</button>
-			<button ion-button icon-only (click)="nextDay()">
-				<ion-icon name="arrow-dropright-circle" color="secondary"></ion-icon>
-			</button>
-			<button ion-button icon-only (click)="showDatePop($event)">
+        <ion-buttons end>
+            <button ion-button icon-only (click)="showDatePop($event)">
 				<ion-icon name="calendar" color="secondary"></ion-icon>
 			</button>
-		</ion-buttons> -->
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
+    <ion-card no-padding>
+        <ion-card-content no-padding>
+            <button ion-item>
+                <ion-row>
+                    <ion-col>
+                        <strong>Total for Week</strong>
+                    </ion-col>
+                    <ion-col text-right>
+                        <strong>{{DateUtils.displayTime(TimesheetUtils.totalTimeForSheet(timesheet))}}</strong>
+                    </ion-col>
+                </ion-row>
+            </button>
+        </ion-card-content>
+    </ion-card>
     <ion-card no-padding>
         <ion-card-content no-padding>
             <ion-list>
@@ -33,4 +41,22 @@
             </ion-list>
         </ion-card-content>
     </ion-card>
+
+    <ion-datetime #datePicker hidden="true" displayFormat="DD MMM YYYY" (ionChange)="dateChanged($event)"></ion-datetime>
+    
+    <ion-fab bottom left #fab>
+        <ion-row>
+            <ion-col>
+                <button ion-fab mini color="secondary" (click)="prevWeek()">
+                        <ion-icon name="arrow-round-back"></ion-icon>
+                    </button>
+            </ion-col>
+            <ion-col>
+                <button ion-fab mini color="secondary" (click)="nextWeek()">
+                        <ion-icon name="arrow-round-forward"></ion-icon>
+                    </button>
+            </ion-col>
+        </ion-row>
+    </ion-fab>
+
 </ion-content>

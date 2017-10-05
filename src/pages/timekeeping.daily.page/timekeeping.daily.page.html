@@ -5,12 +5,6 @@
 		</button>
 		<ion-title>{{DateUtils.dateDesc(selectedDate)}}</ion-title>
 		<ion-buttons end>
-			<button ion-button icon-only (click)="prevDay()">
-				<ion-icon name="arrow-dropleft-circle" color="secondary"></ion-icon>
-			</button>
-			<button ion-button icon-only (click)="nextDay()">
-				<ion-icon name="arrow-dropright-circle" color="secondary"></ion-icon>
-			</button>
 			<button ion-button icon-only (click)="showDatePop($event)">
 				<ion-icon name="calendar" color="secondary"></ion-icon>
 			</button>
@@ -119,6 +113,8 @@
 		</ion-card-content>
 	</ion-card>
 
+	<ion-datetime #datePicker hidden="true" [ngModel]="selectedDate" displayFormat="DD MMM YYYY" (ionChange)="dateChanged($event)"></ion-datetime>
+
 	<ion-fab bottom right #fab>
 		<button ion-fab color="secondary"><ion-icon name="pulse"></ion-icon></button>
 		<ion-fab-list side="top">
@@ -131,6 +127,21 @@
 					<ion-icon name="add"></ion-icon>
 				</button>
 		</ion-fab-list>
+	</ion-fab>
+
+	<ion-fab bottom left #fab>
+		<ion-row>
+			<ion-col>
+				<button ion-fab mini color="secondary" (click)="prevDay()">
+					<ion-icon name="arrow-round-back"></ion-icon>
+				</button>
+			</ion-col>
+			<ion-col>
+				<button ion-fab mini color="secondary" (click)="nextDay()">
+					<ion-icon name="arrow-round-forward"></ion-icon>
+				</button>
+			</ion-col>
+		</ion-row>
 	</ion-fab>
 
 </ion-content>

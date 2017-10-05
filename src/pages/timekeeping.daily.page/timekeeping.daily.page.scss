@@ -14,3 +14,14 @@ ion-list-header.list-header-md {
 .card-margin-bottom {
     margin-bottom: 48px;
 }
+
+button[ion-fab] {
+    ion-icon {
+        color: whitesmoke;
+    }
+}
+
+ion-fab[left] {
+    left: 0px;
+    bottom: 0px;
+}

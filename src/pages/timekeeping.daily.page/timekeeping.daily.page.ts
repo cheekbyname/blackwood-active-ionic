@@ -1,9 +1,8 @@
-import { Component } from "@angular/core";
-import { Platform, FabContainer, ModalController, ModalOptions, NavController, AlertController, NavParams } from "ionic-angular";
+import { Component, ViewChild } from "@angular/core";
+import { Platform, FabContainer, ModalController, AlertController, DateTime } from "ionic-angular";
 import { DatePicker } from "ionic-native";
 
 import { AdjustmentPopover } from "../../components/adjustment.popover/adjustment.popover";
-import { DateSelectPopover } from "../../components/dateselect.popover/dateselect.popover";
 
 import { DateUtils } from "../../utils/date.utils";
 import { TimekeepingService } from "../../services/timekeeping.service";
@@ -19,8 +18,11 @@ import { Timesheet } from "../../models/timesheet";
 	templateUrl: 'timekeeping.daily.page.html'
 })
 export class TimekeepingDailyPage {
-	constructor(private timeSrv: TimekeepingService, private modCtrl: ModalController, private navCtrl: NavController,
-		private navParms: NavParams, private platform: Platform, private alert: AlertController) {
+
+	@ViewChild('datePicker') datePicker : DateTime;
+
+	constructor(private timeSrv: TimekeepingService, private platform: Platform, private alert: AlertController,
+			private modCtrl: ModalController) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
 			if (ts !== undefined) {
 				this.timesheet = ts;
@@ -39,20 +41,18 @@ export class TimekeepingDailyPage {
 	today: any = undefined;
 	timesheet: Timesheet;
 	bookings: CarerBooking[] = [];
-	selectedDate: Date; // = new Date(Date.now());
+	selectedDate: Date;
 	DateUtils = DateUtils;
 
 	prevDay() {
 		this.today = undefined;
 		this.selectedDate.setDate(this.selectedDate.getDate() - 1);
-		// this.displayToday();
 		this.timeSrv.setDate(this.selectedDate);
 	}
 
 	nextDay() {
 		this.today = undefined;
 		this.selectedDate.setDate(this.selectedDate.getDate() + 1);
-		// this.displayToday();
 		this.timeSrv.setDate(this.selectedDate);
 	}
 
@@ -66,11 +66,8 @@ export class TimekeepingDailyPage {
 		this.today.adjustVisible = false;
 		this.today.adjustments = TimesheetUtils.adjustmentsForDay(this.timesheet, this.selectedDate);
 		this.today.totalTime = TimesheetUtils.totalTimeForDay(this.timesheet, this.selectedDate);
-		if (this.timesheet.adjustments.length > 0) {
-			let totalAdjustMins = TimesheetUtils.adjustTimeForDay(this.timesheet, this.selectedDate);
-			this.today.totalAdjust = { hours: Math.floor(totalAdjustMins / 60), mins: totalAdjustMins % 60 }
-			this.today.totalTime += totalAdjustMins;
-		}
+		let totalAdjustMins = TimesheetUtils.adjustTimeForDay(this.timesheet, this.selectedDate);
+		this.today.totalAdjust = { hours: Math.floor(totalAdjustMins / 60), mins: totalAdjustMins % 60 }
 	}
 
 	filterByShift(shift: Shift, bookings: CarerBooking[]): CarerBooking[] {
@@ -90,16 +87,19 @@ export class TimekeepingDailyPage {
 		if (this.platform.is('cordova')) {
 			DatePicker.show({ date: this.selectedDate, mode: 'date' }).then(dt => {
 				this.today = undefined;
-				this.selectedDate = dt;
+				this.selectedDate = dt;	// TODO Test to see if this is now removable as I suspect
 				this.timeSrv.setDate(this.selectedDate);
 				this.displayToday();
 			})
 		} else {
-			var dp = this.modCtrl.create(DateSelectPopover);
-			dp.present({
-				ev: ev
-			});
+			this.datePicker.setValue(this.selectedDate.toISOString());
+			this.datePicker.open();
 		}
+	}
+
+	dateChanged(ev: any) {
+		let data = this.datePicker.getValue();
+		this.timeSrv.setDate(new Date(data.year, data.month - 1, data.day, 2));
 	}
 
 	newAdjust(ev, fab: FabContainer) {

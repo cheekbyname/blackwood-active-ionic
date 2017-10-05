@@ -39,6 +39,7 @@ import { TenancySearchPage } from '../pages/tenancy.search.page/tenancy.search.p
 import { TenancyTabsPage } from '../pages/tenancy.tabs.page/tenancy.tabs.page';
 import { TilePage } from '../pages/tile.page/tile.page';
 import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
+import { TimekeepingMonthlyPage } from "../pages/timekeeping.monthly.page/timekeeping.monthly.page";
 import { TimekeepingTabsPage } from "../pages/timekeeping.tabs.page/timekeeping.tabs.page";
 import { TimekeepingWeeklyPage } from "../pages/timekeeping.weekly.page/timekeeping.weekly.page";
 
@@ -67,7 +68,6 @@ import { AdjustmentPopover } from "../components/adjustment.popover/adjustment.p
 import { BookingCard } from "../components/booking.card/booking.card";
 import { ClientCard } from '../components/client.card/client.card';
 import { CommCard } from '../components/comm.card/comm.card';
-import { DateSelectPopover } from "../components/dateselect.popover/dateselect.popover";
 import { DevelopmentCard } from '../components/development.card/development.card';
 import { FacilityCard } from '../components/facility.card/facility.card';
 import { HomeFilterPopover } from '../components/homefilter.popover/homefilter.popover';
@@ -88,8 +88,8 @@ import { SafeUrlPipe } from "../services/utility.service";
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, ClientCard, CommCard, DevelopmentCard,
     DevelopmentListPage, FacilityCard, HomeFilterPopover, MemberCard, NewActivityPopover, PropertyCard, SearchBar, TenancyCard,
-    AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingDailyPage, BookingCard, DateSelectPopover, AdjustmentPopover,
-    TimekeepingTabsPage, TimekeepingWeeklyPage ],
+    AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingDailyPage, BookingCard, AdjustmentPopover,
+    TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage ],
   imports: [
     SignaturePadModule,
     IonicModule.forRoot(MyApp)
@@ -98,8 +98,8 @@ import { SafeUrlPipe } from "../services/utility.service";
   entryComponents: [ MyApp, ActivityPage, AddDailyNotePage, AssessCheckPage, AssessTabsPage, CareNeedPage, CarePlanPage, CareSummaryPage,
     ClientPage, ClientSearchPage, DailyNotesPage, DebugPage, DevelopmentPage, DevelopmentListPage, DevelopmentTabsPage, FacilityPage,
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
-    TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingDailyPage, DateSelectPopover,
-    AdjustmentPopover, TimekeepingTabsPage, TimekeepingWeeklyPage ],
+    TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingDailyPage,
+    AdjustmentPopover, TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite,
     Storage, Sql, SearchService, Splashscreen, FCM, StatusBar, AlertController, TimekeepingService, DateUtils, NotificationService ]
