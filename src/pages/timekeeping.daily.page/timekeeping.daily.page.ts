@@ -1,5 +1,5 @@
-import { Component, ViewChild } from "@angular/core";
-import { Platform, FabContainer, ModalController, AlertController, DateTime } from "ionic-angular";
+import { Component, ViewChild, ViewChildren, QueryList } from "@angular/core";
+import { Platform, FabContainer, ModalController, AlertController, DateTime, Content, FabButton } from "ionic-angular";
 import { DatePicker } from "ionic-native";
 
 import { AdjustmentPopover } from "../../components/adjustment.popover/adjustment.popover";
@@ -19,10 +19,12 @@ import { Timesheet } from "../../models/timesheet";
 })
 export class TimekeepingDailyPage {
 
-	@ViewChild('datePicker') datePicker : DateTime;
+	@ViewChild(DateTime) datePicker: DateTime;
+	@ViewChild(Content) content: Content;
+	@ViewChildren(FabButton) fabs: QueryList<FabButton>;
 
 	constructor(private timeSrv: TimekeepingService, private platform: Platform, private alert: AlertController,
-			private modCtrl: ModalController) {
+		private modCtrl: ModalController) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
 			if (ts !== undefined) {
 				this.timesheet = ts;
@@ -36,6 +38,20 @@ export class TimekeepingDailyPage {
 			}
 		});
 		this.timeSrv.setDate(new Date(Date.now()));
+	}
+
+	ngAfterViewInit() {
+		this.content.enableScrollListener();
+	}
+
+	scrollHandler(event) {
+		let distanceFromBottom = this.content.scrollHeight - (this.content.contentHeight + this.content.scrollTop);
+		if (distanceFromBottom < 67) {
+			let opacity = 0.25 + (distanceFromBottom/100);
+			this.fabs.map(fab => { fab.setElementStyle("opacity", opacity.toString()) });
+		} else {
+			this.fabs.map(fab => { fab.setElementStyle("opacity", "1.0") });
+		}
 	}
 
 	today: any = undefined;
@@ -80,7 +96,10 @@ export class TimekeepingDailyPage {
 
 	doRefresh(refresher) {
 		// TODO Store & Restore component visibility settings
-		this.timeSrv.refresh().then(x => refresher.complete());
+		this.timeSrv.refresh().then(x => {
+			refresher.complete();
+			this.content.resize();
+		});
 	}
 
 	showDatePop(ev: any) {
@@ -130,9 +149,11 @@ export class TimekeepingDailyPage {
 
 	toggleShift(seq: number) {
 		this.today.shifts[seq - 1].visible = !this.today.shifts[seq - 1].visible;
+		this.content.resize();
 	}
 
 	toggleAdjust() {
 		this.today.adjustVisible = !this.today.adjustVisible;
+		this.content.resize();
 	}
 }

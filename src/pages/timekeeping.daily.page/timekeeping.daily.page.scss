@@ -10,11 +10,6 @@ ion-list-header.list-header-md {
     border-top: 0 !important;
 }
 
-// To allow bottom card to be scrolled up in case fab obscures relevant info
-.card-margin-bottom {
-    margin-bottom: 48px;
-}
-
 button[ion-fab] {
     ion-icon {
         color: whitesmoke;

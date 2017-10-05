@@ -12,7 +12,7 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content (ionScroll)="scrollHandler($event)">
 
 	<ion-refresher (ionRefresh)="doRefresh($event)">
 		<ion-refresher-content pullingIcon="arrow-dropdown" refreshingSpinner="crescent" refreshingText="Refreshing...">
