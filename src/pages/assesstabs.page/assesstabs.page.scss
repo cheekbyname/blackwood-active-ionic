@@ -17,8 +17,13 @@ ion-tabs a[aria-selected="true"] span {
 }
 
 .header-button {
-	background-color: hotpink;
-	color: black;
+	:first-child {
+		margin-right: 8px;
+	}
+	background-color: #ff80cc;
+	span {
+		color: whitesmoke;
+	}
 }
 
 .checklist-header-row {

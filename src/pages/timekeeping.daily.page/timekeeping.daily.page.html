@@ -68,7 +68,8 @@
 					</button>
 				</ion-card-header>
 				<ion-list *ngIf="shift.visible">
-					<button ion-item *ngFor="let bk of shift.bookings" class="list-item-underline" [style.background-color]="bookColor(bk)">
+					<button ion-item *ngFor="let bk of shift.bookings" class="list-item-underline"
+						[style.background-color]="bookColor(bk)" (click)="showBooking($event, bk)">
 					<booking-card [booking]="bk"></booking-card>
 				</button>
 				</ion-list>

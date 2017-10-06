@@ -68,4 +68,8 @@ export module DateUtils {
 		dt.setDate(dt.getDate() + offset);
 		return dt;
 	}
+
+	export function displayDate(date: Date): string {
+		return new Date(date).toLocaleDateString();
+	}
 }

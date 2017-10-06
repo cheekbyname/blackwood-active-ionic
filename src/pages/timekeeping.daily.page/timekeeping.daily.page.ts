@@ -1,8 +1,9 @@
 import { Component, ViewChild, ViewChildren, QueryList } from "@angular/core";
-import { Platform, FabContainer, ModalController, AlertController, DateTime, Content, FabButton } from "ionic-angular";
+import { Platform, FabContainer, ModalController, AlertController, DateTime, Content, FabButton, PopoverController } from "ionic-angular";
 import { DatePicker } from "ionic-native";
 
 import { AdjustmentPopover } from "../../components/adjustment.popover/adjustment.popover";
+import { BookingDetailPopover } from "../../components/booking.detail.popover/booking.detail.popover";
 
 import { DateUtils } from "../../utils/date.utils";
 import { TimekeepingService } from "../../services/timekeeping.service";
@@ -24,7 +25,7 @@ export class TimekeepingDailyPage {
 	@ViewChildren(FabButton) fabs: QueryList<FabButton>;
 
 	constructor(private timeSrv: TimekeepingService, private platform: Platform, private alert: AlertController,
-		private modCtrl: ModalController) {
+		private modCtrl: ModalController, private popCtrl: PopoverController) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
 			if (ts !== undefined) {
 				this.timesheet = ts;
@@ -45,6 +46,7 @@ export class TimekeepingDailyPage {
 	}
 
 	scrollHandler(event) {
+		// TODO Need to figure out how to trigger this correctly without a scroll event
 		let distanceFromBottom = this.content.scrollHeight - (this.content.contentHeight + this.content.scrollTop);
 		if (distanceFromBottom < 67) {
 			let opacity = 0.25 + (distanceFromBottom/100);
@@ -73,6 +75,9 @@ export class TimekeepingDailyPage {
 	}
 
 	displayToday() {
+		// Reset fab opacity
+		this.fabs.map(fab => { fab.setElementStyle("opacity", "1.0")});
+
 		this.today = {};
 		this.today.shifts = TimesheetUtils.shiftsForDay(this.timesheet, this.selectedDate);
 		this.today.shifts.forEach(shift => {
@@ -119,6 +124,14 @@ export class TimekeepingDailyPage {
 	dateChanged(ev: any) {
 		let data = this.datePicker.getValue();
 		this.timeSrv.setDate(new Date(data.year, data.month - 1, data.day, 2));
+	}
+
+	showBooking(ev: any, bk : CarerBooking) {
+		let pop = this.modCtrl.create(BookingDetailPopover, {
+			booking: bk,
+			contract: this.timesheet.contracts.find(cn => cn.contractCode == bk.contractCode)
+		}, { showBackdrop: false });
+		pop.present();
 	}
 
 	newAdjust(ev, fab: FabContainer) {

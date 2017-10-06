@@ -66,6 +66,7 @@ import { WebApi } from '../services/api.service';
 // Components
 import { AdjustmentPopover } from "../components/adjustment.popover/adjustment.popover";
 import { BookingCard } from "../components/booking.card/booking.card";
+import { BookingDetailPopover } from "../components/booking.detail.popover/booking.detail.popover";
 import { ClientCard } from '../components/client.card/client.card';
 import { CommCard } from '../components/comm.card/comm.card';
 import { DevelopmentCard } from '../components/development.card/development.card';
@@ -89,7 +90,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, ClientCard, CommCard, DevelopmentCard,
     DevelopmentListPage, FacilityCard, HomeFilterPopover, MemberCard, NewActivityPopover, PropertyCard, SearchBar, TenancyCard,
     AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingDailyPage, BookingCard, AdjustmentPopover,
-    TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage ],
+    TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover ],
   imports: [
     SignaturePadModule,
     IonicModule.forRoot(MyApp)
@@ -99,7 +100,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     ClientPage, ClientSearchPage, DailyNotesPage, DebugPage, DevelopmentPage, DevelopmentListPage, DevelopmentTabsPage, FacilityPage,
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingDailyPage,
-    AdjustmentPopover, TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage ],
+    AdjustmentPopover, TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite,
     Storage, Sql, SearchService, Splashscreen, FCM, StatusBar, AlertController, TimekeepingService, DateUtils, NotificationService ]
