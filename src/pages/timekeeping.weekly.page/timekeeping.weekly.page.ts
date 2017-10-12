@@ -8,19 +8,21 @@ import { TimekeepingService } from "../../services/timekeeping.service";
 import { DateUtils } from "../../utils/date.utils";
 import { TimesheetUtils } from "../../utils/timesheet.utils";
 
+import { DualColumnIonGrid } from "../../components/dual-column.ion-grid/dual-column.ion-grid";
+
 @Component({
     templateUrl: 'timekeeping.weekly.page.html'
 })
 export class TimekeepingWeeklyPage {
 
-    @ViewChild("datePicker") datePicker : DateTime;
+    @ViewChild("datePicker") datePicker: DateTime;
 
     constructor(public timeSrv: TimekeepingService, private navCtrl: NavController, private platform: Platform) {
         // Consider moving this into tabs page and binding back in as @Input
-		this.timeSrv.timesheetObserver.subscribe(ts => {
-			if (ts !== undefined) {
-				this.timesheet = ts;
-			}
+        this.timeSrv.timesheetObserver.subscribe(ts => {
+            if (ts !== undefined) {
+                this.timesheet = ts;
+            }
         });
         this.timeSrv.weekCommencingObserver.subscribe(wc => {
             if (wc !== undefined) {
@@ -34,6 +36,7 @@ export class TimekeepingWeeklyPage {
     loc: Locale = LOC_EN;
     DateUtils = DateUtils;
     TimesheetUtils = TimesheetUtils;
+    showWeek: boolean = false;
 
     gotoDay(offset: number) {
         this.timeSrv.setDate(DateUtils.adjustDate(this.weekCommencing, offset));
@@ -53,19 +56,28 @@ export class TimekeepingWeeklyPage {
     }
 
     showDatePop(ev: any) {
-		if (this.platform.is('cordova')) {
-			DatePicker.show({ date: this.weekCommencing, mode: 'date' }).then(dt => {
-				this.timeSrv.setDate(DateUtils.getWeekCommencingFromDate(dt));
-			})
-		} else {
+        if (this.platform.is('cordova')) {
+            DatePicker.show({ date: this.weekCommencing, mode: 'date' }).then(dt => {
+                this.timeSrv.setDate(DateUtils.getWeekCommencingFromDate(dt));
+            })
+        } else {
             this.weekCommencing.setHours(1);
-			this.datePicker.setValue(this.weekCommencing.toISOString());
-			this.datePicker.open();
-		}
+            this.datePicker.setValue(this.weekCommencing.toISOString());
+            this.datePicker.open();
+        }
     }
 
     dateChanged(ev: any) {
-		let data = this.datePicker.getValue();
-		this.timeSrv.setDate(new Date(data.year, data.month - 1, data.day, 2));
-	}
+        let data = this.datePicker.getValue();
+        this.timeSrv.setDate(new Date(data.year, data.month - 1, data.day, 2));
+    }
+
+    toggleWeek() {
+        this.showWeek = !this.showWeek;
+    }
+
+    weeklyTotalTime(): string { return DateUtils.displayTime(TimesheetUtils.totalTimeForSheet(this.timesheet)); }
+    weeklyShiftHours(): string { return DateUtils.displayTime(TimesheetUtils.shiftTimeForSheet(this.timesheet)); }
+    weeklyAnnualLeave(): string { return DateUtils.displayTime(TimesheetUtils.paidLeaveTimeForSheet(this.timesheet)); }
+    weeklySickLeave(): string { return DateUtils.displayTime(TimesheetUtils.sickLeaveTimeForSheet(this.timesheet)); }
 }

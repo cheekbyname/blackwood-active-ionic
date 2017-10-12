@@ -35,13 +35,31 @@ export module TimesheetUtils {
 	}
 
 	export function totalTimeForSheet(ts: Timesheet): number {
-		let shiftTime = ts.shifts
-			.map(sh => { return sh.shiftMins - sh.unpaidMins })
-			.reduce((acc, cur) => { return acc + cur }, 0);
+		let shiftTime = shiftTimeForSheet(ts);
+		let leaveTime = paidLeaveTimeForSheet(ts);
+		let sickTime = sickLeaveTimeForSheet(ts);
+
 		let adjustTime = ts.adjustments
 			.filter(adj => adj.rejected == null)
 			.map(adj => { return (adj.hours * 60) + adj.mins; })
 			.reduce((acc, cur) => { return acc + cur}, 0);
-		return shiftTime + adjustTime;
+
+		return shiftTime + leaveTime + sickTime + adjustTime;
+	}
+
+	export function shiftTimeForSheet(ts: Timesheet): number {
+		return ts.shifts.map(sh => sh.shiftMins).reduce((acc, cur) => { return acc + cur }, 0);
+	}
+
+	export function paidLeaveTimeForSheet(ts: Timesheet): number {
+		return ts.bookings.filter(bk => bk.bookingType == 108).map(bk => bk.thisMins).reduce((acc, cur) => { return acc + cur }, 0);
+	}
+
+	export function sickLeaveTimeForSheet(ts: Timesheet): number {
+		return ts.bookings.filter(bk => bk.bookingType == 109).map(bk => bk.thisMins).reduce((acc, cur) => { return acc + cur}, 0);
+	}
+
+	export function unpaidLeaveTimeForSheet(ts: Timesheet): number {
+		return ts.bookings.filter(bk => bk.bookingType == 110).map(bk => bk.thisMins).reduce((acc, cur) => { return acc + cur }, 0);
 	}
 }

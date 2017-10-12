@@ -70,6 +70,7 @@ import { BookingDetailPopover } from "../components/booking.detail.popover/booki
 import { ClientCard } from '../components/client.card/client.card';
 import { CommCard } from '../components/comm.card/comm.card';
 import { DevelopmentCard } from '../components/development.card/development.card';
+import { DualColumnIonGrid } from "../components/dual-column.ion-grid/dual-column.ion-grid";
 import { FacilityCard } from '../components/facility.card/facility.card';
 import { HomeFilterPopover } from '../components/homefilter.popover/homefilter.popover';
 import { MemberCard } from '../components/member.card/member.card';
@@ -90,7 +91,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, ClientCard, CommCard, DevelopmentCard,
     DevelopmentListPage, FacilityCard, HomeFilterPopover, MemberCard, NewActivityPopover, PropertyCard, SearchBar, TenancyCard,
     AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingDailyPage, BookingCard, AdjustmentPopover,
-    TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover ],
+    TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover, DualColumnIonGrid ],
   imports: [
     SignaturePadModule,
     IonicModule.forRoot(MyApp)
@@ -100,7 +101,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     ClientPage, ClientSearchPage, DailyNotesPage, DebugPage, DevelopmentPage, DevelopmentListPage, DevelopmentTabsPage, FacilityPage,
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingDailyPage,
-    AdjustmentPopover, TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover ],
+    AdjustmentPopover, TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover, DualColumnIonGrid ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite,
     Storage, Sql, SearchService, Splashscreen, FCM, StatusBar, AlertController, TimekeepingService, DateUtils, NotificationService ]

@@ -14,20 +14,43 @@
 
 <ion-content>
     <ion-card no-padding>
-        <ion-card-content no-padding>
-            <button ion-item>
-                <ion-row>
-                    <ion-col>
-                        <strong>Total for Week</strong>
-                    </ion-col>
-                    <ion-col text-right>
-                        <strong>{{DateUtils.displayTime(TimesheetUtils.totalTimeForSheet(timesheet))}}</strong>
-                    </ion-col>
-                </ion-row>
-            </button>
+        <ion-card-content no-padding class="weekly-timekeeping-card">
+            <ion-list>
+                <button ion-item (click)="toggleWeek()">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col>
+                                <h2><strong>Total Hours for Week</strong></h2>
+                            </ion-col>
+                            <ion-col text-right>
+                                <strong>{{weeklyTotalTime()}}</strong>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </button>
+                <div *ngIf="showWeek">
+                    <dual-column [col1]="'Shift Hours'" [col2]="weeklyShiftHours()"></dual-column>
+                    <dual-column [col1]="'Annual Leave'" [col2]="weeklyAnnualLeave()"></dual-column>
+                    <dual-column [col1]="'Sickness Absence'" [col2]="weeklySickLeave()"></dual-column>
+                    <dual-column [col1]="'Approved Adjustments'"></dual-column>
+                    <dual-column [col1]="'Pending Adjustments'"></dual-column>
+                    <ion-item *ngIf="showWeek" class="list-item-underline">
+                        <ion-row>
+                            <ion-col>
+                                <ion-buttons end>
+                                    <button ion-button color="secondary">
+                                        <ion-icon name="checkmark"><span text-capitalize>Approve</span></ion-icon>
+                                    </button>
+                                </ion-buttons>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+                </div>
+            </ion-list>
         </ion-card-content>
     </ion-card>
-    <ion-card no-padding>
+
+    <ion-card no-padding class="weekly-timekeeping-days">
         <ion-card-content no-padding>
             <ion-list>
                 <button ion-item *ngFor="let day of loc.dayOrder; let i = index" class="list-item-underline" (click)="gotoDay(i)">
@@ -43,7 +66,7 @@
     </ion-card>
 
     <ion-datetime #datePicker hidden="true" displayFormat="DD MMM YYYY" (ionChange)="dateChanged($event)"></ion-datetime>
-    
+
     <ion-fab bottom left #fab>
         <ion-row>
             <ion-col>
