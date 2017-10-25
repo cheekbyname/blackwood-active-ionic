@@ -77,14 +77,40 @@ export class CareActivityService {
 	}
 
 	getAllCareInitialAssessments(): Promise<CareInitialAssessment[]> {
-		return this.api.getAll("care/careinitialassessments").then(cias => cias as CareInitialAssessment[]);
-		// return this.sql.query('SELECT * FROM careinitialassessments', []).then(res => {
-		// 	var assessments: CareInitialAssessment[] = [];
-		// 	for (var i = 0; i < res.res.rows.length; i++) {
-		// 		assessments.push(JSON.parse(res.res.rows.item(i).json));
-		// 	}
-		// 	return assessments;
-		// });
+		let sqlQry: Promise<CareInitialAssessment[]> = this.sql.query("SELECT * FROM careinitialassessments")
+			.then(qry => {
+				let sqlResults: any = qry.res.rows;
+				let sqlRows: CareInitialAssessment[] = [];
+
+				for (var i = 0; i < sqlResults.length; i++) {
+					sqlRows.push(JSON.parse(sqlResults.item(i).json));
+				}
+				return Promise.resolve(sqlRows);
+			});
+
+		let apiCall: Promise<CareInitialAssessment[]> = this.api.getAll("care/careinitialassessments");
+
+		let chain: Promise<CareInitialAssessment[]> = apiCall
+			.then(apiRes => {
+				return sqlQry.then(sqlRes => {
+					let combined = apiRes;
+					let apiKeys = apiRes.map(res => { return res.guid });
+					sqlRes.forEach(res => {
+						if (!apiKeys.some(key => key == res.guid)) {
+							combined.push(res);
+						}
+					});
+					return Promise.resolve(combined);	
+				})
+				.catch(err => {
+					return Promise.reject("Unable to retrieve Care Initial Assessments from server, or to find any stored locally.");
+				});
+			})
+			.catch(reason => {
+				return sqlQry;
+			});
+
+		return chain;
 	}
 
 	assessUrlFromGuid(guid: string): string {

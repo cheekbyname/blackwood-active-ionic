@@ -5,8 +5,10 @@ import { NavController } from 'ionic-angular';
 // Services
 import { CareActivityService } from '../../services/care.activity.service';
 import { NotificationService } from "../../services/notification.service";
+import { UserService } from "../../services/user.service";
 
 // Models
+import { ActiveFunction } from "../../models/activeuser";
 import { CareInitialAssessment } from '../../models/careinitialassessment';
 import { PushMessage } from "../../models/pushmessage";
 
@@ -21,11 +23,14 @@ export class ActivityPage implements OnInit {
     assessments: CareInitialAssessment[];
     messages: PushMessage[];
 
+    allowAssess: boolean = false;
     showAssess: boolean = false;
     showMessages: boolean = false;
 
-    constructor(public navCtrl: NavController, public actSrv: CareActivityService, public notSrv: NotificationService) {
+    constructor(public navCtrl: NavController, public actSrv: CareActivityService, public notSrv: NotificationService,
+        private usrSrv: UserService) {
         this.notSrv.pushMessageObserver.subscribe(msgs => this.messages = msgs.reverse());
+        this.allowAssess = this.usrSrv.currentUser.validFunctions.some(fn => fn == ActiveFunction.CareInitialAssessment);
     }
 
     ngOnInit() {

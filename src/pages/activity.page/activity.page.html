@@ -51,7 +51,7 @@
 		</ion-card-content>
 	</ion-card>
 
-	<ion-card *ngIf="assessments" no-padding>	<!-- TODO Check CareInitialAssessUser -->
+	<ion-card *ngIf="assessments && allowAssess" no-padding>
 		<ion-card-content no-padding>
 			<ion-card-header no-padding>
 				<button ion-item (click)="toggleAssess()">
@@ -69,7 +69,7 @@
 			</ion-card-header>
 			<ion-list *ngIf="showAssess">
 				<button ion-item *ngFor="let assess of assessments" text-wrap (click)="openCareInitialAssessment(assess)" class="list-item-underline">
-					<h2>{{assess.name}}</h2>
+					<h2><strong>{{assess.name}}</strong></h2>
 					<p>{{dateOf(assess)}}</p>
 					<p>{{assess.address1}}</p>
 				</button>
