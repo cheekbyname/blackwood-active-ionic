@@ -1,8 +1,9 @@
 // Angular/Ionic
 import { Injectable } from '@angular/core';
-import { ToastController } from 'ionic-angular';
+import { AlertController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Sql } from './sql.service';
+
 // Services
 import { WebApi } from './api.service';
 import { UserService } from './user.service';
@@ -18,8 +19,11 @@ export class CareActivityService {
 	static readonly visitTypes: string[] = ['Personal Care', 'Non-Personal Care', 'Housing Support'];
 
 	constructor(private api: WebApi, private usrSrv: UserService, private toastCtrl: ToastController, public debug: DebugService,
-		public kv: Storage, private sql: Sql) {
-		sql.query('CREATE TABLE IF NOT EXISTS careinitialassessments (guid TEXT, json TEXT)', []);
+		public kv: Storage, private sql: Sql, private alertCtrl: AlertController) {
+		sql.query('CREATE TABLE IF NOT EXISTS careinitialassessments (guid TEXT, json TEXT)', [])
+			.catch(err => {
+				this.simpleAlert(err, "Unable to create careinitialassessments table.")
+			});
 	}
 
 	newCareInitialAssessment(): Promise<CareInitialAssessment> {
@@ -48,14 +52,17 @@ export class CareActivityService {
 	saveCareInitialAssessment(assess: CareInitialAssessment): void {
 		var keyUrl = this.assessUrlFromGuid(assess.guid);	// This for saving via webAPI when it's done
 		this.sql.query('SELECT * FROM careinitialassessments WHERE guid=?', [assess.guid])
+			.catch(err => this.simpleAlert(err, "Unable to retrieve careinitialassessments."))
 			.then(data => {
 				return (data.res.rows.length > 0);
 			})
 			.then(exists => {
 				if (exists) {
-					this.sql.query('UPDATE careinitialassessments SET json=? WHERE guid=?', [JSON.stringify(assess), assess.guid]);
+					this.sql.query('UPDATE careinitialassessments SET json=? WHERE guid=?', [JSON.stringify(assess), assess.guid])
+						.catch(err => this.simpleAlert(err, "Unable to Update Care Assessment"));
 				} else {
-					this.sql.query('INSERT INTO careinitialassessments (guid, json) VALUES (?, ?)', [assess.guid, JSON.stringify(assess)]);
+					this.sql.query('INSERT INTO careinitialassessments (guid, json) VALUES (?, ?)', [assess.guid, JSON.stringify(assess)])
+						.catch(err => this.simpleAlert(err, "Unable to Insert Care Assessment"));
 				}
 				var toast = this.toastCtrl.create({ message: 'Changes to Care Initial Assessment successfully saved', duration: 3000 });
 				toast.present();
@@ -77,6 +84,9 @@ export class CareActivityService {
 	}
 
 	getAllCareInitialAssessments(): Promise<CareInitialAssessment[]> {
+
+		// TODO Consider sorting explicitly given that new Assessments may be displayed out-of-order
+
 		let sqlQry: Promise<CareInitialAssessment[]> = this.sql.query("SELECT * FROM careinitialassessments")
 			.then(qry => {
 				let sqlResults: any = qry.res.rows;
@@ -96,15 +106,21 @@ export class CareActivityService {
 					let combined = apiRes;
 					let apiKeys = apiRes.map(res => { return res.guid });
 					sqlRes.forEach(res => {
+						// Include local sqlite version if not included in data from server
 						if (!apiKeys.some(key => key == res.guid)) {
 							combined.push(res);
 						}
+						// Overwrite server version if it's in both, in case changes have occurred offline
+						else {
+							let pos = combined.findIndex(ele => ele.guid == res.guid);
+							combined.splice(pos, 1, res);
+						}
 					});
-					return Promise.resolve(combined);	
+					return Promise.resolve(combined);
 				})
-				.catch(err => {
-					return Promise.reject("Unable to retrieve Care Initial Assessments from server, or to find any stored locally.");
-				});
+					.catch(err => {
+						return Promise.reject("Unable to retrieve Care Initial Assessments from server, or to find any stored locally.");
+					});
 			})
 			.catch(reason => {
 				return sqlQry;
@@ -115,6 +131,16 @@ export class CareActivityService {
 
 	assessUrlFromGuid(guid: string): string {
 		return "care/initialassessments?assessGuid=" + guid;
+	}
+
+	simpleAlert(err: any, msg: string) {
+		let errAlert = this.alertCtrl.create({
+			title: "SqLite DB Fail",
+			message: msg + " Message was: " + err.tx + err.err,
+			buttons: ["Ok"]
+
+		});
+		errAlert.present();
 	}
 }
 

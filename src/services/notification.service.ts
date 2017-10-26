@@ -1,18 +1,20 @@
 import { Injectable } from "@angular/core";
-import { AlertController } from "ionic-angular";
+import { AlertController, Platform } from "ionic-angular";
 import { Observable, BehaviorSubject } from "rxjs/Rx";
 import { PushMessage } from "../models/pushmessage";
 
 @Injectable()
 export class NotificationService {
 
-    constructor(private alert: AlertController) {
-
+    constructor(private alert: AlertController, private platform: Platform) {
+        if (!this.platform.is('cordova')) {
+            this.pushMessages.push(this.testMsg);
+        }
     }
 
     testMsg: PushMessage = new PushMessage({ title: "Default Test Message", body: "This is a test message. If you're seeing this in Production, Alex is an idiot" });
 
-    pushMessages: PushMessage[] = [this.testMsg];
+    pushMessages: PushMessage[] = [];
     pushMessages$: BehaviorSubject<PushMessage[]> = new BehaviorSubject<PushMessage[]>(this.pushMessages);
     pushMessageObserver: Observable<PushMessage[]> = this.pushMessages$.asObservable();
 
