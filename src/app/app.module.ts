@@ -1,5 +1,6 @@
 // Angular/Ionic
 import { NgModule, ErrorHandler } from '@angular/core';
+import { ReactiveFormsModule } from "@angular/forms";
 import { AlertController, IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { SQLite, Splashscreen, StatusBar } from 'ionic-native';
@@ -93,6 +94,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingDailyPage, BookingCard, AdjustmentPopover,
     TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover, DualColumnIonGrid ],
   imports: [
+    ReactiveFormsModule,
     SignaturePadModule,
     IonicModule.forRoot(MyApp)
   ],

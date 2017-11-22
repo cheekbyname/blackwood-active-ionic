@@ -1,6 +1,10 @@
 // Angular/Ionic
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import { FormGroup, FormBuilder } from "@angular/forms";
 import { NavController, AlertController } from 'ionic-angular';
+
+// Models
+import { CareInitialAssessment } from "../../models/careinitialassessment";
 
 // Components
 import { InitialAssessPage } from '../../pages/initialassess.page/initialassess.page';
@@ -14,7 +18,7 @@ import { CareActivityService } from '../../services/care.activity.service';
 @Component({
 	templateUrl: 'assesstabs.page.html'
 })
-export class AssessTabsPage {
+export class AssessTabsPage implements AfterViewInit {
 
 	tabs: Tab[] = [
 		new Tab("Assessment", InitialAssessPage),
@@ -24,24 +28,44 @@ export class AssessTabsPage {
 	];
 
 	showAlert: boolean = true;
+	assess: CareInitialAssessment;
+	savedAssess: CareInitialAssessment;
+	initialAssessForm: any;
 
-	constructor(private navCtrl: NavController, public actSrv: CareActivityService, public alertCtrl: AlertController) {
+	constructor(private navCtrl: NavController, public actSrv: CareActivityService, public alertCtrl: AlertController,
+		public formBuilder: FormBuilder) {
+		this.assess = this.actSrv.getCurrentCareInitialAssessment();
+		this.initialAssessForm = formBuilder.group({});
+	}
 
+	ngAfterViewInit() {
+		this.savedAssess = this.initialAssessForm.value;
 	}
 
 	ionViewCanLeave() {
-		if (this.showAlert) {
+		if (this.showAlert && this.initialAssessForm.dirty) {
 			let confirmLeave = this.alertCtrl.create({
-				title: 'Leave Assessment?',
-				message: 'Are you sure you want to leave this Assessment? You may have unsaved changes!',
+				cssClass: 'customAlert',
+				title: 'Unsaved Changes',
+				message: 'You have unsaved changes! Are you sure you want to leave this Assessment?',
 				buttons: [
-					{ text: 'No', handler: () => true },
+					{ text: 'Cancel', handler: () => true },
 					{
-						text: 'Yes', handler: () => {
+						text: 'Discard', handler: () => {
+							this.initialAssessForm.reset(this.savedAssess);
 							confirmLeave.dismiss().then(() => {
 								this.showAlert = false;
 								this.navCtrl.pop();
-							})
+							});
+						}
+					},
+					{
+						text: 'Save', handler: () => {
+							this.saveAssessment();
+							confirmLeave.dismiss().then(() => {
+								this.showAlert = false;
+								this.navCtrl.pop();
+							});
 						}
 					}
 				]
@@ -67,6 +91,10 @@ export class AssessTabsPage {
 		});
 		confirmSave.present();
 	}
+
+	// resetForm() {
+	// 	this.initialAssessForm.reset(this.savedAssess);
+	// }
 }
 
 class Tab {

@@ -1,4 +1,4 @@
-<ion-content class="has-footer" id="checklist_page">
+<ion-content class="has-footer" id="checklist_page" [formGroup]="form">
 	<ion-card ion-fixed>
 		<ion-card-content no-padding>
 			<ion-grid>
@@ -17,8 +17,8 @@
 		<ion-card-content>
 			<ion-grid id="checklist_page_bottom">
 				<div id="checklist_content">
-					<div *ngFor="let item of assess.checkItems">
-						<ion-row radio-group [(ngModel)]="item.value" class="checklist-item-row">
+					<div *ngFor="let item of assess.checkItems; let i = index">
+						<ion-row radio-group [(ngModel)]="item.value" formControlName="checkItem_{{i}}" class="checklist-item-row">
 							<ion-col text-wrap width-50><ion-label>{{item.itemName}}</ion-label></ion-col>
 							<ion-col><ion-radio value="yes"></ion-radio></ion-col>
 							<ion-col><ion-radio value="no"></ion-radio></ion-col>
@@ -28,7 +28,7 @@
 						<div *ngIf="item.value && (item.value == item.furtherValue)">
 							<ion-item text-wrap>
 								<ion-label stacked>{{item.furtherTitle}}</ion-label>
-								<ion-textarea rows="3" [(ngModel)]="item.further"></ion-textarea>
+								<ion-textarea rows="3" [(ngModel)]="item.further" formControlName="checkItem_{{i}}_further"></ion-textarea>
 							</ion-item>
 						</div>
 					</div>
@@ -41,16 +41,16 @@
 			<ion-list no-lines>
 				<ion-item>
 					<ion-label stacked>Any other hazards observed?</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.otherHazards"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.otherHazards" formControlName="otherHazards"></ion-textarea>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Comments and further action to be taken</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.furtherAction"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.furtherAction" formControlName="furtherAction"></ion-textarea>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Is a more detailed risk assessment required?</ion-label>
 				</ion-item>
-				<div radio-group [(ngModel)]="assess.fullAssessReqd">
+				<div radio-group [(ngModel)]="assess.fullAssessReqd" formControlName="fullAssessReqd">
 					<ion-item><ion-label>Yes</ion-label><ion-radio value="true"></ion-radio></ion-item>
 					<ion-item><ion-label>No</ion-label><ion-radio value="false"></ion-radio></ion-item>
 				</div>

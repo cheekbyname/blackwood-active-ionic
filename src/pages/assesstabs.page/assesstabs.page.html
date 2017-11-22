@@ -1,15 +1,21 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Care Initial Assessment</ion-title>
-		<ion-buttons end>
-			<!--<button ion-button icon-only (click)="saveAssessment()"><ion-icon name="checkbox" color="secondary"></ion-icon></button>-->
-			<button ion-button icon-right (click)="saveAssessment()" class="header-button">
-				<span text-capitalize>Save</span><ion-icon name="checkbox"></ion-icon></button>
-		</ion-buttons>
-  </ion-navbar>
-</ion-header>
+<form [formGroup]="initialAssessForm" (ngSubmit)="saveAssessment()">
+	<ion-header>
+		<ion-navbar>
+			<ion-title>Care Initial Assessment</ion-title>
+			<ion-buttons end>
+				<!-- <button ion-button icon-right class="header-button" (click)="resetForm()" [disabled]="initialAssessForm.pristine">
+					<span text-capitalize>Reset</span>
+					<ion-icon name="close-circle"></ion-icon>
+				</button> -->
+				<button ion-button icon-right type="submit" class="header-button" [disabled]="initialAssessForm.pristine">
+					<span text-capitalize>Save</span>
+					<ion-icon name="checkmark-circle"></ion-icon>
+				</button>
+			</ion-buttons>
+		</ion-navbar>
+	</ion-header>
 
-
-<ion-tabs [tabsHighlight]="true">
-	<ion-tab *ngFor="let tab of tabs" tabTitle="{{tab.title}}" [root]="tab.page"></ion-tab>
-</ion-tabs>
+	<ion-tabs [tabsHighlight]="true">
+		<ion-tab *ngFor="let tab of tabs" tabTitle="{{tab.title}}" [root]="tab.page" [rootParams]="{ assess: assess, form: initialAssessForm }"></ion-tab>
+	</ion-tabs>
+</form>
