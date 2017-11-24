@@ -1,4 +1,4 @@
-<ion-content id="handling_page">
+<ion-content id="handling_page" [formGroup]="form">
 
 	<!-- About the Person -->
 	<ion-card class="card-pad-bottom">
@@ -6,11 +6,11 @@
 		<ion-card-content no-padding no-margin>
 			<ion-list text-wrap no-lines>
 				<ion-item>
-					<ion-textarea rows="3" [(ngModel)]="assess.aboutPerson"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.aboutPerson" formControlName="aboutPerson"></ion-textarea>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Body Build - Weight</ion-label>
-					<ion-select [(ngModel)]="assess.bodyBuildWeight">
+					<ion-select [(ngModel)]="assess.bodyBuildWeight" formControlName="bodyBuildWeight">
 						<ion-option value="1">Obese</ion-option>
 						<ion-option value="2">Above Average</ion-option>
 						<ion-option value="3">Average</ion-option>
@@ -19,7 +19,7 @@
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Body Build - Height</ion-label>
-					<ion-select [(ngModel)]="assess.bodyBuildHeight">
+					<ion-select [(ngModel)]="assess.bodyBuildHeight" formControlName="bodyBuildHeight">
 						<ion-option value="1">Tall</ion-option>
 						<ion-option value="2">Medium</ion-option>
 						<ion-option value="3">Short</ion-option>
@@ -27,18 +27,18 @@
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Risk of Falls</ion-label>
-					<ion-select [(ngModel)]="assess.riskFalls">
+					<ion-select [(ngModel)]="assess.riskFalls" formControlName="riskFalls">
 						<ion-option value="1">High</ion-option>
 						<ion-option value="2">Low</ion-option>
 					</ion-select>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Problems with comprehension, behaviours, co-operation (specify)</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.problems"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.problems" formControlName="problems"></ion-textarea>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Handling constraints e.g. disability, weakness, pain, skin lesions, infusions (specify)</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.constraints"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.constraints" formControlName="constraints"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
@@ -52,7 +52,7 @@
 				<ion-item text-wrap><em>Including to/from bed, wheelchair, commode, toilet</em></ion-item>
 				<ion-item>
 					<ion-label stacked>Specify</ion-label>
-					<ion-select [(ngModel)]="assess.transferSpec">
+					<ion-select [(ngModel)]="assess.transferSpec" formControlName="transferSpec">
 						<ion-option value="1">Hoist or Standaid</ion-option>
 						<ion-option value="2">Assistance</ion-option>
 						<ion-option value="3">Supervision</ion-option>
@@ -63,18 +63,18 @@
 					<div item-left class="range-label">
 						<ion-label>People<ion-badge class="range-badge">{{assess.transferPeople}}</ion-badge></ion-label>
 					</div>
-					<ion-range class="range-slider" [(ngModel)]="assess.transferPeople" min="0" max="3" step="1" snaps="true">
+					<ion-range class="range-slider" [(ngModel)]="assess.transferPeople" formControlName="transferPeople" min="0" max="3" step="1" snaps="true">
 						<ion-label range-left>0</ion-label>
 						<ion-label range-right>3</ion-label>
 					</ion-range>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Walking Aid - specify</ion-label>
-					<ion-input type="text" [(ngModel)]="assess.transferWalkingAid"></ion-input>
+					<ion-input type="text" [(ngModel)]="assess.transferWalkingAid" formControlName="transferWalkingAid"></ion-input>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Additional Information</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.transferAdditional"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.transferAdditional" formControlName="transferAdditional"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
@@ -87,7 +87,7 @@
 			<ion-list no-lines text-wrap>
 				<ion-item>
 					<ion-label stacked>Specify</ion-label>
-					<ion-select [(ngModel)]="assess.toiletSpec">
+					<ion-select [(ngModel)]="assess.toiletSpec" formControlName="toiletSpec">
 						<ion-option value="1">Hoist or Standaid</ion-option>
 						<ion-option value="2">Assistance</ion-option>
 						<ion-option value="3">Supervision</ion-option>
@@ -98,18 +98,18 @@
 					<div item-left class="range-label">
 						<ion-label>People<ion-badge class="range-badge">{{assess.toiletPeople}}</ion-badge></ion-label>
 					</div>
-					<ion-range class="range-slider" [(ngModel)]="assess.toiletPeople" min="0" max="3" step="1" snaps="true">
+					<ion-range class="range-slider" [(ngModel)]="assess.toiletPeople" formControlName="toiletPeople" min="0" max="3" step="1" snaps="true">
 						<ion-label range-left>0</ion-label>
 						<ion-label range-right>3</ion-label>
 					</ion-range>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Walking Aid - specify</ion-label>
-					<ion-input type="text" [(ngModel)]="assess.toiletWalkingAid"></ion-input>
+					<ion-input type="text" [(ngModel)]="assess.toiletWalkingAid" formControlName="toiletWalkingAid"></ion-input>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Additional Information</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.toiletAdditional"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.toiletAdditional" formControlName="toiletAdditional"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
@@ -122,14 +122,14 @@
 			<ion-list no-lines text-wrap>
 				<ion-item>
 					<ion-label stacked>Specify</ion-label>
-					<ion-select class="select-margin-bottom" [(ngModel)]="assess.bedpanSpec">
+					<ion-select class="select-margin-bottom" [(ngModel)]="assess.bedpanSpec" formControlName="bedpanSpec">
 						<ion-option value="1">Hoist</ion-option>
 						<ion-option value="2">Manoeuver</ion-option>
 						<ion-option value="3">Assistance</ion-option>
 						<ion-option value="4">Supervision</ion-option>
 						<ion-option value="5" selected="true">N/A</ion-option>
 					</ion-select>
-					<ion-select [(ngModel)]="assess.bedpanManeuver">
+					<ion-select [(ngModel)]="assess.bedpanManeuver" formControlName="bedpanManeuver">
 						<ion-option value="1">Roll Customer</ion-option>
 						<ion-option value="2">Monkey Pole</ion-option>
 						<ion-option value="3">Customer Bridges</ion-option>
@@ -139,14 +139,14 @@
 					<div item-left class="range-label">
 						<ion-label>People<ion-badge class="range-badge">{{assess.bedpanPeople}}</ion-badge></ion-label>
 					</div>
-					<ion-range class="range-slider" [(ngModel)]="assess.bedpanPeople" min="0" max="3" step="1" snaps="true">
+					<ion-range class="range-slider" [(ngModel)]="assess.bedpanPeople" formControlName="bedpanPeople" min="0" max="3" step="1" snaps="true">
 						<ion-label range-left>0</ion-label>
 						<ion-label range-right>3</ion-label>
 					</ion-range>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Additional Information</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.bedpanAdditional"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.bedpanAdditional" formControlName="bedpanAdditional"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
@@ -159,14 +159,14 @@
 			<ion-list no-lines text-wrap>
 				<ion-item>
 					<ion-label stacked>Specify</ion-label>
-					<ion-select class="select-margin-bottom" [(ngModel)]="assess.bedMoveSpec">
+					<ion-select class="select-margin-bottom" [(ngModel)]="assess.bedMoveSpec" formControlName="bedMoveSpec">
 						<ion-option value="1">Hoist</ion-option>
 						<ion-option value="2">Handling Aids</ion-option>
 						<ion-option value="3">Assistance</ion-option>
 						<ion-option value="4">Supervision</ion-option>
 						<ion-option value="5">Independent</ion-option>
 					</ion-select>
-					<ion-select [(ngModel)]="assess.bedMoveHandlingAid">
+					<ion-select [(ngModel)]="assess.bedMoveHandlingAid" formControlName="bedMoveHandlingAid">
 						<ion-option value="1">Sliding Sheet</ion-option>
 						<ion-option value="2">Monkey Pole</ion-option>
 						<ion-option value="3">Rope Ladder</ion-option>
@@ -176,14 +176,14 @@
 					<div item-left class="range-label">
 						<ion-label>People<ion-badge class="range-badge">{{assess.bedMovePeople}}</ion-badge></ion-label>
 					</div>
-					<ion-range class="range-slider" [(ngModel)]="assess.bedMovePeople" min="0" max="3" step="1" snaps="true">
+					<ion-range class="range-slider" [(ngModel)]="assess.bedMovePeople" formControlName="bedMovePeople" min="0" max="3" step="1" snaps="true">
 						<ion-label range-left>0</ion-label>
 						<ion-label range-right>3</ion-label>
 					</ion-range>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Additional Information</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.bedMoveAdditional"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.bedMoveAdditional" formControlName="bedMoveAdditional"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
@@ -196,14 +196,14 @@
 			<ion-list no-lines text-wrap>
 				<ion-item>
 					<ion-label stacked>Specify</ion-label>
-					<ion-select class="select-margin-bottom" [(ngModel)]="assess.bedTransferSpec">
+					<ion-select class="select-margin-bottom" [(ngModel)]="assess.bedTransferSpec" formControlName="bedTransferSpec">
 						<ion-option value="1">Hoist</ion-option>
 						<ion-option value="2">Handling Aids</ion-option>
 						<ion-option value="3">Assistance</ion-option>
 						<ion-option value="4">Supervision</ion-option>
 						<ion-option value="5">Independent</ion-option>
 					</ion-select>
-					<ion-select [(ngModel)]="assess.bedTransferHandlingAid">
+					<ion-select [(ngModel)]="assess.bedTransferHandlingAid" formControlName="bedTransferHandlingAid">
 						<ion-option value="1">Patslide</ion-option>
 						<ion-option value="2">Roll Board</ion-option>
 						<ion-option value="3">Fabric Sliding Aid</ion-option>
@@ -213,14 +213,14 @@
 					<div item-left class="range-label">
 						<ion-label>People<ion-badge class="range-badge">{{assess.bedTransferPeople}}</ion-badge></ion-label>
 					</div>
-					<ion-range class="range-slider" [(ngModel)]="assess.bedTransferPeople" min="0" max="3" step="1" snaps="true">
+					<ion-range class="range-slider" [(ngModel)]="assess.bedTransferPeople" formControlName="bedTransferPeople" min="0" max="3" step="1" snaps="true">
 						<ion-label range-left>0</ion-label>
 						<ion-label range-right>3</ion-label>
 					</ion-range>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Additional Information</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.bedTransferAdditional"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.bedTransferAdditional" formControlName="bedTransferAdditional"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
@@ -233,7 +233,7 @@
 			<ion-list no-lines text-wrap>
 				<ion-item>
 					<ion-label stacked>Specify</ion-label>
-					<ion-select [(ngModel)]="assess.bedsideSpec">
+					<ion-select [(ngModel)]="assess.bedsideSpec" formControlName="bedsideSpec">
 						<ion-option value="1">Bed Rest</ion-option>
 						<ion-option value="2">Assistant</ion-option>
 						<ion-option value="3">Supervision</ion-option>
@@ -244,14 +244,14 @@
 					<div item-left class="range-label">
 						<ion-label>People<ion-badge class="range-badge">{{assess.bedsidePeople}}</ion-badge></ion-label>
 					</div>
-					<ion-range class="range-slider" [(ngModel)]="assess.bedsidePeople" min="0" max="3" step="1" snaps="true">
+					<ion-range class="range-slider" [(ngModel)]="assess.bedsidePeople" formControlName="bedsidePeople" min="0" max="3" step="1" snaps="true">
 						<ion-label range-left>0</ion-label>
 						<ion-label range-right>3</ion-label>
 					</ion-range>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Additional Information</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.bedsideAdditional" placeholder="e.g. equipment to be used"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.bedsideAdditional" formControlName="bedsideAdditional" placeholder="e.g. equipment to be used"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
@@ -264,7 +264,7 @@
 			<ion-list no-lines text-wrap>
 				<ion-item>
 					<ion-label stacked>Which Bath</ion-label>
-					<ion-select [(ngModel)]="assess.bathShowerWhich">
+					<ion-select [(ngModel)]="assess.bathShowerWhich" formControlName="bathShowerWhich">
 						<ion-option value="1">Shower</ion-option>
 						<ion-option value="2">Variable Height Bath</ion-option>
 						<ion-option value="3">Bed Bath</ion-option>
@@ -272,7 +272,7 @@
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Handling Aid</ion-label>
-					<ion-select [(ngModel)]="assess.bathShowerHandlingAid">
+					<ion-select [(ngModel)]="assess.bathShowerHandlingAid" formControlName="bathShowerHandlingAid">
 						<ion-option value="1">Hoist</ion-option>
 						<ion-option value="2">Ambulift</ion-option>
 						<ion-option value="3">Shower Chair</ion-option>
@@ -280,7 +280,7 @@
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Specify</ion-label>
-					<ion-select [(ngModel)]="assess.bathShowerSpec">
+					<ion-select [(ngModel)]="assess.bathShowerSpec" formControlName="bathShowerSpec">
 						<ion-option value="1">Assistance</ion-option>
 						<ion-option value="2">Supervision</ion-option>
 						<ion-option value="3">Independent</ion-option>
@@ -290,14 +290,14 @@
 					<div item-left class="range-label">
 						<ion-label>People<ion-badge class="range-badge">{{assess.bathShowerPeople}}</ion-badge></ion-label>
 					</div>
-					<ion-range class="range-slider" [(ngModel)]="assess.bathShowerPeople" min="0" max="3" step="1" snaps="true">
+					<ion-range class="range-slider" [(ngModel)]="assess.bathShowerPeople" formControlName="bathShowerPeople" min="0" max="3" step="1" snaps="true">
 						<ion-label range-left>0</ion-label>
 						<ion-label range-right>3</ion-label>
 					</ion-range>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Additional Information</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.bathShowerAdditional"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.bathShowerAdditional" formControlName="bathShowerAdditional"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
@@ -310,7 +310,7 @@
 			<ion-list no-lines text-wrap>
 				<ion-item>
 					<ion-label stacked>Specify</ion-label>
-					<ion-select [(ngModel)]="assess.walkingSpec">
+					<ion-select [(ngModel)]="assess.walkingSpec" formControlName="walkingSpec">
 						<ion-option value="1">No Walking</ion-option>
 						<ion-option value="2">Walking Aid</ion-option>
 						<ion-option value="3">Assistance</ion-option>
@@ -320,20 +320,20 @@
 				</ion-item>
 				<ion-item *ngIf="assess.walkingSpec == 2">
 					<ion-label stacked>Specify Walking Aid</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.walkingWalkingAid"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.walkingWalkingAid" formControlName="walkingWalkingAid"></ion-textarea>
 				</ion-item>
 				<ion-item *ngIf="assess.walkingSpec == 3">
 					<div item-left class="range-label">
 						<ion-label>People<ion-badge class="range-badge">{{assess.walkingPeople}}</ion-badge></ion-label>
 					</div>
-					<ion-range class="range-slider" [(ngModel)]="assess.walkingPeople" min="0" max="3" step="1" snaps="true">
+					<ion-range class="range-slider" [(ngModel)]="assess.walkingPeople" formControlName="walkingPeople" min="0" max="3" step="1" snaps="true">
 						<ion-label range-left>0</ion-label>
 						<ion-label range-right>3</ion-label>
 					</ion-range>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Additional Information</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.walkingAdditional" placeholder="e.g. distance walked"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.walkingAdditional" formControlName="walkingAdditional" placeholder="e.g. distance walked"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
@@ -346,7 +346,7 @@
 			<ion-list no-lines text-wrap>
 				<ion-item>
 					<ion-label stacked></ion-label>
-					<ion-textarea rows="5" [(ngModel)]="assess.otherInstructions" placeholder="any other instructions"></ion-textarea>
+					<ion-textarea rows="5" [(ngModel)]="assess.otherInstructions" formControlName="otherInstructions" placeholder="any other instructions"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>

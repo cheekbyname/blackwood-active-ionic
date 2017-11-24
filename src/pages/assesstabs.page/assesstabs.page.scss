@@ -48,7 +48,13 @@ ion-label {
 ion-textarea, ion-select, ion-datetime {
 	background-color: rgba(225, 225, 225, 0.5);
 	font-family: "Century Gothic";
+	font-size: 12pt;
 	padding: 8px;
+}
+
+ion-card-header {
+	font-family: 'Century Gothic';
+	font-size: 12pt;
 }
 
 ion-input, ion-select, ion-datetime, ion-label {
@@ -116,6 +122,26 @@ ion-item, ion-item > div.item-inner {
 	flex-direction: row;
 	justify-content: space-between;
 }
+
 // signature-pad canvas {
 // 	width: 100%;
 // }
+
+ion-input.ng-invalid, ion-textarea.ng-invalid, ion-select.ng-invalid {
+	border: 1px solid orangered;
+}
+
+ion-label.valid-mess {
+	color: orangered!important;
+	font-weight: bold;
+	position: absolute;
+	right: 0px;
+}
+
+ion-label[stacked] {
+	margin-bottom: 4px!important;
+}
+
+.item-inner {
+	box-shadow: none!important;
+}

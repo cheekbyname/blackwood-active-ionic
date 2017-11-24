@@ -16,7 +16,8 @@
 					<ion-input type="text" [(ngModel)]="assess.visitBy" formControlName="visitBy"></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>Name of Client</ion-label>
+					<ion-label stacked >Name of Client</ion-label>
+					<ion-label stacked *ngIf="form.controls.name.invalid" class="valid-mess">A name is required</ion-label>
 					<ion-input type="text" [(ngModel)]="assess.name" formControlName="name"></ion-input>
 				</ion-item>
 				<ion-item>
@@ -25,6 +26,7 @@
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Address</ion-label>
+					<ion-label stacked *ngIf="form.controls.address1.invalid" class="valid-mess">An address is required</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.address1" formControlName="address1"></ion-textarea>
 				</ion-item>
 				<ion-item>
@@ -33,10 +35,12 @@
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Date of Birth</ion-label>
+					<ion-label stacked *ngIf="form.controls.dateOfBirth.invalid" class="valid-mess">A date of birth is required</ion-label>
 					<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="assess.dateOfBirth" formControlName="dateOfBirth"></ion-datetime>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Type of Visit</ion-label>
+					<ion-label stacked *ngIf="form.controls.visitType.invalid" class="valid-mess">A type of visit is required</ion-label>
 					<ion-select width-100 [(ngModel)]="assess.visitType" #visitType placeholder="Select from the following" formControlName="visitType">
 						<ion-option value="0">Personal Care</ion-option>
 						<ion-option value="1">Non-Personal Care</ion-option>
@@ -48,10 +52,12 @@
 					<ion-label stacked>
 						<strong>{{visitType.Value}} Needs</strong>
 					</ion-label>
+					<ion-label stacked *ngIf="form.controls.whatRequired.invalid" class="valid-mess">A summary of care needs is required</ion-label>
 					<ion-textarea rows="6" [(ngModel)]="assess.whatRequired" formControlName="whatRequired" placeholder="What assistance do you require? Describe in general terms any care or support you require with your usual routine including bathing/showering, mobility/transfers, eating/drinking, dressing/undressing, overnight, etc."></ion-textarea>
 				</ion-item>
 				<ion-item>
-					<ion-label stacked>When do you require assistance?</ion-label>
+					<ion-label stacked>When is assistance required?</ion-label>
+					<ion-label stacked *ngIf="form.controls.whenRequired.invalid" class="valid-mess">This field is required</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.whenRequired" formControlName="whenRequired" placeholder="What times &amp; for how long, start &amp; finish times of each visit?"></ion-textarea>
 				</ion-item>
 				<ion-item>
@@ -107,7 +113,7 @@
 					<ion-checkbox [(ngModel)]="assess.medicOtherVisit" formControlName="medicOtherVisit" mode="md"></ion-checkbox>
 				</ion-item>
 				<ion-item *ngIf="assess.medicOtherVisit == true">
-					<ion-textarea rows="3" [(ngModel)]="assess.medicOtherVisitDetails" formControlNamename="medicOtherVisitDetails" placeholder="Details of other time at which medication is taken"></ion-textarea>
+					<ion-textarea rows="3" [(ngModel)]="assess.medicOtherVisitDetails" formControlName="medicOtherVisitDetails" placeholder="Details of other time at which medication is taken"></ion-textarea>
 				</ion-item>
 				<ion-item>
 					<ion-label stacked>Oral Grading</ion-label>
@@ -283,13 +289,13 @@
 					<ion-radio value="3"></ion-radio>
 				</ion-item>
 			</ion-list>
-			<ion-list *ngIf="assess.genderPref=='3'" no-margin no-lines>
+			<ion-list *ngIf="assess.genderPref == '3'" no-margin no-lines>
 				<ion-item>
 					<ion-label stacked>Please give details</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.genderDetails" formControlName="genderDetails" placeholder="Details of the tasks or conditions under which you would like to be attended by specific gender"></ion-textarea>
 				</ion-item>
 			</ion-list>
-			<ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.altGender" formControlName="altGender">
+			<ion-list *ngIf="assess.genderPref != '0'" radio-group no-margin text-wrap no-lines [(ngModel)]="assess.altGender" formControlName="altGender">
 				<ion-item>
 					<ion-label stacked>In the event we cannot provide this preference, would you accept the alternative?</ion-label>
 				</ion-item>
@@ -328,7 +334,7 @@
 				</ion-item>
 			</ion-list>
 			<ion-list no-margin text-wrap id="assess_page_bottom" no-lines>
-				<ion-item *ngIf="assess.doorEntry && assess.doorEntry=='1'">
+				<ion-item [hidden]="!(assess.doorEntry && assess.doorEntry=='1')">
 					<ion-label stacked>What is the number of your Key Code?</ion-label>
 					<ion-input type="text" [(ngModel)]="assess.keyCode" formControlName="keyCode"></ion-input>
 				</ion-item>
