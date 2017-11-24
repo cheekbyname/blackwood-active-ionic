@@ -40,6 +40,7 @@ export class CareActivityService {
 			newAssess.visitDate = new Date().toISOString();
 			newAssess.activeUser = this.usrSrv.currentUser;
 			newAssess.visitBy = newAssess.activeUser.simpleName;
+			newAssess.dateOfBirth = null;
 			this.currentCareInitialAssessment = newAssess;
 			return Promise.resolve(this.currentCareInitialAssessment);
 		}
@@ -49,6 +50,7 @@ export class CareActivityService {
 		return this.currentCareInitialAssessment;
 	}
 
+	// TODO Return Promise<Response>
 	saveCareInitialAssessment(assess: CareInitialAssessment): void {
 		var keyUrl = this.assessUrlFromGuid(assess.guid);	// This for saving via webAPI when it's done
 		this.sql.query('SELECT * FROM careinitialassessments WHERE guid=?', [assess.guid])
