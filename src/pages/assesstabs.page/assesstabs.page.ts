@@ -69,7 +69,10 @@ export class AssessTabsPage implements AfterViewInit {
 			let confirmLeave = this.alertCtrl.create({
 				cssClass: 'customAlert',
 				title: 'Unsaved Changes',
-				message: 'You have unsaved changes! Are you sure you want to leave this Assessment?',
+				message: 'You have unsaved changes on this form. Would you like to:<br/><ul>'
+				+ '<li><strong>Cancel</strong> and return to the form</li>'
+				+ '<li><strong>Discard</strong> your changes and leave the form</li>'
+				+ '<li><strong>Save</strong> your changes and leave the form</li></ul>',
 				buttons: [
 					{ text: 'Cancel', handler: () => true },
 					{

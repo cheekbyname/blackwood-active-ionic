@@ -183,6 +183,7 @@ export class CareInitialAssessment {
 		])
 	];
 	overallRisk: number;
+	active: boolean;
 }
 
 class CheckItem {

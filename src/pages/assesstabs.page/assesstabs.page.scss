@@ -16,12 +16,12 @@ ion-tabs a[aria-selected="true"] span {
 	background: hotpink;
 }
 
-.header-button {
+.header-button, button.alert-button {
 	box-shadow: 2px 2px silver;
 	:first-child {
 		margin-right: 8px;
 	}
-	background-color: #ff80cc;
+	background-color: #ff80cc!important;
 	span {
 		color: black;
 	}
@@ -63,6 +63,9 @@ ion-input, ion-select, ion-datetime, ion-label {
 
 ion-content#assess_page, ion-content#checklist_page, ion-content#handling_page, ion-content#tile_page {
 	margin-top: 56px;
+	ion-card {
+		padding: 0px 0px 8px 0px;
+	}
 }
 
 ion-card#checklist-float {
@@ -114,20 +117,48 @@ ul > li > span {
 	font-size: 11pt;
 }
 
-ion-item, ion-item > div.item-inner {
-	border-bottom: none!important;
-}
-
-.customAlert .alert-button-group {
+.customAlert .alert-button-group, .select-alert .alert-button-group {
 	flex-direction: row;
 	justify-content: space-between;
+}
+
+.alert-head {
+	padding: 24px 24px 12px 24px;
+}
+
+.alert-radio-group {
+	border: none!important;
+}
+
+.alert-button-group {
+	padding-left: 8px!important;
+	padding-right: 0px!important;
+}
+
+.alert-button-group > * {
+	flex: 1 1 auto;
+	flex-basis: 0;
+	max-width: 50%;
+}
+
+button.alert-button span.button-inner {
+	text-transform: none;
+	font-weight: bold;
+	justify-content: center!important;
+}
+
+.alert-wrapper ul {
+	padding-left: 16px;
+	li {
+		margin-bottom: 8px;
+	}
 }
 
 // signature-pad canvas {
 // 	width: 100%;
 // }
 
-ion-input.ng-invalid, ion-textarea.ng-invalid, ion-select.ng-invalid {
+ion-input.ng-invalid, ion-textarea.ng-invalid, ion-select.ng-invalid, ion-datetime.ng-invalid {
 	border: 1px solid orangered;
 }
 
@@ -142,6 +173,10 @@ ion-label[stacked] {
 	margin-bottom: 4px!important;
 }
 
-.item-inner {
+.item-inner, .input-has-value {
 	box-shadow: none!important;
+}
+
+ion-item, ion-item > div.item-inner {
+	border-bottom: none!important;
 }
