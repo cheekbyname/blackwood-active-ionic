@@ -1,7 +1,7 @@
 // Angular/Ionic
-import { Component, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, Content } from 'ionic-angular';
 
 // Models
 import { CareInitialAssessment } from "../../models/careinitialassessment";
@@ -19,6 +19,7 @@ import { CareActivityService } from '../../services/care.activity.service';
 	templateUrl: 'assesstabs.page.html'
 })
 export class AssessTabsPage implements AfterViewInit {
+	@ViewChild(Content) content: Content;
 
 	tabs: Tab[] = [
 		new Tab("Assessment", InitialAssessPage),
@@ -61,7 +62,6 @@ export class AssessTabsPage implements AfterViewInit {
 
 	ngAfterViewInit() {
 		this.savedAssess = this.form.value;
-		console.log(this.savedAssess);
 	}
 
 	ionViewCanLeave() {
@@ -83,10 +83,13 @@ export class AssessTabsPage implements AfterViewInit {
 					},
 					{
 						text: 'Save', handler: () => {
-							this.saveAssessment();
 							confirmLeave.dismiss().then(() => {
-								this.showAlert = false;
-								this.navCtrl.pop();
+								this.showAlert = true;
+								this.saveAssessment().then(ok => {
+									if (ok) {
+										this.navCtrl.pop()
+									}
+								});
 							});
 						}
 					}
@@ -98,7 +101,7 @@ export class AssessTabsPage implements AfterViewInit {
 		//this.actSrv.saveCareInitialAssessment(this.actSrv.getCurrentCareInitialAssessment());
 	}
 
-	saveAssessment() {
+	saveAssessment(): Promise<boolean> {
 		if (this.form.valid) {
 			let confirmSave = this.alertCtrl.create({
 				title: 'Save Changes?',
@@ -115,23 +118,19 @@ export class AssessTabsPage implements AfterViewInit {
 				]
 			});
 			confirmSave.present();
+			return Promise.resolve(true);
 		} else {
 			let alertInvalid = this.alertCtrl.create({
 				title: 'Missing or Invalid Data',
 				message: 'Some data on the form is either missing or invalid. Please check the form and try again.',
-				buttons: [{ text: 'Ok'}]
+				buttons: [{ text: 'Ok' }]
 			});
-			alertInvalid.present()
-				.then(x => {
-					var invalid = this.element.nativeElement.querySelectorAll('.ng-invalid');
-					invalid[2].scrollIntoView();
-					// TODO Select only valid input elements and scroll slightly further up to ensure labels etc. on view
-				});
+			alertInvalid.present();
+			return Promise.resolve(false);
 		}
 	}
 
 	resetForm() {
-		console.log(this.savedAssess);
 		this.form.reset(this.savedAssess);
 	}
 
