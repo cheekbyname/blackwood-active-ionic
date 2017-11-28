@@ -1,18 +1,28 @@
-import { Injectable } from "@angular/core";
-import { AlertController, Platform } from "ionic-angular";
+// Angular/Ionic
+import { Injectable, ViewChild } from "@angular/core";
+import { AlertController, Platform, Nav } from "ionic-angular";
 import { Observable, BehaviorSubject } from "rxjs/Rx";
+
+// Models
 import { PushMessage } from "../models/pushmessage";
+
+// Navigation Destination Components
+import { HomePage } from "../pages/home.page/home.page";
+import { TimekeepingTabsPage } from "../pages/timekeeping.tabs.page/timekeeping.tabs.page";
 
 @Injectable()
 export class NotificationService {
-
+	@ViewChild(Nav) nav: Nav;
+    
     constructor(private alert: AlertController, private platform: Platform) {
         if (!this.platform.is('cordova')) {
             this.pushMessages.push(this.testMsg);
         }
     }
 
-    testMsg: PushMessage = new PushMessage({ title: "Default Test Message", body: "This is a test message. If you're seeing this in Production, Alex is an idiot" });
+    testMsg: PushMessage = new PushMessage({
+        title: "Default Test Message",
+        body: "This is a test message. If you're seeing this in Production, Alex is an idiot" });
 
     pushMessages: PushMessage[] = [];
     pushMessages$: BehaviorSubject<PushMessage[]> = new BehaviorSubject<PushMessage[]>(this.pushMessages);
@@ -47,6 +57,14 @@ export class NotificationService {
     }
 
     navigateTo(dest: string, param: string) {
-        // TODO Navigate to the destination component with the specified param
+        // Navigate to the destination component with the specified param
+        switch (dest) {
+            case "HomePage":
+                this.nav.setRoot(HomePage);
+                break;
+            case "TimekeepingDailyPage":
+                this.nav.setRoot(TimekeepingTabsPage, { "navparam": param });
+                break;
+        }
     }
 }

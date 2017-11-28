@@ -63,7 +63,7 @@ export class MyApp {
 				title: "No User Information",
 				message: "Your User information is not yet loaded, please wait...",
 				buttons: [{
-					text: "Ok", handler: () => {}
+					text: "Ok", handler: () => { }
 				}]
 			});
 			soz.present();

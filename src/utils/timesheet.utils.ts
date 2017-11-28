@@ -6,7 +6,7 @@ import { Adjustment } from "../models/adjustment";
 
 export module TimesheetUtils {
 	export function shiftsForDay(ts: Timesheet, dt: Date): Shift[] {
-		if (ts == undefined) return [];
+		if (ts == undefined || dt == undefined) return [];
 		return ts.shifts
 			.filter(sh => new Date(sh.start).getDate() == dt.getDate());
 	}

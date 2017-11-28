@@ -1,5 +1,6 @@
 import { Component, ViewChild, ViewChildren, QueryList } from "@angular/core";
-import { Platform, FabContainer, ModalController, AlertController, DateTime, Content, FabButton, PopoverController } from "ionic-angular";
+import { Platform, FabContainer, ModalController, AlertController, DateTime, Content, FabButton, PopoverController,
+	NavParams } from "ionic-angular";
 import { DatePicker } from "ionic-native";
 
 import { AdjustmentPopover } from "../../components/adjustment.popover/adjustment.popover";
@@ -25,7 +26,7 @@ export class TimekeepingDailyPage {
 	@ViewChildren(FabButton) fabs: QueryList<FabButton>;
 
 	constructor(private timeSrv: TimekeepingService, private platform: Platform, private alert: AlertController,
-		private modCtrl: ModalController, private popCtrl: PopoverController) {
+		private modCtrl: ModalController, private popCtrl: PopoverController, private params: NavParams) {
 		this.timeSrv.timesheetObserver.subscribe(ts => {
 			if (ts !== undefined) {
 				this.timesheet = ts;
@@ -38,7 +39,12 @@ export class TimekeepingDailyPage {
 				this.displayToday();
 			}
 		});
-		this.timeSrv.setDate(new Date(Date.now()));
+		var param = this.params.get("navparam");
+		if (param) {
+			this.timeSrv.setDate(new Date(param));
+		} else {
+			this.timeSrv.setDate(new Date(Date.now()));
+		}
 	}
 
 	ngAfterViewInit() {
@@ -76,7 +82,7 @@ export class TimekeepingDailyPage {
 
 	displayToday() {
 		// Reset fab opacity
-		this.fabs.map(fab => { fab.setElementStyle("opacity", "1.0")});
+		if (this.fabs) this.fabs.map(fab => { fab.setElementStyle("opacity", "1.0")});
 
 		this.today = {};
 		this.today.shifts = TimesheetUtils.shiftsForDay(this.timesheet, this.selectedDate);

@@ -17,17 +17,17 @@ export class TimekeepingService {
 				return { "user": u, "week": w }
 			})
 			.subscribe(x => {
-				this.getTimesheet(x.user, x.week);
+				if (x.week != undefined) this.getTimesheet(x.user, x.week);
 			});
 	}
 
 	private timesheet$: BehaviorSubject<Timesheet> = new BehaviorSubject<Timesheet>(undefined);
-	private selectedDate$: BehaviorSubject<Date> = new BehaviorSubject<Date>(new Date(Date.now()));
-	private weekCommencing$: BehaviorSubject<Date> = new BehaviorSubject<Date>(this.utils.getWeekCommencingFromDate(new Date(Date.now())));
+	private selectedDate$: BehaviorSubject<Date> = new BehaviorSubject<Date>(undefined);
+	private weekCommencing$: BehaviorSubject<Date> = new BehaviorSubject<Date>(undefined);
 	public timesheetObserver: Observable<Timesheet> = this.timesheet$.asObservable();
 	public selectedDateObserver: Observable<Date> = this.selectedDate$.asObservable();
 	public weekCommencingObserver: Observable<Date> = this.weekCommencing$.asObservable().distinctUntilChanged((a, b) => {
-		return this.utils.sqlDate(a) == this.utils.sqlDate(b);
+		if (a && b) return this.utils.sqlDate(a) == this.utils.sqlDate(b);
 	});
 
 	setDate(dt: Date) {
