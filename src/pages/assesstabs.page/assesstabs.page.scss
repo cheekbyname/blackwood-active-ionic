@@ -147,10 +147,13 @@ button.alert-button span.button-inner {
 	justify-content: center!important;
 }
 
-.alert-wrapper ul {
-	padding-left: 16px;
-	li {
-		margin-bottom: 8px;
+.alert-wrapper {
+	max-width: 320px!important;
+	ul {
+		padding-left: 16px;
+		li {
+			margin-bottom: 8px;
+		}
 	}
 }
 

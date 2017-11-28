@@ -58,6 +58,17 @@ export class MyApp {
 	};
 
 	openPage(page) {
+		if (this.usrSrv.currentUser == undefined) {
+			let soz = this.alert.create({
+				title: "No User Information",
+				message: "Your User information is not yet loaded, please wait...",
+				buttons: [{
+					text: "Ok", handler: () => {}
+				}]
+			});
+			soz.present();
+			return;
+		}
 		this.nav.setRoot(page.component).catch(err => {
 			let soz = this.alert.create({
 				title: "Sorry!",
