@@ -66,4 +66,8 @@ export class ActivityPage implements OnInit {
     toggleMessages() {
         this.showMessages = !this.showMessages;
     }
+
+    showMessage(msg: PushMessage) {
+        this.notSrv.showAlert(msg.data);
+    }
 };

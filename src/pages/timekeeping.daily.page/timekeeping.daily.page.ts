@@ -39,7 +39,7 @@ export class TimekeepingDailyPage {
 				this.displayToday();
 			}
 		});
-		var param = this.params.get("navparam");
+		var param = this.params.get("param");
 		if (param) {
 			this.timeSrv.setDate(new Date(param));
 		} else {

@@ -1,6 +1,6 @@
 // Angular/Ionic
 import { Injectable, ViewChild } from "@angular/core";
-import { AlertController, Platform, Nav } from "ionic-angular";
+import { AlertController, Platform, App } from "ionic-angular";
 import { Observable, BehaviorSubject } from "rxjs/Rx";
 
 // Models
@@ -12,45 +12,50 @@ import { TimekeepingTabsPage } from "../pages/timekeeping.tabs.page/timekeeping.
 
 @Injectable()
 export class NotificationService {
-	@ViewChild(Nav) nav: Nav;
-    
-    constructor(private alert: AlertController, private platform: Platform) {
+
+    constructor(private alert: AlertController, private platform: Platform, private app: App) {
         if (!this.platform.is('cordova')) {
             this.pushMessages.push(this.testMsg);
+            this.pushMessages.push(this.navMsg);
         }
     }
 
     testMsg: PushMessage = new PushMessage({
         title: "Default Test Message",
-        body: "This is a test message. If you're seeing this in Production, Alex is an idiot" });
+        body: "This is a test message. If you're seeing this in Production, Alex is an idiot"
+    });
+
+    navMsg: PushMessage = new PushMessage({
+        title: "Navigation Test",
+        body: "Dummy push notification to test Timekeeping and other navigation",
+        data: {
+            navigate: "TimekeepingTabsPage",
+            param: "2017-09-26"
+        }
+    });
 
     pushMessages: PushMessage[] = [];
     pushMessages$: BehaviorSubject<PushMessage[]> = new BehaviorSubject<PushMessage[]>(this.pushMessages);
     pushMessageObserver: Observable<PushMessage[]> = this.pushMessages$.asObservable();
 
-    handleIncomingNotification(data: any) {
+    handleIncomingNotification(msg: any) {
         // Keep a copy of the data so we can show a message history
-        this.pushMessages.push(new PushMessage(data));
+        this.pushMessages.push(new PushMessage(msg));
         this.pushMessages$.next(this.pushMessages);
 
         // Show Alert if message was received with app in foreground
-        if (!data.wasTapped) {
-            let notify = this.alert.create({
-                title: data.title,
-                message: data.body,
-                buttons: this.buttonsFor(data)
-            });
-            notify.present();
+        if (!msg.wasTapped) {
+            this.showAlert(msg);
         } else {
             // Navigate if payload contained navigation information
-            if (data.navigate != undefined) this.navigateTo(data.navigate, data.param);
+            if (msg.data && msg.data.navigate != undefined) this.navigateTo(msg.data.navigate, msg.data.param);
         }
     }
 
     buttonsFor(data: any): any[] {
         let buttons = [];
         if (data.navigate != undefined) {
-            buttons.push({ text: 'Show Me', handler: this.navigateTo(data.navigate, data.param) });
+            buttons.push({ text: 'Show Me', handler: () => { this.navigateTo(data.navigate, data.param) }});
         }
         buttons.push({ text: 'Ok', handler: () => { } });
         return buttons;
@@ -60,11 +65,20 @@ export class NotificationService {
         // Navigate to the destination component with the specified param
         switch (dest) {
             case "HomePage":
-                this.nav.setRoot(HomePage);
+                this.app.getRootNav().setRoot(HomePage);
                 break;
-            case "TimekeepingDailyPage":
-                this.nav.setRoot(TimekeepingTabsPage, { "navparam": param });
+            case "TimekeepingTabsPage":
+                this.app.getRootNav().setRoot(TimekeepingTabsPage, { "param": param });
                 break;
         }
+    }
+
+    showAlert(msg: any) {
+        let notify = this.alert.create({
+            title: msg.title,
+            message: msg.body,
+            buttons: this.buttonsFor(msg.data || {})
+        });
+        notify.present();
     }
 }

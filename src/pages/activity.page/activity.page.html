@@ -36,7 +36,7 @@
 				</button>
 			</ion-card-header>
 			<ion-list *ngIf="showMessages">
-				<button ion-item *ngFor="let msg of messages" text-wrap class="list-item-underline">
+				<button ion-item *ngFor="let msg of messages" text-wrap class="list-item-underline" (click)="showMessage(msg)">
 					<ion-grid no-padding>
 						<ion-row>
 							<ion-col><strong>{{msg.data.title}}</strong></ion-col>
