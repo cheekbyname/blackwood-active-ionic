@@ -15,22 +15,24 @@ export class NotificationService {
 
     constructor(private alert: AlertController, private platform: Platform, private app: App) {
         if (!this.platform.is('cordova')) {
-            this.pushMessages.push(this.testMsg);
-            this.pushMessages.push(this.navMsg);
+            this.pushMessages.push(new PushMessage(this.testMsg));
+            this.pushMessages.push(new PushMessage(this.navTestMsg));
         }
+
+        //Observable.timer(5000, 10000).subscribe(t => { this.handleIncomingNotification(this.navTestMsg) });
     }
 
-    testMsg: PushMessage = new PushMessage({
+    testMsg = {
         title: "Default Test Message",
         body: "This is a test message. If you're seeing this in Production, Alex is an idiot"
-    });
+    };
 
-    navMsg: PushMessage = new PushMessage({
+    navTestMsg = {
         title: "Navigation Test",
         body: "Dummy push notification to test Timekeeping and other navigation",
         navigate: "TimekeepingTabsPage",
         param: "2017-09-13"
-    });
+    };
 
     pushMessages: PushMessage[] = [];
     pushMessages$: BehaviorSubject<PushMessage[]> = new BehaviorSubject<PushMessage[]>(this.pushMessages);

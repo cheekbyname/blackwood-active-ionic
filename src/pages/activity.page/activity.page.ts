@@ -29,7 +29,9 @@ export class ActivityPage implements OnInit {
 
     constructor(public navCtrl: NavController, public actSrv: CareActivityService, public notSrv: NotificationService,
         private usrSrv: UserService) {
-        this.notSrv.pushMessageObserver.subscribe(msgs => this.messages = msgs.reverse());
+        this.notSrv.pushMessageObserver.subscribe(msgs => this.messages = msgs.sort((a, b) => {
+            return b.received.valueOf() - a.received.valueOf();
+        }));
         this.allowAssess = this.usrSrv.currentUser.validFunctions.some(fn => fn == ActiveFunction.CareInitialAssessment);
     }
 
