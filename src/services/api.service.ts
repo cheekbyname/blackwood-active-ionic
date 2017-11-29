@@ -81,6 +81,7 @@ export class WebApi {
 				let msg = `Error occurred calling ${name}: ${err.message || err}`;
 				let toast = this.toastCtrl.create({ message: msg, duration: 5000 });
 				toast.present();
+				return Promise.reject(err);
 			});
 		// TODO Update thing so that any persistence key is correctly recorded
 	}

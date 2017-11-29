@@ -22,6 +22,10 @@ export module DateUtils {
 		return LOC_EN.monthNames[dt.getMonth()];
 	}
 
+	export function yearOf(dt: Date): string {
+		return dt.getFullYear().toString();
+	}
+
 	export function ordOf(dt: Date): string {
 		let dy = dt.getDate().toString();
 		if ((dy.length > 1) && (dy.substr(0, 1) == '1')) return dy + 'th';

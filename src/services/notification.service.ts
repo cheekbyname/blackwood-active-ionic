@@ -28,10 +28,8 @@ export class NotificationService {
     navMsg: PushMessage = new PushMessage({
         title: "Navigation Test",
         body: "Dummy push notification to test Timekeeping and other navigation",
-        data: {
-            navigate: "TimekeepingTabsPage",
-            param: "2017-09-26"
-        }
+        navigate: "TimekeepingTabsPage",
+        param: "2017-09-13"
     });
 
     pushMessages: PushMessage[] = [];
@@ -48,20 +46,22 @@ export class NotificationService {
             this.showAlert(msg);
         } else {
             // Navigate if payload contained navigation information
-            if (msg.data && msg.data.navigate != undefined) this.navigateTo(msg.data.navigate, msg.data.param);
+            if (msg.navigate != undefined) this.navigateTo(msg.navigate, msg.param);
         }
     }
 
-    buttonsFor(data: any): any[] {
+    buttonsFor(msg: any): any[] {
         let buttons = [];
-        if (data.navigate != undefined) {
-            buttons.push({ text: 'Show Me', handler: () => { this.navigateTo(data.navigate, data.param) }});
+        if (msg.navigate != undefined) {
+            buttons.push({ text: 'Show Me', handler: () => { this.navigateTo(msg.navigate, msg.param) }});
         }
         buttons.push({ text: 'Ok', handler: () => { } });
         return buttons;
     }
 
     navigateTo(dest: string, param: string) {
+        // TODO Trap for component already being nav root
+        // this.app.getRootNav().first().component.name;
         // Navigate to the destination component with the specified param
         switch (dest) {
             case "HomePage":
@@ -70,6 +70,14 @@ export class NotificationService {
             case "TimekeepingTabsPage":
                 this.app.getRootNav().setRoot(TimekeepingTabsPage, { "param": param });
                 break;
+            default:
+                this.alert.create({
+                    title: 'Page Not Found',
+                    message: 'The page that this notification is trying to take you to cannot be reached. ' 
+                    + 'You may need to update your copy of the Blackwood Active application through the Google Play Store for work. '
+                    + 'If you have any questions, please contact Business Solutions.',
+                    buttons: [{ text: 'Ok', handler: () => { } }]
+                }).present();
         }
     }
 
@@ -77,7 +85,8 @@ export class NotificationService {
         let notify = this.alert.create({
             title: msg.title,
             message: msg.body,
-            buttons: this.buttonsFor(msg.data || {})
+            // message: JSON.stringify(msg),
+            buttons: this.buttonsFor(msg)
         });
         notify.present();
     }

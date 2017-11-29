@@ -22,7 +22,7 @@ export module TimesheetUtils {
 	}
 
 	export function adjustmentsForDay(ts: Timesheet, dt: Date): Adjustment[] {
-		if (ts == undefined) return [];
+		if (ts == undefined || dt == undefined) return [];
 		return ts.adjustments
 			.filter(adj => DateUtils.adjustDate(ts.weekCommencing, adj.dayOffset).getDate() == dt.getDate());
 	}

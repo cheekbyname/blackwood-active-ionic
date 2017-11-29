@@ -1,5 +1,6 @@
 // Angular/Ionic
 import { Injectable } from '@angular/core';
+import { Response } from "@angular/http";
 import { AlertController, ToastController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Sql } from './sql.service';
@@ -51,9 +52,9 @@ export class CareActivityService {
 	}
 
 	// TODO Return Promise<Response>
-	saveCareInitialAssessment(assess: CareInitialAssessment): void {
+	saveCareInitialAssessment(assess: CareInitialAssessment): Promise<Response> {
 		var keyUrl = this.assessUrlFromGuid(assess.guid);	// This for saving via webAPI when it's done
-		this.sql.query('SELECT * FROM careinitialassessments WHERE guid=?', [assess.guid])
+		return this.sql.query('SELECT * FROM careinitialassessments WHERE guid=?', [assess.guid])
 			.catch(err => this.simpleAlert(err, "Unable to retrieve careinitialassessments."))
 			.then(data => {
 				return (data.res.rows.length > 0);
@@ -66,11 +67,12 @@ export class CareActivityService {
 					this.sql.query('INSERT INTO careinitialassessments (guid, json) VALUES (?, ?)', [assess.guid, JSON.stringify(assess)])
 						.catch(err => this.simpleAlert(err, "Unable to Insert Care Assessment"));
 				}
-				var toast = this.toastCtrl.create({ message: 'Changes to Care Initial Assessment successfully saved', duration: 3000 });
+				var toast = this.toastCtrl.create({ message: 'Changes to Care Initial Assessment saved locally', duration: 3000 });
 				toast.present();
 			})
 			.then(done => {
-				this.api.putOne('care/careinitialassessment', assess);
+				return this.api.putOne('care/careinitialassessment', assess)
+					.catch(err => { return Promise.reject(err) });
 			})
 			.then(done => {
 				console.log(keyUrl + " saved to sqlstorage");

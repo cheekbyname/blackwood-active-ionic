@@ -1,3 +1,17 @@
+<ion-header>
+    <ion-navbar>
+        <button menuToggle ion-button icon-only>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>{{DateUtils.monthOf(selectedDate)}} {{DateUtils.yearOf(selectedDate)}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="showDatePop($event)">
+                <ion-icon name="calendar" color="secondary"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
 <ion-content>
-    <p>TimekeepingMonthlyPage</p>
+    
 </ion-content>

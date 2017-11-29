@@ -1,7 +1,7 @@
 // Angular/Ionic
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
-import { NavController, AlertController, Content } from 'ionic-angular';
+import { NavController, AlertController, Content, ToastController } from 'ionic-angular';
 
 // Models
 import { CareInitialAssessment } from "../../models/careinitialassessment";
@@ -34,7 +34,7 @@ export class AssessTabsPage implements AfterViewInit {
 	form: FormGroup;
 
 	constructor(private navCtrl: NavController, public actSrv: CareActivityService, public alertCtrl: AlertController,
-		public formBuilder: FormBuilder, public element: ElementRef) {
+		public formBuilder: FormBuilder, public element: ElementRef, public toast: ToastController) {
 		this.assess = this.actSrv.getCurrentCareInitialAssessment();
 
 		// Build form from object literal for statically generated FormControls
@@ -113,7 +113,22 @@ export class AssessTabsPage implements AfterViewInit {
 					{ text: 'No' },
 					{
 						text: 'Yes', handler: () => {
-							this.actSrv.saveCareInitialAssessment(this.actSrv.currentCareInitialAssessment);
+							this.actSrv.saveCareInitialAssessment(this.actSrv.currentCareInitialAssessment)
+								.then(res => {
+									this.toast.create(
+										{ message: 'Changes to Care Initial Assessment saved to server', duration: 3000 }
+									).present();
+								})
+								.catch(err => {
+									var errAlert = this.alertCtrl.create({
+										title: "Unable to Save to Server",
+										message: "Could not save your form to the server, there may be a network or other connectivity problem. "
+											+ "This form has been saved locally to your device. Please remember to save your form again once you are connected to Blackwood's "
+											+ "network. If you have any questions, please contact Business Solutions.",
+										buttons: [{ text: "Ok", handler: () => { }}]
+									});
+									errAlert.present();
+								});
 							this.savedAssess = this.form.value;
 							this.form.markAsPristine();
 						}
