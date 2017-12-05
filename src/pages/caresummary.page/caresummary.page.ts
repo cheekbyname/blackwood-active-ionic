@@ -15,18 +15,20 @@ import { Client } from '../../models/client';
 export class CareSummaryPage {
 	constructor(public navCtrl: NavController, private navParm: NavParams ) {
 		this.client = this.navParm.get("client");
-		this.carePlan = this.navParm.get("carePlan");
-		this.careNeeds = this.carePlan.careNeeds;
-		var outcomes = Array.from(new Set(this.careNeeds.map(cn=> {
+		let cp: CarePlan = this.navParm.get("carePlan");
+		this.carePlan = cp;
+		this.careNeeds = cp.careNeeds;
+		let outcomes = Array.from(new Set(this.careNeeds.map(cn=> {
 			return cn.outcomeDesc;
 		})));
 		this.summaries = outcomes.map(oc => {
 			var newSum = new Summary();
 			newSum.outcomeDesc = oc.substr(oc.indexOf(".") +1);
-			newSum.summaries = [].concat.apply([], this.careNeeds
+			newSum.summaries = [].concat.apply([], cp.careNeeds
 				.filter(cn => cn.outcomeDesc === oc)
 				.map(cn => {
-					return cn.summary.split("\r\n")
+					if (cn.summary) return cn.summary.split("\r\n");
+					return [];
 				})).filter(sm => sm !== "");
 			return newSum;
 		})

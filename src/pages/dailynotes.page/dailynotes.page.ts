@@ -20,14 +20,15 @@ export class DailyNotesPage implements OnInit {
 		this.pageIndex = 0;
 		this.fetchNotes();
 		this.events.subscribe("AddDailyNotePage.saveEntry", (note) => {
-			if (!this.adding) {
-				this.adding = true;
-				this.saveNewNote(note);
-			}
+			this.saveNewNote(note);
 		});
 	}
 
-	adding: boolean = false;
+	ionViewWillUnload() {
+		// Unsubscribe to prevent multiple listeners from building up
+		this.events.unsubscribe("AddDailyNotePage.saveEntry");
+	}
+
 	client: Client;
 	dailyNotes: DailyNote[];
 	pageIndex: number;
@@ -74,7 +75,6 @@ export class DailyNotesPage implements OnInit {
 				{
 					text: "Ok", handler: () => {
 						alert.dismiss();
-						this.adding = false;
 					}
 				}
 			]
