@@ -1,6 +1,7 @@
 export class Client {
 	clientGuid: string;
 	facilityGuid: string;
+	personGuid: string;
 	title: string;
 	forename: string;
 	surname: string;

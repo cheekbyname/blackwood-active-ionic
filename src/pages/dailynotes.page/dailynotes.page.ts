@@ -20,10 +20,14 @@ export class DailyNotesPage implements OnInit {
 		this.pageIndex = 0;
 		this.fetchNotes();
 		this.events.subscribe("AddDailyNotePage.saveEntry", (note) => {
-			this.saveNewNote(note);
+			if (!this.adding) {
+				this.adding = true;
+				this.saveNewNote(note);
+			}
 		});
 	}
 
+	adding: boolean = false;
 	client: Client;
 	dailyNotes: DailyNote[];
 	pageIndex: number;
@@ -70,6 +74,7 @@ export class DailyNotesPage implements OnInit {
 				{
 					text: "Ok", handler: () => {
 						alert.dismiss();
+						this.adding = false;
 					}
 				}
 			]
