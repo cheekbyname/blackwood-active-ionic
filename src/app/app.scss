@@ -64,3 +64,34 @@ button span {
 // 		background-color: hotpink!important;
 // 	}
 // }
+
+@media screen and (max-width: 640px) {
+	.development-card-container.virtual-position {
+		width: 100%!important;
+		development-card {
+			width: 100%;
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) and (min-width: 641px) {
+	.development-card-container.virtual-position {
+		width: 47%!important;
+		development-card {
+			width: 100%;
+		}
+	}
+}
+
+@media screen and (min-width: 1025px) {
+	.development-card-container.virtual-position {
+		width: 32%!important;
+		// development-card {
+		// 	width: 100%;
+		// }
+	}
+}
+
+.icon-col a {
+	align-items: right;
+}
