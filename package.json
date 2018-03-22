@@ -25,7 +25,7 @@
         "@ionic-native/push": "^4.1.0",
         "@ionic/cloud-angular": "^0.12.0",
         "@ionic/storage": "1.1.6",
-        "angular2-signaturepad": "^2.6.0",
+        "angular2-signaturepad": "^2.7.0",
         "cordova-android": "^6.2.1",
         "cordova-client-cert-authentication": "1.0.1",
         "cordova-plugin-datepicker": "^0.9.3",
@@ -40,6 +40,7 @@
         "ionic-native": "2.4.1",
         "ionic-plugin-keyboard": "~2.2.1",
         "ionicons": "3.0.0",
+        "npm": "^5.7.1",
         "rxjs": "^5.4.3",
         "sw-toolbox": "3.4.0",
         "zone.js": "0.6.26"
