@@ -27,7 +27,7 @@ export class TimekeepingTabsPage {
     }
 
     ionViewCanEnter(): boolean {
-		return this.usrSrv.currentUser.validFunctions.some(fn => fn == ActiveFunction.Timekeeping);
+		return this.usrSrv.currentUser.validFunctions.some(fn => fn.activeFunction == ActiveFunction.Timekeeping);
     }
     
     timekeepingDailyPage: any;

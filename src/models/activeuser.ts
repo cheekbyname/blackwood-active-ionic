@@ -1,5 +1,6 @@
 import { Development } from "./development";
 import { Facility } from "./facility";
+import { ActiveUserFunction } from "./activeuserfunction";
 
 export class ActiveUser {
 	id: number;
@@ -11,7 +12,7 @@ export class ActiveUser {
 	isCareUser: boolean;
 	validFacilities: Facility[];
 	validDevelopments: Development[];
-	validFunctions: ActiveFunction[];
+	validFunctions: ActiveUserFunction[];
 }
 
 export enum ActiveFunction {

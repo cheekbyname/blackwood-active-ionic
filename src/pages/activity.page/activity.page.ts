@@ -32,7 +32,7 @@ export class ActivityPage implements OnInit {
         this.notSrv.pushMessageObserver.subscribe(msgs => this.messages = msgs.sort((a, b) => {
             return b.received.valueOf() - a.received.valueOf();
         }));
-        this.allowAssess = this.usrSrv.currentUser.validFunctions.some(fn => fn == ActiveFunction.CareInitialAssessment);
+        this.allowAssess = this.usrSrv.currentUser.validFunctions.some(fn => fn.activeFunction == ActiveFunction.CareInitialAssessment);
     }
 
     ngOnInit() {
