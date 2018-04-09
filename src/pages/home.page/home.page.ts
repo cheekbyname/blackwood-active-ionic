@@ -15,7 +15,7 @@ import { ActiveUser, ActiveFunction } from '../../models/activeuser';
 import { DevelopmentListPage } from '../development.list.page/development.list.page';
 import { TenancySearchPage } from '../tenancy.search.page/tenancy.search.page';
 import { ClientSearchPage } from '../client.search.page/client.search.page';
-import { AssessTabsPage } from '../assesstabs.page/assesstabs.page';
+import { AssessTabsPage } from '../initial.assessments/assesstabs.page/assesstabs.page';
 import { FacilitySearchPage } from '../facility.search.page/facility.search.page';
 
 import { HomeFilterPopover } from '../../components/homefilter.popover/homefilter.popover';

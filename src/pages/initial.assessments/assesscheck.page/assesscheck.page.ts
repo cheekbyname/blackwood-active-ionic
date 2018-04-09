@@ -4,10 +4,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 
 // Services
-import { CareActivityService } from '../../services/care.activity.service';
+import { CareActivityService } from '../../../services/care.activity.service';
 
 // Models
-import { CareInitialAssessment } from '../../models/careinitialassessment';
+import { CareInitialAssessment } from '../../../models/careinitialassessment';
 
 @Component({
 	templateUrl: 'assesscheck.page.html'

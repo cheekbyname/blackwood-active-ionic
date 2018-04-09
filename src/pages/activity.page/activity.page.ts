@@ -13,7 +13,7 @@ import { CareInitialAssessment } from '../../models/careinitialassessment';
 import { PushMessage } from "../../models/pushmessage";
 
 // Components
-import { AssessTabsPage } from '../assesstabs.page/assesstabs.page';
+import { AssessTabsPage } from '../initial.assessments/assesstabs.page/assesstabs.page';
 
 @Component({
     templateUrl: 'activity.page.html'

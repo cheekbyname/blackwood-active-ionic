@@ -5,10 +5,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
 // Services
-import { CareActivityService } from '../../services/care.activity.service';
+import { CareActivityService } from '../../../services/care.activity.service';
 
 // Models
-import { CareInitialAssessment } from '../../models/careinitialassessment';
+import { CareInitialAssessment } from '../../../models/careinitialassessment';
 
 @Component({
 	templateUrl: 'initialassess.page.html'

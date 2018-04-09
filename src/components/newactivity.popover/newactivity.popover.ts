@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewController, NavController } from 'ionic-angular';
 
-import { InitialAssessPage } from '../../pages/initialassess.page/initialassess.page';
+import { InitialAssessPage } from '../../pages/initial.assessments/initialassess.page/initialassess.page';
 
 @Component({
 	templateUrl: 'newactivity.popover.html'

@@ -1,0 +1,149 @@
+<ion-content id="clevercogs_page" [formGroup]="form">
+    <ion-card class="card-pad-bottom">
+        <ion-card-content no-padding no-margin>
+            <ion-list text-wrap no-lines>
+                <ion-item-divider no-lines>
+                    <h2><strong>Video Camera &amp; Sensor Consent</strong></h2>
+                </ion-item-divider>
+            </ion-list>
+			<ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.videoCameraConsent" formControlName="videoCameraConsent">
+                <ion-item>
+                    <ion-label stacked>Does the customer consent to the use of the video camera equipment?</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Yes</ion-label>
+                    <ion-radio checked="true" value="true"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>No</ion-label>
+                    <ion-radio value="false"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Comments</ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.videoCameraConsentComments" formControlName="videoCameraConsentComments"></ion-textarea>
+                </ion-item>
+            </ion-list>
+			<ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.videoCareConsent" formControlName="videoCareConsent">
+                <ion-item>
+                    <ion-label stacked>Does the customer consent to the use of video connection to deliver care, support and for safety reasons during alerts or other emergencies?</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Yes</ion-label>
+                    <ion-radio checked="true" value="true"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>No</ion-label>
+                    <ion-radio value="false"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Comments</ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.videoCareConsentComments" formControlName="videoCareConsentComments"></ion-textarea>
+                </ion-item>
+            </ion-list>
+            <ion-list text-wrap no-lines>
+                <ion-item>
+                    <ion-label stacked>Location of Camera Equipment</ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.videoCameraLocation" formControlName="videoCameraLocation"></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label><em>Note: One camera is built into the user device</em></ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label><em>Note: CleverCogs can provide additional equipment that can be offered on an individual needs basis and is available as an extra service at extra cost</em></ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label><em>Note: As this safety equipment uses GPS technology built into the device that tracks location and movements so we can assist you in an emergency, we must have your consent before this can be provided</em></ion-label>
+                </ion-item>
+            </ion-list>
+            <ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.socialWorkReferral" formControlName="socialWorkReferral">
+                <ion-item>
+                    <ion-label stacked>Have we received a social work/OT referral for this service?</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Yes</ion-label>
+                    <ion-radio value="true"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>No</ion-label>
+                    <ion-radio value="false"></ion-radio>
+                </ion-item>
+                <ion-item *ngIf="assess.socialWorkReferral == 'true'">
+                    <ion-label stacked>Please detail by who</ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.socialWorkReferralWho" formControlName="socialWorkReferralWho"></ion-textarea>
+                </ion-item>
+                <ion-item *ngIf="assess.socialWorkReferral == 'true'">
+                    <ion-label stacked>Please state when</ion-label>
+                    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="assess.socialWorkReferralWhen" formControlName="socialWorkReferralWhen"></ion-datetime>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="card-pad-bottom">
+        <ion-card-content no-padding no-margin>
+            <ion-list no-margin text-wrap no-lines>
+                <ion-item>
+                    <ion-label stacked><strong>Please let us know which, if any, of the following would be beneficial for you</strong></ion-label>
+                    <ion-label><em>Again note that these services come at an additional cost</em></ion-label>
+                </ion-item>
+                <ion-item no-margin>
+                    <ion-label>Fall Detector</ion-label>
+                    <ion-checkbox [(ngModel)]="assess.fallDetector" formControlName="fallDetector" mode="md"></ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <em>If you have a fall outside the home, CleverCogs can find your location based on your movements and sends alerts to staff to provide you with emergency response and assistance</em>
+                </ion-item>
+                <ion-item no-margin>
+                        <ion-label>Safety Alarm</ion-label>
+                        <ion-checkbox [(ngModel)]="assess.safetyAlarm" formControlName="safetyAlarm" mode="md"></ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <em>Can track your location for safety outside the home and CleverCogs sends alerts to staff or family and friends to provide you with emergency response and assistance</em>
+                    </ion-item>
+                </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="card-pad-bottom">
+        <ion-card-content no-padding no-margin>
+            <ion-list no-margin text-wrap no-lines>
+                <ion-item>
+                    <ion-label stacked>Who is your current landline supplier?</ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.landlineSupplier" formControlName="landlineSupplier"></ion-textarea>
+                </ion-item>
+            </ion-list>
+            <ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.hasExistingBroadband" formControlName="hasExistingBroadband">
+                <ion-item>
+                    <ion-label stacked>Do you have existing broadband?</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Yes</ion-label>
+                    <ion-radio value="true"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>No</ion-label>
+                    <ion-radio value="false"></ion-radio>
+                </ion-item>
+                <ion-item *ngIf="assess.hasExistingBroadband == 'true'">
+                    <ion-label stacked>Who is your supplier?</ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.existingBroadbandSupplier" formControlName="existingBroadbandSupplier"></ion-textarea>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="card-pad-bottom footer-margin">
+        <ion-card-content no-padding no-margin>
+            <ion-list no-margin text-wrap no-lines>
+                <ion-item>
+                    <ion-label stacked><strong>Your reasons for applying for Clever Cogs</strong></ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Why was the customer selected, requested or nominated for Clever Cogs?</ion-label>
+                    <ion-label><em>The list below is the potential benefits that we perceive from Clever Cogs. Please let us know which, if any, appeal to you</em></ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    
+</ion-content>

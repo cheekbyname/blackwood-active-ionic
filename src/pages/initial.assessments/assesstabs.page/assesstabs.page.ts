@@ -4,16 +4,17 @@ import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms"
 import { NavController, AlertController, Content, ToastController } from 'ionic-angular';
 
 // Models
-import { CareInitialAssessment } from "../../models/careinitialassessment";
+import { CareInitialAssessment } from "../../../models/careinitialassessment";
 
 // Components
-import { InitialAssessPage } from '../../pages/initialassess.page/initialassess.page';
-import { AssessCheckPage } from '../../pages/assesscheck.page/assesscheck.page';
-import { HandlingPage } from '../../pages/handling.page/handling.page';
-import { TilePage } from '../../pages/tile.page/tile.page';
+import { AssessCheckPage } from '../../initial.assessments/assesscheck.page/assesscheck.page';
+import { CleverCogsAssessPage } from '../clevercogs.assess.page/clevercogs.assess.page';
+import { HandlingPage } from '../../initial.assessments/handling.page/handling.page';
+import { InitialAssessPage } from '../../initial.assessments/initialassess.page/initialassess.page';
+import { TilePage } from '../../initial.assessments/tile.page/tile.page';
 
 // Services
-import { CareActivityService } from '../../services/care.activity.service';
+import { CareActivityService } from '../../../services/care.activity.service';
 
 @Component({
 	templateUrl: 'assesstabs.page.html'
@@ -23,6 +24,7 @@ export class AssessTabsPage implements AfterViewInit {
 
 	tabs: Tab[] = [
 		new Tab("Assessment", InitialAssessPage),
+		new Tab("CleverCogs", CleverCogsAssessPage),
 		new Tab("Checklist", AssessCheckPage),
 		new Tab("Handling", HandlingPage),
 		new Tab("T.I.L.E", TilePage)
@@ -87,7 +89,7 @@ export class AssessTabsPage implements AfterViewInit {
 					{
 						text: 'Save', handler: () => {
 							confirmLeave.dismiss().then(() => {
-								this.showAlert = true;
+								this.showAlert = false;
 								this.saveAssessment().then(ok => {
 									if (ok) {
 										this.navCtrl.pop()
@@ -207,6 +209,21 @@ export class AssessTabsPage implements AfterViewInit {
 			specificRisks: [this.assess.specificRisks],
 			goals: [this.assess.goals],
 			additionalInfo: [this.assess.additionalInfo],
+
+			// CleverCogs Tab
+			videoCameraConsent: [this.assess.videoCameraConsent],
+			videoCameraConsentComments: [this.assess.videoCameraConsentComments],
+			videoCareConsent: [this.assess.videoCareConsent],
+			videoCareConsentComments: [this.assess.videoCareConsentComments],
+			videoCameraLocation: [this.assess.videoCameraLocation],
+			socialWorkReferral: [this.assess.socialWorkReferral],
+			socialWorkReferralWho: [this.assess.socialWorkReferralWho],
+			socialWorkReferralWhen: [this.assess.socialWorkReferralWhen],
+			fallDetector: [this.assess.fallDetector],
+			safetyAlarm: [this.assess.safetyAlarm],
+			landlineSupplier: [this.assess.landlineSupplier],
+			hasExistingBroadband: [this.assess.hasExistingBroadband],
+			existingBroadbandSupplier: [this.assess.existingBroadbandSupplier],
 
 			// Checklist Tab
 			otherHazards: [this.assess.otherHazards],

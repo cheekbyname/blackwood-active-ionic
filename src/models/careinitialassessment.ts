@@ -70,6 +70,21 @@ export class CareInitialAssessment {
 	additionalInfo: string;
 	signature: string;
 
+	// CleverCogs Tab
+	videoCameraConsent: boolean;
+	videoCameraConsentComments: string;
+	videoCareConsent: boolean;
+	videoCareConsentComments: boolean;
+	videoCameraLocation: string;
+	socialWorkReferral: boolean;
+	socialWorkReferralWho: string;
+	socialWorkReferralWhen: string;
+	fallDetector: boolean;
+	safetyAlarm: boolean;
+	landlineSupplier: string;
+	hasExistingBroadband: boolean;
+	existingBroadbandSupplier: string;
+
 	// CheckList Tab
 	checkItems: CheckItem[] = [
 		new CheckItem(0, "Are internal floors/flooring free from slip and trip hazards?"),

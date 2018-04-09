@@ -13,11 +13,12 @@ import { MyApp } from './app.component';
 // Pages
 import { ActivityPage } from '../pages/activity.page/activity.page';
 import { AddDailyNotePage } from '../pages/adddailynote.page/adddailynote.page';
-import { AssessCheckPage } from '../pages/assesscheck.page/assesscheck.page';
-import { AssessTabsPage } from '../pages/assesstabs.page/assesstabs.page';
+import { AssessCheckPage } from '../pages/initial.assessments/assesscheck.page/assesscheck.page';
+import { AssessTabsPage } from '../pages/initial.assessments/assesstabs.page/assesstabs.page';
 import { CareNeedPage } from '../pages/careneed.page/careneed.page';
 import { CarePlanPage } from '../pages/careplan.page/careplan.page';
 import { CareSummaryPage } from '../pages/caresummary.page/caresummary.page';
+import { CleverCogsAssessPage } from '../pages/initial.assessments/clevercogs.assess.page/clevercogs.assess.page';
 import { ClientPage } from '../pages/client.page/client.page';
 import { ClientSearchPage } from '../pages/client.search.page/client.search.page';
 import { DailyNotesPage } from '../pages/dailynotes.page/dailynotes.page';
@@ -27,9 +28,9 @@ import { DevelopmentPage } from '../pages/development.page/development.page';
 import { DevelopmentTabsPage } from '../pages/development.tabs.page/development.tabs.page';
 import { FacilityPage } from '../pages/facility.page/facility.page';
 import { FacilitySearchPage } from '../pages/facility.search.page/facility.search.page';
-import { HandlingPage } from '../pages/handling.page/handling.page';
+import { HandlingPage } from '../pages/initial.assessments/handling.page/handling.page';
 import { HomePage } from '../pages/home.page/home.page';
-import { InitialAssessPage } from '../pages/initialassess.page/initialassess.page';
+import { InitialAssessPage } from '../pages/initial.assessments/initialassess.page/initialassess.page';
 import { PropertyListPage } from '../pages/property.list.page/property.list.page';
 import { PropertyPage } from '../pages/property.page/property.page';
 import { SettingsPage } from '../pages/settings.page/settings.page';
@@ -38,7 +39,7 @@ import { TenancyListPage } from '../pages/tenancy.list.page/tenancy.list.page';
 import { TenancyMembersPage } from '../pages/tenancy.members.page/tenancy.members.page';
 import { TenancySearchPage } from '../pages/tenancy.search.page/tenancy.search.page';
 import { TenancyTabsPage } from '../pages/tenancy.tabs.page/tenancy.tabs.page';
-import { TilePage } from '../pages/tile.page/tile.page';
+import { TilePage } from '../pages/initial.assessments/tile.page/tile.page';
 import { TimekeepingDailyPage } from "../pages/timekeeping.daily.page/timekeeping.daily.page";
 import { TimekeepingMonthlyPage } from "../pages/timekeeping.monthly.page/timekeeping.monthly.page";
 import { TimekeepingTabsPage } from "../pages/timekeeping.tabs.page/timekeeping.tabs.page";
@@ -92,7 +93,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, ClientCard, CommCard, DevelopmentCard,
     DevelopmentListPage, FacilityCard, HomeFilterPopover, MemberCard, NewActivityPopover, PropertyCard, SearchBar, TenancyCard,
     AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingDailyPage, BookingCard, AdjustmentPopover,
-    TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover, DualColumnIonGrid ],
+    TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover, DualColumnIonGrid, CleverCogsAssessPage ],
   imports: [
     ReactiveFormsModule,
     SignaturePadModule,
@@ -103,7 +104,8 @@ import { SafeUrlPipe } from "../services/utility.service";
     ClientPage, ClientSearchPage, DailyNotesPage, DebugPage, DevelopmentPage, DevelopmentListPage, DevelopmentTabsPage, FacilityPage,
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingDailyPage,
-    AdjustmentPopover, TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover, DualColumnIonGrid ],
+    AdjustmentPopover, TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover, DualColumnIonGrid,
+    CleverCogsAssessPage ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite,
     Storage, Sql, SearchService, Splashscreen, FCM, StatusBar, AlertController, TimekeepingService, DateUtils,
