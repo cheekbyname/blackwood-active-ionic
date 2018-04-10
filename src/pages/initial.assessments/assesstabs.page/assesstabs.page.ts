@@ -47,6 +47,22 @@ export class AssessTabsPage implements AfterViewInit {
 			this.form.addControl('commspref_' + this.assess.comms.indexOf(com), new FormControl());
 		});
 
+		this.assess.cleverCogsReasons.forEach(reason => {
+			this.form.addControl(`reason_${this.assess.cleverCogsReasons.indexOf(reason)}`, new FormControl());
+		});
+
+		this.assess.cleverCogsFeatures.forEach(feature => {
+			this.form.addControl(`feature_${this.assess.cleverCogsFeatures.indexOf(feature)}`, new FormControl());
+		});
+
+		this.assess.currentlyHasDevices.forEach(device => {
+			this.form.addControl(`hasDevice_${this.assess.currentlyHasDevices.indexOf(device)}`, new FormControl());
+		});
+
+		this.assess.planningToGetDevices.forEach(device => {
+			this.form.addControl(`getDevice_${this.assess.planningToGetDevices.indexOf(device)}`, new FormControl());
+		});
+
 		this.assess.checkItems.forEach(item => {
 			let itemName = 'checkItem_' + this.assess.checkItems.indexOf(item);
 			this.form.addControl(itemName, new FormControl(item.value));
@@ -224,6 +240,8 @@ export class AssessTabsPage implements AfterViewInit {
 			landlineSupplier: [this.assess.landlineSupplier],
 			hasExistingBroadband: [this.assess.hasExistingBroadband],
 			existingBroadbandSupplier: [this.assess.existingBroadbandSupplier],
+			cleverCogsOtherReason: [this.assess.cleverCogsOtherReason],
+			cleverCogsOtherFeature: [this.assess.cleverCogsOtherFeature],
 
 			// Checklist Tab
 			otherHazards: [this.assess.otherHazards],

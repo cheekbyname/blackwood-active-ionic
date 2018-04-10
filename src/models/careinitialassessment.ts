@@ -84,6 +84,42 @@ export class CareInitialAssessment {
 	landlineSupplier: string;
 	hasExistingBroadband: boolean;
 	existingBroadbandSupplier: string;
+	cleverCogsReasons: CleverCogsReason[] = [
+		new CleverCogsReason(0, "Stay in touch with friends or family"),
+		new CleverCogsReason(1, "Safety"),
+		new CleverCogsReason(2, "Access information online"),
+		new CleverCogsReason(3, "Making new friends"),
+		new CleverCogsReason(4, "Communicate with staff/carers more easily"),
+		new CleverCogsReason(5, "Independence and privacy benefits"),
+		new CleverCogsReason(6, "Making day-to-day life easier"),
+		new CleverCogsReason(7, "More quality time with staff/carers"),
+		new CleverCogsReason(8, "Don't know"),
+		new CleverCogsReason(9, "Other")
+	];
+	cleverCogsOtherReason: string;
+	cleverCogsFeatures: CleverCogsFeature[] = [
+		new CleverCogsFeature(0, "Calendar", "Memory aids such as medication and appointment prompts"),
+		new CleverCogsFeature(1, "Entertainment", "Gaming, Music, Radio Stations, Photo Albums"),
+		new CleverCogsFeature(2, "Family & Friends", "Video chats with relatives/close friends at a distance"),
+		new CleverCogsFeature(3, "Information", "Accessibility of health & wellbeing websites"),
+		new CleverCogsFeature(4, "My own interests", ""),
+		new CleverCogsFeature(5, "Don't know", ""),
+		new CleverCogsFeature(6, "Other", "")
+	];
+	cleverCogsOtherFeature: string;
+	currentlyHasDevices: Device[] = [
+		new Device(0, "PC"),
+		new Device(1, "Laptop"),
+		new Device(2, "Tablet"),
+		new Device(3, "Smartphone"),
+		new Device(4, "No Device")
+	];
+	planningToGetDevices: Device[] =[
+		new Device(0, "PC"),
+		new Device(1, "Laptop"),
+		new Device(2, "Tablet"),
+		new Device(3, "Smartphone")
+	];
 
 	// CheckList Tab
 	checkItems: CheckItem[] = [
@@ -252,6 +288,41 @@ class CommsItem {
 
 	constructor(itemId: number, title: string) {
 		this.itemId = itemId;
+		this.title = title;
+	}
+}
+
+class CleverCogsReason {
+	reason: number;
+	title: string;
+	given: boolean;
+
+	constructor(reason: number, title: string) {
+		this.reason = reason;
+		this.title = title;
+	}
+}
+
+class CleverCogsFeature {
+	feature: number;
+	title: string;
+	desc: string;
+	given: boolean;
+
+	constructor(feature: number, title: string, desc: string) {
+		this.feature = feature;
+		this.title = title;
+		this.desc = desc;
+	}
+}
+
+class Device {
+	device: number;
+	title: string;
+	given: boolean;
+
+	constructor(device: number, title: string) {
+		this.device = device;
 		this.title = title;
 	}
 }

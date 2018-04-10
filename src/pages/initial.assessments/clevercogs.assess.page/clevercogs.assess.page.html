@@ -132,7 +132,7 @@
         </ion-card-content>
     </ion-card>
 
-    <ion-card class="card-pad-bottom footer-margin">
+    <ion-card class="card-pad-bottom">
         <ion-card-content no-padding no-margin>
             <ion-list no-margin text-wrap no-lines>
                 <ion-item>
@@ -140,7 +140,53 @@
                 </ion-item>
                 <ion-item>
                     <ion-label stacked>Why was the customer selected, requested or nominated for Clever Cogs?</ion-label>
+                </ion-item>
+                <ion-item>
                     <ion-label><em>The list below is the potential benefits that we perceive from Clever Cogs. Please let us know which, if any, appeal to you</em></ion-label>
+                </ion-item>
+                <ion-item *ngFor="let reason of assess.cleverCogsReasons; let i = index" class="comm-pref-check" no-margin>
+					<ion-label>{{reason.title}}</ion-label>
+					<ion-checkbox [(ngModel)]="reason.given" formControlName="reason_{{i}}" mode="md"></ion-checkbox>
+                </ion-item>
+                <ion-item *ngIf="assess.cleverCogsReasons[9].given == true">
+                    <ion-label stacked>Please specify</ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.cleverCogsOtherReason" formControlName="cleverCogsOtherReason"></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>What are the current features of Clever Cogs that appeal to you most?</ion-label>
+                </ion-item>
+                <ion-item *ngFor="let feature of assess.cleverCogsFeatures; let i = index" class="comm-pref-check" no-margin>
+					<ion-label>{{feature.title}}<br/><em>{{feature.desc}}</em></ion-label>
+                    <ion-checkbox [(ngModel)]="feature.given" formControlName="feature_{{i}}" mode="md"></ion-checkbox>
+                </ion-item>
+                <ion-item *ngIf="assess.cleverCogsFeatures[6].given == true">
+                    <ion-label stacked>Please specify</ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.cleverCogsOtherFeature" formControlName="cleverCogsOtherFeature"></ion-textarea>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="card-pad-bottom footer-margin">
+        <ion-card-content no-padding no-margin>
+            <ion-list text-wrap no-lines>
+                <ion-item-divider no-lines>
+                    <h2><strong>PC Use &amp; Skills</strong></h2>
+                    <em>Digitial Inclusion Assessment</em>
+                </ion-item-divider>
+                <ion-item>
+                    <ion-label>Does the customer currently have any of the following?</ion-label>
+                </ion-item>
+                <ion-item *ngFor="let device of assess.currentlyHasDevices; let i = index" class="comm-pref-check" no-margin>
+                    <ion-label>{{device.title}}</ion-label>
+                    <ion-checkbox [(ngModel)]="device.given" formControlName="hasDevice_{{i}}" mode="md"></ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Was the customer planning to get any of the following in the next twelve months?</ion-label>
+                </ion-item>
+                <ion-item *ngFor="let device of assess.planningToGetDevices; let i = index" class="comm-pref-check" no-margin>
+                    <ion-label>{{device.title}}</ion-label>
+                    <ion-checkbox [(ngModel)]="device.given" formControlName="getDevice_{{i}}" mode="md"></ion-checkbox>
                 </ion-item>
             </ion-list>
         </ion-card-content>
