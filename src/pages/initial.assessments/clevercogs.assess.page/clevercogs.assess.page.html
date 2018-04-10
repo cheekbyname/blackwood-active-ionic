@@ -1,12 +1,12 @@
 <ion-content id="clevercogs_page" [formGroup]="form">
     <ion-card class="card-pad-bottom">
+        <ion-card-header>
+            <h2>
+                <strong>Video Camera &amp; Sensor Consent</strong>
+            </h2>
+        </ion-card-header>
         <ion-card-content no-padding no-margin>
-            <ion-list text-wrap no-lines>
-                <ion-item-divider no-lines>
-                    <h2><strong>Video Camera &amp; Sensor Consent</strong></h2>
-                </ion-item-divider>
-            </ion-list>
-			<ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.videoCameraConsent" formControlName="videoCameraConsent">
+            <ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.videoCameraConsent" formControlName="videoCameraConsent">
                 <ion-item>
                     <ion-label stacked>Does the customer consent to the use of the video camera equipment?</ion-label>
                 </ion-item>
@@ -23,9 +23,10 @@
                     <ion-textarea rows="3" [(ngModel)]="assess.videoCameraConsentComments" formControlName="videoCameraConsentComments"></ion-textarea>
                 </ion-item>
             </ion-list>
-			<ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.videoCareConsent" formControlName="videoCareConsent">
+            <ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.videoCareConsent" formControlName="videoCareConsent">
                 <ion-item>
-                    <ion-label stacked>Does the customer consent to the use of video connection to deliver care, support and for safety reasons during alerts or other emergencies?</ion-label>
+                    <ion-label stacked>Does the customer consent to the use of video connection to deliver care, support and for safety reasons
+                        during alerts or other emergencies?</ion-label>
                 </ion-item>
                 <ion-item>
                     <ion-label>Yes</ion-label>
@@ -46,13 +47,23 @@
                     <ion-textarea rows="3" [(ngModel)]="assess.videoCameraLocation" formControlName="videoCameraLocation"></ion-textarea>
                 </ion-item>
                 <ion-item>
-                    <ion-label><em>Note: One camera is built into the user device</em></ion-label>
+                    <ion-label>
+                        <em>Note: One camera is built into the user device</em>
+                    </ion-label>
                 </ion-item>
                 <ion-item>
-                    <ion-label><em>Note: CleverCogs can provide additional equipment that can be offered on an individual needs basis and is available as an extra service at extra cost</em></ion-label>
+                    <ion-label>
+                        <em>Note: CleverCogs can provide additional equipment that can be offered on an individual needs basis
+                            and is available as an extra service at extra cost</em>
+                    </ion-label>
                 </ion-item>
                 <ion-item>
-                    <ion-label><em>Note: As this safety equipment uses GPS technology built into the device that tracks location and movements so we can assist you in an emergency, we must have your consent before this can be provided</em></ion-label>
+                    <ion-label>
+                        <em>Note: As this safety equipment uses GPS technology built into the device that tracks location and
+                            movements so we can assist you in an emergency, we must have your consent before this can be
+                            provided
+                        </em>
+                    </ion-label>
                 </ion-item>
             </ion-list>
             <ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.socialWorkReferral" formControlName="socialWorkReferral">
@@ -83,24 +94,30 @@
         <ion-card-content no-padding no-margin>
             <ion-list no-margin text-wrap no-lines>
                 <ion-item>
-                    <ion-label stacked><strong>Please let us know which, if any, of the following would be beneficial for you</strong></ion-label>
-                    <ion-label><em>Again note that these services come at an additional cost</em></ion-label>
+                    <ion-label stacked>
+                        <strong>Please let us know which, if any, of the following would be beneficial for you</strong>
+                    </ion-label>
+                    <ion-label>
+                        <em>Again note that these services come at an additional cost</em>
+                    </ion-label>
                 </ion-item>
                 <ion-item no-margin>
                     <ion-label>Fall Detector</ion-label>
                     <ion-checkbox [(ngModel)]="assess.fallDetector" formControlName="fallDetector" mode="md"></ion-checkbox>
                 </ion-item>
                 <ion-item>
-                    <em>If you have a fall outside the home, CleverCogs can find your location based on your movements and sends alerts to staff to provide you with emergency response and assistance</em>
+                    <em>If you have a fall outside the home, CleverCogs can find your location based on your movements and sends
+                        alerts to staff to provide you with emergency response and assistance</em>
                 </ion-item>
                 <ion-item no-margin>
-                        <ion-label>Safety Alarm</ion-label>
-                        <ion-checkbox [(ngModel)]="assess.safetyAlarm" formControlName="safetyAlarm" mode="md"></ion-checkbox>
-                    </ion-item>
-                    <ion-item>
-                        <em>Can track your location for safety outside the home and CleverCogs sends alerts to staff or family and friends to provide you with emergency response and assistance</em>
-                    </ion-item>
-                </ion-list>
+                    <ion-label>Safety Alarm</ion-label>
+                    <ion-checkbox [(ngModel)]="assess.safetyAlarm" formControlName="safetyAlarm" mode="md"></ion-checkbox>
+                </ion-item>
+                <ion-item>
+                    <em>Can track your location for safety outside the home and CleverCogs sends alerts to staff or family and
+                        friends to provide you with emergency response and assistance</em>
+                </ion-item>
+            </ion-list>
         </ion-card-content>
     </ion-card>
 
@@ -133,20 +150,25 @@
     </ion-card>
 
     <ion-card class="card-pad-bottom">
+        <ion-card-header>
+            <h2>
+                <strong>Your reasons for applying for Clever Cogs</strong>
+            </h2>
+        </ion-card-header>
         <ion-card-content no-padding no-margin>
             <ion-list no-margin text-wrap no-lines>
-                <ion-item>
-                    <ion-label stacked><strong>Your reasons for applying for Clever Cogs</strong></ion-label>
-                </ion-item>
                 <ion-item>
                     <ion-label stacked>Why was the customer selected, requested or nominated for Clever Cogs?</ion-label>
                 </ion-item>
                 <ion-item>
-                    <ion-label><em>The list below is the potential benefits that we perceive from Clever Cogs. Please let us know which, if any, appeal to you</em></ion-label>
+                    <ion-label>
+                        <em>The list below is the potential benefits that we perceive from Clever Cogs. Please let us know which,
+                            if any, appeal to you</em>
+                    </ion-label>
                 </ion-item>
                 <ion-item *ngFor="let reason of assess.cleverCogsReasons; let i = index" class="comm-pref-check" no-margin>
-					<ion-label>{{reason.title}}</ion-label>
-					<ion-checkbox [(ngModel)]="reason.given" formControlName="reason_{{i}}" mode="md"></ion-checkbox>
+                    <ion-label>{{reason.title}}</ion-label>
+                    <ion-checkbox [(ngModel)]="reason.given" formControlName="reason_{{i}}" mode="md"></ion-checkbox>
                 </ion-item>
                 <ion-item *ngIf="assess.cleverCogsReasons[9].given == true">
                     <ion-label stacked>Please specify</ion-label>
@@ -156,7 +178,10 @@
                     <ion-label stacked>What are the current features of Clever Cogs that appeal to you most?</ion-label>
                 </ion-item>
                 <ion-item *ngFor="let feature of assess.cleverCogsFeatures; let i = index" class="comm-pref-check" no-margin>
-					<ion-label>{{feature.title}}<br/><em>{{feature.desc}}</em></ion-label>
+                    <ion-label>{{feature.title}}
+                        <br/>
+                        <em>{{feature.desc}}</em>
+                    </ion-label>
                     <ion-checkbox [(ngModel)]="feature.given" formControlName="feature_{{i}}" mode="md"></ion-checkbox>
                 </ion-item>
                 <ion-item *ngIf="assess.cleverCogsFeatures[6].given == true">
@@ -167,13 +192,15 @@
         </ion-card-content>
     </ion-card>
 
-    <ion-card class="card-pad-bottom footer-margin">
+    <ion-card class="card-pad-bottom">
+        <ion-card-header>
+            <h2>
+                <strong>PC Use &amp; Skills</strong>
+            </h2>
+            <em>Digitial Inclusion Assessment</em>
+        </ion-card-header>
         <ion-card-content no-padding no-margin>
             <ion-list text-wrap no-lines>
-                <ion-item-divider no-lines>
-                    <h2><strong>PC Use &amp; Skills</strong></h2>
-                    <em>Digitial Inclusion Assessment</em>
-                </ion-item-divider>
                 <ion-item>
                     <ion-label>Does the customer currently have any of the following?</ion-label>
                 </ion-item>
@@ -189,7 +216,125 @@
                     <ion-checkbox [(ngModel)]="device.given" formControlName="getDevice_{{i}}" mode="md"></ion-checkbox>
                 </ion-item>
             </ion-list>
+            <ion-list text-wrap no-lines>
+                <ion-item-divider no-lines>
+                    <h2>People use the Internet on computers, laptops, tablets, smartphones, games consoles and televisions.</h2>
+                </ion-item-divider>
+                <ion-item>
+                    <ion-label stacked>Do you, yourself, personally use the Internet on whatever device or have you used the Internet anywhere
+                        in the past?</ion-label>
+                    <ion-select width-100 [(ngModel)]="assess.internetUsage" formControlName="internetUsage" placeholder="Select from the following">
+                        <ion-option value="0">Yes, current user</ion-option>
+                        <ion-option value="1">No, but have used in the past</ion-option>
+                        <ion-option value="2">Never used the internet</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>How often do you use the Internet?</ion-label>
+                    <ion-select width-100 [(ngModel)]="assess.internetUsageFrequency" formControlName="internetUsageFrequency" placeholder="Select from the following">
+                        <ion-option value="0">Several times a day</ion-option>
+                        <ion-option value="1">Daily</ion-option>
+                        <ion-option value="2">Weekly</ion-option>
+                        <ion-option value="3">Monthly</ion-option>
+                        <ion-option value="4">Less than once a month</ion-option>
+                        <ion-option value="5">Never</ion-option>
+                        <ion-option value="6">Don't know</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>How would you rate your ability to use the Internet?</ion-label>
+                    <ion-select width-100 [(ngModel)]="assess.internetUsageAbility" formControlName="internetUsageAbility" placeholder="Select from the following">
+                        <ion-option value="0">Excellent</ion-option>
+                        <ion-option value="1">Good</ion-option>
+                        <ion-option value="2">Fair</ion-option>
+                        <ion-option value="3">Poor</ion-option>
+                        <ion-option value="4">Very Poor</ion-option>
+                        <ion-option value="5">Don't know/Can't say</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Do you require a friend, relative or guardian to be present during training on Clever Cogs?</ion-label>
+                    <ion-select width-100 [(ngModel)]="assess.trainingSupport" formControlName="trainingSupport" placeholder="Select from the following">
+                        <ion-option value="0">Relative</ion-option>
+                        <ion-option value="1">Friend</ion-option>
+                        <ion-option vaule="2">Legal Guardian</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Please provide details of days you are available for training</ion-label>
+                </ion-item>
+                <ion-item *ngFor="let day of assess.trainingAvailability; let i = index" class="comm-pref-check" no-margin>
+                    <ion-label>{{loc.dayNames[i + 1]}}</ion-label>
+                    <ion-checkbox [(ngModel)]="day.value" formControlName="trainAvail_{{i}}" mode="md"></ion-checkbox>
+                </ion-item>
+            </ion-list>
         </ion-card-content>
     </ion-card>
-    
+
+    <ion-card class="card-pad-bottom footer-margin">
+        <ion-card-header>
+            <h2>
+                <strong>Hobbies &amp; Interests</strong>
+            </h2>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item-divider>
+                <ion-label>Which of the following statements best describes how you spend your time?</ion-label>
+            </ion-item-divider>
+            <ion-list radio-group no-margin text-wrap no-lines [(ngModel)]="assess.spendingTime" formControlName="spendingTime">
+                <ion-item>
+                    <ion-label stacked>I’m able to spend my time as I want, doing things I value or enjoy</ion-label>
+                    <ion-radio value="0"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>I’m able to do enough of the things I value or enjoy with my time</ion-label>
+                    <ion-radio value="1"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>I do some of the things I value or enjoy with my time, but not enough</ion-label>
+                    <ion-radio value="2"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>I don’t do anything I value or enjoy with my time</ion-label>
+                    <ion-radio value="3"></ion-radio>
+                </ion-item>
+                <ion-item-divider></ion-item-divider>
+            </ion-list>
+            <ion-list text-wrap no-lines>
+                <ion-item>
+                    <ion-label>
+                        <em>To help us customise digital content on your Clever Cogs machine, please include details of anything you value or enjoy that we can add to your device</em>
+                    </ion-label>
+                </ion-item>
+                <ion-item-divider>
+                    <ion-label>Please give specific examples under the relevant sections so we can add your likes & interests correctly</ion-label>
+                </ion-item-divider>
+                <ion-item>
+                    <ion-label stacked>Leisure activities<em class="pull-right">(i.e. sports, going to leisure clubs)</em></ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.customLeisureActivity" formControlName="customLeisureActivity"></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Entertainment<em class="pull-right">(i.e. music, games, radio stations)</em></ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.customEntertainment" formControlName="customEntertainment"></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Socialising<em class="pull-right">(i.e. meeting with friends, going to local theatre/cinema etc.)</em></ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.customSocialising" formControlName="customSocialising"></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Personal Hobbies<em class="pull-right">(i.e. reading, knitting, etc.)</em></ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.customHobbies" formControlName="customHobbies"></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Formal employment, voluntary or unpaid work</ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.customWork" formControlName="customWork"></ion-textarea>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Caring for others</ion-label>
+                    <ion-textarea rows="3" [(ngModel)]="assess.customCaringOthers" formControlName="customCaringOthers"></ion-textarea>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
 </ion-content>

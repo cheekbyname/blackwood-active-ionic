@@ -43,35 +43,39 @@ export class AssessTabsPage implements AfterViewInit {
 		this.form = this.formBuilder.group(this.getFormControls());
 
 		// Init iteratively generated FormControls
-		this.assess.comms.forEach(com => {
-			this.form.addControl('commspref_' + this.assess.comms.indexOf(com), new FormControl());
+		this.assess.comms.forEach((com, idx) => {
+			this.form.addControl(`commspref_${idx}`, new FormControl());
 		});
 
-		this.assess.cleverCogsReasons.forEach(reason => {
-			this.form.addControl(`reason_${this.assess.cleverCogsReasons.indexOf(reason)}`, new FormControl());
+		this.assess.cleverCogsReasons.forEach((reason, idx) => {
+			this.form.addControl(`reason_${idx}`, new FormControl());
 		});
 
-		this.assess.cleverCogsFeatures.forEach(feature => {
-			this.form.addControl(`feature_${this.assess.cleverCogsFeatures.indexOf(feature)}`, new FormControl());
+		this.assess.cleverCogsFeatures.forEach((feature, idx) => {
+			this.form.addControl(`feature_${idx}`, new FormControl());
 		});
 
-		this.assess.currentlyHasDevices.forEach(device => {
-			this.form.addControl(`hasDevice_${this.assess.currentlyHasDevices.indexOf(device)}`, new FormControl());
+		this.assess.currentlyHasDevices.forEach((device, idx) => {
+			this.form.addControl(`hasDevice_${idx}`, new FormControl());
 		});
 
-		this.assess.planningToGetDevices.forEach(device => {
-			this.form.addControl(`getDevice_${this.assess.planningToGetDevices.indexOf(device)}`, new FormControl());
+		this.assess.planningToGetDevices.forEach((device, idx) => {
+			this.form.addControl(`getDevice_${idx}`, new FormControl());
 		});
 
-		this.assess.checkItems.forEach(item => {
-			let itemName = 'checkItem_' + this.assess.checkItems.indexOf(item);
+		this.assess.trainingAvailability.forEach((day, idx) => {
+			this.form.addControl(`trainAvail_${idx}`, new FormControl());
+		});
+
+		this.assess.checkItems.forEach((item, idx) => {
+			let itemName = `checkItem_${idx}`;
 			this.form.addControl(itemName, new FormControl(item.value));
 			this.form.addControl(itemName + '_further', new FormControl(item.further));
 		});
 
-		this.assess.tileGroups.forEach(group => {
-			group.items.forEach(item => {
-				let postFix = '_' + this.assess.tileGroups.indexOf(group) + '_' + group.items.indexOf(item);
+		this.assess.tileGroups.forEach((group, idx) => {
+			group.items.forEach((item, iid) => {
+				let postFix = `_${idx}_${iid}`;
 				this.form.addControl('tileHazard' + postFix, new FormControl(item.hazard));
 				this.form.addControl('tileAction' + postFix, new FormControl(item.remedialAction));
 			});
@@ -242,6 +246,17 @@ export class AssessTabsPage implements AfterViewInit {
 			existingBroadbandSupplier: [this.assess.existingBroadbandSupplier],
 			cleverCogsOtherReason: [this.assess.cleverCogsOtherReason],
 			cleverCogsOtherFeature: [this.assess.cleverCogsOtherFeature],
+			internetUsage: [this.assess.internetUsage],
+			internetUsageFrequency: [this.assess.internetUsageFrequency],
+			internetUsageAbility: [this.assess.internetUsageAbility],
+			trainingSupport: [this.assess.trainingSupport],
+			spendingTime: [this.assess.spendingTime],
+			customLeisureActivity: [this.assess.customLeisureActivity],
+			customEntertainment: [this.assess.customEntertainment],
+			customSocialising: [this.assess.customSocialising],
+			customHobbies: [this.assess.customHobbies],
+			customWork: [this.assess.customWork],
+			customCaringOthers: [this.assess.customCaringOthers],
 
 			// Checklist Tab
 			otherHazards: [this.assess.otherHazards],

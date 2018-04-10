@@ -120,6 +120,18 @@ export class CareInitialAssessment {
 		new Device(2, "Tablet"),
 		new Device(3, "Smartphone")
 	];
+	internetUsage: number;
+	internetUsageFrequency: number;
+	internetUsageAbility: number;
+	trainingSupport: number;
+	trainingAvailability: boolean[] = [false, false, false, false, false];
+	spendingTime: number;
+	customLeisureActivity: string;
+	customEntertainment: string;
+	customSocialising: string;
+	customHobbies: string;
+	customWork: string;
+	customCaringOthers: string;
 
 	// CheckList Tab
 	checkItems: CheckItem[] = [

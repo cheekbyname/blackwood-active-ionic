@@ -5,6 +5,7 @@ import { NavController, NavParams } from "ionic-angular";
 import { CareInitialAssessment } from "../../../models/careinitialassessment";
 
 import { CareActivityService } from "../../../services/care.activity.service";
+import { LOC_EN, Locale } from "../../../utils/locale.utils";
 
 @Component({
     templateUrl: 'clevercogs.assess.page.html'
@@ -17,4 +18,6 @@ export class CleverCogsAssessPage {
 		this.assess = this.params.get("assess");
 		this.form = this.params.get("form");
 	}
+
+	loc: Locale = LOC_EN;
 }
