@@ -51,8 +51,8 @@ export class CareActivityService {
 		return this.currentCareInitialAssessment;
 	}
 
-	// TODO Return Promise<Response>
-	saveCareInitialAssessment(assess: CareInitialAssessment): Promise<Response> {
+	// TODO Overwrite current with returned CareInitialAssessment
+	saveCareInitialAssessment(assess: CareInitialAssessment): Promise<CareInitialAssessment> {
 		var keyUrl = this.assessUrlFromGuid(assess.guid);	// This for saving via webAPI when it's done
 		return this.sql.query('SELECT * FROM careinitialassessments WHERE guid=?', [assess.guid])
 			.catch(err => this.simpleAlert(err, "Unable to retrieve careinitialassessments."))
@@ -72,10 +72,12 @@ export class CareActivityService {
 			})
 			.then(done => {
 				return this.api.putOne('care/careinitialassessment', assess)
+					.then(res => { return Promise.resolve(res.json() as CareInitialAssessment)})
 					.catch(err => { return Promise.reject(err) });
 			})
 			.then(done => {
 				console.log(keyUrl + " saved to sqlstorage");
+				return Promise.resolve(done);
 			});
 	}
 
