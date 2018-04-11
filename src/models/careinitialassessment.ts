@@ -86,7 +86,7 @@ export class CareInitialAssessment {
 	internetUsageFrequency: number;
 	internetUsageAbility: number;
 	trainingSupport: number;
-	trainingAvailability: boolean[] = DEFAULT_AVAILABILITY;
+	trainingAvailability: TrainingAvailability[] = DEFAULT_AVAILABILITY;
 	spendingTime: number;
 	customLeisureActivity: string;
 	customEntertainment: string;
@@ -353,4 +353,22 @@ export const DEFAULT_PLANNED_DEVICES = [
 	new Device(3, "Smartphone")
 ];
 
-export const DEFAULT_AVAILABILITY  = [false, false, false, false, false];
+class TrainingAvailability {
+	dayOfWeek: number;
+	available: boolean;
+	title: string;
+
+	constructor(dayOfWeek: number, title: string) {
+		this.dayOfWeek = dayOfWeek;
+		this.title = title;
+	}
+}
+
+export const DEFAULT_AVAILABILITY  = [
+	new TrainingAvailability(0, "Monday"),
+	new TrainingAvailability(1, "Tuesday"),
+	new TrainingAvailability(2, "Wednesday"),
+	new TrainingAvailability(3, "Thursday"),
+	new TrainingAvailability(4, "Friday")
+];
+
