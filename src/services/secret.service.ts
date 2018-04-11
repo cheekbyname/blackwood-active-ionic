@@ -8,13 +8,13 @@ export class Auth {
 
 export class Api {
     // Development
-    //coreUrl: string = "https://localhost:44341/api";
+    coreUrl: string = "https://localhost:44341/api";
 
     // Test
     //coreUrl: string = "https://hof-iss-alexc.m-blackwood.mbha.org.uk/api";
 
     // Live
-    coreUrl: string = "https://active.blackwoodgroup.org.uk/api";
+    // coreUrl: string = "https://active.blackwoodgroup.org.uk/api";
 
     public apiBase(api: string): string {
         switch (api) {

@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 import { DebugService } from './debug.service';
 
 // Models
-import { CareInitialAssessment } from '../models/careinitialassessment';
+import { CareInitialAssessment, DEFAULT_REASONS, DEFAULT_FEATURES, DEFAULT_OWNED_DEVICES, DEFAULT_PLANNED_DEVICES, DEFAULT_AVAILABILITY } from '../models/careinitialassessment';
 
 @Injectable()
 export class CareActivityService {
@@ -125,6 +125,17 @@ export class CareActivityService {
 					.catch(err => {
 						return Promise.reject("Unable to retrieve Care Initial Assessments from server, or to find any stored locally.");
 					});
+			})
+			.then(assess => {
+				assess.forEach(ass => {
+					// Patch missing data from older Assessments
+					if (ass.cleverCogsReasons.length == 0) ass.cleverCogsReasons = DEFAULT_REASONS;
+					if (ass.cleverCogsFeatures.length == 0 ) ass.cleverCogsFeatures = DEFAULT_FEATURES;
+					if (ass.currentlyHasDevices.length == 0) ass.currentlyHasDevices = DEFAULT_OWNED_DEVICES;
+					if (ass.planningToGetDevices.length == 0) ass.planningToGetDevices = DEFAULT_PLANNED_DEVICES;
+					if (ass.trainingAvailability.length == 0) ass.trainingAvailability = DEFAULT_AVAILABILITY;
+				});
+				return Promise.resolve(assess);
 			})
 			.catch(reason => {
 				return sqlQry;
