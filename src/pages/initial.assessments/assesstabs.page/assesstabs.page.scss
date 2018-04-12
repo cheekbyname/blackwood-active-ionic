@@ -192,3 +192,12 @@ ion-label[stacked] {
 ion-item, ion-item > div.item-inner {
 	border-bottom: none!important;
 }
+
+.input-number {
+	ion-label {
+		width: 75%;
+	}
+	ion-input {
+		width: 25%;
+	}
+}

@@ -1,3 +1,6 @@
+import { CareRelationship } from "./carerelationship";
+import { AddressType } from "./addresstype";
+
 export class CareContact {
     public id: number;
     public relationship: CareRelationship;
@@ -14,15 +17,3 @@ export class CareContact {
     public postCode: string;
     public addressType: AddressType;
 }
-
-export enum CareRelationship {
-    Daughter
-}
-
-export enum AddressType {
-
-}
-
-export const CARE_RELATIONSHIPS = [
-    { key: CareRelationship.Daughter, value: "Daughter" }
-];

@@ -11,13 +11,19 @@ import { UserService } from './user.service';
 import { DebugService } from './debug.service';
 
 // Models
+import { AddressType } from '../models/addresstype';
 import { CareInitialAssessment, DEFAULT_REASONS, DEFAULT_FEATURES, DEFAULT_OWNED_DEVICES, DEFAULT_PLANNED_DEVICES, DEFAULT_AVAILABILITY } from '../models/careinitialassessment';
+import { CareRelationship } from '../models/carerelationship';
+import { Guid } from '../models/Utilities';
 
 @Injectable()
 export class CareActivityService {
 
 	currentCareInitialAssessment: CareInitialAssessment;
-	static readonly visitTypes: string[] = ['Personal Care', 'Non-Personal Care', 'Housing Support'];
+	allCareRelationships: CareRelationship[];
+	allAddressTypes: AddressType[];
+
+	static readonly visitTypes: string[] = ['Personal Care', 'Non-Personal Care', 'Housing Support'];	// TODO Deprecate?
 
 	constructor(private api: WebApi, private usrSrv: UserService, private toastCtrl: ToastController, public debug: DebugService,
 		public kv: Storage, private sql: Sql, private alertCtrl: AlertController) {
@@ -25,6 +31,32 @@ export class CareActivityService {
 			.catch(err => {
 				this.simpleAlert(err, "Unable to create careinitialassessments table.")
 			});
+		this.getAllCareRelationships();
+		this.getAllAddressTypes();
+	}
+
+	getAllCareRelationships(): Promise<CareRelationship[]> {
+		if (this.allCareRelationships) {
+			return Promise.resolve(this.allCareRelationships);
+		} else {
+			this.api.getAll('care/relationships', 'api')
+				.then(res => {
+					this.allCareRelationships = res as CareRelationship[];
+					return this.allCareRelationships;
+				});
+		}
+	}
+
+	getAllAddressTypes(): Promise<AddressType[]> {
+		if (this.allAddressTypes) {
+			return Promise.resolve(this.allAddressTypes);
+		} else {
+			this.api.getAll('care/addresstypes', 'api')
+				.then(res => {
+					this.allAddressTypes = res as AddressType[];
+					return this.allAddressTypes;
+				});
+		}
 	}
 
 	newCareInitialAssessment(): Promise<CareInitialAssessment> {
@@ -134,7 +166,7 @@ export class CareActivityService {
 				assess.forEach(ass => {
 					// Patch missing data from older Assessments
 					if (ass.cleverCogsReasons.length == 0) ass.cleverCogsReasons = DEFAULT_REASONS;
-					if (ass.cleverCogsFeatures.length == 0 ) ass.cleverCogsFeatures = DEFAULT_FEATURES;
+					if (ass.cleverCogsFeatures.length == 0) ass.cleverCogsFeatures = DEFAULT_FEATURES;
 					if (ass.currentlyHasDevices.length == 0) ass.currentlyHasDevices = DEFAULT_OWNED_DEVICES;
 					if (ass.planningToGetDevices.length == 0) ass.planningToGetDevices = DEFAULT_PLANNED_DEVICES;
 					if (ass.trainingAvailability.length == 0) ass.trainingAvailability = DEFAULT_AVAILABILITY;
@@ -160,15 +192,5 @@ export class CareActivityService {
 
 		});
 		errAlert.present();
-	}
-}
-
-// TODO Consider moving to some Utility Service at some point
-class Guid {
-	static newGuid() {
-		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-			var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-			return v.toString(16);
-		});
 	}
 }

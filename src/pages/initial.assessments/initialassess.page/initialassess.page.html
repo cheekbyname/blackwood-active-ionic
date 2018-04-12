@@ -47,7 +47,7 @@
 			<strong>Care Needs &amp; Provision</strong>
 		</ion-card-header>
 		<ion-card-content no-padding>
-			<ion-list text-wrap no-lines>
+			<ion-list text-wrap>
 				<ion-item>
 					<ion-label stacked>Type of Visit Required</ion-label>
 					<ion-label stacked *ngIf="form.controls.visitType.invalid" class="valid-mess">A type of visit is required</ion-label>
@@ -71,7 +71,7 @@
 					<ion-label>Does someone from a carer or support service visit your home to help you on a regular basis?</ion-label>
 					<ion-toggle [(ngModel)]="assess.hasCareOrSupport" formControlName="hasCareOrSupport"></ion-toggle>
 				</ion-item>
-				<ion-item>
+				<ion-item class="input-number">
 					<ion-label>Number of care hours provided by Blackwood per week</ion-label>
 					<ion-input type="number" [(ngModel)]="assess.blackwoodHours" formControlName="blackwoodHours"></ion-input>
 				</ion-item>
@@ -79,17 +79,13 @@
 					<ion-label stacked>Is care provided by another provider?</ion-label>
 					<ion-toggle [(ngModel)]="assess.hasOtherProvider" formControlName="hasOtherProvider"></ion-toggle>
 				</ion-item>
-				<ion-item *ngIf="assess.hasOtherProvider">
+				<ion-item *ngIf="assess.hasOtherProvider" class="input-number">
 					<ion-label>Number of Hours</ion-label>
-					<ion-input type="number" [(ngModel)]="assess.otherProviderHours" formControlName="otherProviderHours"></ion-input>
+					<ion-input class="input-number" type="number" [(ngModel)]="assess.otherProviderHours" formControlName="otherProviderHours"></ion-input>
 				</ion-item>
-			</ion-list>
-
-			<ion-list text-wrap no-lines>
+				<ion-item-divider></ion-item-divider>
 				<ion-item>
-					<ion-label stacked>
-						<strong>Care &amp; Support Needs</strong>
-					</ion-label>
+					<ion-label stacked>Care &amp; Support Needs</ion-label>
 					<ion-label stacked *ngIf="form.controls.whatRequired.invalid" class="valid-mess">A summary of care needs is required</ion-label>
 					<ion-textarea rows="6" [(ngModel)]="assess.whatRequired" formControlName="whatRequired" placeholder="What assistance do you require? Describe in general terms any care or support you require with your usual routine including bathing/showering, mobility/transfers, eating/drinking, dressing/undressing, overnight, etc."></ion-textarea>
 				</ion-item>
