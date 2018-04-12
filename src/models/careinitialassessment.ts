@@ -1,4 +1,5 @@
 import { ActiveUser } from './activeuser';
+import { CareContact } from './contact';
 
 export class CareInitialAssessment {
 
@@ -15,6 +16,12 @@ export class CareInitialAssessment {
 	visitDate: string;
 	visitBy: string;
 	visitType: string;
+	livesAlone: boolean;
+	hasCareOrSupport: boolean;
+	blackwoodHours: number;
+	otherCare: string;
+	hasOtherProvider: boolean;
+	otherProviderHours: number;
 	whatRequired: string;
 	generalHealth: string;
 	familyCarer: string;
@@ -57,6 +64,7 @@ export class CareInitialAssessment {
 	gpDetails: string;
 	otherProvider: string;
 	nextOfKin: string;
+	contacts: CareContact[];
 	specificRisks: string;
 	goals: string;
 	additionalInfo: string;

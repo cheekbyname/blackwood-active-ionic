@@ -49,7 +49,12 @@ export class InitialAssessPage {
 	clearPad() {
 		this.signaturePad.clear();
 	}
+
 	savePad() {
 		this.assess.signature = this.signaturePad.toDataURL();
+	}
+
+	addContact() {
+		
 	}
 }
