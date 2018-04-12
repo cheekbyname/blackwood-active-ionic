@@ -72,7 +72,11 @@ export class CareActivityService {
 			})
 			.then(done => {
 				return this.api.putOne('care/careinitialassessment', assess)
-					.then(res => { return Promise.resolve(res.json() as CareInitialAssessment)})
+					.then(res => {
+						var updated = res.json() as CareInitialAssessment;
+						this.currentCareInitialAssessment = updated;
+						return Promise.resolve(updated);
+					})
 					.catch(err => { return Promise.reject(err) });
 			})
 			.then(done => {
@@ -90,8 +94,6 @@ export class CareActivityService {
 	}
 
 	getAllCareInitialAssessments(): Promise<CareInitialAssessment[]> {
-
-		// TODO Consider sorting explicitly given that new Assessments may be displayed out-of-order
 
 		let sqlQry: Promise<CareInitialAssessment[]> = this.sql.query("SELECT * FROM careinitialassessments")
 			.then(qry => {

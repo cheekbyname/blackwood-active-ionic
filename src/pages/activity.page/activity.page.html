@@ -51,7 +51,7 @@
 		</ion-card-content>
 	</ion-card>
 
-	<ion-card *ngIf="assessments && allowAssess" no-padding>
+	<ion-card *ngIf="allowAssess" no-padding>
 		<ion-card-content no-padding>
 			<ion-card-header no-padding>
 				<button ion-item (click)="toggleAssess()">
@@ -61,13 +61,14 @@
 								<h2>Care Assessments</h2>
 							</ion-col>
 							<ion-col text-right>
-								<ion-badge color="secondary" class="search-badge">{{assessments.length}}</ion-badge>
+								<ion-badge *ngIf="assessments" color="secondary" class="search-badge">{{assessments.length}}</ion-badge>
+								<i *ngIf="!assessments" class="fa fa-cog fa-spin fa-fw fa-2x"></i>
 							</ion-col>
 						</ion-row>
 					</ion-grid>
 				</button>
 			</ion-card-header>
-			<ion-list *ngIf="showAssess">
+			<ion-list *ngIf="showAssess && assessments">
 				<button ion-item *ngFor="let assess of assessments" text-wrap (click)="openCareInitialAssessment(assess)" class="list-item-underline">
 					<h2><strong>{{assess.name}}</strong></h2>
 					<p>{{dateOf(assess)}}</p>
