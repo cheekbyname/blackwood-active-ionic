@@ -201,3 +201,15 @@ ion-item, ion-item > div.item-inner {
 		width: 25%;
 	}
 }
+
+.shaded-list ion-item {
+	.input-wrapper {
+		border: 1px solid silver;
+	}
+}
+
+.shaded-list ion-item:not(:first-of-type) {
+	.input-wrapper {
+		border-top: none;
+	}
+}

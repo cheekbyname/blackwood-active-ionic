@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="saveAssessment()">
+<form [formGroup]="form">
 	<ion-header>
 		<ion-navbar>
 			<ion-title>Care Initial Assessment</ion-title>
@@ -7,7 +7,7 @@
 					<span text-capitalize>Reset</span>
 					<ion-icon name="close-circle"></ion-icon>
 				</button> -->
-				<button ion-button icon-right type="submit" class="header-button" [disabled]="form.pristine">
+				<button ion-button icon-right type="submit" class="header-button" [disabled]="form.pristine" (click)="saveAssessment()">
 					<span text-capitalize>Save</span>
 					<ion-icon name="checkmark-circle"></ion-icon>
 				</button>

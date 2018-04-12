@@ -1,0 +1,88 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Contact Details</ion-title>
+        <!-- <ion-buttons end>
+            <button ion-button icon-start (click)="dismiss()" class="header-button">
+                <ion-icon name="checkmark"></ion-icon>
+                <span text-capitalize>Close</span>
+            </button>
+        </ion-buttons> -->
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content no-padding>
+            <ion-list>
+                <ion-item>
+                    <ion-label stacked>Title</ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.title"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Forenames</ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.forenames"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Surname</ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.surname"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Relationship</ion-label>
+                    <ion-select [(ngModel)]="contact.relationship">
+                        <ion-option *ngFor="let rel of relationships" [value]="rel">{{rel.description}}</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Phone</ion-label>
+                    <ion-input type="tel" [(ngModel)]="contact.phone"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Mobile</ion-label>
+                    <ion-input type="tel" [(ngModel)]="contact.mobile"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Email</ion-label>
+                    <ion-input type="email" [(ngModel)]="contact.email"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Fax</ion-label>
+                    <ion-input type="tel" [(ngModel)]="contact.fax"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Address</ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.address1"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label></ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.address2"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Town</ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.town"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Postcode</ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.postcode"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label stacked>Address Type</ion-label>
+                    <ion-select [(ngModel)]="contact.addressType">
+                        <ion-option *ngFor="let type of addressTypes" [value]="type">{{type.description}}</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons end>
+            <button ion-button icon-start (click)="dismiss()" class="header-button">
+                <ion-icon name="checkmark"></ion-icon>
+                <span text-capitalize>Close</span>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

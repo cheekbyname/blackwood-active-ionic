@@ -64,7 +64,7 @@ export class CareInitialAssessment {
 	gpDetails: string;
 	otherProvider: string;
 	nextOfKin: string;
-	contacts: CareContact[];
+	contacts: CareContact[] = [];
 	specificRisks: string;
 	goals: string;
 	additionalInfo: string;
@@ -160,7 +160,6 @@ export class CareInitialAssessment {
 	otherInstructions: string;
 
 	// TILE Tab
-	// DEV: 
 	tileGroups: TileGroup[] = DEFAULT_TILE_GROUPS;
 	overallRisk: number;
 	active: boolean;

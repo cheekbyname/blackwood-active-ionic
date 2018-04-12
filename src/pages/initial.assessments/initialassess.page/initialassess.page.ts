@@ -1,7 +1,7 @@
 // Angular/Ionic
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
 // Services
@@ -9,6 +9,10 @@ import { CareActivityService } from '../../../services/care.activity.service';
 
 // Models
 import { CareInitialAssessment } from '../../../models/careinitialassessment';
+import { CareContact } from '../../../models/contact';
+
+// Components
+import { CareContactModal } from '../../../components/carecontact.modal/carecontact.modal';
 
 @Component({
 	templateUrl: 'initialassess.page.html'
@@ -29,7 +33,8 @@ export class InitialAssessPage {
 	assess: CareInitialAssessment = new CareInitialAssessment();
 	form: FormGroup;
 
-	constructor(public navCtrl: NavController, public params: NavParams, public actSrv: CareActivityService) {
+	constructor(public navCtrl: NavController, public params: NavParams, public actSrv: CareActivityService,
+		public modCtrl: ModalController) {
 		this.assess = this.params.get("assess");
 		this.form = this.params.get("form");
 	}
@@ -55,6 +60,13 @@ export class InitialAssessPage {
 	}
 
 	addContact() {
-		
+		var newContact = new CareContact();
+		this.assess.contacts.push(newContact);
+		this.openContact(newContact);
+	}
+
+	openContact(contact: CareContact) {
+		var mod = this.modCtrl.create(CareContactModal, {contact: contact});
+		mod.present();
 	}
 }

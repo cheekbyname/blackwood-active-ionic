@@ -71,6 +71,7 @@ import { BookingCard } from "../components/booking.card/booking.card";
 import { BookingDetailPopover } from "../components/booking.detail.popover/booking.detail.popover";
 import { ClientCard } from '../components/client.card/client.card';
 import { CommCard } from '../components/comm.card/comm.card';
+import { CareContactModal } from '../components/carecontact.modal/carecontact.modal';
 import { DevelopmentCard } from '../components/development.card/development.card';
 import { DualColumnIonGrid } from "../components/dual-column.ion-grid/dual-column.ion-grid";
 import { FacilityCard } from '../components/facility.card/facility.card';
@@ -93,7 +94,8 @@ import { SafeUrlPipe } from "../services/utility.service";
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, ClientCard, CommCard, DevelopmentCard,
     DevelopmentListPage, FacilityCard, HomeFilterPopover, MemberCard, NewActivityPopover, PropertyCard, SearchBar, TenancyCard,
     AdjustmentOffsetFilter, ShiftOffsetFilter, SafeUrlPipe, TimekeepingDailyPage, BookingCard, AdjustmentPopover,
-    TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover, DualColumnIonGrid, CleverCogsAssessPage ],
+    TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover, DualColumnIonGrid, CleverCogsAssessPage,
+    CareContactModal ],
   imports: [
     ReactiveFormsModule,
     SignaturePadModule,
@@ -105,7 +107,7 @@ import { SafeUrlPipe } from "../services/utility.service";
     FacilitySearchPage, HandlingPage, HomePage, InitialAssessPage, PropertyPage, PropertyListPage, SettingsPage, TenancyCommsPage,
     TenancyListPage, TenancyMembersPage, TenancySearchPage, TenancyTabsPage, TilePage, TimekeepingDailyPage,
     AdjustmentPopover, TimekeepingTabsPage, TimekeepingWeeklyPage, TimekeepingMonthlyPage, BookingDetailPopover, DualColumnIonGrid,
-    CleverCogsAssessPage ],
+    CleverCogsAssessPage, CareContactModal ],
   providers: [ { provide: ErrorHandler, useClass: IonicErrorHandler}, Api, WebApi, CareActivityService, ClientService, CommService,
     DebugService, DevelopmentService, FacilityService, MemberService, PropertyService, Auth, TenancyService, UserService, SQLite,
     Storage, Sql, SearchService, Splashscreen, FCM, StatusBar, AlertController, TimekeepingService, DateUtils,

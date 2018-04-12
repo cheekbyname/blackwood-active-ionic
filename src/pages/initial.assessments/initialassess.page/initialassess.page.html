@@ -422,20 +422,29 @@
 
 	<ion-card class="card-pad-bottom">
 		<ion-card-header>
-			<strong>Next-of-Kin &amp; Emergencies</strong>
+			<strong>Next-of-Kin, Emergency &amp; Other Contacts</strong>
 		</ion-card-header>
 		<ion-card-content no-padding>
-			<ion-list no-lines>
+			<ion-list text-wrap>
 				<ion-item>
 					<em>Add next of kin, family &amp; friends and emergency contacts</em>
 				</ion-item>
-				<ion-item>
+				<!-- <ion-item>
 					<ion-textarea rows="3" [(ngModel)]="assess.nextOfKin" formControlName="nextOfKin" placeholder="Who would be your Next-of-Kin and Emergency Contact?"></ion-textarea>
+				</ion-item> -->
+			</ion-list>
+			<ion-list class="shaded-list">
+				<ion-item *ngFor="let contact of assess.contacts" (click)="openContact(contact)">
+					<ion-label>{{contact.forenames}} {{contact.surname}}</ion-label>
+					<ion-label text-right>{{contact.relationship.description}}</ion-label>
 				</ion-item>
 			</ion-list>
 			<ion-item>
 				<ion-buttons end>
-					<button ion-button float-right (click)="addContact()"><span text-capitalize>Add Contact</span></button>
+					<button ion-button (click)="addContact()" class="header-button">
+						<ion-icon name="add"></ion-icon>
+						<span text-capitalize>Add Contact</span>
+					</button>
 				</ion-buttons>
 			</ion-item>
 		</ion-card-content>
@@ -446,7 +455,7 @@
 			<strong>General</strong>
 		</ion-card-header>
 		<ion-card-content no-padding>
-			<ion-list >
+			<ion-list lines>
 				<ion-item>
 					<ion-label stacked>Specific Risks</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.specificRisks" formControlName="specificRisks" placeholder="Are there any specific risks around your care that we should be aware of?"></ion-textarea>
