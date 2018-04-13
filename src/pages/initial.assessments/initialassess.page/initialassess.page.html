@@ -191,20 +191,6 @@
 
 				<ion-item>
 					<ion-label stacked>
-						<strong>Carer/Family Involvement</strong>
-					</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.familyCarer" formControlName="familyCarer" placeholder="Do you have current carers or family involved in your care?"></ion-textarea>
-				</ion-item>
-			</ion-list>
-		</ion-card-content>
-	</ion-card>
-
-	<ion-card class="card-pad-bottom">
-		<ion-card-content no-margin no-padding>
-			<ion-list text-wrap no-lines>
-
-				<ion-item>
-					<ion-label stacked>
 						<strong>Sight </strong>
 					</ion-label>
 					<ion-select width-100 [(ngModel)]="assess.eyeSight" formControlName="eyeSight" placeholder="Select from the following">
@@ -427,6 +413,11 @@
 		<ion-card-content no-padding>
 			<ion-list text-wrap>
 				<ion-item>
+					<ion-label stacked>Carer/Family Involvement</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.familyCarer" formControlName="familyCarer" placeholder="Do you have current carers or family involved in your care?"></ion-textarea>
+				</ion-item>
+		
+				<ion-item>
 					<em>Add next of kin, family &amp; friends and emergency contacts</em>
 				</ion-item>
 				<!-- <ion-item>
@@ -434,7 +425,7 @@
 				</ion-item> -->
 			</ion-list>
 			<ion-list class="shaded-list">
-				<ion-item *ngFor="let contact of assess.contacts" (click)="openContact(contact)">
+				<ion-item *ngFor="let contact of assess.contacts; let i = index" (click)="openContact(contact, i)">
 					<ion-label>{{contact.forenames}} {{contact.surname}}</ion-label>
 					<ion-label text-right>{{contact.relationship.description}}</ion-label>
 				</ion-item>

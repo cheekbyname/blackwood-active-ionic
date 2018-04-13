@@ -1,6 +1,6 @@
 // Angular/Ionic
 import { Component, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from "@angular/forms";
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 
@@ -34,7 +34,7 @@ export class InitialAssessPage {
 	form: FormGroup;
 
 	constructor(public navCtrl: NavController, public params: NavParams, public actSrv: CareActivityService,
-		public modCtrl: ModalController) {
+		public modCtrl: ModalController, private fb: FormBuilder) {
 		this.assess = this.params.get("assess");
 		this.form = this.params.get("form");
 	}
@@ -62,11 +62,15 @@ export class InitialAssessPage {
 	addContact() {
 		var newContact = new CareContact();
 		this.assess.contacts.push(newContact);
-		this.openContact(newContact);
+		var contactArray = this.form.controls['contacts'] as FormArray;
+		contactArray.push(this.fb.group(CareContact.Controls(newContact)));
+		this.openContact(newContact, this.assess.contacts.length - 1);
 	}
 
-	openContact(contact: CareContact) {
-		var mod = this.modCtrl.create(CareContactModal, {contact: contact});
+	openContact(contact: CareContact, idx: number) {
+		var contactArray = this.form.controls['contacts'] as FormArray;
+		var ctrls = contactArray.controls[idx] as FormGroup;
+		var mod = this.modCtrl.create(CareContactModal, { contact: contact, form: ctrls });
 		mod.present();
 	}
 }

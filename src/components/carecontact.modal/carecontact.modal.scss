@@ -1,0 +1,12 @@
+.address-block {
+    ion-item {
+        margin-bottom: 4px;
+    }
+    .address-label {
+        width: 25%;
+    }
+    .address-select {
+        max-width: 75%;
+        width: calc(75% - 8px);
+    }
+}

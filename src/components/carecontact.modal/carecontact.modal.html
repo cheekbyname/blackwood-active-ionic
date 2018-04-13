@@ -10,65 +10,91 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content [formGroup]="form">
     <ion-card>
         <ion-card-content no-padding>
             <ion-list>
                 <ion-item>
                     <ion-label stacked>Title</ion-label>
-                    <ion-input type="text" [(ngModel)]="contact.title"></ion-input>
+                    <ion-input type="text" [(ngModel)]="contact.title" formControlName="title"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label stacked>Forenames</ion-label>
-                    <ion-input type="text" [(ngModel)]="contact.forenames"></ion-input>
+                    <ion-input type="text" [(ngModel)]="contact.forenames" formControlName="forenames"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label stacked>Surname</ion-label>
-                    <ion-input type="text" [(ngModel)]="contact.surname"></ion-input>
+                    <ion-input type="text" [(ngModel)]="contact.surname" formControlName="surname"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label stacked>Relationship</ion-label>
-                    <ion-select [(ngModel)]="contact.relationship">
+                    <ion-select [(ngModel)]="contact.relationship" formControlName="relationship" (change)="relationChange($event.target.value)">
                         <ion-option *ngFor="let rel of relationships" [value]="rel">{{rel.description}}</ion-option>
                     </ion-select>
                 </ion-item>
                 <ion-item>
                     <ion-label stacked>Phone</ion-label>
-                    <ion-input type="tel" [(ngModel)]="contact.phone"></ion-input>
+                    <ion-input type="tel" [(ngModel)]="contact.phone" formControlName="phone"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label stacked>Mobile</ion-label>
-                    <ion-input type="tel" [(ngModel)]="contact.mobile"></ion-input>
+                    <ion-input type="tel" [(ngModel)]="contact.mobile" formControlName="mobile"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label stacked>Email</ion-label>
-                    <ion-input type="email" [(ngModel)]="contact.email"></ion-input>
+                    <ion-input type="email" [(ngModel)]="contact.email" formControlName="email"></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label stacked>Fax</ion-label>
-                    <ion-input type="tel" [(ngModel)]="contact.fax"></ion-input>
+                    <ion-input type="tel" [(ngModel)]="contact.fax" formControlName="fax"></ion-input>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-content class="address-block" no-padding>
+            <ion-list>
+                <ion-item>
+                    <ion-label class="address-label">Address</ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.address1" formControlName="address1"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label>Address</ion-label>
-                    <ion-input type="text" [(ngModel)]="contact.address1"></ion-input>
+                    <ion-label class="address-label"></ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.address2" formControlName="address2"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label></ion-label>
-                    <ion-input type="text" [(ngModel)]="contact.address2"></ion-input>
+                    <ion-label class="address-label">Town</ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.town" formControlName="town"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label>Town</ion-label>
-                    <ion-input type="text" [(ngModel)]="contact.town"></ion-input>
+                    <ion-label class="address-label">Postcode</ion-label>
+                    <ion-input type="text" [(ngModel)]="contact.postcode" formControlName="postcode"></ion-input>
                 </ion-item>
                 <ion-item>
-                    <ion-label>Postcode</ion-label>
-                    <ion-input type="text" [(ngModel)]="contact.postcode"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label stacked>Address Type</ion-label>
-                    <ion-select [(ngModel)]="contact.addressType">
+                    <ion-label class="address-label">Address Type</ion-label>
+                    <ion-select [(ngModel)]="contact.addressType" formControlName="addressType" class="address-select" (change)="addressChange($event.target.value)">
                         <ion-option *ngFor="let type of addressTypes" [value]="type">{{type.description}}</ion-option>
                     </ion-select>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-content no-padding>
+            <ion-list text-wrap>
+                <ion-item>
+                    <ion-label>Do you give consent to have your Care Diary shared with this person through the CleverCogs Family &amp; Friends app?</ion-label>
+                    <ion-toggle [(ngModel)]="contact.sharedDiaryConsent" formControlName="sharedDiaryConsent"></ion-toggle>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Do you give consent to have your Care Notes shared with this person through the CleverCogs Family &amp; Friends app?</ion-label>
+                    <ion-toggle [(ngModel)]="contact.sharedNotesConsent" formControlName="sharedNotesConsent"></ion-toggle>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Do you give consent for this person to have the ability to enter appointments &amp; reminders into your Care Diary?</ion-label>
+                    <ion-toggle [(ngModel)]="contact.sharedApptsConsent" formControlName="sharedApptsConsent"></ion-toggle>
                 </ion-item>
             </ion-list>
         </ion-card-content>

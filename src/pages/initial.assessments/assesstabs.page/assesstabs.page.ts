@@ -1,6 +1,6 @@
 // Angular/Ionic
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from "@angular/forms";
 import { NavController, AlertController, Content, ToastController } from 'ionic-angular';
 
 // Models
@@ -15,6 +15,7 @@ import { TilePage } from '../../initial.assessments/tile.page/tile.page';
 
 // Services
 import { CareActivityService } from '../../../services/care.activity.service';
+import { CareContact } from '../../../models/contact';
 
 @Component({
 	templateUrl: 'assesstabs.page.html'
@@ -36,11 +37,18 @@ export class AssessTabsPage implements AfterViewInit {
 	form: FormGroup;
 
 	constructor(private navCtrl: NavController, public actSrv: CareActivityService, public alertCtrl: AlertController,
-		public formBuilder: FormBuilder, public element: ElementRef, public toast: ToastController) {
+		public fb: FormBuilder, public element: ElementRef, public toast: ToastController) {
 		this.assess = this.actSrv.getCurrentCareInitialAssessment();
 
 		// Build form from object literal for statically generated FormControls
-		this.form = this.formBuilder.group(this.getFormControls());
+		this.form = this.fb.group(this.getFormControls());
+
+		// Build FormArray for Contacts
+		this.form.addControl("contacts", this.fb.array([]));
+		var contactArray = this.form.get('contacts') as FormArray;
+		this.assess.contacts.forEach(c => {
+			contactArray.push(this.fb.group(CareContact.Controls(c)));
+		});
 
 		// Init iteratively generated FormControls
 		this.assess.comms.forEach((com, idx) => {
