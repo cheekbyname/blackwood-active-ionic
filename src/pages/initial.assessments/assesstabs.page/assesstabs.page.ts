@@ -202,6 +202,7 @@ export class AssessTabsPage implements AfterViewInit {
 			whatRequired: [this.assess.whatRequired, Validators.required],
 			whenRequired: [this.assess.whenRequired, Validators.required],
 			staffRequirements: [this.assess.staffRequirements],
+			overallHealth: [this.assess.overallHealth],
 			generalHealth: [this.assess.generalHealth],
 			medication: [this.assess.medication],
 			medicationCapacity: [this.assess.medicationCapacity],

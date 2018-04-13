@@ -8,7 +8,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { CareActivityService } from '../../../services/care.activity.service';
 
 // Models
-import { CareInitialAssessment } from '../../../models/careinitialassessment';
+import { CareInitialAssessment, RATINGS, Ratings } from '../../../models/careinitialassessment';
 import { CareContact } from '../../../models/contact';
 
 // Components
@@ -32,6 +32,7 @@ export class InitialAssessPage {
 	isDrawing = false;
 	assess: CareInitialAssessment = new CareInitialAssessment();
 	form: FormGroup;
+	ratings = RATINGS.filter(r => r.key !== Ratings.NoneSelected);
 
 	constructor(public navCtrl: NavController, public params: NavParams, public actSrv: CareActivityService,
 		public modCtrl: ModalController, private fb: FormBuilder) {

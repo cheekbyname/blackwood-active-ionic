@@ -23,6 +23,7 @@ export class CareInitialAssessment {
 	hasOtherProvider: boolean;
 	otherProviderHours: number;
 	whatRequired: string;
+	overallHealth: Ratings;
 	generalHealth: string;
 	familyCarer: string;
 	eyeSight: number;
@@ -379,3 +380,20 @@ export const DEFAULT_AVAILABILITY  = [
 	new TrainingAvailability(4, "Friday")
 ];
 
+export enum Ratings {
+	NoneSelected,
+	VeryPoor,
+	Poor,
+	Fair,
+	Good,
+	VeryGood
+}
+
+export const RATINGS = [
+	{ key: Ratings.NoneSelected, value: "" },
+	{ key: Ratings.VeryPoor, value: "Very Poor" },
+	{ key: Ratings.Poor, value: "Poor" },
+	{ key: Ratings.Fair, value: "Fair" },
+	{ key: Ratings.Good, value: "Good" },
+	{ key: Ratings.VeryGood, value: "Very Good" }
+];

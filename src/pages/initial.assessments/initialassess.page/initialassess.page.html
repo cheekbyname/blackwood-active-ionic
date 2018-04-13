@@ -83,7 +83,7 @@
 					<ion-label>Number of Hours</ion-label>
 					<ion-input class="input-number" type="number" [(ngModel)]="assess.otherProviderHours" formControlName="otherProviderHours"></ion-input>
 				</ion-item>
-				<ion-item-divider></ion-item-divider>
+				<ion-item-divider no-lines></ion-item-divider>
 				<ion-item>
 					<ion-label stacked>Care &amp; Support Needs</ion-label>
 					<ion-label stacked *ngIf="form.controls.whatRequired.invalid" class="valid-mess">A summary of care needs is required</ion-label>
@@ -98,12 +98,61 @@
 					<ion-label stacked>Staffing &amp; Training</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.staffRequirements" formControlName="staffRequirements" placeholder="For each visit, how many staff should attend and do they require and particular skills or training?"></ion-textarea>
 				</ion-item>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
 
+	<ion-card class="card-pad-bottom">
+		<ion-card-header>
+			<h2><strong>Physical Wellbeing</strong></h2>
+		</ion-card-header>
+		<ion-card-content no-padding>
+			<ion-list text-wrap>
+				<ion-item class="margin-bottom">
+					<ion-label stacked>How would you describe your overall health?</ion-label>
+					<ion-select [(ngModel)]="assess.overallHealth" formControlName="overallHealth" placeholder="Please select">
+						<ion-option *ngFor="let rating of ratings" [value]="rating.key">{{rating.value}}</ion-option>
+					</ion-select>
+				</ion-item>
 				<ion-item>
-					<ion-label stacked>
-						<strong>Physical Wellbeing</strong>
-					</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.generalHealth" formControlName="generalHealth" placeholder="How would you describe your general health?"></ion-textarea>
+				</ion-item>
+			</ion-list>
+			<ion-list text-wrap>
+				<ion-item-divider no-lines>
+					<strong>Please tell us here whether the customer has a physical or cognitive impairment/disability. Please select all that apply.</strong>
+				</ion-item-divider>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Visual Impairment</ion-label>
+					<ion-checkbox></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Hearing loss or severe hearing impairment</ion-label>
+					<ion-checkbox></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Lifelong cognitive disability <em>(i.e. not age-related)</em></ion-label>
+					<ion-checkbox></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Lifelong physical disability <em>(i.e. not age-related)</em></ion-label>
+					<ion-checkbox></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Age-related cognitive impairment <em>(e.g. dementia)</em></ion-label>
+					<ion-checkbox></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Age-related physical disability e.g. that substantially limits one or more basic physical activities such as walking, climbing stairs, reaching, lifting or carrying</ion-label>
+					<ion-checkbox></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Chronic illness <em>(asthma, diabetes, CPOD etc.)</em></ion-label>
+					<ion-checkbox></ion-checkbox>
+				</ion-item>
+				<ion-item class="comm-pref-check" no-margin>
+					<ion-label>Other <em>(please specify)</em></ion-label>
+					<ion-checkbox></ion-checkbox>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
@@ -416,13 +465,13 @@
 					<ion-label stacked>Carer/Family Involvement</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.familyCarer" formControlName="familyCarer" placeholder="Do you have current carers or family involved in your care?"></ion-textarea>
 				</ion-item>
-		
+				<ion-item *ngIf="assess.nextOfKin">
+					<ion-label stacked>Next-of-Kin/Emergency Contact</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.nextOfKin" formControlName="nextOfKin" placeholder="Who would be your Next-of-Kin and Emergency Contact?"></ion-textarea>
+				</ion-item>
 				<ion-item>
 					<em>Add next of kin, family &amp; friends and emergency contacts</em>
 				</ion-item>
-				<!-- <ion-item>
-					<ion-textarea rows="3" [(ngModel)]="assess.nextOfKin" formControlName="nextOfKin" placeholder="Who would be your Next-of-Kin and Emergency Contact?"></ion-textarea>
-				</ion-item> -->
 			</ion-list>
 			<ion-list class="shaded-list">
 				<ion-item *ngFor="let contact of assess.contacts; let i = index" (click)="openContact(contact, i)">

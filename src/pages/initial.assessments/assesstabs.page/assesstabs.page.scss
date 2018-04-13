@@ -52,6 +52,10 @@ ion-textarea, ion-select, ion-datetime {
 	padding: 8px;
 }
 
+ion-textarea {
+	padding: 4px;
+}
+
 ion-card-header {
 	font-family: 'Century Gothic';
 	font-size: 12pt;
@@ -212,4 +216,8 @@ ion-item, ion-item > div.item-inner {
 	.input-wrapper {
 		border-top: none;
 	}
+}
+
+.margin-bottom {
+	margin-bottom: 4px;
 }
