@@ -1,0 +1,12 @@
+.list-row {
+    ion-label, ion-datetime {
+        width: calc(50% - 4px);
+        margin-bottom: 4px;
+    }
+    ion-input {
+        width:100px!important;
+        margin-bottom: 4px;
+    }
+    margin-left: 16px;
+    margin-right: 16px;
+}

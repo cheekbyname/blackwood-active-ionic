@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, AlertController } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar, Splashscreen, AppVersion } from 'ionic-native';
 import { FCM } from "@ionic-native/fcm";
 
 import { ActivityPage } from '../pages/activity.page/activity.page';
@@ -19,10 +19,12 @@ export class MyApp {
 
 	rootPage = HomePage;
 	pages: Array<{ title: string, component: any, icon: string }>;
-
+	appName: string = "Blackwood Active";
+	appVerNum: string ="0.0.0.0";
+	appVerCode: string = "0";
 
 	constructor(public platform: Platform, public fcm: FCM, public splash: Splashscreen, private noteSrv: NotificationService,
-		public status: StatusBar, private alert: AlertController, private usrSrv: UserService) {
+		public status: StatusBar, private alert: AlertController, private usrSrv: UserService, private appVer: AppVersion) {
 		platform.ready().then(() => {
 			// Okay, so the platform is ready and our plugins are available.
 			// Here you can do any higher level native things you might need.
@@ -35,6 +37,11 @@ export class MyApp {
 				{ title: 'Timekeeping', component: TimekeepingTabsPage, icon: 'clock' },
 				{ title: 'Settings', component: SettingsPage, icon: 'cog' }
 			];
+			if (this.platform.is('cordova')) {
+				AppVersion.getAppName().then(nm => this.appName = nm);
+				AppVersion.getVersionCode().then(vc => this.appVerCode = vc);
+				AppVersion.getVersionNumber().then(vn => this.appVerNum = vn);
+			}
 		});
 	}
 

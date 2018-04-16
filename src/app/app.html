@@ -14,6 +14,13 @@
     </ion-list>
   </ion-content>
 
+  <ion-footer>
+    <ion-toolbar class="version-footer">
+        <ion-label><em>{{appName}}</em></ion-label>
+        <ion-label><em>Version {{appVerNum}}</em></ion-label>
+        <ion-label><em>Android Version {{appVerCode}}</em></ion-label>
+      </ion-toolbar>
+  </ion-footer>
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

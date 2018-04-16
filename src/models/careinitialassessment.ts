@@ -25,6 +25,15 @@ export class CareInitialAssessment {
 	whatRequired: string;
 	overallHealth: Ratings;
 	generalHealth: string;
+	disabilityVisual: boolean;
+	disabilityHearing: boolean;
+	disabilityCognitiveLifelong: boolean;
+	disabilityPhysicalLifelong: boolean;
+	disabilityCognitiveAgeRelated: boolean;
+	disabilityPhysicalAgeRelated: boolean;
+	disabilityChronicIllness: boolean;
+	disabilityOther: boolean;
+	disabilityOtherDetails: string;
 	familyCarer: string;
 	eyeSight: number;
 	hearing: string;
@@ -40,6 +49,9 @@ export class CareInitialAssessment {
 	socialInterests: string;
 	religionCulture: string;
 	whenRequired: string;
+	bedUpTime: Date;
+	bedDownTime: Date;
+	sleepPattern: string;
 	staffRequirements: string;
 	happyVary: boolean;
 	timeChange: string;
@@ -61,6 +73,7 @@ export class CareInitialAssessment {
 	medicOralGrading: number;
 	medicNonOralGrading: number; // 1: Independent, 2: Prompt & Assist, 3: Administer (with capacity), 4: Administer (without cap.)
 	whoOrdersMedication: number;	// Us or Family? 0 - Blackwood, 1 - Family
+	forgetsMedication: ForgetsMedication;
 	allergies: string;
 	gpDetails: string;
 	otherProvider: string;
@@ -69,6 +82,13 @@ export class CareInitialAssessment {
 	specificRisks: string;
 	goals: string;
 	additionalInfo: string;
+	issueIntruders: number = 0;
+	issueBogusCalls: number = 0;
+	issueGoingOut: number = 0;
+	issueScalds: number = 0;
+	issueCooker: number = 0;
+	issueFlooding: number = 0;
+	issueOpenDoors: number = 0;
 	signature: string;
 
 	// CleverCogs Tab
@@ -396,4 +416,18 @@ export const RATINGS = [
 	{ key: Ratings.Fair, value: "Fair" },
 	{ key: Ratings.Good, value: "Good" },
 	{ key: Ratings.VeryGood, value: "Very Good" }
+];
+
+export enum ForgetsMedication {
+	NAorNever,
+	OnceADay,
+	OnceAWeek,
+	FewTimesAWeek
+}
+
+export const FORGETS_MEDIC = [
+	{ key: ForgetsMedication.NAorNever, value: "N/A, Not Recorded or Never forgets" },
+	{ key: ForgetsMedication.OnceADay, value: "Once a Day" },
+	{ key: ForgetsMedication.OnceAWeek, value: "Once a week" },
+	{ key: ForgetsMedication.FewTimesAWeek, value: "Few times a week" }
 ];

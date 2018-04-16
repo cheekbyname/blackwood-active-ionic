@@ -95,6 +95,21 @@
 					<ion-textarea rows="3" [(ngModel)]="assess.whenRequired" formControlName="whenRequired" placeholder="What times &amp; for how long, start &amp; finish times of each visit?"></ion-textarea>
 				</ion-item>
 				<ion-item>
+					<ion-label stacked>What time does the customer normally get up and go to bed?</ion-label>
+				</ion-item>
+				<ion-item class="half-width">
+					<ion-label>Gets up at</ion-label>
+					<ion-datetime displayFormat="HH:mm" [(ngModel)]="assess.bedUpTime" formControlName="bedUpTime"></ion-datetime>
+				</ion-item>
+				<ion-item class="half-width">
+					<ion-label>Goes to bed at</ion-label>
+					<ion-datetime displayFormat="HH:mm" [(ngModel)]="assess.bedDownTime" formControlName="bedDownTime"></ion-datetime>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>Normal, sleeping patterns and routines <em>(i.e. does user get up in night to use bathroom etc.?)</em></ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.sleepPattern" formControlName="sleepPattern"></ion-textarea>
+				</ion-item>
+				<ion-item>
 					<ion-label stacked>Staffing &amp; Training</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.staffRequirements" formControlName="staffRequirements" placeholder="For each visit, how many staff should attend and do they require and particular skills or training?"></ion-textarea>
 				</ion-item>
@@ -124,49 +139,52 @@
 				</ion-item-divider>
 				<ion-item class="comm-pref-check" no-margin>
 					<ion-label>Visual Impairment</ion-label>
-					<ion-checkbox></ion-checkbox>
+					<ion-checkbox [(ngModel)]="assess.diabilityVisual" formControlName="disabilityVisual"></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
 					<ion-label>Hearing loss or severe hearing impairment</ion-label>
-					<ion-checkbox></ion-checkbox>
+					<ion-checkbox [(ngModel)]="assess.disabilityHearing" formControlName="disabilityHearing"></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
 					<ion-label>Lifelong cognitive disability <em>(i.e. not age-related)</em></ion-label>
-					<ion-checkbox></ion-checkbox>
+					<ion-checkbox [(ngModel)]="assess.disabilityCognitiveLifelong" formControlName="disabilityCognitiveLifelong"></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
 					<ion-label>Lifelong physical disability <em>(i.e. not age-related)</em></ion-label>
-					<ion-checkbox></ion-checkbox>
+					<ion-checkbox [(ngModel)]="assess.disabilityPhysicalLifelong" formControlName="disabilityPhysicalLifelong"></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
 					<ion-label>Age-related cognitive impairment <em>(e.g. dementia)</em></ion-label>
-					<ion-checkbox></ion-checkbox>
+					<ion-checkbox [(ngModel)]="assess.disabilityCognitiveAgeRelated" formControlName="disabilityCognitiveAgeRelated"></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
 					<ion-label>Age-related physical disability e.g. that substantially limits one or more basic physical activities such as walking, climbing stairs, reaching, lifting or carrying</ion-label>
-					<ion-checkbox></ion-checkbox>
+					<ion-checkbox [(ngModel)]="assess.disabilityPhysicalAgeRelated" formControlName="disabilityPhysicalAgeRelated"></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
 					<ion-label>Chronic illness <em>(asthma, diabetes, CPOD etc.)</em></ion-label>
-					<ion-checkbox></ion-checkbox>
+					<ion-checkbox [(ngModel)]="assess.disabilityChronicIllness" formControlName="disabilityChronicIllness"></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
 					<ion-label>Other <em>(please specify)</em></ion-label>
-					<ion-checkbox></ion-checkbox>
+					<ion-checkbox [(ngModel)]="assess.disabilityOther" formControlName="disabilityOther"></ion-checkbox>
+				</ion-item>
+				<ion-item *ngIf="assess.disabilityOther">
+					<ion-label stacked>Please specify</ion-label>
+					<ion-textarea rows="3" placeholder="Please specify" [(ngModel)]="assess.disabilityOtherDetails" formControlName="disabilityOtherDetails"></ion-textarea>
 				</ion-item>
 			</ion-list>
 		</ion-card-content>
 	</ion-card>
 
 	<ion-card class="card-pad-bottom">
+		<ion-card-header>
+			<h2>
+				<strong>Medication</strong>
+			</h2>
+		</ion-card-header>
 		<ion-card-content no-margin no-padding>
 			<ion-list text-wrap no-lines>
-
-				<ion-item-divider no-lines no-margin>
-					<h2>
-						<strong>Medication</strong>
-					</h2>
-				</ion-item-divider>
 				<ion-item>
 					<ion-label stacked>Details</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.medication" formControlName="medication" placeholder="What medication do you take, if any? And what are these for?"></ion-textarea>
@@ -228,6 +246,12 @@
 					<ion-select width-100 [(ngModel)]="assess.whoOrdersMedication" formControlName="whoOrdersMedication" placeholder="Select from the following">
 						<ion-option value="0">Blackwood</ion-option>
 						<ion-option value="1">Family</ion-option>
+					</ion-select>
+				</ion-item>
+				<ion-item>
+					<ion-label stacked>How often can the customer forget to take medication?</ion-label>
+					<ion-select width-100 [(ngModel)]="assess.forgetsMedication" formControlName="forgetsMedication" placeholder="Select from the following">
+						<ion-option *ngFor="let med of forgetsMedic" value="med.key">{{med.value}}</ion-option>
 					</ion-select>
 				</ion-item>
 			</ion-list>
@@ -495,7 +519,7 @@
 			<strong>General</strong>
 		</ion-card-header>
 		<ion-card-content no-padding>
-			<ion-list lines>
+			<ion-list text-wrap>
 				<ion-item>
 					<ion-label stacked>Specific Risks</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.specificRisks" formControlName="specificRisks" placeholder="Are there any specific risks around your care that we should be aware of?"></ion-textarea>
@@ -508,6 +532,42 @@
 					<ion-label stacked>Other Information</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.additionalInfo" formControlName="additionalInfo" placeholder="Is there any other information that you would like to share with us that we haven't already covered?"></ion-textarea>
 				</ion-item>
+				<ion-item>
+					<ion-label><strong>Are there any issues concerning</strong></ion-label>
+				</ion-item>
+				<ion-item>
+					<ion-label><em>For the following, please indicate, if any, the number of times the following have happened in the past three months</em></ion-label>
+				</ion-item>
+			</ion-list>
+			<ion-list class="list-row">
+				<ion-row>
+					<ion-label>Intruders?</ion-label>
+					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueIntruders" formControlName="issueIntruders"></ion-input>
+				</ion-row>
+				<ion-row>
+					<ion-label>Bogus callers?</ion-label>
+					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueBogusCalls" formControlName="issueBogusCalls"></ion-input>
+				</ion-row>
+				<ion-row>
+					<ion-label>Going out inappropriately?</ion-label>
+					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueGoingOut" formControlName="issueGoingOut"></ion-input>
+				</ion-row>
+				<ion-row>
+					<ion-label>Scalds?</ion-label>
+					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueScalds" formControlName="issueScalds"></ion-input>
+				</ion-row>
+				<ion-row>
+					<ion-label>Cooker or hob use?</ion-label>
+					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueCooker" formControlName="issueCooker"></ion-input>
+				</ion-row>
+				<ion-row>
+					<ion-label>Taps left on/flooding?</ion-label>
+					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueFlooding" formControlName="issueFlooding"></ion-input>
+				</ion-row>
+				<ion-row>
+					<ion-label>Doors &amp; Windows left open or unlocked?</ion-label>
+					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueOpenDoors" formControlName="issueOpenDoors"></ion-input>
+				</ion-row>
 			</ion-list>
 		</ion-card-content>
 	</ion-card>
@@ -517,8 +577,8 @@
 		</ion-card-header>
 		<ion-card-content>
 			<signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
-			<button ion-button text-capitalize icon-left (click)="savePad()">
-				<ion-icon name="checkmark"></ion-icon>Save Signature</button>
+			<!-- <button ion-button text-capitalize icon-left (click)="savePad()">
+				<ion-icon name="checkmark"></ion-icon>Save Signature</button> -->
 			<button ion-button text-capitalize icon-left (click)="clearPad()">
 				<ion-icon name="close"></ion-icon>Clear Signature</button>
 		</ion-card-content>
