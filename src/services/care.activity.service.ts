@@ -12,7 +12,8 @@ import { DebugService } from './debug.service';
 
 // Models
 import { AddressType } from '../models/addresstype';
-import { CareInitialAssessment, DEFAULT_REASONS, DEFAULT_FEATURES, DEFAULT_OWNED_DEVICES, DEFAULT_PLANNED_DEVICES, DEFAULT_AVAILABILITY } from '../models/careinitialassessment';
+import { CareInitialAssessment, DEFAULT_REASONS, DEFAULT_FEATURES, DEFAULT_OWNED_DEVICES, DEFAULT_PLANNED_DEVICES,
+	DEFAULT_AVAILABILITY } from '../models/careinitialassessment';
 import { CareRelationship } from '../models/carerelationship';
 import { Guid } from '../models/Utilities';
 
@@ -83,31 +84,21 @@ export class CareActivityService {
 		return this.currentCareInitialAssessment;
 	}
 
-	// TODO Overwrite current with returned CareInitialAssessment
 	saveCareInitialAssessment(assess: CareInitialAssessment): Promise<CareInitialAssessment> {
-		var keyUrl = this.assessUrlFromGuid(assess.guid);	// This for saving via webAPI when it's done
-		return this.sql.query('SELECT * FROM careinitialassessments WHERE guid=?', [assess.guid])
-			.catch(err => this.simpleAlert(err, "Unable to retrieve careinitialassessments."))
-			.then(data => {
-				return (data.res.rows.length > 0);
-			})
-			.then(exists => {
-				if (exists) {
-					this.sql.query('UPDATE careinitialassessments SET json=? WHERE guid=?', [JSON.stringify(assess), assess.guid])
-						.catch(err => this.simpleAlert(err, "Unable to Update Care Assessment"));
-				} else {
-					this.sql.query('INSERT INTO careinitialassessments (guid, json) VALUES (?, ?)', [assess.guid, JSON.stringify(assess)])
-						.catch(err => this.simpleAlert(err, "Unable to Insert Care Assessment"));
-				}
-				var toast = this.toastCtrl.create({ message: 'Changes to Care Initial Assessment saved locally', duration: 3000 });
-				toast.present();
-			})
+		var keyUrl = this.assessUrlFromGuid(assess.guid);
+		return this.storeAssessLocal(assess)
 			.then(done => {
 				return this.api.putOne('care/careinitialassessment', assess)
 					.then(res => {
 						var updated = res.json() as CareInitialAssessment;
 						this.currentCareInitialAssessment = updated;
-						return Promise.resolve(updated);
+						return updated
+					})
+					.then(updated => {
+						this.storeAssessLocal(updated).then(done => {
+							return done;
+						})
+						return updated;
 					})
 					.catch(err => { return Promise.reject(err) });
 			})
@@ -115,6 +106,25 @@ export class CareActivityService {
 				console.log(keyUrl + " saved to sqlstorage");
 				return Promise.resolve(done);
 			});
+	}
+
+	storeAssessLocal(assess: CareInitialAssessment): Promise<any> {
+		return this.sql.query('SELECT * FROM careinitialassessments WHERE guid=?', [assess.guid])
+		.catch(err => this.simpleAlert(err, "Unable to retrieve careinitialassessments."))
+		.then(data => {
+			return (data.res.rows.length > 0);
+		})
+		.then(exists => {
+			if (exists) {
+				this.sql.query('UPDATE careinitialassessments SET json=? WHERE guid=?', [JSON.stringify(assess), assess.guid])
+					.catch(err => this.simpleAlert(err, "Unable to Update Care Assessment"));
+			} else {
+				this.sql.query('INSERT INTO careinitialassessments (guid, json) VALUES (?, ?)', [assess.guid, JSON.stringify(assess)])
+					.catch(err => this.simpleAlert(err, "Unable to Insert Care Assessment"));
+			}
+			var toast = this.toastCtrl.create({ message: 'Changes to Care Initial Assessment saved locally', duration: 3000 });
+			toast.present();
+		});		
 	}
 
 	// TODO Possibly redundant - consider for removal
