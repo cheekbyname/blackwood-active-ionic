@@ -34,6 +34,13 @@ export class CareInitialAssessment {
 	disabilityChronicIllness: boolean;
 	disabilityOther: boolean;
 	disabilityOtherDetails: string;
+	timesFallen: number = 0;
+	fallenHospital: boolean;
+	personalPoorExercise: boolean;
+	personalHygiene: boolean;
+	personalNutrition: boolean;
+	personalColdTolerance: boolean;
+	personalHydration: boolean;
 	familyCarer: string;
 	eyeSight: number;
 	hearing: string;

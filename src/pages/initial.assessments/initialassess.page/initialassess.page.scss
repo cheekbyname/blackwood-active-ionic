@@ -10,3 +10,11 @@
     margin-left: 16px;
     margin-right: 16px;
 }
+
+.min-right {
+    padding-left: 16px;
+    padding-right: 16px;
+    :last-child {
+        margin-top: 8px;
+    }
+}
