@@ -76,6 +76,13 @@ export class InitialAssessPage {
 		var contactArray = this.form.controls['contacts'] as FormArray;
 		var ctrls = contactArray.controls[idx] as FormGroup;
 		var mod = this.modCtrl.create(CareContactModal, { contact: contact, form: ctrls });
+		mod.onDidDismiss(data => {
+			// Remove model and controls if Contact removed
+			if (data.remove === true) {
+				contactArray.removeAt(idx);
+				this.assess.contacts.splice(idx, 1);
+			}
+		});
 		mod.present();
 	}
 

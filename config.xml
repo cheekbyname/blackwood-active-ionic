@@ -66,4 +66,5 @@
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
     <allow-navigation href="http://172.20.120.129:8100" />
     <allow-navigation href="http://169.254.80.80:8100" />
+    <allow-navigation href="http://192.168.20.51:8100" />
 </widget>

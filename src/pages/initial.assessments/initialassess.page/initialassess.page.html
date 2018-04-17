@@ -122,7 +122,9 @@
 					</ion-col>
 				</ion-row>
 				<ion-item>
-					<ion-label stacked>Normal, sleeping patterns and routines <em>(i.e. does user get up in night to use bathroom etc.?)</em></ion-label>
+					<ion-label stacked>Normal, sleeping patterns and routines
+						<em>(i.e. does user get up in night to use bathroom etc.?)</em>
+					</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.sleepPattern" formControlName="sleepPattern"></ion-textarea>
 				</ion-item>
 				<ion-item>
@@ -135,7 +137,9 @@
 
 	<ion-card class="card-pad-bottom">
 		<ion-card-header>
-			<h2><strong>Physical Wellbeing</strong></h2>
+			<h2>
+				<strong>Physical Wellbeing</strong>
+			</h2>
 		</ion-card-header>
 		<ion-card-content no-padding>
 			<ion-list text-wrap>
@@ -162,27 +166,38 @@
 					<ion-checkbox [(ngModel)]="assess.disabilityHearing" formControlName="disabilityHearing" item-right></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
-					<ion-label>Lifelong cognitive disability <em>(i.e. not age-related)</em></ion-label>
+					<ion-label>Lifelong cognitive disability
+						<em>(i.e. not age-related)</em>
+					</ion-label>
 					<ion-checkbox [(ngModel)]="assess.disabilityCognitiveLifelong" formControlName="disabilityCognitiveLifelong" item-right></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
-					<ion-label>Lifelong physical disability <em>(i.e. not age-related)</em></ion-label>
+					<ion-label>Lifelong physical disability
+						<em>(i.e. not age-related)</em>
+					</ion-label>
 					<ion-checkbox [(ngModel)]="assess.disabilityPhysicalLifelong" formControlName="disabilityPhysicalLifelong" item-right></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
-					<ion-label>Age-related cognitive impairment <em>(e.g. dementia)</em></ion-label>
+					<ion-label>Age-related cognitive impairment
+						<em>(e.g. dementia)</em>
+					</ion-label>
 					<ion-checkbox [(ngModel)]="assess.disabilityCognitiveAgeRelated" formControlName="disabilityCognitiveAgeRelated" item-right></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
-					<ion-label>Age-related physical disability e.g. that substantially limits one or more basic physical activities such as walking, climbing stairs, reaching, lifting or carrying</ion-label>
+					<ion-label>Age-related physical disability e.g. that substantially limits one or more basic physical activities such as walking,
+						climbing stairs, reaching, lifting or carrying</ion-label>
 					<ion-checkbox [(ngModel)]="assess.disabilityPhysicalAgeRelated" formControlName="disabilityPhysicalAgeRelated" item-right></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
-					<ion-label>Chronic illness <em>(asthma, diabetes, CPOD etc.)</em></ion-label>
+					<ion-label>Chronic illness
+						<em>(asthma, diabetes, CPOD etc.)</em>
+					</ion-label>
 					<ion-checkbox [(ngModel)]="assess.disabilityChronicIllness" formControlName="disabilityChronicIllness" item-right></ion-checkbox>
 				</ion-item>
 				<ion-item class="comm-pref-check" no-margin>
-					<ion-label>Other <em>(please specify)</em></ion-label>
+					<ion-label>Other
+						<em>(please specify)</em>
+					</ion-label>
 					<ion-checkbox [(ngModel)]="assess.disabilityOther" formControlName="disabilityOther" item-right></ion-checkbox>
 				</ion-item>
 				<ion-item *ngIf="assess.disabilityOther">
@@ -520,18 +535,6 @@
 					<ion-label stacked>Do you suffer from any allergies?</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.allergies" formControlName="allergies"></ion-textarea>
 				</ion-item>
-				<ion-item>
-					<ion-label stacked>
-						<strong>General Practitioner</strong>
-					</ion-label>
-					<ion-textarea rows="3" [(ngModel)]="assess.gpDetails" formControlName="gpDetails" placeholder="Do you have a GP? Who and where?"></ion-textarea>
-				</ion-item>
-				<ion-item>
-					<ion-label stacked>
-						<strong>Other Healthcare</strong>
-					</ion-label>
-					<ion-textarea rows="4" [(ngModel)]="assess.otherProvider" formControlName="otherProvider" placeholder="Do you have any other healthcare provider? If so who and what are their contact details (e.g. District Nurse, OT, SALT, etc.)"></ion-textarea>
-				</ion-item>
 			</ion-list>
 		</ion-card-content>
 	</ion-card>
@@ -551,8 +554,17 @@
 					<ion-textarea rows="3" [(ngModel)]="assess.nextOfKin" formControlName="nextOfKin" placeholder="Who would be your Next-of-Kin and Emergency Contact?"></ion-textarea>
 				</ion-item>
 				<ion-item>
-					<em>Add next of kin, family &amp; friends and emergency contacts</em>
+					<ion-label stacked>General Practitioner</ion-label>
+					<ion-textarea rows="3" [(ngModel)]="assess.gpDetails" formControlName="gpDetails" placeholder="Do you have a GP? Who and where? This information can also be recorded in the contacts section below."></ion-textarea>
 				</ion-item>
+				<ion-item>
+					<ion-label stacked>Other Healthcare</ion-label>
+					<ion-textarea rows="4" [(ngModel)]="assess.otherProvider" formControlName="otherProvider" placeholder="Do you have any other healthcare provider? If so who and what are their contact details (e.g. District Nurse, OT, SALT, etc.). This information can also be recorded in the contacts section below."></ion-textarea>
+				</ion-item>
+				<ion-row class="box-highlight">
+					<em>Add next of kin, family &amp; friends and emergency contacts. <strong>Also record consent given to share information and features
+						from CleverCogs with people here.</strong></em>
+				</ion-row>
 			</ion-list>
 			<ion-list class="shaded-list">
 				<ion-item *ngFor="let contact of assess.contacts; let i = index" (click)="openContact(contact, i)">
@@ -589,41 +601,73 @@
 					<ion-label stacked>Other Information</ion-label>
 					<ion-textarea rows="3" [(ngModel)]="assess.additionalInfo" formControlName="additionalInfo" placeholder="Is there any other information that you would like to share with us that we haven't already covered?"></ion-textarea>
 				</ion-item>
+				<ion-item-divider no-lines>
+					<ion-label>
+						<strong>Are there any issues concerning</strong>
+					</ion-label>
+				</ion-item-divider>
 				<ion-item>
-					<ion-label><strong>Are there any issues concerning</strong></ion-label>
-				</ion-item>
-				<ion-item>
-					<ion-label><em>For the following, please indicate, if any, the number of times the following have happened in the past three months</em></ion-label>
+					<ion-label>
+						<em>For the following, please indicate, if any, the number of times the following have happened in the past three months</em>
+					</ion-label>
 				</ion-item>
 			</ion-list>
-			<ion-list class="list-row">
-				<ion-row>
-					<ion-label>Intruders?</ion-label>
-					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueIntruders" formControlName="issueIntruders"></ion-input>
+			<ion-list>
+				<ion-row class="min-right">
+					<ion-col col-9>
+						<ion-label>Intruders?</ion-label>
+					</ion-col>
+					<ion-col col-3>
+						<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueIntruders" formControlName="issueIntruders"></ion-input>
+					</ion-col>
 				</ion-row>
-				<ion-row>
-					<ion-label>Bogus callers?</ion-label>
-					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueBogusCalls" formControlName="issueBogusCalls"></ion-input>
+				<ion-row class="min-right">
+					<ion-col col-9>
+						<ion-label>Bogus callers?</ion-label>
+					</ion-col>
+					<ion-col col-3>
+						<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueBogusCalls" formControlName="issueBogusCalls"></ion-input>
+					</ion-col>
 				</ion-row>
-				<ion-row>
-					<ion-label>Going out inappropriately?</ion-label>
-					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueGoingOut" formControlName="issueGoingOut"></ion-input>
+				<ion-row class="min-right">
+					<ion-col col-9>
+						<ion-label>Going out inappropriately?</ion-label>
+					</ion-col>
+					<ion-col col-3>
+						<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueGoingOut" formControlName="issueGoingOut"></ion-input>
+					</ion-col>
 				</ion-row>
-				<ion-row>
-					<ion-label>Scalds?</ion-label>
-					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueScalds" formControlName="issueScalds"></ion-input>
+				<ion-row class="min-right">
+					<ion-col col-9>
+						<ion-label>Scalds?</ion-label>
+					</ion-col>
+					<ion-col col-3>
+						<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueScalds" formControlName="issueScalds"></ion-input>
+					</ion-col>
 				</ion-row>
-				<ion-row>
-					<ion-label>Cooker or hob use?</ion-label>
-					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueCooker" formControlName="issueCooker"></ion-input>
+				<ion-row class="min-right">
+					<ion-col col-9>
+						<ion-label>Cooker or hob use?</ion-label>
+					</ion-col>
+					<ion-col col-3>
+						<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueCooker" formControlName="issueCooker"></ion-input>
+					</ion-col>
 				</ion-row>
-				<ion-row>
-					<ion-label>Taps left on/flooding?</ion-label>
-					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueFlooding" formControlName="issueFlooding"></ion-input>
+				<ion-row class="min-right">
+					<ion-col col-9>
+						<ion-label>Taps left on/flooding?</ion-label>
+					</ion-col>
+					<ion-col col-3>
+						<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueFlooding" formControlName="issueFlooding"></ion-input>
+					</ion-col>
 				</ion-row>
-				<ion-row>
-					<ion-label>Doors &amp; Windows left open or unlocked?</ion-label>
-					<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueOpenDoors" formControlName="issueOpenDoors"></ion-input>
+				<ion-row class="min-right">
+					<ion-col col-9>
+						<ion-label>Doors &amp; Windows left open or unlocked?</ion-label>
+					</ion-col>
+					<ion-col col-3>
+						<ion-input type="number" [min]="0" [max]="5" [(ngModel)]="assess.issueOpenDoors" formControlName="issueOpenDoors"></ion-input>
+					</ion-col>
 				</ion-row>
 			</ion-list>
 		</ion-card-content>

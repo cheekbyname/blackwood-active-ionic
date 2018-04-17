@@ -49,11 +49,10 @@ ion-textarea, ion-select, ion-datetime {
 	background-color: rgba(225, 225, 225, 0.5);
 	font-family: "Century Gothic";
 	font-size: 12pt;
-	padding: 8px;
 }
 
 ion-textarea {
-	padding: 4px;
+	padding-left: 4px!important;
 }
 
 ion-card-header {

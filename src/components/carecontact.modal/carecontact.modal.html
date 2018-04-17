@@ -1,12 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Contact Details</ion-title>
-        <!-- <ion-buttons end>
-            <button ion-button icon-start (click)="dismiss()" class="header-button">
-                <ion-icon name="checkmark"></ion-icon>
-                <span text-capitalize>Close</span>
-            </button>
-        </ion-buttons> -->
+        <ion-title>Contact Details for {{contact.forenames}} {{contact.surname}}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -104,6 +98,12 @@
 
 <ion-footer>
     <ion-toolbar>
+        <ion-buttons>
+            <button ion-button icon-start (click)="remove()" class="header-button">
+                <ion-icon name="close"></ion-icon>
+                <span text-capitalize>Remove</span>
+            </button>
+        </ion-buttons>
         <ion-buttons end>
             <button ion-button icon-start (click)="dismiss()" class="header-button">
                 <ion-icon name="checkmark"></ion-icon>

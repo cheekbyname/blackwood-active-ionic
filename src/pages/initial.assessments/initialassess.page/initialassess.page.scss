@@ -1,21 +1,16 @@
-.list-row {
-    ion-label, ion-datetime {
-        width: calc(50% - 4px);
-        margin-bottom: 4px;
-    }
-    ion-input {
-        width:100px!important;
-        margin-bottom: 4px;
-    }
-    margin-left: 16px;
-    margin-right: 16px;
-}
-
 .min-right {
     padding-left: 12px;
     padding-right: 12px;
+}
 
-    :last-child {
-        margin-top: 8px;
-    }
+ion-item-divider {
+    margin-top: 12px;
+    margin-bottom: 0px;
+}
+
+.box-highlight {
+    border: black 1px solid!important;
+    background-color: orange;
+    margin: 8px 8px 16px 16px;
+    padding: 16px;
 }
