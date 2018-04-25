@@ -1,4 +1,5 @@
 export class Availability {
+	public id: number;
 	public availCode: number;
 	public contractCode: number;
 	public thisStart: Date;

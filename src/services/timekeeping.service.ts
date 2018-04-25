@@ -17,7 +17,7 @@ export class TimekeepingService {
 				return { "user": u, "week": w }
 			})
 			.subscribe(x => {
-				if (x.week != undefined) this.getTimesheet(x.user, x.week);
+				if (x.week != undefined) this.getTimesheet(x.week);
 			});
 	}
 
@@ -35,17 +35,19 @@ export class TimekeepingService {
 		this.weekCommencing$.next(this.utils.getWeekCommencingFromDate(dt));
 	}
 
-	getTimesheet(user: ActiveUser, weekCommencing: Date): Promise<any> {
-		var url = `timekeeping/timesheet?user=${user.accountName}&weekCommencing=${this.utils.sqlDate(weekCommencing)}`;
+	getTimesheet(weekCommencing: Date): Promise<Timesheet> {
+		var url = `timekeeping/timesheet?weekCommencing=${this.utils.sqlDate(weekCommencing)}`;
 		return this.apiSrv.getOne(url).then(ts => {
 			this.timesheet$.next(ts);
+			return ts;
 		}).catch((err) => {
 			// This is a guard for promise rejected for error
+			return Promise.reject(err);
 		});
 	}
 
 	refresh(): Promise<any> {
-		return this.getTimesheet(this.usrSrv.currentUser, this.weekCommencing$.value);
+		return this.getTimesheet(this.weekCommencing$.value);
 	}
 
 	submitAdjustRequest(adjust: Adjustment): Promise<Adjustment> {
@@ -54,6 +56,7 @@ export class TimekeepingService {
 			return Promise.resolve(res.json() as Adjustment);
 		}).catch((err) => {
 			// This is a guard for promise rejected for error
+			return Promise.reject(err);
 		});
 	}
 }

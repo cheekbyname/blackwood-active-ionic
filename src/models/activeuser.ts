@@ -10,6 +10,7 @@ export class ActiveUser {
 	msgToken: string;
 	isHousingUser: boolean;
 	isCareUser: boolean;
+	carerCode: number;
 	validFacilities: Facility[];
 	validDevelopments: Development[];
 	validFunctions: ActiveUserFunction[];
